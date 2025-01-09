@@ -1,0 +1,9 @@
+C:/Users/Juan Henrique/Documents/clinica/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/CMakeFiles/clinica.dir
+C:/Users/Juan Henrique/Documents/clinica/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/CMakeFiles/edit_cache.dir
+C:/Users/Juan Henrique/Documents/clinica/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/CMakeFiles/rebuild_cache.dir
+C:/Users/Juan Henrique/Documents/clinica/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/CMakeFiles/list_install_components.dir
+C:/Users/Juan Henrique/Documents/clinica/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/CMakeFiles/install.dir
+C:/Users/Juan Henrique/Documents/clinica/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/CMakeFiles/install/local.dir
+C:/Users/Juan Henrique/Documents/clinica/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/CMakeFiles/install/strip.dir
+C:/Users/Juan Henrique/Documents/clinica/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/CMakeFiles/clinica_autogen_timestamp_deps.dir
+C:/Users/Juan Henrique/Documents/clinica/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/CMakeFiles/clinica_autogen.dir
