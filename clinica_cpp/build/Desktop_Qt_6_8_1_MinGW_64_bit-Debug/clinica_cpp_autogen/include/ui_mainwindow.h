@@ -17,6 +17,7 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -25,10 +26,11 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
-    QPushButton *btnCadastrar;
-    QPushButton *btnExibir;
+    QVBoxLayout *verticalLayout;
     QLabel *label;
     QFrame *line;
+    QPushButton *btnCadastrar;
+    QPushButton *btnExibir;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -36,29 +38,40 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(800, 600);
+        MainWindow->resize(187, 184);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
-        btnCadastrar = new QPushButton(centralwidget);
-        btnCadastrar->setObjectName("btnCadastrar");
-        btnCadastrar->setGeometry(QRect(10, 60, 161, 29));
-        btnExibir = new QPushButton(centralwidget);
-        btnExibir->setObjectName("btnExibir");
-        btnExibir->setGeometry(QRect(10, 100, 161, 29));
+        verticalLayout = new QVBoxLayout(centralwidget);
+        verticalLayout->setObjectName("verticalLayout");
         label = new QLabel(centralwidget);
         label->setObjectName("label");
-        label->setGeometry(QRect(330, 0, 111, 31));
+        label->setMaximumSize(QSize(16777215, 30));
         label->setStyleSheet(QString::fromUtf8("font: 16pt \"Arial\";\n"
 "color: rgb(255, 255, 255);"));
+
+        verticalLayout->addWidget(label);
+
         line = new QFrame(centralwidget);
         line->setObjectName("line");
-        line->setGeometry(QRect(0, 30, 801, 16));
         line->setFrameShape(QFrame::Shape::HLine);
         line->setFrameShadow(QFrame::Shadow::Sunken);
+
+        verticalLayout->addWidget(line);
+
+        btnCadastrar = new QPushButton(centralwidget);
+        btnCadastrar->setObjectName("btnCadastrar");
+
+        verticalLayout->addWidget(btnCadastrar);
+
+        btnExibir = new QPushButton(centralwidget);
+        btnExibir->setObjectName("btnExibir");
+
+        verticalLayout->addWidget(btnExibir);
+
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 800, 25));
+        menubar->setGeometry(QRect(0, 0, 187, 25));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -72,9 +85,9 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-weight:700;\">CL\303\215NIQUINHA</span></p></body></html>", nullptr));
         btnCadastrar->setText(QCoreApplication::translate("MainWindow", "Cadastrar paciente", nullptr));
         btnExibir->setText(QCoreApplication::translate("MainWindow", "Exibir lista de pacientes", nullptr));
-        label->setText(QCoreApplication::translate("MainWindow", "CL\303\215NICA", nullptr));
     } // retranslateUi
 
 };

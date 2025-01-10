@@ -1,0 +1,11 @@
+# ninja log v6
+20	100	7582368056116497	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	17d16f5ae2d584be
+109	275	7582364579122223	clinica_cpp_autogen/timestamp	54fcba823059dfa1
+109	275	7582364579122223	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+109	275	7582364579122223	clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+109	275	7582364579122223	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	54fcba823059dfa1
+2101	2278	7582364599052730	clinica_cpp.exe	51a410639824edd9
+682	2299	7582361032060202	CMakeFiles/clinica_cpp.dir/clinica_cpp_autogen/mocs_compilation.cpp.obj	cc5ae2b9e4297562
+276	2101	7582364580793255	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	aab84b7ad055f5a4
+686	2354	7582361032103114	CMakeFiles/clinica_cpp.dir/main.cpp.obj	b254aee9d5249a45
+99	788	7582374084322141	build.ninja	c12202979ffdc9b3
