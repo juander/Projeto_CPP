@@ -3,9 +3,11 @@
 #include <QInputDialog>
 #include <QMessageBox>
 
-Pessoa::Pessoa(std::string n, int i) : nome(n), idade(i) {}
+using namespace std;
 
-std::string Pessoa::getNome() const {
+Pessoa::Pessoa(string n, int i) : nome(n), idade(i) {}
+
+string Pessoa::getNome() const {
     return nome;
 }
 
@@ -13,14 +15,14 @@ int Pessoa::getIdade() const {
     return idade;
 }
 
-Paciente::Paciente(std::string n, int i, std::string d) : Pessoa(n, i), diagnostico(d) {}
+Paciente::Paciente(string n, int i, string d) : Pessoa(n, i), diagnostico(d) {}
 
-std::string Paciente::getDiagnostico() const {
+string Paciente::getDiagnostico() const {
     return diagnostico;
 }
 
-std::string Paciente::getInfo() const {
-    return "Nome: " + nome + ", Idade: " + std::to_string(idade) + ", Diagnóstico: " + diagnostico;
+string Paciente::getInfo() const {
+    return "Nome: " + nome + ", Idade: " + to_string(idade) + ", Diagnóstico: " + diagnostico;
 }
 
 MainWindow::MainWindow(QWidget *parent)
