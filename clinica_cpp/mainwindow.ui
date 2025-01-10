@@ -17,6 +17,12 @@
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QLabel" name="label">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>30</height>
+       </size>
+      </property>
       <property name="styleSheet">
        <string notr="true">font: 16pt &quot;Arial&quot;;
 color: rgb(255, 255, 255);</string>
