@@ -5,29 +5,31 @@
 #include <vector>
 #include <string>
 
+using namespace std;
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 class Pessoa {
 protected:
-    std::string nome;
+    string nome;
     int idade;
 
 public:
-    Pessoa(std::string n, int i);
+    Pessoa(string n, int i);
     virtual ~Pessoa() = default;
-    std::string getNome() const;
+    string getNome() const;
     int getIdade() const;
 };
 
 class Paciente : public Pessoa {
-    std::string diagnostico;
+    string diagnostico;
 
 public:
-    Paciente(std::string n, int i, std::string d);
-    std::string getDiagnostico() const;
-    std::string getInfo() const;
+    Paciente(string n, int i, string d);
+    string getDiagnostico() const;
+    string getInfo() const;
 };
 
 class MainWindow : public QMainWindow
@@ -43,7 +45,7 @@ private slots:
     void on_btnExibir_clicked();
 private:
     Ui::MainWindow *ui;
-    std::vector<Paciente> pacientes;
+    vector<Paciente> pacientes;
 };
 
 #endif // MAINWINDOW_H
