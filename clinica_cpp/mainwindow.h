@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <vector>
 #include <string>
+#include "registerwindow.h"
 
 using namespace std;
 
@@ -43,9 +44,12 @@ public:
 private slots:
     void on_btnCadastrar_clicked();
     void on_btnExibir_clicked();
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     vector<Paciente> pacientes;
+    registerwindow *pag2;
 };
 
 #endif // MAINWINDOW_H

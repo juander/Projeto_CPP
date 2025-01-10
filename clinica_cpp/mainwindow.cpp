@@ -67,3 +67,10 @@ void MainWindow::on_btnExibir_clicked()
     QMessageBox::information(this, "Lista de Pacientes", lista);
 }
 
+
+void MainWindow::on_pushButton_clicked()
+{
+    pag2 = new registerwindow(this);
+    pag2->exec();
+}
+

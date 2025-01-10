@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>187</width>
-    <height>184</height>
+    <width>505</width>
+    <height>403</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -47,6 +47,13 @@ color: rgb(255, 255, 255);</string>
      </widget>
     </item>
     <item>
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>pag2</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QPushButton" name="btnExibir">
       <property name="text">
        <string>Exibir lista de pacientes</string>
@@ -60,7 +67,7 @@ color: rgb(255, 255, 255);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>187</width>
+     <width>505</width>
      <height>25</height>
     </rect>
    </property>
