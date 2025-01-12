@@ -41,7 +41,8 @@ public:
             MainWindow->setObjectName("MainWindow");
         MainWindow->setEnabled(true);
         MainWindow->resize(1280, 745);
-        MainWindow->setMinimumSize(QSize(1280, 720));
+        MainWindow->setMinimumSize(QSize(1280, 745));
+        MainWindow->setMaximumSize(QSize(1280, 745));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         btnCadastrar = new QPushButton(centralwidget);
@@ -96,8 +97,8 @@ public:
         label_3->setFont(font1);
         line = new QFrame(frame_2);
         line->setObjectName("line");
-        line->setGeometry(QRect(10, 64, 150, 3));
-        line->setStyleSheet(QString::fromUtf8("color:rgb(109, 176, 236)"));
+        line->setGeometry(QRect(10, 64, 150, 5));
+        line->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         line->setFrameShape(QFrame::Shape::HLine);
         line->setFrameShadow(QFrame::Shadow::Sunken);
         MainWindow->setCentralWidget(centralwidget);
