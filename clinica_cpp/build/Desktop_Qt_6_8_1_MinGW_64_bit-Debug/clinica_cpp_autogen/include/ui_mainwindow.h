@@ -32,6 +32,7 @@ public:
     QLabel *label_2;
     QFrame *frame_2;
     QLabel *label_3;
+    QFrame *line;
     QMenuBar *menubar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -87,12 +88,18 @@ public:
         frame_2->setFrameShadow(QFrame::Shadow::Raised);
         label_3 = new QLabel(frame_2);
         label_3->setObjectName("label_3");
-        label_3->setGeometry(QRect(13, 103, 107, 23));
+        label_3->setGeometry(QRect(20, 37, 107, 23));
         QFont font1;
         font1.setFamilies({QString::fromUtf8("Arial")});
         font1.setPointSize(10);
         font1.setBold(true);
         label_3->setFont(font1);
+        line = new QFrame(frame_2);
+        line->setObjectName("line");
+        line->setGeometry(QRect(10, 64, 150, 3));
+        line->setStyleSheet(QString::fromUtf8("color:rgb(109, 176, 236)"));
+        line->setFrameShape(QFrame::Shape::HLine);
+        line->setFrameShadow(QFrame::Shadow::Sunken);
         MainWindow->setCentralWidget(centralwidget);
         frame_2->raise();
         btnCadastrar->raise();

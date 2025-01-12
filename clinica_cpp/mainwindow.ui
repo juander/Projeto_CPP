@@ -164,8 +164,8 @@ color: rgb(255, 255, 255);</string>
     <widget class="QLabel" name="label_3">
      <property name="geometry">
       <rect>
-       <x>13</x>
-       <y>103</y>
+       <x>20</x>
+       <y>37</y>
        <width>107</width>
        <height>23</height>
       </rect>
@@ -179,6 +179,22 @@ color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:11pt; color:#000000;&quot;&gt;Cronograma&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="Line" name="line">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>64</y>
+       <width>150</width>
+       <height>3</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color:rgb(109, 176, 236)</string>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Orientation::Horizontal</enum>
      </property>
     </widget>
    </widget>
