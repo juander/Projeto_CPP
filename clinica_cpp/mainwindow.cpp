@@ -30,7 +30,6 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
     // Conectando os botões às funções de slot
     connect(ui->btnCadastrar, &QPushButton::clicked, this, &MainWindow::on_btnCadastrar_clicked);
     connect(ui->btnExibir, &QPushButton::clicked, this, &MainWindow::on_btnExibir_clicked);

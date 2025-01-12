@@ -1,11 +1,100 @@
 # ninja log v6
-20	100	7582368056116497	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	17d16f5ae2d584be
-109	275	7582364579122223	clinica_cpp_autogen/timestamp	54fcba823059dfa1
-109	275	7582364579122223	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
-109	275	7582364579122223	clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
-109	275	7582364579122223	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	54fcba823059dfa1
-2101	2278	7582364599052730	clinica_cpp.exe	51a410639824edd9
-682	2299	7582361032060202	CMakeFiles/clinica_cpp.dir/clinica_cpp_autogen/mocs_compilation.cpp.obj	cc5ae2b9e4297562
-276	2101	7582364580793255	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	aab84b7ad055f5a4
-686	2354	7582361032103114	CMakeFiles/clinica_cpp.dir/main.cpp.obj	b254aee9d5249a45
-99	788	7582374084322141	build.ninja	c12202979ffdc9b3
+20	98	7582439522223267	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	17d16f5ae2d584be
+175	951	7582381437891363	clinica_cpp_autogen/timestamp	54fcba823059dfa1
+175	951	7582381437891363	clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+175	951	7582381437891363	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+175	951	7582381437891363	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	54fcba823059dfa1
+966	3659	7582381438976086	CMakeFiles/clinica_cpp.dir/registerwindow.cpp.obj	7321ad651d1cf332
+3917	4115	7582381468489062	clinica_cpp.exe	b6d57da857496f68
+952	3590	7582381438830790	CMakeFiles/clinica_cpp.dir/clinica_cpp_autogen/mocs_compilation.cpp.obj	cc5ae2b9e4297562
+961	3917	7582381438915601	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	aab84b7ad055f5a4
+957	3580	7582381438881924	CMakeFiles/clinica_cpp.dir/main.cpp.obj	b254aee9d5249a45
+99	788	7582439528772523	build.ninja	c12202979ffdc9b3
+98	784	7582439528772523	build.ninja	c12202979ffdc9b3
+18	104	7582439529654366	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	17d16f5ae2d584be
+113	294	7582439530601793	clinica_cpp_autogen/timestamp	54fcba823059dfa1
+113	294	7582439530601793	clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+113	294	7582439530601793	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	54fcba823059dfa1
+113	294	7582439530601793	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+299	2649	7582439532461895	CMakeFiles/clinica_cpp.dir/registerwindow.cpp.obj	7321ad651d1cf332
+295	3025	7582439532431687	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	aab84b7ad055f5a4
+3025	3631	7582439559729446	clinica_cpp.exe	b6d57da857496f68
+30	119	7583953576416665	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	17d16f5ae2d584be
+15	93	7583969906278601	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	17d16f5ae2d584be
+103	290	7583969907159477	clinica_cpp_autogen/timestamp	54fcba823059dfa1
+103	290	7583969907159477	clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+103	290	7583969907159477	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	54fcba823059dfa1
+103	290	7583969907159477	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+294	2106	7583969909063081	CMakeFiles/clinica_cpp.dir/registerwindow.cpp.obj	7321ad651d1cf332
+291	2142	7583969909031096	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	aab84b7ad055f5a4
+2142	2469	7583969927543276	clinica_cpp.exe	b6d57da857496f68
+20	99	7583973687558323	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	17d16f5ae2d584be
+109	261	7583973688442830	clinica_cpp_autogen/timestamp	54fcba823059dfa1
+109	261	7583973688442830	clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+109	261	7583973688442830	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	54fcba823059dfa1
+109	261	7583973688442830	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+265	1941	7583973690011444	CMakeFiles/clinica_cpp.dir/registerwindow.cpp.obj	7321ad651d1cf332
+262	2156	7583973689977342	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	aab84b7ad055f5a4
+2157	2357	7583973708920974	clinica_cpp.exe	b6d57da857496f68
+19	97	7583974308098646	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	17d16f5ae2d584be
+13	89	7583985700102223	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	17d16f5ae2d584be
+98	251	7583985700966435	clinica_cpp_autogen/timestamp	54fcba823059dfa1
+98	251	7583985700966435	clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+98	251	7583985700966435	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	54fcba823059dfa1
+98	251	7583985700966435	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+255	1925	7583985702531120	CMakeFiles/clinica_cpp.dir/registerwindow.cpp.obj	7321ad651d1cf332
+252	2140	7583985702500773	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	aab84b7ad055f5a4
+2140	2335	7583985721383489	clinica_cpp.exe	b6d57da857496f68
+19	97	7583988780083808	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	17d16f5ae2d584be
+106	257	7583988780949299	clinica_cpp_autogen/timestamp	54fcba823059dfa1
+106	257	7583988780949299	clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+106	257	7583988780949299	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	54fcba823059dfa1
+106	257	7583988780949299	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+261	1884	7583988782511540	CMakeFiles/clinica_cpp.dir/registerwindow.cpp.obj	7321ad651d1cf332
+258	2129	7583988782476446	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	aab84b7ad055f5a4
+2129	2322	7583988801180832	clinica_cpp.exe	b6d57da857496f68
+20	98	7583993642521961	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	17d16f5ae2d584be
+109	264	7583993643409854	clinica_cpp_autogen/timestamp	54fcba823059dfa1
+109	264	7583993643409854	clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+109	264	7583993643409854	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	54fcba823059dfa1
+109	264	7583993643409854	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+268	1923	7583993645008124	CMakeFiles/clinica_cpp.dir/registerwindow.cpp.obj	7321ad651d1cf332
+264	2151	7583993644966110	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	aab84b7ad055f5a4
+2152	2349	7583993663848680	clinica_cpp.exe	b6d57da857496f68
+19	98	7583994994037966	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	17d16f5ae2d584be
+107	260	7583994994916046	clinica_cpp_autogen/timestamp	54fcba823059dfa1
+107	260	7583994994916046	clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+107	260	7583994994916046	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	54fcba823059dfa1
+107	260	7583994994916046	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+264	1929	7583994996487364	CMakeFiles/clinica_cpp.dir/registerwindow.cpp.obj	7321ad651d1cf332
+261	2158	7583994996454003	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	aab84b7ad055f5a4
+2158	2357	7583995015428074	clinica_cpp.exe	b6d57da857496f68
+19	96	7583995886503255	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	17d16f5ae2d584be
+106	258	7583995887362583	clinica_cpp_autogen/timestamp	54fcba823059dfa1
+106	258	7583995887362583	clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+106	258	7583995887362583	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	54fcba823059dfa1
+106	258	7583995887362583	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+262	1953	7583995888932012	CMakeFiles/clinica_cpp.dir/registerwindow.cpp.obj	7321ad651d1cf332
+259	2155	7583995888891687	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	aab84b7ad055f5a4
+2155	2350	7583995907854838	clinica_cpp.exe	b6d57da857496f68
+21	108	7584004805824716	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	17d16f5ae2d584be
+124	2113	7584004826101730	clinica_cpp_autogen/timestamp	54fcba823059dfa1
+124	2113	7584004826101730	clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+124	2113	7584004826101730	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	54fcba823059dfa1
+124	2113	7584004826101730	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+2117	3801	7584004826789257	CMakeFiles/clinica_cpp.dir/main.cpp.obj	b254aee9d5249a45
+2114	3809	7584004826755875	CMakeFiles/clinica_cpp.dir/clinica_cpp_autogen/mocs_compilation.cpp.obj	cc5ae2b9e4297562
+2123	3904	7584004826847283	CMakeFiles/clinica_cpp.dir/registerwindow.cpp.obj	7321ad651d1cf332
+2120	4138	7584004826824273	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	aab84b7ad055f5a4
+4138	4337	7584004847000359	clinica_cpp.exe	b6d57da857496f68
+22	108	7584007651912556	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	17d16f5ae2d584be
+118	661	7584007657585529	clinica_cpp_autogen/timestamp	54fcba823059dfa1
+118	661	7584007657585529	clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+118	661	7584007657585529	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	54fcba823059dfa1
+118	661	7584007657585529	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+662	2352	7584007658300389	CMakeFiles/clinica_cpp.dir/clinica_cpp_autogen/mocs_compilation.cpp.obj	cc5ae2b9e4297562
+665	2413	7584007658341909	CMakeFiles/clinica_cpp.dir/main.cpp.obj	b254aee9d5249a45
+672	2514	7584007658408909	CMakeFiles/clinica_cpp.dir/registerwindow.cpp.obj	7321ad651d1cf332
+669	2709	7584007658373378	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	aab84b7ad055f5a4
+2709	2910	7584007678780351	clinica_cpp.exe	b6d57da857496f68
+19	97	7584007854341762	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	17d16f5ae2d584be

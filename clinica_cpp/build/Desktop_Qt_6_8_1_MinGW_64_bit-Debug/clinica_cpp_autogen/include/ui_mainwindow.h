@@ -16,8 +16,6 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QStatusBar>
-#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -26,56 +24,85 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
-    QVBoxLayout *verticalLayout;
-    QLabel *label;
-    QFrame *line;
     QPushButton *btnCadastrar;
+    QPushButton *pushButton;
     QPushButton *btnExibir;
+    QFrame *frame;
+    QLabel *label;
+    QLabel *label_2;
+    QFrame *frame_2;
+    QLabel *label_3;
     QMenuBar *menubar;
-    QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(187, 184);
+        MainWindow->setEnabled(true);
+        MainWindow->resize(1280, 745);
+        MainWindow->setMinimumSize(QSize(1280, 720));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
-        verticalLayout = new QVBoxLayout(centralwidget);
-        verticalLayout->setObjectName("verticalLayout");
-        label = new QLabel(centralwidget);
-        label->setObjectName("label");
-        label->setMaximumSize(QSize(16777215, 30));
-        label->setStyleSheet(QString::fromUtf8("font: 16pt \"Arial\";\n"
-"color: rgb(255, 255, 255);"));
-
-        verticalLayout->addWidget(label);
-
-        line = new QFrame(centralwidget);
-        line->setObjectName("line");
-        line->setFrameShape(QFrame::Shape::HLine);
-        line->setFrameShadow(QFrame::Shadow::Sunken);
-
-        verticalLayout->addWidget(line);
-
         btnCadastrar = new QPushButton(centralwidget);
         btnCadastrar->setObjectName("btnCadastrar");
-
-        verticalLayout->addWidget(btnCadastrar);
-
+        btnCadastrar->setGeometry(QRect(690, 310, 133, 29));
+        pushButton = new QPushButton(centralwidget);
+        pushButton->setObjectName("pushButton");
+        pushButton->setGeometry(QRect(680, 420, 80, 29));
         btnExibir = new QPushButton(centralwidget);
         btnExibir->setObjectName("btnExibir");
-
-        verticalLayout->addWidget(btnExibir);
-
+        btnExibir->setGeometry(QRect(640, 530, 165, 29));
+        frame = new QFrame(centralwidget);
+        frame->setObjectName("frame");
+        frame->setEnabled(true);
+        frame->setGeometry(QRect(0, 0, 1280, 70));
+        frame->setAutoFillBackground(false);
+        frame->setStyleSheet(QString::fromUtf8("background-color:rgb(109, 176, 236)"));
+        frame->setFrameShape(QFrame::Shape::NoFrame);
+        frame->setFrameShadow(QFrame::Shadow::Raised);
+        label = new QLabel(frame);
+        label->setObjectName("label");
+        label->setGeometry(QRect(85, 17, 287, 36));
+        QFont font;
+        font.setFamilies({QString::fromUtf8("Arial")});
+        font.setPointSize(16);
+        font.setBold(false);
+        font.setItalic(false);
+        label->setFont(font);
+        label->setStyleSheet(QString::fromUtf8("font: 16pt \"Arial\";\n"
+"color: rgb(255, 255, 255);"));
+        label_2 = new QLabel(frame);
+        label_2->setObjectName("label_2");
+        label_2->setGeometry(QRect(952, 17, 287, 36));
+        label_2->setFont(font);
+        label_2->setStyleSheet(QString::fromUtf8("font: 16pt \"Arial\";\n"
+"color: rgb(255, 255, 255);"));
+        frame_2 = new QFrame(centralwidget);
+        frame_2->setObjectName("frame_2");
+        frame_2->setEnabled(true);
+        frame_2->setGeometry(QRect(0, 70, 170, 650));
+        frame_2->setAutoFillBackground(false);
+        frame_2->setStyleSheet(QString::fromUtf8("background-color:rgb(109, 176, 236)"));
+        frame_2->setFrameShape(QFrame::Shape::NoFrame);
+        frame_2->setFrameShadow(QFrame::Shadow::Raised);
+        label_3 = new QLabel(frame_2);
+        label_3->setObjectName("label_3");
+        label_3->setGeometry(QRect(13, 103, 107, 23));
+        QFont font1;
+        font1.setFamilies({QString::fromUtf8("Arial")});
+        font1.setPointSize(10);
+        font1.setBold(true);
+        label_3->setFont(font1);
         MainWindow->setCentralWidget(centralwidget);
+        frame_2->raise();
+        btnCadastrar->raise();
+        pushButton->raise();
+        btnExibir->raise();
+        frame->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 187, 25));
+        menubar->setGeometry(QRect(0, 0, 1280, 25));
         MainWindow->setMenuBar(menubar);
-        statusbar = new QStatusBar(MainWindow);
-        statusbar->setObjectName("statusbar");
-        MainWindow->setStatusBar(statusbar);
 
         retranslateUi(MainWindow);
 
@@ -85,9 +112,12 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        label->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-weight:700;\">CL\303\215NIQUINHA</span></p></body></html>", nullptr));
         btnCadastrar->setText(QCoreApplication::translate("MainWindow", "Cadastrar paciente", nullptr));
+        pushButton->setText(QCoreApplication::translate("MainWindow", "pag2", nullptr));
         btnExibir->setText(QCoreApplication::translate("MainWindow", "Exibir lista de pacientes", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; font-weight:700; color:#000000;\">NOME_SOFTWARE</span></p></body></html>", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; font-weight:700; color:#000000;\">NOME_CL\303\215NICA</span></p></body></html>", nullptr));
+        label_3->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:11pt; color:#000000;\">Cronograma</span></p></body></html>", nullptr));
     } // retranslateUi
 
 };

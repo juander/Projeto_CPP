@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <vector>
 #include <string>
+#include <QGraphicsDropShadowEffect>
 #include "registerwindow.h"
 
 using namespace std;
