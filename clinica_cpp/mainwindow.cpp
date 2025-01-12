@@ -36,7 +36,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     QGraphicsDropShadowEffect *shadowEffect = new QGraphicsDropShadowEffect(this);
     shadowEffect->setBlurRadius(10);
-    shadowEffect->setOffset(0, 5);
+    shadowEffect->setOffset(0, 4);
     ui->frame->setGraphicsEffect(shadowEffect); // Supondo que o nome do QFrame seja 'frame'
 }
 
