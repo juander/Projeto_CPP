@@ -51,6 +51,7 @@ public:
         MainWindow->setEnabled(true);
         MainWindow->resize(1280, 720);
         MainWindow->setMinimumSize(QSize(1280, 720));
+        MainWindow->setMaximumSize(QSize(1280, 720));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         btnCadastrar = new QPushButton(centralwidget);

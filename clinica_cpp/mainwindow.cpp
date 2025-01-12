@@ -33,6 +33,11 @@ MainWindow::MainWindow(QWidget *parent)
     // Conectando os botões às funções de slot
     connect(ui->btnCadastrar, &QPushButton::clicked, this, &MainWindow::on_btnCadastrar_clicked);
     connect(ui->btnExibir, &QPushButton::clicked, this, &MainWindow::on_btnExibir_clicked);
+
+    QGraphicsDropShadowEffect *shadowEffect = new QGraphicsDropShadowEffect(this);
+    shadowEffect->setBlurRadius(10);
+    shadowEffect->setOffset(0, 5);
+    ui->frame->setGraphicsEffect(shadowEffect); // Supondo que o nome do QFrame seja 'frame'
 }
 
 MainWindow::~MainWindow()
