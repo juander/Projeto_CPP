@@ -323,11 +323,11 @@ color: rgb(255, 255, 255);</string>
       <string notr="true">color: rgb(0, 0, 0);</string>
      </property>
      <property name="text">
-      <string>Atendimento</string>
+      <string notr="true">Atendimento</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../icons/Survey.png</normaloff>../icons/Survey.png</iconset>
+       <normaloff>../../../icons/Survey.png</normaloff>../../../icons/Survey.png</iconset>
      </property>
     </widget>
     <widget class="QCommandLinkButton" name="commandLinkButton_3">
@@ -340,11 +340,11 @@ color: rgb(255, 255, 255);</string>
       </rect>
      </property>
      <property name="text">
-      <string>Pacientes</string>
+      <string notr="true">Pacientes</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>icons/People.png</normaloff>icons/People.png</iconset>
+       <normaloff>../../../icons/People.png</normaloff>../../../icons/People.png</iconset>
      </property>
     </widget>
     <widget class="QCommandLinkButton" name="commandLinkButton_4">
@@ -357,11 +357,11 @@ color: rgb(255, 255, 255);</string>
       </rect>
      </property>
      <property name="text">
-      <string>Profissionais</string>
+      <string notr="true">Profissionais</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>icons/Medical Doctor.png</normaloff>icons/Medical Doctor.png</iconset>
+       <normaloff>../../../icons/Medical Doctor.png</normaloff>../../../icons/Medical Doctor.png</iconset>
      </property>
     </widget>
     <widget class="QCommandLinkButton" name="commandLinkButton_5">
@@ -374,11 +374,11 @@ color: rgb(255, 255, 255);</string>
       </rect>
      </property>
      <property name="text">
-      <string>Fornecedores</string>
+      <string notr="true">Fornecedores</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>icons/City Buildings.png</normaloff>icons/City Buildings.png</iconset>
+       <normaloff>../../../icons/City Buildings.png</normaloff>../../../icons/City Buildings.png</iconset>
      </property>
     </widget>
     <widget class="QCommandLinkButton" name="commandLinkButton_6">
@@ -386,16 +386,16 @@ color: rgb(255, 255, 255);</string>
       <rect>
        <x>30</x>
        <y>300</y>
-       <width>187</width>
+       <width>141</width>
        <height>41</height>
       </rect>
      </property>
      <property name="text">
-      <string>Relatórios</string>
+      <string notr="true">Relatórios</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>icons/Brief.png</normaloff>icons/Brief.png</iconset>
+       <normaloff>../../../icons/Brief.png</normaloff>../../../icons/Brief.png</iconset>
      </property>
     </widget>
     <widget class="QCommandLinkButton" name="commandLinkButton">
@@ -408,11 +408,11 @@ color: rgb(255, 255, 255);</string>
       </rect>
      </property>
      <property name="text">
-      <string>Agenda</string>
+      <string notr="true">Agenda</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../Tear-Off Calendar.png</normaloff>../Tear-Off Calendar.png</iconset>
+       <normaloff>../../../icons/Tear-Off Calendar.png</normaloff>../../../icons/Tear-Off Calendar.png</iconset>
      </property>
     </widget>
    </widget>
@@ -430,6 +430,18 @@ color: rgb(255, 255, 255);</string>
      <height>25</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuSoftware_SI_Cl_nica">
+    <property name="title">
+     <string>Software - SI(Clínica)</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuPag_02">
+    <property name="title">
+     <string>Pag-02</string>
+    </property>
+   </widget>
+   <addaction name="menuSoftware_SI_Cl_nica"/>
+   <addaction name="menuPag_02"/>
   </widget>
  </widget>
  <resources/>
