@@ -310,32 +310,6 @@ color: rgb(255, 255, 255);</string>
       <enum>Qt::Orientation::Horizontal</enum>
      </property>
     </widget>
-    <widget class="QCommandLinkButton" name="commandLinkButton">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>70</y>
-       <width>141</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(0, 0, 0);</string>
-     </property>
-     <property name="text">
-      <string>Agenda</string>
-     </property>
-     <property name="icon">
-      <iconset>
-       <normaloff>icons/Tear-Off Calendar.png</normaloff>icons/Tear-Off Calendar.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-    </widget>
     <widget class="QCommandLinkButton" name="commandLinkButton_2">
      <property name="geometry">
       <rect>
@@ -422,6 +396,23 @@ color: rgb(255, 255, 255);</string>
      <property name="icon">
       <iconset>
        <normaloff>icons/Brief.png</normaloff>icons/Brief.png</iconset>
+     </property>
+    </widget>
+    <widget class="QCommandLinkButton" name="commandLinkButton">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>70</y>
+       <width>141</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Agenda</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../../../icons/Tear-Off Calendar.png</normaloff>../../../icons/Tear-Off Calendar.png</iconset>
      </property>
     </widget>
    </widget>
