@@ -412,7 +412,7 @@ color: rgb(255, 255, 255);</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>Tear-Off Calendar.png</normaloff>Tear-Off Calendar.png</iconset>
+       <normaloff>../Tear-Off Calendar.png</normaloff>../Tear-Off Calendar.png</iconset>
      </property>
     </widget>
    </widget>
