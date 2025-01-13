@@ -28,6 +28,12 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 255, 255);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="btnCadastrar">
     <property name="geometry">
@@ -339,6 +345,9 @@ color: rgb(255, 255, 255);</string>
        <height>41</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(0, 0, 0);</string>
+     </property>
      <property name="text">
       <string notr="true">Pacientes</string>
      </property>
@@ -355,6 +364,9 @@ color: rgb(255, 255, 255);</string>
        <width>141</width>
        <height>41</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(0, 0, 0);</string>
      </property>
      <property name="text">
       <string notr="true">Profissionais</string>
@@ -373,6 +385,9 @@ color: rgb(255, 255, 255);</string>
        <height>41</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(0, 0, 0);</string>
+     </property>
      <property name="text">
       <string notr="true">Fornecedores</string>
      </property>
@@ -390,6 +405,9 @@ color: rgb(255, 255, 255);</string>
        <height>41</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(0, 0, 0);</string>
+     </property>
      <property name="text">
       <string notr="true">Relatórios</string>
      </property>
@@ -406,6 +424,9 @@ color: rgb(255, 255, 255);</string>
        <width>141</width>
        <height>41</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(0, 0, 0);</string>
      </property>
      <property name="text">
       <string notr="true">Agenda</string>

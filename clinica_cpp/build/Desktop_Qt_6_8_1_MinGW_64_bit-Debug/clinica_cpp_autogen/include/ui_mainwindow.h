@@ -57,6 +57,8 @@ public:
         MainWindow->resize(1280, 720);
         MainWindow->setMinimumSize(QSize(1280, 720));
         MainWindow->setMaximumSize(QSize(1280, 720));
+        MainWindow->setAutoFillBackground(false);
+        MainWindow->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         btnCadastrar = new QPushButton(centralwidget);
@@ -161,6 +163,7 @@ public:
         commandLinkButton_3 = new QCommandLinkButton(frame_2);
         commandLinkButton_3->setObjectName("commandLinkButton_3");
         commandLinkButton_3->setGeometry(QRect(30, 220, 141, 41));
+        commandLinkButton_3->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         commandLinkButton_3->setText(QString::fromUtf8("Pacientes"));
         QIcon icon1;
         icon1.addFile(QString::fromUtf8(":/icons/People.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
@@ -168,6 +171,7 @@ public:
         commandLinkButton_4 = new QCommandLinkButton(frame_2);
         commandLinkButton_4->setObjectName("commandLinkButton_4");
         commandLinkButton_4->setGeometry(QRect(30, 260, 141, 41));
+        commandLinkButton_4->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         commandLinkButton_4->setText(QString::fromUtf8("Profissionais"));
         QIcon icon2;
         icon2.addFile(QString::fromUtf8(":/icons/Medical Doctor.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
@@ -175,6 +179,7 @@ public:
         commandLinkButton_5 = new QCommandLinkButton(frame_2);
         commandLinkButton_5->setObjectName("commandLinkButton_5");
         commandLinkButton_5->setGeometry(QRect(30, 340, 141, 41));
+        commandLinkButton_5->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         commandLinkButton_5->setText(QString::fromUtf8("Fornecedores"));
         QIcon icon3;
         icon3.addFile(QString::fromUtf8(":/icons/City Buildings.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
@@ -182,6 +187,7 @@ public:
         commandLinkButton_6 = new QCommandLinkButton(frame_2);
         commandLinkButton_6->setObjectName("commandLinkButton_6");
         commandLinkButton_6->setGeometry(QRect(30, 300, 141, 41));
+        commandLinkButton_6->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         commandLinkButton_6->setText(QString::fromUtf8("Relat\303\263rios"));
         QIcon icon4;
         icon4.addFile(QString::fromUtf8(":/icons/Brief.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
@@ -189,6 +195,7 @@ public:
         commandLinkButton = new QCommandLinkButton(frame_2);
         commandLinkButton->setObjectName("commandLinkButton");
         commandLinkButton->setGeometry(QRect(30, 70, 141, 41));
+        commandLinkButton->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         commandLinkButton->setText(QString::fromUtf8("Agenda"));
         QIcon icon5;
         icon5.addFile(QString::fromUtf8(":/icons/Tear-Off Calendar.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
