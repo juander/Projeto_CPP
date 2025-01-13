@@ -35,32 +35,6 @@
    <string notr="true">background-color: rgb(255, 255, 255);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="btnCadastrar">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>140</y>
-      <width>133</width>
-      <height>29</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Cadastrar paciente</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnExibir">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>180</y>
-      <width>165</width>
-      <height>29</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Exibir lista de pacientes</string>
-    </property>
-   </widget>
    <widget class="QFrame" name="frame">
     <property name="enabled">
      <bool>true</bool>
@@ -438,8 +412,6 @@ color: rgb(255, 255, 255);</string>
     </widget>
    </widget>
    <zorder>frame_2</zorder>
-   <zorder>btnCadastrar</zorder>
-   <zorder>btnExibir</zorder>
    <zorder>frame</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
