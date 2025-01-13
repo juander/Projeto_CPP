@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QGraphicsDropShadowEffect>
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
