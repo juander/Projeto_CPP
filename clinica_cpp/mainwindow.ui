@@ -326,8 +326,8 @@ color: rgb(255, 255, 255);</string>
       <string notr="true">Atendimento</string>
      </property>
      <property name="icon">
-      <iconset>
-       <normaloff>../../../icons/Survey.png</normaloff>../../../icons/Survey.png</iconset>
+      <iconset resource="icons.qrc">
+       <normaloff>:/Survey.png</normaloff>:/Survey.png</iconset>
      </property>
     </widget>
     <widget class="QCommandLinkButton" name="commandLinkButton_3">
@@ -343,8 +343,8 @@ color: rgb(255, 255, 255);</string>
       <string notr="true">Pacientes</string>
      </property>
      <property name="icon">
-      <iconset>
-       <normaloff>../../../icons/People.png</normaloff>../../../icons/People.png</iconset>
+      <iconset resource="icons.qrc">
+       <normaloff>:/People.png</normaloff>:/People.png</iconset>
      </property>
     </widget>
     <widget class="QCommandLinkButton" name="commandLinkButton_4">
@@ -360,8 +360,8 @@ color: rgb(255, 255, 255);</string>
       <string notr="true">Profissionais</string>
      </property>
      <property name="icon">
-      <iconset>
-       <normaloff>../../../icons/Medical Doctor.png</normaloff>../../../icons/Medical Doctor.png</iconset>
+      <iconset resource="icons.qrc">
+       <normaloff>:/Medical Doctor.png</normaloff>:/Medical Doctor.png</iconset>
      </property>
     </widget>
     <widget class="QCommandLinkButton" name="commandLinkButton_5">
@@ -377,8 +377,8 @@ color: rgb(255, 255, 255);</string>
       <string notr="true">Fornecedores</string>
      </property>
      <property name="icon">
-      <iconset>
-       <normaloff>../../../icons/City Buildings.png</normaloff>../../../icons/City Buildings.png</iconset>
+      <iconset resource="icons.qrc">
+       <normaloff>:/City Buildings.png</normaloff>:/City Buildings.png</iconset>
      </property>
     </widget>
     <widget class="QCommandLinkButton" name="commandLinkButton_6">
@@ -394,8 +394,8 @@ color: rgb(255, 255, 255);</string>
       <string notr="true">Relatórios</string>
      </property>
      <property name="icon">
-      <iconset>
-       <normaloff>../../../icons/Brief.png</normaloff>../../../icons/Brief.png</iconset>
+      <iconset resource="icons.qrc">
+       <normaloff>:/Brief.png</normaloff>:/Brief.png</iconset>
      </property>
     </widget>
     <widget class="QCommandLinkButton" name="commandLinkButton">
@@ -411,8 +411,8 @@ color: rgb(255, 255, 255);</string>
       <string notr="true">Agenda</string>
      </property>
      <property name="icon">
-      <iconset>
-       <normaloff>icons/Survey.png</normaloff>icons/Survey.png</iconset>
+      <iconset resource="icons.qrc">
+       <normaloff>:/Tear-Off Calendar.png</normaloff>:/Tear-Off Calendar.png</iconset>
      </property>
     </widget>
    </widget>
@@ -432,6 +432,8 @@ color: rgb(255, 255, 255);</string>
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
  <connections/>
 </ui>
