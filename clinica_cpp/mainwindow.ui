@@ -430,18 +430,6 @@ color: rgb(255, 255, 255);</string>
      <height>25</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuSoftware_SI_Cl_nica">
-    <property name="title">
-     <string>Software - SI(Clínica)</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menuPag_02">
-    <property name="title">
-     <string>Pag-02</string>
-    </property>
-   </widget>
-   <addaction name="menuSoftware_SI_Cl_nica"/>
-   <addaction name="menuPag_02"/>
   </widget>
  </widget>
  <resources/>
