@@ -2,11 +2,20 @@
 13	1851	7585009731656198	clinica_cpp_autogen/timestamp	39e4002d4526979b
 13	1851	7585009731656198	clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
 13	1851	7585009731656198	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	39e4002d4526979b
-13	1851	7585009731656198	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
 1857	1947	7585009733319298	clinica_cpp_autogen/EWIEGA46WW/qrc_icons.cpp	21aadac9aeb73ecc
+13	1851	7585009731656198	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
 1857	1947	7585009733319298	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/EWIEGA46WW/qrc_icons.cpp	21aadac9aeb73ecc
-1961	2170	7585009733589415	CMakeFiles/clinica_cpp.dir/clinica_cpp_autogen/EWIEGA46WW/qrc_icons.cpp.obj	580936f212bc4a95
+4884	5168	7585009762806658	clinica_cpp.exe	9167fa23b50838c
 1947	4645	7585009733443958	CMakeFiles/clinica_cpp.dir/clinica_cpp_autogen/mocs_compilation.cpp.obj	4c80eef594b5e2e6
+1961	2170	7585009733589415	CMakeFiles/clinica_cpp.dir/clinica_cpp_autogen/EWIEGA46WW/qrc_icons.cpp.obj	580936f212bc4a95
 1951	4659	7585009733490178	CMakeFiles/clinica_cpp.dir/main.cpp.obj	5da5a5c0226a066d
 1956	4884	7585009733525483	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	b61cc690103f7be5
-4884	5168	7585009762806658	clinica_cpp.exe	9167fa23b50838c
+26	244	7585017516778046	clinica_cpp_autogen/timestamp	39e4002d4526979b
+26	244	7585017516778046	clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
+26	244	7585017516778046	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	39e4002d4526979b
+26	244	7585017516778046	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
+246	336	7585017519761386	clinica_cpp_autogen/EWIEGA46WW/qrc_icons.cpp	21aadac9aeb73ecc
+246	336	7585017519761386	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/EWIEGA46WW/qrc_icons.cpp	21aadac9aeb73ecc
+340	534	7585017519911728	CMakeFiles/clinica_cpp.dir/clinica_cpp_autogen/EWIEGA46WW/qrc_icons.cpp.obj	580936f212bc4a95
+336	2775	7585017519866409	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	b61cc690103f7be5
+2775	3003	7585017544259033	clinica_cpp.exe	9167fa23b50838c

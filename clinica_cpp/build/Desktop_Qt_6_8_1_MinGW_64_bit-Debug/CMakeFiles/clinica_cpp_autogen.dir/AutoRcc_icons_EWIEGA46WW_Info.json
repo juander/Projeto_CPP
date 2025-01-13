@@ -9,12 +9,12 @@
 	"INCLUDE_DIR" : "C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/include",
 	"INPUTS" : 
 	[
-		"C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/City Buildings.png",
-		"C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/Survey.png",
-		"C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/Brief.png",
-		"C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/Medical Doctor.png",
-		"C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/Tear-Off Calendar.png",
-		"C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/People.png"
+		"C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/icons/City Buildings.png",
+		"C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/icons/Survey.png",
+		"C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/icons/Brief.png",
+		"C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/icons/Medical Doctor.png",
+		"C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/icons/Tear-Off Calendar.png",
+		"C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/icons/People.png"
 	],
 	"LOCK_FILE" : "C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/CMakeFiles/clinica_cpp_autogen.dir/AutoRcc_icons_EWIEGA46WW_Lock.lock",
 	"MULTI_CONFIG" : false,
