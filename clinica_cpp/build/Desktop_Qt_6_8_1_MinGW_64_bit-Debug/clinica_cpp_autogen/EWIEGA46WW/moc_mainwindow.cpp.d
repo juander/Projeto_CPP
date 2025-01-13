@@ -145,8 +145,15 @@ C:/Users/Juan\ Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Q
   C:/Qt/6.8.1/mingw_64/include/QtGui/qtransform.h \
   C:/Qt/6.8.1/mingw_64/include/QtGui/qwindowdefs.h \
   C:/Qt/6.8.1/mingw_64/include/QtGui/qwindowdefs_win.h \
+  C:/Qt/6.8.1/mingw_64/include/QtWidgets/QCommandLinkButton \
+  C:/Qt/6.8.1/mingw_64/include/QtWidgets/QGraphicsDropShadowEffect \
   C:/Qt/6.8.1/mingw_64/include/QtWidgets/QMainWindow \
+  C:/Qt/6.8.1/mingw_64/include/QtWidgets/QTabWidget \
+  C:/Qt/6.8.1/mingw_64/include/QtWidgets/qabstractbutton.h \
+  C:/Qt/6.8.1/mingw_64/include/QtWidgets/qcommandlinkbutton.h \
+  C:/Qt/6.8.1/mingw_64/include/QtWidgets/qgraphicseffect.h \
   C:/Qt/6.8.1/mingw_64/include/QtWidgets/qmainwindow.h \
+  C:/Qt/6.8.1/mingw_64/include/QtWidgets/qpushbutton.h \
   C:/Qt/6.8.1/mingw_64/include/QtWidgets/qsizepolicy.h \
   C:/Qt/6.8.1/mingw_64/include/QtWidgets/qtabwidget.h \
   C:/Qt/6.8.1/mingw_64/include/QtWidgets/qtwidgets-config.h \

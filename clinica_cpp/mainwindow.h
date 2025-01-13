@@ -3,6 +3,8 @@
 
 #include <QGraphicsDropShadowEffect>
 #include <QMainWindow>
+#include <QTabWidget>
+#include <QCommandLinkButton>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -17,6 +19,14 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+private slots:
+    void on_btnAgenda_clicked();
+    void on_btnAtendimento_clicked();
+    void on_btnPacientes_clicked();
+    void on_btnProfissionais_clicked();
+    void on_btnFornecedores_clicked();
+    void on_btnRelatorios_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -17,7 +17,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QPushButton>
+#include <QtWidgets/QTabWidget>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -26,8 +26,6 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
-    QPushButton *btnCadastrar;
-    QPushButton *btnExibir;
     QFrame *frame;
     QLabel *label;
     QLabel *label_2;
@@ -41,12 +39,25 @@ public:
     QFrame *line_4;
     QFrame *line_5;
     QFrame *line_6;
-    QCommandLinkButton *commandLinkButton_2;
-    QCommandLinkButton *commandLinkButton_3;
-    QCommandLinkButton *commandLinkButton_4;
-    QCommandLinkButton *commandLinkButton_5;
-    QCommandLinkButton *commandLinkButton_6;
-    QCommandLinkButton *commandLinkButton;
+    QCommandLinkButton *btnAtendimento;
+    QCommandLinkButton *btnPacientes;
+    QCommandLinkButton *btnProfissionais;
+    QCommandLinkButton *btnFornecedores;
+    QCommandLinkButton *btnRelatorios;
+    QCommandLinkButton *btnAgenda;
+    QTabWidget *paginas;
+    QWidget *Agenda;
+    QLabel *label_6;
+    QWidget *Atendimento;
+    QLabel *label_7;
+    QWidget *Pacientes;
+    QLabel *label_8;
+    QWidget *Profissionais;
+    QLabel *label_9;
+    QWidget *Relatorios;
+    QLabel *label_10;
+    QWidget *Fornecedores;
+    QLabel *label_11;
     QMenuBar *menubar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -61,12 +72,6 @@ public:
         MainWindow->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
-        btnCadastrar = new QPushButton(centralwidget);
-        btnCadastrar->setObjectName("btnCadastrar");
-        btnCadastrar->setGeometry(QRect(290, 140, 133, 29));
-        btnExibir = new QPushButton(centralwidget);
-        btnExibir->setObjectName("btnExibir");
-        btnExibir->setGeometry(QRect(290, 180, 165, 29));
         frame = new QFrame(centralwidget);
         frame->setObjectName("frame");
         frame->setEnabled(true);
@@ -152,58 +157,105 @@ public:
         line_6->setStyleSheet(QString::fromUtf8("color:rgb(0, 0, 0)"));
         line_6->setFrameShape(QFrame::Shape::HLine);
         line_6->setFrameShadow(QFrame::Shadow::Sunken);
-        commandLinkButton_2 = new QCommandLinkButton(frame_2);
-        commandLinkButton_2->setObjectName("commandLinkButton_2");
-        commandLinkButton_2->setGeometry(QRect(30, 150, 141, 41));
-        commandLinkButton_2->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
-        commandLinkButton_2->setText(QString::fromUtf8("Atendimento"));
+        btnAtendimento = new QCommandLinkButton(frame_2);
+        btnAtendimento->setObjectName("btnAtendimento");
+        btnAtendimento->setGeometry(QRect(30, 150, 141, 41));
+        btnAtendimento->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+        btnAtendimento->setText(QString::fromUtf8("Atendimento"));
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/icons/Survey.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
-        commandLinkButton_2->setIcon(icon);
-        commandLinkButton_3 = new QCommandLinkButton(frame_2);
-        commandLinkButton_3->setObjectName("commandLinkButton_3");
-        commandLinkButton_3->setGeometry(QRect(30, 220, 141, 41));
-        commandLinkButton_3->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
-        commandLinkButton_3->setText(QString::fromUtf8("Pacientes"));
+        btnAtendimento->setIcon(icon);
+        btnPacientes = new QCommandLinkButton(frame_2);
+        btnPacientes->setObjectName("btnPacientes");
+        btnPacientes->setGeometry(QRect(30, 220, 141, 41));
+        btnPacientes->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+        btnPacientes->setText(QString::fromUtf8("Pacientes"));
         QIcon icon1;
         icon1.addFile(QString::fromUtf8(":/icons/People.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
-        commandLinkButton_3->setIcon(icon1);
-        commandLinkButton_4 = new QCommandLinkButton(frame_2);
-        commandLinkButton_4->setObjectName("commandLinkButton_4");
-        commandLinkButton_4->setGeometry(QRect(30, 260, 141, 41));
-        commandLinkButton_4->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
-        commandLinkButton_4->setText(QString::fromUtf8("Profissionais"));
+        btnPacientes->setIcon(icon1);
+        btnProfissionais = new QCommandLinkButton(frame_2);
+        btnProfissionais->setObjectName("btnProfissionais");
+        btnProfissionais->setGeometry(QRect(30, 260, 141, 41));
+        btnProfissionais->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+        btnProfissionais->setText(QString::fromUtf8("Profissionais"));
         QIcon icon2;
         icon2.addFile(QString::fromUtf8(":/icons/Medical Doctor.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
-        commandLinkButton_4->setIcon(icon2);
-        commandLinkButton_5 = new QCommandLinkButton(frame_2);
-        commandLinkButton_5->setObjectName("commandLinkButton_5");
-        commandLinkButton_5->setGeometry(QRect(30, 340, 141, 41));
-        commandLinkButton_5->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
-        commandLinkButton_5->setText(QString::fromUtf8("Fornecedores"));
+        btnProfissionais->setIcon(icon2);
+        btnFornecedores = new QCommandLinkButton(frame_2);
+        btnFornecedores->setObjectName("btnFornecedores");
+        btnFornecedores->setGeometry(QRect(30, 340, 141, 41));
+        btnFornecedores->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+        btnFornecedores->setText(QString::fromUtf8("Fornecedores"));
         QIcon icon3;
         icon3.addFile(QString::fromUtf8(":/icons/City Buildings.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
-        commandLinkButton_5->setIcon(icon3);
-        commandLinkButton_6 = new QCommandLinkButton(frame_2);
-        commandLinkButton_6->setObjectName("commandLinkButton_6");
-        commandLinkButton_6->setGeometry(QRect(30, 300, 141, 41));
-        commandLinkButton_6->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
-        commandLinkButton_6->setText(QString::fromUtf8("Relat\303\263rios"));
+        btnFornecedores->setIcon(icon3);
+        btnRelatorios = new QCommandLinkButton(frame_2);
+        btnRelatorios->setObjectName("btnRelatorios");
+        btnRelatorios->setGeometry(QRect(30, 300, 141, 41));
+        btnRelatorios->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+        btnRelatorios->setText(QString::fromUtf8("Relat\303\263rios"));
         QIcon icon4;
         icon4.addFile(QString::fromUtf8(":/icons/Brief.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
-        commandLinkButton_6->setIcon(icon4);
-        commandLinkButton = new QCommandLinkButton(frame_2);
-        commandLinkButton->setObjectName("commandLinkButton");
-        commandLinkButton->setGeometry(QRect(30, 70, 141, 41));
-        commandLinkButton->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
-        commandLinkButton->setText(QString::fromUtf8("Agenda"));
+        btnRelatorios->setIcon(icon4);
+        btnAgenda = new QCommandLinkButton(frame_2);
+        btnAgenda->setObjectName("btnAgenda");
+        btnAgenda->setGeometry(QRect(30, 70, 141, 41));
+        btnAgenda->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
+""));
+        btnAgenda->setText(QString::fromUtf8("Agenda"));
         QIcon icon5;
         icon5.addFile(QString::fromUtf8(":/icons/Tear-Off Calendar.png"), QSize(), QIcon::Mode::Normal, QIcon::State::Off);
-        commandLinkButton->setIcon(icon5);
+        btnAgenda->setIcon(icon5);
+        btnAgenda->setCheckable(false);
+        btnAgenda->setAutoRepeat(false);
+        paginas = new QTabWidget(centralwidget);
+        paginas->setObjectName("paginas");
+        paginas->setGeometry(QRect(170, 30, 1111, 671));
+        Agenda = new QWidget();
+        Agenda->setObjectName("Agenda");
+        label_6 = new QLabel(Agenda);
+        label_6->setObjectName("label_6");
+        label_6->setGeometry(QRect(30, 50, 63, 20));
+        label_6->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+        paginas->addTab(Agenda, QString());
+        Atendimento = new QWidget();
+        Atendimento->setObjectName("Atendimento");
+        label_7 = new QLabel(Atendimento);
+        label_7->setObjectName("label_7");
+        label_7->setGeometry(QRect(40, 50, 111, 20));
+        label_7->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+        paginas->addTab(Atendimento, QString());
+        Pacientes = new QWidget();
+        Pacientes->setObjectName("Pacientes");
+        label_8 = new QLabel(Pacientes);
+        label_8->setObjectName("label_8");
+        label_8->setGeometry(QRect(40, 50, 111, 20));
+        label_8->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+        paginas->addTab(Pacientes, QString());
+        Profissionais = new QWidget();
+        Profissionais->setObjectName("Profissionais");
+        label_9 = new QLabel(Profissionais);
+        label_9->setObjectName("label_9");
+        label_9->setGeometry(QRect(50, 50, 111, 20));
+        label_9->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+        paginas->addTab(Profissionais, QString());
+        Relatorios = new QWidget();
+        Relatorios->setObjectName("Relatorios");
+        label_10 = new QLabel(Relatorios);
+        label_10->setObjectName("label_10");
+        label_10->setGeometry(QRect(50, 50, 111, 20));
+        label_10->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+        paginas->addTab(Relatorios, QString());
+        Fornecedores = new QWidget();
+        Fornecedores->setObjectName("Fornecedores");
+        label_11 = new QLabel(Fornecedores);
+        label_11->setObjectName("label_11");
+        label_11->setGeometry(QRect(60, 50, 111, 20));
+        label_11->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+        paginas->addTab(Fornecedores, QString());
         MainWindow->setCentralWidget(centralwidget);
+        paginas->raise();
         frame_2->raise();
-        btnCadastrar->raise();
-        btnExibir->raise();
         frame->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -212,19 +264,32 @@ public:
 
         retranslateUi(MainWindow);
 
+        paginas->setCurrentIndex(0);
+
+
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
 
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        btnCadastrar->setText(QCoreApplication::translate("MainWindow", "Cadastrar paciente", nullptr));
-        btnExibir->setText(QCoreApplication::translate("MainWindow", "Exibir lista de pacientes", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; font-weight:700; color:#000000;\">NOME_SOFTWARE</span></p></body></html>", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:18pt; font-weight:700; color:#000000;\">NOME_CL\303\215NICA</span></p></body></html>", nullptr));
         label_3->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:11pt; color:#000000;\">Cronograma</span></p></body></html>", nullptr));
         label_4->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:11pt; color:#000000;\">Prontu\303\241rio</span></p></body></html>", nullptr));
         label_5->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:11pt; color:#000000;\">Gest\303\243o</span></p></body></html>", nullptr));
+        label_6->setText(QCoreApplication::translate("MainWindow", "AGENDA", nullptr));
+        paginas->setTabText(paginas->indexOf(Agenda), QCoreApplication::translate("MainWindow", "Tab 1", nullptr));
+        label_7->setText(QCoreApplication::translate("MainWindow", "ATENDIMENTO", nullptr));
+        paginas->setTabText(paginas->indexOf(Atendimento), QCoreApplication::translate("MainWindow", "Tab 2", nullptr));
+        label_8->setText(QCoreApplication::translate("MainWindow", "PACIENTES", nullptr));
+        paginas->setTabText(paginas->indexOf(Pacientes), QCoreApplication::translate("MainWindow", "Page", nullptr));
+        label_9->setText(QCoreApplication::translate("MainWindow", "PROFISSIONAIS", nullptr));
+        paginas->setTabText(paginas->indexOf(Profissionais), QCoreApplication::translate("MainWindow", "Page", nullptr));
+        label_10->setText(QCoreApplication::translate("MainWindow", "RELAT\303\223RIOS", nullptr));
+        paginas->setTabText(paginas->indexOf(Relatorios), QCoreApplication::translate("MainWindow", "Page", nullptr));
+        label_11->setText(QCoreApplication::translate("MainWindow", "FORNECEDORES", nullptr));
+        paginas->setTabText(paginas->indexOf(Fornecedores), QCoreApplication::translate("MainWindow", "Page", nullptr));
     } // retranslateUi
 
 };

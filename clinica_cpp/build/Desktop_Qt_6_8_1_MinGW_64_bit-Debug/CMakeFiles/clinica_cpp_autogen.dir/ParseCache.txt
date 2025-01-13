@@ -146,8 +146,15 @@ C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/mainwindow.h
  mdp:C:/Qt/6.8.1/mingw_64/include/QtGui/qtransform.h
  mdp:C:/Qt/6.8.1/mingw_64/include/QtGui/qwindowdefs.h
  mdp:C:/Qt/6.8.1/mingw_64/include/QtGui/qwindowdefs_win.h
+ mdp:C:/Qt/6.8.1/mingw_64/include/QtWidgets/QCommandLinkButton
+ mdp:C:/Qt/6.8.1/mingw_64/include/QtWidgets/QGraphicsDropShadowEffect
  mdp:C:/Qt/6.8.1/mingw_64/include/QtWidgets/QMainWindow
+ mdp:C:/Qt/6.8.1/mingw_64/include/QtWidgets/QTabWidget
+ mdp:C:/Qt/6.8.1/mingw_64/include/QtWidgets/qabstractbutton.h
+ mdp:C:/Qt/6.8.1/mingw_64/include/QtWidgets/qcommandlinkbutton.h
+ mdp:C:/Qt/6.8.1/mingw_64/include/QtWidgets/qgraphicseffect.h
  mdp:C:/Qt/6.8.1/mingw_64/include/QtWidgets/qmainwindow.h
+ mdp:C:/Qt/6.8.1/mingw_64/include/QtWidgets/qpushbutton.h
  mdp:C:/Qt/6.8.1/mingw_64/include/QtWidgets/qsizepolicy.h
  mdp:C:/Qt/6.8.1/mingw_64/include/QtWidgets/qtabwidget.h
  mdp:C:/Qt/6.8.1/mingw_64/include/QtWidgets/qtwidgets-config.h
