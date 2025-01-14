@@ -64,7 +64,7 @@
       <rect>
        <x>85</x>
        <y>17</y>
-       <width>301</width>
+       <width>287</width>
        <height>36</height>
       </rect>
      </property>
@@ -1787,7 +1787,7 @@ color: rgb(255, 255, 255);</string>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="Agenda">
      <attribute name="title">
@@ -1835,22 +1835,6 @@ color: rgb(255, 255, 255);</string>
      <attribute name="title">
       <string>Page</string>
      </attribute>
-     <widget class="QLabel" name="label_8">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>50</y>
-        <width>111</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(0, 0, 0);</string>
-      </property>
-      <property name="text">
-       <string>PACIENTES</string>
-      </property>
-     </widget>
     </widget>
     <widget class="QWidget" name="Profissionais">
      <attribute name="title">
