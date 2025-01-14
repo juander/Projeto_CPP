@@ -160,6 +160,44 @@ public:
         btnAtendimento = new QCommandLinkButton(frame_2);
         btnAtendimento->setObjectName("btnAtendimento");
         btnAtendimento->setGeometry(QRect(30, 150, 141, 41));
+        QPalette palette;
+        QBrush brush(QColor(0, 0, 0, 255));
+        brush.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Active, QPalette::WindowText, brush);
+        QBrush brush1(QColor(109, 176, 236, 255));
+        brush1.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Active, QPalette::Button, brush1);
+        palette.setBrush(QPalette::Active, QPalette::Text, brush);
+        palette.setBrush(QPalette::Active, QPalette::ButtonText, brush);
+        palette.setBrush(QPalette::Active, QPalette::Base, brush1);
+        palette.setBrush(QPalette::Active, QPalette::Window, brush1);
+        palette.setBrush(QPalette::Active, QPalette::HighlightedText, brush);
+        QBrush brush2(QColor(0, 0, 0, 128));
+        brush2.setStyle(Qt::SolidPattern);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette.setBrush(QPalette::Active, QPalette::PlaceholderText, brush2);
+#endif
+        palette.setBrush(QPalette::Inactive, QPalette::WindowText, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::Button, brush1);
+        palette.setBrush(QPalette::Inactive, QPalette::Text, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::ButtonText, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::Base, brush1);
+        palette.setBrush(QPalette::Inactive, QPalette::Window, brush1);
+        palette.setBrush(QPalette::Inactive, QPalette::HighlightedText, brush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush2);
+#endif
+        palette.setBrush(QPalette::Disabled, QPalette::WindowText, brush);
+        palette.setBrush(QPalette::Disabled, QPalette::Button, brush1);
+        palette.setBrush(QPalette::Disabled, QPalette::Text, brush);
+        palette.setBrush(QPalette::Disabled, QPalette::ButtonText, brush);
+        palette.setBrush(QPalette::Disabled, QPalette::Base, brush1);
+        palette.setBrush(QPalette::Disabled, QPalette::Window, brush1);
+        palette.setBrush(QPalette::Disabled, QPalette::HighlightedText, brush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush2);
+#endif
+        btnAtendimento->setPalette(palette);
         btnAtendimento->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         btnAtendimento->setText(QString::fromUtf8("Atendimento"));
         QIcon icon;
@@ -168,6 +206,38 @@ public:
         btnPacientes = new QCommandLinkButton(frame_2);
         btnPacientes->setObjectName("btnPacientes");
         btnPacientes->setGeometry(QRect(30, 220, 141, 41));
+        QPalette palette1;
+        palette1.setBrush(QPalette::Active, QPalette::WindowText, brush);
+        palette1.setBrush(QPalette::Active, QPalette::Button, brush1);
+        palette1.setBrush(QPalette::Active, QPalette::Text, brush);
+        palette1.setBrush(QPalette::Active, QPalette::ButtonText, brush);
+        palette1.setBrush(QPalette::Active, QPalette::Base, brush1);
+        palette1.setBrush(QPalette::Active, QPalette::Window, brush1);
+        palette1.setBrush(QPalette::Active, QPalette::HighlightedText, brush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette1.setBrush(QPalette::Active, QPalette::PlaceholderText, brush2);
+#endif
+        palette1.setBrush(QPalette::Inactive, QPalette::WindowText, brush);
+        palette1.setBrush(QPalette::Inactive, QPalette::Button, brush1);
+        palette1.setBrush(QPalette::Inactive, QPalette::Text, brush);
+        palette1.setBrush(QPalette::Inactive, QPalette::ButtonText, brush);
+        palette1.setBrush(QPalette::Inactive, QPalette::Base, brush1);
+        palette1.setBrush(QPalette::Inactive, QPalette::Window, brush1);
+        palette1.setBrush(QPalette::Inactive, QPalette::HighlightedText, brush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette1.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush2);
+#endif
+        palette1.setBrush(QPalette::Disabled, QPalette::WindowText, brush);
+        palette1.setBrush(QPalette::Disabled, QPalette::Button, brush1);
+        palette1.setBrush(QPalette::Disabled, QPalette::Text, brush);
+        palette1.setBrush(QPalette::Disabled, QPalette::ButtonText, brush);
+        palette1.setBrush(QPalette::Disabled, QPalette::Base, brush1);
+        palette1.setBrush(QPalette::Disabled, QPalette::Window, brush1);
+        palette1.setBrush(QPalette::Disabled, QPalette::HighlightedText, brush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette1.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush2);
+#endif
+        btnPacientes->setPalette(palette1);
         btnPacientes->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         btnPacientes->setText(QString::fromUtf8("Pacientes"));
         QIcon icon1;
@@ -176,6 +246,38 @@ public:
         btnProfissionais = new QCommandLinkButton(frame_2);
         btnProfissionais->setObjectName("btnProfissionais");
         btnProfissionais->setGeometry(QRect(30, 260, 141, 41));
+        QPalette palette2;
+        palette2.setBrush(QPalette::Active, QPalette::WindowText, brush);
+        palette2.setBrush(QPalette::Active, QPalette::Button, brush1);
+        palette2.setBrush(QPalette::Active, QPalette::Text, brush);
+        palette2.setBrush(QPalette::Active, QPalette::ButtonText, brush);
+        palette2.setBrush(QPalette::Active, QPalette::Base, brush1);
+        palette2.setBrush(QPalette::Active, QPalette::Window, brush1);
+        palette2.setBrush(QPalette::Active, QPalette::HighlightedText, brush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette2.setBrush(QPalette::Active, QPalette::PlaceholderText, brush2);
+#endif
+        palette2.setBrush(QPalette::Inactive, QPalette::WindowText, brush);
+        palette2.setBrush(QPalette::Inactive, QPalette::Button, brush1);
+        palette2.setBrush(QPalette::Inactive, QPalette::Text, brush);
+        palette2.setBrush(QPalette::Inactive, QPalette::ButtonText, brush);
+        palette2.setBrush(QPalette::Inactive, QPalette::Base, brush1);
+        palette2.setBrush(QPalette::Inactive, QPalette::Window, brush1);
+        palette2.setBrush(QPalette::Inactive, QPalette::HighlightedText, brush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette2.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush2);
+#endif
+        palette2.setBrush(QPalette::Disabled, QPalette::WindowText, brush);
+        palette2.setBrush(QPalette::Disabled, QPalette::Button, brush1);
+        palette2.setBrush(QPalette::Disabled, QPalette::Text, brush);
+        palette2.setBrush(QPalette::Disabled, QPalette::ButtonText, brush);
+        palette2.setBrush(QPalette::Disabled, QPalette::Base, brush1);
+        palette2.setBrush(QPalette::Disabled, QPalette::Window, brush1);
+        palette2.setBrush(QPalette::Disabled, QPalette::HighlightedText, brush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette2.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush2);
+#endif
+        btnProfissionais->setPalette(palette2);
         btnProfissionais->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         btnProfissionais->setText(QString::fromUtf8("Profissionais"));
         QIcon icon2;
@@ -184,6 +286,38 @@ public:
         btnFornecedores = new QCommandLinkButton(frame_2);
         btnFornecedores->setObjectName("btnFornecedores");
         btnFornecedores->setGeometry(QRect(30, 340, 141, 41));
+        QPalette palette3;
+        palette3.setBrush(QPalette::Active, QPalette::WindowText, brush);
+        palette3.setBrush(QPalette::Active, QPalette::Button, brush1);
+        palette3.setBrush(QPalette::Active, QPalette::Text, brush);
+        palette3.setBrush(QPalette::Active, QPalette::ButtonText, brush);
+        palette3.setBrush(QPalette::Active, QPalette::Base, brush1);
+        palette3.setBrush(QPalette::Active, QPalette::Window, brush1);
+        palette3.setBrush(QPalette::Active, QPalette::HighlightedText, brush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette3.setBrush(QPalette::Active, QPalette::PlaceholderText, brush2);
+#endif
+        palette3.setBrush(QPalette::Inactive, QPalette::WindowText, brush);
+        palette3.setBrush(QPalette::Inactive, QPalette::Button, brush1);
+        palette3.setBrush(QPalette::Inactive, QPalette::Text, brush);
+        palette3.setBrush(QPalette::Inactive, QPalette::ButtonText, brush);
+        palette3.setBrush(QPalette::Inactive, QPalette::Base, brush1);
+        palette3.setBrush(QPalette::Inactive, QPalette::Window, brush1);
+        palette3.setBrush(QPalette::Inactive, QPalette::HighlightedText, brush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette3.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush2);
+#endif
+        palette3.setBrush(QPalette::Disabled, QPalette::WindowText, brush);
+        palette3.setBrush(QPalette::Disabled, QPalette::Button, brush1);
+        palette3.setBrush(QPalette::Disabled, QPalette::Text, brush);
+        palette3.setBrush(QPalette::Disabled, QPalette::ButtonText, brush);
+        palette3.setBrush(QPalette::Disabled, QPalette::Base, brush1);
+        palette3.setBrush(QPalette::Disabled, QPalette::Window, brush1);
+        palette3.setBrush(QPalette::Disabled, QPalette::HighlightedText, brush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette3.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush2);
+#endif
+        btnFornecedores->setPalette(palette3);
         btnFornecedores->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         btnFornecedores->setText(QString::fromUtf8("Fornecedores"));
         QIcon icon3;
@@ -192,6 +326,38 @@ public:
         btnRelatorios = new QCommandLinkButton(frame_2);
         btnRelatorios->setObjectName("btnRelatorios");
         btnRelatorios->setGeometry(QRect(30, 300, 141, 41));
+        QPalette palette4;
+        palette4.setBrush(QPalette::Active, QPalette::WindowText, brush);
+        palette4.setBrush(QPalette::Active, QPalette::Button, brush1);
+        palette4.setBrush(QPalette::Active, QPalette::Text, brush);
+        palette4.setBrush(QPalette::Active, QPalette::ButtonText, brush);
+        palette4.setBrush(QPalette::Active, QPalette::Base, brush1);
+        palette4.setBrush(QPalette::Active, QPalette::Window, brush1);
+        palette4.setBrush(QPalette::Active, QPalette::HighlightedText, brush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette4.setBrush(QPalette::Active, QPalette::PlaceholderText, brush2);
+#endif
+        palette4.setBrush(QPalette::Inactive, QPalette::WindowText, brush);
+        palette4.setBrush(QPalette::Inactive, QPalette::Button, brush1);
+        palette4.setBrush(QPalette::Inactive, QPalette::Text, brush);
+        palette4.setBrush(QPalette::Inactive, QPalette::ButtonText, brush);
+        palette4.setBrush(QPalette::Inactive, QPalette::Base, brush1);
+        palette4.setBrush(QPalette::Inactive, QPalette::Window, brush1);
+        palette4.setBrush(QPalette::Inactive, QPalette::HighlightedText, brush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette4.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush2);
+#endif
+        palette4.setBrush(QPalette::Disabled, QPalette::WindowText, brush);
+        palette4.setBrush(QPalette::Disabled, QPalette::Button, brush1);
+        palette4.setBrush(QPalette::Disabled, QPalette::Text, brush);
+        palette4.setBrush(QPalette::Disabled, QPalette::ButtonText, brush);
+        palette4.setBrush(QPalette::Disabled, QPalette::Base, brush1);
+        palette4.setBrush(QPalette::Disabled, QPalette::Window, brush1);
+        palette4.setBrush(QPalette::Disabled, QPalette::HighlightedText, brush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette4.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush2);
+#endif
+        btnRelatorios->setPalette(palette4);
         btnRelatorios->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
         btnRelatorios->setText(QString::fromUtf8("Relat\303\263rios"));
         QIcon icon4;
@@ -200,6 +366,39 @@ public:
         btnAgenda = new QCommandLinkButton(frame_2);
         btnAgenda->setObjectName("btnAgenda");
         btnAgenda->setGeometry(QRect(30, 70, 141, 41));
+        QPalette palette5;
+        palette5.setBrush(QPalette::Active, QPalette::WindowText, brush);
+        palette5.setBrush(QPalette::Active, QPalette::Button, brush1);
+        palette5.setBrush(QPalette::Active, QPalette::Text, brush);
+        palette5.setBrush(QPalette::Active, QPalette::ButtonText, brush);
+        palette5.setBrush(QPalette::Active, QPalette::Base, brush1);
+        palette5.setBrush(QPalette::Active, QPalette::Window, brush1);
+        palette5.setBrush(QPalette::Active, QPalette::HighlightedText, brush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette5.setBrush(QPalette::Active, QPalette::PlaceholderText, brush2);
+#endif
+        palette5.setBrush(QPalette::Inactive, QPalette::WindowText, brush);
+        palette5.setBrush(QPalette::Inactive, QPalette::Button, brush1);
+        palette5.setBrush(QPalette::Inactive, QPalette::Text, brush);
+        palette5.setBrush(QPalette::Inactive, QPalette::ButtonText, brush);
+        palette5.setBrush(QPalette::Inactive, QPalette::Base, brush1);
+        palette5.setBrush(QPalette::Inactive, QPalette::Window, brush1);
+        palette5.setBrush(QPalette::Inactive, QPalette::HighlightedText, brush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette5.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush2);
+#endif
+        palette5.setBrush(QPalette::Disabled, QPalette::WindowText, brush);
+        palette5.setBrush(QPalette::Disabled, QPalette::Button, brush1);
+        palette5.setBrush(QPalette::Disabled, QPalette::Text, brush);
+        palette5.setBrush(QPalette::Disabled, QPalette::ButtonText, brush);
+        palette5.setBrush(QPalette::Disabled, QPalette::Base, brush1);
+        palette5.setBrush(QPalette::Disabled, QPalette::Window, brush1);
+        palette5.setBrush(QPalette::Disabled, QPalette::HighlightedText, brush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette5.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush2);
+#endif
+        btnAgenda->setPalette(palette5);
+        btnAgenda->setAutoFillBackground(false);
         btnAgenda->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);\n"
 ""));
         btnAgenda->setText(QString::fromUtf8("Agenda"));

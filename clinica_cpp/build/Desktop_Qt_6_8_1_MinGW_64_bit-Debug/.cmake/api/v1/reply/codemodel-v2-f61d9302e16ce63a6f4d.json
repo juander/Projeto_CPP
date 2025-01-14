@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-1b9df337c7dede272990.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "clinica_cpp",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "clinica_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-clinica_cpp-Debug-cc57254e7c87128dad76.json",
+					"name" : "clinica_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "clinica_cpp_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-clinica_cpp_autogen-Debug-f4fa465ef12be6cabb7b.json",
+					"name" : "clinica_cpp_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "clinica_cpp_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-clinica_cpp_autogen_timestamp_deps-Debug-27f27454080bf7f966d0.json",
+					"name" : "clinica_cpp_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug",
+		"source" : "C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

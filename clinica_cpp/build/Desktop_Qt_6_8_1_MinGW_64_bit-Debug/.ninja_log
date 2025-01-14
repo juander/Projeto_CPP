@@ -1,88 +1,38 @@
 # ninja log v6
-41	223	7585044011726655	clinica_cpp_autogen/timestamp	39e4002d4526979b
-41	223	7585044011726655	clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
-246	336	7585017519761386	clinica_cpp_autogen/EWIEGA46WW/qrc_icons.cpp	21aadac9aeb73ecc
-41	223	7585044011726655	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	39e4002d4526979b
-41	223	7585044011726655	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
-2585	2795	7585038923329442	clinica_cpp.exe	9167fa23b50838c
-1852	4445	7585041084770090	CMakeFiles/clinica_cpp.dir/clinica_cpp_autogen/mocs_compilation.cpp.obj	4c80eef594b5e2e6
-246	336	7585017519761386	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/EWIEGA46WW/qrc_icons.cpp	21aadac9aeb73ecc
-340	534	7585017519911728	CMakeFiles/clinica_cpp.dir/clinica_cpp_autogen/EWIEGA46WW/qrc_icons.cpp.obj	580936f212bc4a95
-1857	4513	7585041084819913	CMakeFiles/clinica_cpp.dir/main.cpp.obj	5da5a5c0226a066d
-284	2585	7585038900315481	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	b61cc690103f7be5
-53	1911	7585046561491640	clinica_cpp_autogen/timestamp	39e4002d4526979b
-53	1911	7585046561491640	clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
-53	1911	7585046561491640	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	39e4002d4526979b
-53	1911	7585046561491640	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
-1912	4602	7585046562324629	CMakeFiles/clinica_cpp.dir/clinica_cpp_autogen/mocs_compilation.cpp.obj	4c80eef594b5e2e6
-1917	4619	7585046562369743	CMakeFiles/clinica_cpp.dir/main.cpp.obj	5da5a5c0226a066d
-55	321	7585050031545215	clinica_cpp_autogen/timestamp	39e4002d4526979b
-55	321	7585050031545215	clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
-55	321	7585050031545215	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	39e4002d4526979b
-55	321	7585050031545215	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
-54	311	7585050617334394	clinica_cpp_autogen/timestamp	39e4002d4526979b
-54	311	7585050617334394	clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
-54	311	7585050617334394	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	39e4002d4526979b
-54	311	7585050617334394	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
-312	2852	7585050619911281	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	b61cc690103f7be5
-2852	3119	7585050645321093	clinica_cpp.exe	9167fa23b50838c
-45	234	7585051162176795	clinica_cpp_autogen/timestamp	39e4002d4526979b
-45	234	7585051162176795	clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
-45	234	7585051162176795	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	39e4002d4526979b
-45	234	7585051162176795	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
-235	2764	7585051164069847	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	b61cc690103f7be5
-2764	2981	7585051189359766	clinica_cpp.exe	9167fa23b50838c
-55	297	7585051365521417	clinica_cpp_autogen/timestamp	39e4002d4526979b
-55	297	7585051365521417	clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
-55	297	7585051365521417	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	39e4002d4526979b
-55	297	7585051365521417	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
-299	2775	7585051367960468	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	b61cc690103f7be5
-2775	2999	7585051392713977	clinica_cpp.exe	9167fa23b50838c
-57	1847	7585061585212969	clinica_cpp_autogen/timestamp	39e4002d4526979b
-57	1847	7585061585212969	clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
-57	1847	7585061585212969	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	39e4002d4526979b
-57	1847	7585061585212969	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
-1848	4155	7585061585968535	CMakeFiles/clinica_cpp.dir/clinica_cpp_autogen/mocs_compilation.cpp.obj	4c80eef594b5e2e6
-1852	4183	7585061586019117	CMakeFiles/clinica_cpp.dir/main.cpp.obj	5da5a5c0226a066d
-1857	4688	7585061586059339	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	b61cc690103f7be5
-4688	4970	7585061614372602	clinica_cpp.exe	9167fa23b50838c
-19	302	7585074681119630	clinica_cpp_autogen/timestamp	39e4002d4526979b
-19	302	7585074681119630	clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
-19	302	7585074681119630	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	39e4002d4526979b
-19	302	7585074681119630	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
-307	3131	7585074683995053	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	b61cc690103f7be5
-75	360	7585074953676263	clinica_cpp_autogen/timestamp	39e4002d4526979b
-75	360	7585074953676263	clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
-75	360	7585074953676263	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	39e4002d4526979b
-75	360	7585074953676263	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
-365	3165	7585074956570610	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	b61cc690103f7be5
-67	310	7585075543545273	clinica_cpp_autogen/timestamp	39e4002d4526979b
-67	310	7585075543545273	clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
-67	310	7585075543545273	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	39e4002d4526979b
-67	310	7585075543545273	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
-316	3194	7585075546004910	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	b61cc690103f7be5
-59	2007	7585076440079534	clinica_cpp_autogen/timestamp	39e4002d4526979b
-59	2007	7585076440079534	clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
-59	2007	7585076440079534	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	39e4002d4526979b
-59	2007	7585076440079534	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
-2008	5167	7585076440897790	CMakeFiles/clinica_cpp.dir/clinica_cpp_autogen/mocs_compilation.cpp.obj	4c80eef594b5e2e6
-2012	5172	7585076440952843	CMakeFiles/clinica_cpp.dir/main.cpp.obj	5da5a5c0226a066d
-46	1901	7585078072313108	clinica_cpp_autogen/timestamp	39e4002d4526979b
-46	1901	7585078072313108	clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
-46	1901	7585078072313108	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	39e4002d4526979b
-46	1901	7585078072313108	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
-1902	4248	7585078073099026	CMakeFiles/clinica_cpp.dir/clinica_cpp_autogen/mocs_compilation.cpp.obj	4c80eef594b5e2e6
-1912	4588	7585078073198042	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	b61cc690103f7be5
-39	237	7585078513424182	clinica_cpp_autogen/timestamp	39e4002d4526979b
-39	237	7585078513424182	clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
-39	237	7585078513424182	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	39e4002d4526979b
-39	237	7585078513424182	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
-238	2576	7585078515426148	CMakeFiles/clinica_cpp.dir/main.cpp.obj	5da5a5c0226a066d
-244	2874	7585078515479966	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	b61cc690103f7be5
-2874	3117	7585078541776024	clinica_cpp.exe	9167fa23b50838c
 46	268	7585078851545199	clinica_cpp_autogen/timestamp	39e4002d4526979b
 46	268	7585078851545199	clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
-46	268	7585078851545199	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	39e4002d4526979b
-46	268	7585078851545199	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
-269	2546	7585078853770054	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	b61cc690103f7be5
+246	336	7585017519761386	clinica_cpp_autogen/EWIEGA46WW/qrc_icons.cpp	21aadac9aeb73ecc
+1902	4248	7585078073099026	CMakeFiles/clinica_cpp.dir/clinica_cpp_autogen/mocs_compilation.cpp.obj	4c80eef594b5e2e6
 2546	2746	7585078876545199	clinica_cpp.exe	9167fa23b50838c
+340	534	7585017519911728	CMakeFiles/clinica_cpp.dir/clinica_cpp_autogen/EWIEGA46WW/qrc_icons.cpp.obj	580936f212bc4a95
+269	2546	7585078853770054	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	b61cc690103f7be5
+238	2576	7585078515426148	CMakeFiles/clinica_cpp.dir/main.cpp.obj	5da5a5c0226a066d
+24	570	7585088571592448	clinica_cpp_autogen/timestamp	54fcba823059dfa1
+24	570	7585088571592448	clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+24	570	7585088571592448	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	54fcba823059dfa1
+24	570	7585088571592448	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+572	629	7585088572814130	clinica_cpp_autogen/EWIEGA46WW/qrc_icons.cpp	9d417ce9ecd1b2c1
+572	629	7585088572814130	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/EWIEGA46WW/qrc_icons.cpp	9d417ce9ecd1b2c1
+639	700	7585088572977302	CMakeFiles/clinica_cpp.dir/clinica_cpp_autogen/EWIEGA46WW/qrc_icons.cpp.obj	b16e3214bc0c60cf
+629	2177	7585088572896825	CMakeFiles/clinica_cpp.dir/clinica_cpp_autogen/mocs_compilation.cpp.obj	cc5ae2b9e4297562
+633	2206	7585088572922078	CMakeFiles/clinica_cpp.dir/main.cpp.obj	b254aee9d5249a45
+636	2403	7585088572954111	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	aab84b7ad055f5a4
+2403	2570	7585088590625741	clinica_cpp.exe	9167fa23b50838c
+13	196	7585636710852624	clinica_cpp_autogen/timestamp	54fcba823059dfa1
+13	196	7585636710852624	clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+13	196	7585636710852624	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	54fcba823059dfa1
+13	196	7585636710852624	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+197	1933	7585636712684154	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	aab84b7ad055f5a4
+1933	2218	7585636730041806	clinica_cpp.exe	9167fa23b50838c
+26	178	7585638338117521	clinica_cpp_autogen/timestamp	54fcba823059dfa1
+26	178	7585638338117521	clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+26	178	7585638338117521	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	54fcba823059dfa1
+26	178	7585638338117521	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+179	1881	7585638339646184	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	aab84b7ad055f5a4
+1881	2045	7585638356669666	clinica_cpp.exe	9167fa23b50838c
+25	180	7585639141765110	clinica_cpp_autogen/timestamp	54fcba823059dfa1
+25	180	7585639141765110	clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+25	180	7585639141765110	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	54fcba823059dfa1
+25	180	7585639141765110	C:/Users/Levi/Documents/projetos vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	54fcba823059dfa1
+181	1888	7585639143327185	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	aab84b7ad055f5a4
+1888	2052	7585639160394545	clinica_cpp.exe	9167fa23b50838c
