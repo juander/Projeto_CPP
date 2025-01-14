@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/Tear-Off Calendar.png</file>
+        <file>icons/Survey.png</file>
+        <file>icons/People.png</file>
+        <file>icons/Medical Doctor.png</file>
+        <file>icons/City Buildings.png</file>
+        <file>icons/Brief.png</file>
+    </qresource>
+</RCC>
