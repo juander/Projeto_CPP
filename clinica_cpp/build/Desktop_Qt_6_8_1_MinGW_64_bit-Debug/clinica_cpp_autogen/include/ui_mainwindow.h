@@ -14,10 +14,16 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCommandLinkButton>
 #include <QtWidgets/QFrame>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTabWidget>
+#include <QtWidgets/QTableWidget>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -51,14 +57,25 @@ public:
     QWidget *Atendimento;
     QLabel *label_7;
     QWidget *Pacientes;
+    QWidget *layoutWidget;
+    QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout;
+    QPushButton *pushButton_2;
+    QSpacerItem *horizontalSpacer_2;
     QLabel *label_8;
+    QLineEdit *lineEdit;
+    QPushButton *pushButton;
+    QTableWidget *tableWidget;
+    QHBoxLayout *horizontalLayout_2;
+    QPushButton *pushButton_3;
+    QPushButton *pushButton_4;
+    QSpacerItem *horizontalSpacer;
     QWidget *Profissionais;
     QLabel *label_9;
     QWidget *Relatorios;
     QLabel *label_10;
     QWidget *Fornecedores;
     QLabel *label_11;
-    QMenuBar *menubar;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -69,7 +86,7 @@ public:
         MainWindow->setMinimumSize(QSize(1280, 720));
         MainWindow->setMaximumSize(QSize(1280, 720));
         MainWindow->setAutoFillBackground(false);
-        MainWindow->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
+        MainWindow->setStyleSheet(QString::fromUtf8(""));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         frame = new QFrame(centralwidget);
@@ -82,7 +99,7 @@ public:
         frame->setFrameShadow(QFrame::Shadow::Raised);
         label = new QLabel(frame);
         label->setObjectName("label");
-        label->setGeometry(QRect(85, 17, 301, 36));
+        label->setGeometry(QRect(85, 17, 287, 36));
         QFont font;
         font.setFamilies({QString::fromUtf8("Arial")});
         font.setPointSize(16);
@@ -409,7 +426,7 @@ public:
         btnAgenda->setAutoRepeat(false);
         paginas = new QTabWidget(centralwidget);
         paginas->setObjectName("paginas");
-        paginas->setGeometry(QRect(170, 30, 1111, 671));
+        paginas->setGeometry(QRect(170, 30, 1111, 692));
         Agenda = new QWidget();
         Agenda->setObjectName("Agenda");
         label_6 = new QLabel(Agenda);
@@ -426,10 +443,66 @@ public:
         paginas->addTab(Atendimento, QString());
         Pacientes = new QWidget();
         Pacientes->setObjectName("Pacientes");
-        label_8 = new QLabel(Pacientes);
+        layoutWidget = new QWidget(Pacientes);
+        layoutWidget->setObjectName("layoutWidget");
+        layoutWidget->setGeometry(QRect(10, 30, 1091, 621));
+        verticalLayout = new QVBoxLayout(layoutWidget);
+        verticalLayout->setObjectName("verticalLayout");
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName("horizontalLayout");
+        pushButton_2 = new QPushButton(layoutWidget);
+        pushButton_2->setObjectName("pushButton_2");
+        pushButton_2->setStyleSheet(QString::fromUtf8(""));
+
+        horizontalLayout->addWidget(pushButton_2);
+
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_2);
+
+        label_8 = new QLabel(layoutWidget);
         label_8->setObjectName("label_8");
-        label_8->setGeometry(QRect(40, 50, 111, 20));
-        label_8->setStyleSheet(QString::fromUtf8("color: rgb(0, 0, 0);"));
+
+        horizontalLayout->addWidget(label_8);
+
+        lineEdit = new QLineEdit(layoutWidget);
+        lineEdit->setObjectName("lineEdit");
+
+        horizontalLayout->addWidget(lineEdit);
+
+        pushButton = new QPushButton(layoutWidget);
+        pushButton->setObjectName("pushButton");
+
+        horizontalLayout->addWidget(pushButton);
+
+
+        verticalLayout->addLayout(horizontalLayout);
+
+        tableWidget = new QTableWidget(layoutWidget);
+        tableWidget->setObjectName("tableWidget");
+
+        verticalLayout->addWidget(tableWidget);
+
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName("horizontalLayout_2");
+        pushButton_3 = new QPushButton(layoutWidget);
+        pushButton_3->setObjectName("pushButton_3");
+
+        horizontalLayout_2->addWidget(pushButton_3);
+
+        pushButton_4 = new QPushButton(layoutWidget);
+        pushButton_4->setObjectName("pushButton_4");
+
+        horizontalLayout_2->addWidget(pushButton_4);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout_2->addItem(horizontalSpacer);
+
+
+        verticalLayout->addLayout(horizontalLayout_2);
+
         paginas->addTab(Pacientes, QString());
         Profissionais = new QWidget();
         Profissionais->setObjectName("Profissionais");
@@ -456,14 +529,10 @@ public:
         paginas->raise();
         frame_2->raise();
         frame->raise();
-        menubar = new QMenuBar(MainWindow);
-        menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1280, 25));
-        MainWindow->setMenuBar(menubar);
 
         retranslateUi(MainWindow);
 
-        paginas->setCurrentIndex(0);
+        paginas->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -481,7 +550,12 @@ public:
         paginas->setTabText(paginas->indexOf(Agenda), QCoreApplication::translate("MainWindow", "Tab 1", nullptr));
         label_7->setText(QCoreApplication::translate("MainWindow", "ATENDIMENTO", nullptr));
         paginas->setTabText(paginas->indexOf(Atendimento), QCoreApplication::translate("MainWindow", "Tab 2", nullptr));
-        label_8->setText(QCoreApplication::translate("MainWindow", "PACIENTES", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("MainWindow", "Cadastrar Novo Paciente", nullptr));
+        label_8->setText(QCoreApplication::translate("MainWindow", "Pesquisar Nome De Paciente", nullptr));
+        lineEdit->setText(QString());
+        pushButton->setText(QCoreApplication::translate("MainWindow", "Pesquisar", nullptr));
+        pushButton_3->setText(QCoreApplication::translate("MainWindow", "Apagar", nullptr));
+        pushButton_4->setText(QCoreApplication::translate("MainWindow", "Editar", nullptr));
         paginas->setTabText(paginas->indexOf(Pacientes), QCoreApplication::translate("MainWindow", "Page", nullptr));
         label_9->setText(QCoreApplication::translate("MainWindow", "PROFISSIONAIS", nullptr));
         paginas->setTabText(paginas->indexOf(Profissionais), QCoreApplication::translate("MainWindow", "Page", nullptr));

@@ -1,5 +1,5 @@
-C:/Users/Juan\ Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/EWIEGA46WW/moc_mainwindow.cpp: C:/Users/Juan\ Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/mainwindow.h \
-  C:/Users/Juan\ Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/moc_predefs.h \
+C:/Users/Levi/Documents/projetos\ vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/EWIEGA46WW/moc_mainwindow.cpp: C:/Users/Levi/Documents/projetos\ vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/mainwindow.h \
+  C:/Users/Levi/Documents/projetos\ vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/moc_predefs.h \
   C:/Qt/6.8.1/mingw_64/include/QtCore/q20functional.h \
   C:/Qt/6.8.1/mingw_64/include/QtCore/q20iterator.h \
   C:/Qt/6.8.1/mingw_64/include/QtCore/q20memory.h \
@@ -146,11 +146,13 @@ C:/Users/Juan\ Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Q
   C:/Qt/6.8.1/mingw_64/include/QtGui/qwindowdefs.h \
   C:/Qt/6.8.1/mingw_64/include/QtGui/qwindowdefs_win.h \
   C:/Qt/6.8.1/mingw_64/include/QtWidgets/QCommandLinkButton \
+  C:/Qt/6.8.1/mingw_64/include/QtWidgets/QDialog \
   C:/Qt/6.8.1/mingw_64/include/QtWidgets/QGraphicsDropShadowEffect \
   C:/Qt/6.8.1/mingw_64/include/QtWidgets/QMainWindow \
   C:/Qt/6.8.1/mingw_64/include/QtWidgets/QTabWidget \
   C:/Qt/6.8.1/mingw_64/include/QtWidgets/qabstractbutton.h \
   C:/Qt/6.8.1/mingw_64/include/QtWidgets/qcommandlinkbutton.h \
+  C:/Qt/6.8.1/mingw_64/include/QtWidgets/qdialog.h \
   C:/Qt/6.8.1/mingw_64/include/QtWidgets/qgraphicseffect.h \
   C:/Qt/6.8.1/mingw_64/include/QtWidgets/qmainwindow.h \
   C:/Qt/6.8.1/mingw_64/include/QtWidgets/qpushbutton.h \
@@ -365,4 +367,5 @@ C:/Users/Juan\ Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Q
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/sys/types.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/time.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/vadefs.h \
-  C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h
+  C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h \
+  C:/Users/Levi/Documents/projetos\ vscode/c++/qt/projeto_cpp/Projeto_CPP/clinica_cpp/cadastropacientes.h
