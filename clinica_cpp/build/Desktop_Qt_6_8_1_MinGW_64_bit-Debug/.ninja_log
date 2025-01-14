@@ -1,0 +1,12 @@
+# ninja log v6
+18	235	7585805989313444	clinica_cpp_autogen/timestamp	39e4002d4526979b
+18	235	7585805989313444	clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
+18	235	7585805989313444	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/timestamp	39e4002d4526979b
+1776	1853	7585804001543612	clinica_cpp_autogen/EWIEGA46WW/qrc_icons.cpp	21aadac9aeb73ecc
+18	235	7585805989313444	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/mocs_compilation.cpp	39e4002d4526979b
+1776	1853	7585804001543612	C:/Users/Juan Henrique/Documents/GitHub/Projeto_CPP/clinica_cpp/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/clinica_cpp_autogen/EWIEGA46WW/qrc_icons.cpp	21aadac9aeb73ecc
+2725	2935	7585806016387811	clinica_cpp.exe	9167fa23b50838c
+1855	4076	7585804001679044	CMakeFiles/clinica_cpp.dir/clinica_cpp_autogen/mocs_compilation.cpp.obj	4c80eef594b5e2e6
+1868	1962	7585804001820142	CMakeFiles/clinica_cpp.dir/clinica_cpp_autogen/EWIEGA46WW/qrc_icons.cpp.obj	580936f212bc4a95
+1859	4117	7585804001719143	CMakeFiles/clinica_cpp.dir/main.cpp.obj	5da5a5c0226a066d
+236	2725	7585805991498681	CMakeFiles/clinica_cpp.dir/mainwindow.cpp.obj	b61cc690103f7be5
