@@ -53,7 +53,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_2"/>
+        <widget class="QLineEdit" name="txtnome"/>
        </item>
        <item>
         <widget class="QLabel" name="label_4">
@@ -63,7 +63,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_4">
+        <widget class="QLineEdit" name="txtidade">
          <property name="maximumSize">
           <size>
            <width>51</width>
@@ -84,7 +84,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_3"/>
+        <widget class="QLineEdit" name="txtconvenio"/>
        </item>
       </layout>
      </item>
@@ -98,7 +98,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit"/>
+        <widget class="QLineEdit" name="txtemail"/>
        </item>
        <item>
         <widget class="QLabel" name="label_5">
@@ -108,7 +108,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_5">
+        <widget class="QLineEdit" name="txtcontato">
          <property name="maximumSize">
           <size>
            <width>136</width>
@@ -128,14 +128,14 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="btnCadastrar">
          <property name="text">
           <string>Cadastrar</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="btnCancelar">
          <property name="text">
           <string>Cancelar</string>
          </property>

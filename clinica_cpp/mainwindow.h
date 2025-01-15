@@ -4,7 +4,12 @@
 #include <QGraphicsDropShadowEffect>
 #include <QMainWindow>
 #include <QTabWidget>
+#include <QTableWidget>
 #include <QCommandLinkButton>
+#include <QtSql>
+#include <QDebug>
+#include <QFileInfo>
+#include <QMessageBox>
 
 #include "cadastropacientes.h"
 
@@ -29,8 +34,11 @@ private slots:
     void on_btnProfissionais_clicked();
     void on_btnFornecedores_clicked();
     void on_btnRelatorios_clicked();
+    void on_btnCadastro_clicked();
 
 private:
     Ui::MainWindow *ui;
+    cadastroPacientes *cadastramento;
+    QSqlDatabase bancoDeDados;
 };
 #endif // MAINWINDOW_H
