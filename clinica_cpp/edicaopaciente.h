@@ -5,6 +5,8 @@
 #include <QMessageBox>
 #include <QtSql>
 
+#include "pessoa.h"
+
 namespace Ui {
 class edicaopaciente;
 }

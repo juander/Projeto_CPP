@@ -4,6 +4,8 @@
 #include <QDialog>
 #include <QtSql>
 
+#include "pessoa.h"
+
 namespace Ui {
 class cadastroPacientes;
 }

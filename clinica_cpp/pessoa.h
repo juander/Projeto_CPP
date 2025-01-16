@@ -3,38 +3,62 @@
 
 #include <QString>
 #include <QDate>
+#include <QtSql>
+#include <QDebug>
+#include <QMessageBox>
+#include <QObject>
 
-class Pessoa
-{
-public:
-    Pessoa(const QString &nome, const QString &idade, const QString &cpf, const QString &email, QString &numero, QDate &nascimento);
-    //virtual ~Pessoa();
+class Pessoa : public QObject {
+    Q_OBJECT
 
-    QString getNome() const;
-    QString getIdade() const;
-    QString getCpf() const;
-    QString getEmail() const;
-    QString getNumero() const;
-    QDate getNascimento() const;
+    public:
+        // Construtor
+        explicit Pessoa(const QString& nome, const QString& cpf, const QString& contato,
+                        const QString& email, const QDate& dataNascimento);
 
-protected:
-    QString nome;
-    QString idade;
-    QString cpf;
-    QString email;
-    QString numero;
-    QDate nascimento;
+        // Destrutor
+        ~Pessoa();
+
+        // Métodos públicos
+        int calcularIdade() const;
+
+        // Getters
+        QString getNome() const;
+        QString getCpf() const;
+        QString getContato() const;
+        QString getEmail() const;
+        QDate getDataDeNascimento() const;
+
+    protected:
+        QString nome;
+        QString cpf;
+        QString contato;
+        QString email;
+        QDate dataNascimento;
 };
 
-class Paciente : public Pessoa
-{
-public:
-    Paciente(const QString &nome, const QString &idade, const QString &cpf, const QString &email, QString &numero, QDate &nascimento, QString &convenio_plano, QString diagnostico);
-    //virtual ~Paciente();
+class Paciente : public Pessoa {
+    Q_OBJECT
 
-private:
-    QString convenio_plano;
-    QString diagnostico;
-};
+    public:
+        // Construtor
+        explicit Paciente(const QString& nome, const QString& cpf, const QString& contato,
+                          const QString& email, const QDate& dataNascimento,
+                          const QString& convenio, const QString& diagnostico);
+
+        // Destrutor
+        ~Paciente();
+
+        // Métodos públicos
+        bool salvarNoBanco();
+
+    signals:
+        // Sinal emitido quando um paciente é cadastrado
+        void pacienteCadastrado(int id);
+
+    private:
+        QString convenio;
+        QString diagnostico;
+    };
 
 #endif // PESSOA_H

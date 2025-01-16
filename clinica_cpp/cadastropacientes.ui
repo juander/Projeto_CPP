@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>479</width>
-    <height>283</height>
+    <height>284</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -71,14 +71,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_7">
        <item>
-        <widget class="QLabel" name="txtDiagn">
+        <widget class="QLabel" name="label_9">
          <property name="text">
           <string>Diagnóstico:</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit"/>
+        <widget class="QLineEdit" name="txtDiagn"/>
        </item>
       </layout>
      </item>
