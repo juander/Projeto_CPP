@@ -43,6 +43,8 @@ private slots:
 
     void on_btnEditarPac_clicked();
 
+    void on_btnPesquisarPac_clicked();
+
 private:
     Ui::MainWindow *ui;
     QSqlDatabase bancoDeDados;
