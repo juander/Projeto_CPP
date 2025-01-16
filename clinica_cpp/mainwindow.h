@@ -45,6 +45,8 @@ private slots:
 
     void on_btnPesquisarPac_clicked();
 
+    void setTabelaPacientes(QSqlQuery &query);
+
 private:
     Ui::MainWindow *ui;
     QSqlDatabase bancoDeDados;

@@ -48,41 +48,8 @@ void MainWindow::on_btnPacientes_clicked()
     query.prepare("SELECT * FROM tb_pacientes");
 
     if(query.exec()){
-        int tb_linha = 0;
+        setTabelaPacientes(query);
 
-        // Limpa os dados antigos da tabela
-        ui->tw_pacientes->clearContents();
-        ui->tw_pacientes->setRowCount(0);  // Reseta as linhas
-
-        ui->tw_pacientes->setColumnCount(8);
-        while(query.next()){
-
-            ui->tw_pacientes->insertRow(tb_linha);
-
-            for(int i = 0; i <= 7; i++){
-                ui->tw_pacientes->setItem(tb_linha,i,new QTableWidgetItem(query.value(i).toString()));
-            }
-            ui->tw_pacientes->setRowHeight(tb_linha,20);
-
-            tb_linha++;
-        }
-
-        // Setando a largura das colunas da tabela
-        ui->tw_pacientes->setColumnWidth(0, 80);
-        ui->tw_pacientes->setColumnWidth(1, 280);
-        ui->tw_pacientes->setColumnWidth(2, 40);
-        ui->tw_pacientes->setColumnWidth(3, 135);
-        ui->tw_pacientes->setColumnWidth(4, 124);
-        ui->tw_pacientes->setColumnWidth(5, 180);
-        ui->tw_pacientes->setColumnWidth(6, 135);
-        ui->tw_pacientes->setColumnWidth(7, 115);
-
-        QStringList cabecalho = {"ID", "Nome", "Idade", "CPF", "NºCelular", "E-mail", "Convêvio/Plano", "Nascimento"};
-        ui->tw_pacientes->setHorizontalHeaderLabels(cabecalho);
-        ui->tw_pacientes->setEditTriggers(QAbstractItemView::NoEditTriggers);
-        ui->tw_pacientes->setSelectionBehavior(QAbstractItemView::SelectRows);
-        ui->tw_pacientes->verticalHeader()->setVisible(false);
-        ui->tw_pacientes->setStyleSheet("QTableWidget::item:selected {background-color: blue}");
     }else{
         QMessageBox::warning(this, "ERRO", "Não foi possível acessar os pacientes no banco de dados");
     }
@@ -183,7 +150,6 @@ void MainWindow::on_btnEditarPac_clicked()
     }
 }
 
-
 void MainWindow::on_btnPesquisarPac_clicked()
 {
     QString nome = ui->lineEdit->text(); // Pegando o texto do QLineEdit
@@ -193,43 +159,48 @@ void MainWindow::on_btnPesquisarPac_clicked()
     query.bindValue(":nome", "%" + nome + "%");
 
     if(query.exec()){
-        int tb_linha = 0;
-
-        // Limpa os dados antigos da tabela
-        ui->tw_pacientes->clearContents();
-        ui->tw_pacientes->setRowCount(0);  // Reseta as linhas
-
-        ui->tw_pacientes->setColumnCount(8);
-        while(query.next()){
-
-            ui->tw_pacientes->insertRow(tb_linha);
-
-            for(int i = 0; i <= 7; i++){
-                ui->tw_pacientes->setItem(tb_linha,i,new QTableWidgetItem(query.value(i).toString()));
-            }
-            ui->tw_pacientes->setRowHeight(tb_linha,20);
-
-            tb_linha++;
-        }
-
-        // Setando a largura das colunas da tabela
-        ui->tw_pacientes->setColumnWidth(0, 80);
-        ui->tw_pacientes->setColumnWidth(1, 280);
-        ui->tw_pacientes->setColumnWidth(2, 40);
-        ui->tw_pacientes->setColumnWidth(3, 135);
-        ui->tw_pacientes->setColumnWidth(4, 124);
-        ui->tw_pacientes->setColumnWidth(5, 180);
-        ui->tw_pacientes->setColumnWidth(6, 135);
-        ui->tw_pacientes->setColumnWidth(7, 115);
-
-        QStringList cabecalho = {"ID", "Nome", "Idade", "CPF", "NºCelular", "E-mail", "Convêvio/Plano", "Nascimento"};
-        ui->tw_pacientes->setHorizontalHeaderLabels(cabecalho);
-        ui->tw_pacientes->setEditTriggers(QAbstractItemView::NoEditTriggers);
-        ui->tw_pacientes->setSelectionBehavior(QAbstractItemView::SelectRows);
-        ui->tw_pacientes->verticalHeader()->setVisible(false);
-        ui->tw_pacientes->setStyleSheet("QTableWidget::item:selected {background-color: blue}");
+        setTabelaPacientes(query);
     }else{
         QMessageBox::warning(this, "ERRO", "Não foi possível acessar os pacientes no banco de dados");
     }
+}
+
+void MainWindow::setTabelaPacientes(QSqlQuery &query)
+{
+    int tb_linha = 0;
+
+    // Limpa os dados antigos da tabela
+    ui->tw_pacientes->clearContents();
+    ui->tw_pacientes->setRowCount(0);  // Reseta as linhas
+
+    ui->tw_pacientes->setColumnCount(8);
+    while(query.next()){
+
+        ui->tw_pacientes->insertRow(tb_linha);
+
+        for(int i = 0; i <= 7; i++){
+            ui->tw_pacientes->setItem(tb_linha,i,new QTableWidgetItem(query.value(i).toString()));
+        }
+        ui->tw_pacientes->setRowHeight(tb_linha,20);
+
+        tb_linha++;
+    }
+
+    // Setando a largura das colunas da tabela
+    ui->tw_pacientes->setColumnWidth(0, 80);
+    ui->tw_pacientes->setColumnWidth(1, 280);
+    ui->tw_pacientes->setColumnWidth(2, 40);
+    ui->tw_pacientes->setColumnWidth(3, 135);
+    ui->tw_pacientes->setColumnWidth(4, 124);
+    ui->tw_pacientes->setColumnWidth(5, 180);
+    ui->tw_pacientes->setColumnWidth(6, 135);
+    ui->tw_pacientes->setColumnWidth(7, 115);
+
+    QStringList cabecalho = {"ID", "Nome", "Idade", "CPF", "NºCelular", "E-mail", "Convêvio/Plano", "Nascimento"};
+    ui->tw_pacientes->setHorizontalHeaderLabels(cabecalho);
+    ui->tw_pacientes->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tw_pacientes->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tw_pacientes->verticalHeader()->setVisible(false);
+    ui->tw_pacientes->setStyleSheet("QTableWidget::item:selected {background-color: blue}");
 }
 
