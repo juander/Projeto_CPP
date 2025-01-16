@@ -37,6 +37,8 @@ class Pessoa : public QObject {
         QDate dataNascimento;
 };
 
+
+
 class Paciente : public Pessoa {
     Q_OBJECT
 
@@ -59,6 +61,31 @@ class Paciente : public Pessoa {
     private:
         QString convenio;
         QString diagnostico;
-    };
+};
+
+
+
+class Colaborador : public Pessoa {
+    Q_OBJECT
+
+public:
+    // Construtor
+    explicit Colaborador(const QString& nome, const QString& cpf, const QString& contato,
+                      const QString& email, const QDate& dataNascimento,
+                      const QString& cargo);
+
+    // Destrutor
+    ~Colaborador();
+
+    // Métodos públicos
+    bool salvarNoBanco();
+
+signals:
+    // Sinal emitido quando um paciente é cadastrado
+    void colaboradorCadastrado(int id);
+
+private:
+    QString cargo;
+};
 
 #endif // PESSOA_H
