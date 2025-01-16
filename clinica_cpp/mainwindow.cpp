@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     bancoDeDados = QSqlDatabase::addDatabase("QSQLITE");
-    bancoDeDados.setDatabaseName("banco_clinica.db");
+    bancoDeDados.setDatabaseName("..\\..\\banco_clinica.db");
 
     if (!bancoDeDados.open()) {
         qDebug() << "Erro ao abrir o banco de dados:" << bancoDeDados.lastError().text();
