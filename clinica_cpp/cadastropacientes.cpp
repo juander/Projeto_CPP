@@ -19,6 +19,7 @@ void cadastroPacientes::on_btnCadastrar_clicked()
     QString nom = ui->txtnome->text();
     QString cpf = ui->txtCpf->text();
     QDate dataNascimento = ui->txtData->date();
+    QString diagn = ui->txtDiagn->text();
     QString contat = ui->txtcontato->text();
     QString emai = ui->txtemail->text();
     QString conven = ui->txtconvenio->text();
@@ -40,12 +41,13 @@ void cadastroPacientes::on_btnCadastrar_clicked()
 
     // Fazendo a query para enviar os dados para o banco
     QSqlQuery query;
-    query.prepare("INSERT INTO tb_pacientes (nome, idade, cpf, contato, email, convenio_plano, data_nasc) "
+    query.prepare("INSERT INTO tb_pacientes (nome, idade, cpf, diagnostico_pre = :diagnostico_pre, contato, email, convenio_plano, data_nasc) "
                   "VALUES (:nome, :idade, :cpf, :contato, :email, :convenio_plano, :data_nasc)");
 
     query.bindValue(":nome", nom);
     query.bindValue(":idade", ida);
     query.bindValue(":cpf", cpf);
+    query.bindValue(":diagnostico_pre", diagn);
     query.bindValue(":contato", contat);
     query.bindValue(":email", emai);
     query.bindValue(":convenio_plano", conven);

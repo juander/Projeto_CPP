@@ -21,12 +21,13 @@ edicaopaciente::edicaopaciente(QWidget *parent, int id_paciente)
         query.first();
         ui->txtnome->setText(query.value(1).toString());
         ui->txtCpf->setText(query.value(3).toString());
-        ui->txtcontato->setText(query.value(4).toString());
-        ui->txtemail->setText(query.value(5).toString());
-        ui->txtconvenio->setText(query.value(6).toString());
+        ui->txtDiagn->setText(query.value(4).toString());
+        ui->txtcontato->setText(query.value(5).toString());
+        ui->txtemail->setText(query.value(6).toString());
+        ui->txtconvenio->setText(query.value(7).toString());
 
         // Convertendo a string da data para QDate
-        QDate date = QDate::fromString(query.value(7).toString(), "dd/MM/yyyy");
+        QDate date = QDate::fromString(query.value(8).toString(), "dd/MM/yyyy");
         ui->txtData->setDate(date);
 
     }else{
@@ -45,6 +46,7 @@ void edicaopaciente::on_editar_clicked()
     QString nom = ui->txtnome->text();
     QString cpf = ui->txtCpf->text();
     QDate dataNascimento = ui->txtData->date();
+    QString diagn = ui->txtDiagn->text();
     QString contat = ui->txtcontato->text();
     QString emai = ui->txtemail->text();
     QString conven = ui->txtconvenio->text();
@@ -67,12 +69,13 @@ void edicaopaciente::on_editar_clicked()
     // Fazendo a query para enviar os dados para o banco
     QSqlQuery query;
     QString idString = QString::number(id); // Convertendo o ID para QString
-    query.prepare("UPDATE tb_pacientes SET nome = :nome, idade = :idade, cpf = :cpf, contato = :contato, "
+    query.prepare("UPDATE tb_pacientes SET nome = :nome, idade = :idade, cpf = :cpf, diagnostico_pre = :diagnostico_pre, contato = :contato, "
                   "email = :email, convenio_plano = :convenio_plano, data_nasc = :data_nasc WHERE id = :id");
 
     query.bindValue(":nome", nom);
     query.bindValue(":idade", ida);
     query.bindValue(":cpf", cpf);
+    query.bindValue(":diagnostico_pre", diagn);
     query.bindValue(":contato", contat);
     query.bindValue(":email", emai);
     query.bindValue(":convenio_plano", conven);

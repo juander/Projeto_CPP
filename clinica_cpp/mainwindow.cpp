@@ -92,7 +92,7 @@ void MainWindow::adicionarPacienteNaTabela(int id)
     if(query.exec() && query.first()){
         int linha = ui->tw_pacientes->rowCount();
         ui->tw_pacientes->insertRow(linha);
-        for(int i = 0; i <= 7; i++){
+        for(int i = 0; i <= 8; i++){
             ui->tw_pacientes->setItem(linha, i, new QTableWidgetItem(query.value(i).toString()));
         }
     } else {
@@ -153,7 +153,7 @@ void MainWindow::on_btnEditarPac_clicked()
 
     if(query.exec()){
         query.first();
-        for(int i = 1; i <= 7; i++){
+        for(int i = 1; i <= 8; i++){
             ui->tw_pacientes->setItem(linha,i,new QTableWidgetItem(query.value(i).toString()));
         }
     }else{
@@ -170,12 +170,12 @@ void MainWindow::setTabelaPacientes(QSqlQuery &query)
     ui->tw_pacientes->clearContents();
     ui->tw_pacientes->setRowCount(0);  // Reseta as linhas
 
-    ui->tw_pacientes->setColumnCount(8);
+    ui->tw_pacientes->setColumnCount(9);
     while(query.next()){
 
         ui->tw_pacientes->insertRow(tb_linha);
 
-        for(int i = 0; i <= 7; i++){
+        for(int i = 0; i <= 8; i++){
             ui->tw_pacientes->setItem(tb_linha,i,new QTableWidgetItem(query.value(i).toString()));
         }
         ui->tw_pacientes->setRowHeight(tb_linha,20);
@@ -184,16 +184,17 @@ void MainWindow::setTabelaPacientes(QSqlQuery &query)
     }
 
     // Setando a largura das colunas da tabela
-    ui->tw_pacientes->setColumnWidth(0, 80);
-    ui->tw_pacientes->setColumnWidth(1, 280);
-    ui->tw_pacientes->setColumnWidth(2, 40);
-    ui->tw_pacientes->setColumnWidth(3, 135);
-    ui->tw_pacientes->setColumnWidth(4, 124);
-    ui->tw_pacientes->setColumnWidth(5, 180);
-    ui->tw_pacientes->setColumnWidth(6, 135);
-    ui->tw_pacientes->setColumnWidth(7, 115);
+    ui->tw_pacientes->setColumnWidth(0, 80);  // ID
+    ui->tw_pacientes->setColumnWidth(1, 280); // Nome
+    ui->tw_pacientes->setColumnWidth(2, 40);  // Idade
+    ui->tw_pacientes->setColumnWidth(3, 135); // CPF
+    ui->tw_pacientes->setColumnWidth(4, 150); // Diagnóstico
+    ui->tw_pacientes->setColumnWidth(5, 124); // NºCelular
+    ui->tw_pacientes->setColumnWidth(6, 180); // E-mail
+    ui->tw_pacientes->setColumnWidth(7, 135); // Convênio/Plano
+    ui->tw_pacientes->setColumnWidth(8, 70); // Nascimento
 
-    QStringList cabecalho = {"ID", "Nome", "Idade", "CPF", "NºCelular", "E-mail", "Convêvio/Plano", "Nascimento"};
+    QStringList cabecalho = {"ID", "Nome", "Idade", "CPF", "Diagnóstico", "NºCelular", "E-mail", "Convêvio/Plano", "Nascimento"};
     ui->tw_pacientes->setHorizontalHeaderLabels(cabecalho);
     ui->tw_pacientes->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tw_pacientes->setSelectionBehavior(QAbstractItemView::SelectRows);
