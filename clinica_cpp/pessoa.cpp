@@ -81,9 +81,9 @@ bool Colaborador::salvarNoBanco() {
     // Converte a data de nascimento para string no formato desejado
     QString nasc = dataNascimento.toString("dd/MM/yyyy");
 
-    // Prepara a query SQL para inserir os dados do paciente no banco
+    // Prepara a query SQL para inserir os dados do colaborador no banco
     QSqlQuery query;
-    query.prepare("INSERT INTO tb_pacientes (nome, idade, cpf, cargo, contato, email, data_nasc) "
+    query.prepare("INSERT INTO tb_colaboradores (nome, idade, cpf, cargo, contato, email, data_nasc) "
                   "VALUES (:nome, :idade, :cpf, :cargo, :contato, :email, :data_nasc)");
 
     query.bindValue(":nome", getNome());
