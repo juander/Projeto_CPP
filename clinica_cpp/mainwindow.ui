@@ -1841,7 +1841,7 @@ color: rgb(255, 255, 255);</string>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="Agenda">
      <attribute name="title">
@@ -1927,21 +1927,14 @@ color: rgb(255, 255, 255);</string>
          <item>
           <widget class="QLabel" name="label_8">
            <property name="text">
-            <string>Pesquisar paciente</string>
+            <string>Pesquisar paciente:</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit">
+          <widget class="QLineEdit" name="linePesquisa">
            <property name="text">
             <string/>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="btnPesquisarPac">
-           <property name="text">
-            <string>Pesquisar</string>
            </property>
           </widget>
          </item>

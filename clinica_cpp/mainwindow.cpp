@@ -150,21 +150,6 @@ void MainWindow::on_btnEditarPac_clicked()
     }
 }
 
-void MainWindow::on_btnPesquisarPac_clicked()
-{
-    QString nome = ui->lineEdit->text(); // Pegando o texto do QLineEdit
-
-    QSqlQuery query;
-    query.prepare("SELECT * FROM tb_pacientes WHERE nome LIKE :nome");
-    query.bindValue(":nome", nome + "%");
-
-    if(query.exec()){
-        setTabelaPacientes(query);
-    }else{
-        QMessageBox::warning(this, "ERRO", "Não foi possível acessar os pacientes no banco de dados");
-    }
-}
-
 void MainWindow::setTabelaPacientes(QSqlQuery &query)
 {
     int tb_linha = 0;
@@ -202,5 +187,21 @@ void MainWindow::setTabelaPacientes(QSqlQuery &query)
     ui->tw_pacientes->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tw_pacientes->verticalHeader()->setVisible(false);
     ui->tw_pacientes->setStyleSheet("QTableWidget::item:selected {background-color: blue}");
+}
+
+
+void MainWindow::on_linePesquisa_textChanged(const QString &arg1)
+{
+    QString nome = ui->linePesquisa->text(); // Pegando o texto do linePesquisa
+
+    QSqlQuery query;
+    query.prepare("SELECT * FROM tb_pacientes WHERE nome LIKE :nome");
+    query.bindValue(":nome", nome + "%");
+
+    if(query.exec()){
+        setTabelaPacientes(query);
+    }else{
+        QMessageBox::warning(this, "ERRO", "Não foi possível acessar os pacientes no banco de dados");
+    }
 }
 

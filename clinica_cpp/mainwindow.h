@@ -43,9 +43,9 @@ private slots:
 
     void on_btnEditarPac_clicked();
 
-    void on_btnPesquisarPac_clicked();
-
     void setTabelaPacientes(QSqlQuery &query);
+
+    void on_linePesquisa_textChanged(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;
