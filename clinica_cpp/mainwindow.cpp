@@ -64,7 +64,7 @@ void MainWindow::on_btnPacientes_clicked()
 // Método para trocar para a aba "Profissionais"
 void MainWindow::on_btnProfissionais_clicked()
 {
-    int index = ui->paginas->indexOf(ui->Profissionais);
+    int index = ui->paginas->indexOf(ui->Colaboradores);
     ui->paginas->setCurrentIndex(index);
 }
 

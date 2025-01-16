@@ -1048,7 +1048,7 @@ color: rgb(255, 255, 255);</string>
       <string notr="true">color: rgb(0, 0, 0);</string>
      </property>
      <property name="text">
-      <string notr="true">Profissionais</string>
+      <string notr="true">Colaboradores</string>
      </property>
      <property name="icon">
       <iconset resource="icons.qrc">
@@ -1841,7 +1841,7 @@ color: rgb(255, 255, 255);</string>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="Agenda">
      <attribute name="title">
@@ -1977,25 +1977,96 @@ color: rgb(255, 255, 255);</string>
       </layout>
      </widget>
     </widget>
-    <widget class="QWidget" name="Profissionais">
+    <widget class="QWidget" name="Colaboradores">
      <attribute name="title">
       <string>Page</string>
      </attribute>
-     <widget class="QLabel" name="label_9">
+     <widget class="QWidget" name="layoutWidget_2">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>50</y>
-        <width>111</width>
-        <height>20</height>
+        <x>10</x>
+        <y>20</y>
+        <width>1091</width>
+        <height>641</height>
        </rect>
       </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(0, 0, 0);</string>
-      </property>
-      <property name="text">
-       <string>PROFISSIONAIS</string>
-      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QPushButton" name="btnCadastro_2">
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string>Cadastrar colaborador</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Orientation::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_12">
+           <property name="text">
+            <string>Pesquisar colaborador:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="linePesquisa_2">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QTableWidget" name="tw_pacientes_2"/>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <widget class="QPushButton" name="btnApagarPac_2">
+           <property name="text">
+            <string>Apagar</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnEditarPac_2">
+           <property name="text">
+            <string>Editar</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Orientation::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="Relatorios">
