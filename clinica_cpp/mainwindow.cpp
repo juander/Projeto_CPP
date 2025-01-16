@@ -134,6 +134,11 @@ void MainWindow::on_btnCadastro_clicked()
 
 void MainWindow::on_btnApagarPac_clicked()
 {
+    // Conferindo se o usuário selecionou alguma linha (currentRow() retorna -1 quando não há linha selecionada)
+    if (ui->tw_pacientes->currentRow() == -1) {
+        QMessageBox::warning(nullptr, "Aviso", "Nenhuma paciente foi selecionado.");
+        return;
+    }
     // Verificando qual é a linha selecionada e descobrindo o id dela
     int linha = ui->tw_pacientes->currentRow();
     QString id = ui->tw_pacientes->item(linha, 0)->text();
@@ -153,6 +158,11 @@ void MainWindow::on_btnApagarPac_clicked()
 
 void MainWindow::on_btnEditarPac_clicked()
 {
+    // Conferindo se o usuário selecionou alguma linha (currentRow() retorna -1 quando não há linha selecionada)
+    if (ui->tw_pacientes->currentRow() == -1) {
+        QMessageBox::warning(nullptr, "Aviso", "Nenhuma paciente foi selecionado.");
+        return;
+    }
     int linha = ui->tw_pacientes->currentRow();
     int id = ui->tw_pacientes->item(linha, 0)->text().toInt();
 
