@@ -28,6 +28,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         edicaopaciente.h edicaopaciente.cpp edicaopaciente.ui
+        pessoa.h pessoa.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET clinica_cpp APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
