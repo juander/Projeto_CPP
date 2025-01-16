@@ -156,7 +156,7 @@ void MainWindow::on_btnPesquisarPac_clicked()
 
     QSqlQuery query;
     query.prepare("SELECT * FROM tb_pacientes WHERE nome LIKE :nome");
-    query.bindValue(":nome", "%" + nome + "%");
+    query.bindValue(":nome", nome + "%");
 
     if(query.exec()){
         setTabelaPacientes(query);
