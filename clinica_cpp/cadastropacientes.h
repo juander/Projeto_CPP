@@ -17,14 +17,16 @@ public:
     ~cadastroPacientes();
 
 private slots:
+    // Método para cadastrar um novo paciente
     void on_btnCadastrar_clicked();
-
+    // Método para cancelar o cadastro
     void on_btnCancelar_clicked();
 
 private:
     Ui::cadastroPacientes *ui;
 
 signals:
+    // Sinal emitido quando um paciente é cadastrado
     void pacienteCadastrado(int id);
 };
 

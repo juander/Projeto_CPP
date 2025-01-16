@@ -18,8 +18,9 @@ public:
     ~edicaopaciente();
 
 private slots:
+    // Método para editar um paciente
     void on_editar_clicked();
-
+    // Método para cancelar a edição
     void on_cancelarEdit_clicked();
 
 private:

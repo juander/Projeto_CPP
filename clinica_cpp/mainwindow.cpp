@@ -7,15 +7,18 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    // Configuração do banco de dados SQLite
     bancoDeDados = QSqlDatabase::addDatabase("QSQLITE");
     bancoDeDados.setDatabaseName("..\\..\\banco_clinica.db");
 
+    // Verificação da conexão com o banco de dados
     if (!bancoDeDados.open()) {
         qDebug() << "Erro ao abrir o banco de dados:" << bancoDeDados.lastError().text();
     } else {
         qDebug() << "Banco de dados conectado com sucesso!";
     }
 
+    // Adicionando efeito de sombra ao frame superior
     QGraphicsDropShadowEffect *shadowEffect = new QGraphicsDropShadowEffect(this);
     shadowEffect->setBlurRadius(10);
     shadowEffect->setOffset(0, 5);
@@ -27,18 +30,21 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+// Método para trocar para a aba "Agenda"
 void MainWindow::on_btnAgenda_clicked()
 {
     int index = ui->paginas->indexOf(ui->Agenda);
     ui->paginas->setCurrentIndex(index);
 }
 
+// Método para trocar para a aba "Atendimento"
 void MainWindow::on_btnAtendimento_clicked()
 {
     int index = ui->paginas->indexOf(ui->Atendimento);
     ui->paginas->setCurrentIndex(index);
 }
 
+// Método para trocar para a aba "Pacientes" e carregar os dados dos pacientes
 void MainWindow::on_btnPacientes_clicked()
 {
     int index = ui->paginas->indexOf(ui->Pacientes);
@@ -55,18 +61,21 @@ void MainWindow::on_btnPacientes_clicked()
     }
 }
 
+// Método para trocar para a aba "Profissionais"
 void MainWindow::on_btnProfissionais_clicked()
 {
     int index = ui->paginas->indexOf(ui->Profissionais);
     ui->paginas->setCurrentIndex(index);
 }
 
+// Método para trocar para a aba "Relatórios"
 void MainWindow::on_btnRelatorios_clicked()
 {
     int index = ui->paginas->indexOf(ui->Relatorios);
     ui->paginas->setCurrentIndex(index);
 }
 
+// Método para trocar para a aba "Fornecedores"
 void MainWindow::on_btnFornecedores_clicked()
 {
     int index = ui->paginas->indexOf(ui->Fornecedores);
@@ -99,6 +108,7 @@ void MainWindow::on_btnCadastro_clicked()
     cadastramento.exec();
 }
 
+// Método para apagar um paciente selecionado
 void MainWindow::on_btnApagarPac_clicked()
 {
     // Conferindo se o usuário selecionou alguma linha (currentRow() retorna -1 quando não há linha selecionada)
@@ -123,6 +133,7 @@ void MainWindow::on_btnApagarPac_clicked()
     }
 }
 
+// Método para editar um paciente selecionado
 void MainWindow::on_btnEditarPac_clicked()
 {
     // Conferindo se o usuário selecionou alguma linha (currentRow() retorna -1 quando não há linha selecionada)
@@ -150,6 +161,7 @@ void MainWindow::on_btnEditarPac_clicked()
     }
 }
 
+// Método para configurar a tabela de pacientes
 void MainWindow::setTabelaPacientes(QSqlQuery &query)
 {
     int tb_linha = 0;
@@ -189,7 +201,7 @@ void MainWindow::setTabelaPacientes(QSqlQuery &query)
     ui->tw_pacientes->setStyleSheet("QTableWidget::item:selected {background-color: blue}");
 }
 
-
+// Método para pesquisar pacientes pelo nome
 void MainWindow::on_linePesquisa_textChanged(const QString &arg1)
 {
     QString nome = ui->linePesquisa->text(); // Pegando o texto do linePesquisa
