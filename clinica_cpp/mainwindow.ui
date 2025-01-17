@@ -1902,7 +1902,7 @@ color: rgb(255, 255, 255);</string>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
-          <widget class="QPushButton" name="btnCadastro">
+          <widget class="QPushButton" name="btnCadastroPac">
            <property name="styleSheet">
             <string notr="true"/>
            </property>
@@ -1932,7 +1932,7 @@ color: rgb(255, 255, 255);</string>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="linePesquisa">
+          <widget class="QLineEdit" name="linePesquisaPac">
            <property name="text">
             <string/>
            </property>
@@ -1994,7 +1994,7 @@ color: rgb(255, 255, 255);</string>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
-          <widget class="QPushButton" name="btnCadastro_2">
+          <widget class="QPushButton" name="btnCadastroCol">
            <property name="styleSheet">
             <string notr="true"/>
            </property>
@@ -2024,7 +2024,7 @@ color: rgb(255, 255, 255);</string>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="linePesquisa_2">
+          <widget class="QLineEdit" name="linePesquisaCol">
            <property name="text">
             <string/>
            </property>

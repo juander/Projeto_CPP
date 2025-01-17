@@ -56,7 +56,7 @@ private slots:
     void adicionarPacienteNaTabela(int id = 0);
 
     // Método para cadastrar um novo paciente               // MÉTODOS DO PACIENTE
-    void on_btnCadastro_clicked();
+    void on_btnCadastroPac_clicked();
 
     // Método para apagar um paciente selecionado
     void on_btnApagarPac_clicked();
@@ -65,7 +65,7 @@ private slots:
     void on_btnEditarPac_clicked();
 
     // Método para pesquisar pacientes pelo nome
-    void on_linePesquisa_textChanged(const QString &arg1);
+    void on_linePesquisaPac_textChanged(const QString &arg1);
 
     ///////////////////////////////////////////////
 
@@ -74,7 +74,7 @@ private slots:
     // Método para adicionar um paciente na tabela
     void adicionarColaboradorNaTabela(int id = 0);          // MÉTODOS DO COLABORADOR
 
-    void on_btnCadastro_2_clicked();
+    void on_btnCadastroCol_clicked();
 
     //////////////////////////////////////////////
 
