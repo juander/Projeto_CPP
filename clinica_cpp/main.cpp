@@ -9,4 +9,4 @@ int main(int argc, char *argv[])
     return a.exec(); // Executa o loop de eventos da aplicação
 }
 
-// Vê se foi
+// Vê se foi 2
