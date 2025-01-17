@@ -10,30 +10,30 @@ edicaopaciente::edicaopaciente(QWidget *parent, int id_paciente)
     : QDialog(parent)
     , ui(new Ui::edicaopaciente)
 {
-    ui->setupUi(this);
-    id = id_paciente;
+    ui->setupUi(this);                                                                                                          // CONFIGURA A INTERFACE DO USUÁRIO
+    id = id_paciente;                                                                                                           // ATRIBUI O ID DO PACIENTE
 
-    ui->txtID->setText(QString::number(id_paciente));
+    ui->txtID->setText(QString::number(id_paciente));                                                                           // DEFINE O TEXTO DO CAMPO ID
 
     // Realizando uma query que traz os elementos do banco
     QSqlQuery query;
-    query.prepare("SELECT * FROM tb_pacientes WHERE id="+QString::number(id));
+    query.prepare("SELECT * FROM tb_pacientes WHERE id="+QString::number(id));                                                  // PREPARA A QUERY PARA SELECIONAR O PACIENTE
 
-    if(query.exec()){
+    if(query.exec()){                                                                                                           // EXECUTA A QUERY
         query.first();
         ui->txtnome->setText(query.value(1).toString());
         ui->txtCpf->setText(query.value(3).toString());
         ui->txtDiagn->setText(query.value(4).toString());
         ui->txtcontato->setText(query.value(5).toString());
         ui->txtemail->setText(query.value(6).toString());
-        ui->txtconvenio->setText(query.value(7).toString()); 
+        ui->txtconvenio->setText(query.value(7).toString());
 
         // Convertendo a string da data para QDate
-        QDate date = QDate::fromString(query.value(8).toString(), "dd/MM/yyyy");
-        ui->txtData->setDate(date);
+        QDate date = QDate::fromString(query.value(8).toString(), "dd/MM/yyyy");                                                // CONVERTE A DATA PARA O FORMATO QDATE
+        ui->txtData->setDate(date);                                                                                             // DEFINE A DATA
 
     }else{
-        QMessageBox::warning(this, "ERRO", "Erro ao selecionar edição do paciente");
+        QMessageBox::warning(this, "ERRO", "Erro ao selecionar edição do paciente");                                            // MOSTRA MENSAGEM DE ERRO
     }
 }
 
@@ -50,11 +50,12 @@ edicaopaciente::~edicaopaciente()
 // FIM
 
 
+
 // DEFINIÇÃO DO METODO EDITAR PACIENCE SELECIONADO
 
 void edicaopaciente::on_editar_clicked()
 {
-    // Realizando a query que enviar os dados editados para o banco
+    // Realizando a query que enviar os dados editados para o banco                                                              // Realizando a query de editar
     QString nom = ui->txtnome->text();
     QString cpf = ui->txtCpf->text();
     QDate dataNascimento = ui->txtData->date();
@@ -81,7 +82,7 @@ void edicaopaciente::on_editar_clicked()
 
     // Fazendo a query para enviar os dados para o banco
     QSqlQuery query;
-    QString idString = QString::number(id); // Convertendo o ID para QString
+    QString idString = QString::number(id);                                                                                     // CONVERTENDO O ID PARA STRING
     query.prepare("UPDATE tb_pacientes SET nome = :nome, idade = :idade, cpf = :cpf, diagnostico_pre = :diagnostico_pre, contato = :contato, "
                   "email = :email, convenio_plano = :convenio_plano, data_nasc = :data_nasc WHERE id = :id");
 
@@ -107,7 +108,7 @@ void edicaopaciente::on_editar_clicked()
 
 
 
-// DEFINIÇÃO DO METODO EDITAR PACIENCE SELECIONADO
+// DEFINIÇÃO DO METODO CANCELAR EDITAR
 
 void edicaopaciente::on_cancelarEdit_clicked()
 {
