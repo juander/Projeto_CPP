@@ -257,80 +257,80 @@ void MainWindow::on_btnProfissionais_clicked()
     }
 }
 
-// MÉTODOS DA PÁGINA DO COLABORADOR:
+    // MÉTODOS DA PÁGINA DO COLABORADOR:
 
-// MÉTODO DA DEFINIÇÃO DA TABLE
+    // MÉTODO DA DEFINIÇÃO DA TABLE
 
-void MainWindow::setTabelaColaboradores(QSqlQuery &query)
-{
-    int tb_linha = 0;
+    void MainWindow::setTabelaColaboradores(QSqlQuery &query)
+    {
+        int tb_linha = 0;
 
-    // Limpa os dados antigos da tabela
-    ui->tw_colaboradores->clearContents();
-    ui->tw_colaboradores->setRowCount(0);  // Reseta as linhas
+        // Limpa os dados antigos da tabela
+        ui->tw_colaboradores->clearContents();
+        ui->tw_colaboradores->setRowCount(0);  // Reseta as linhas
 
-    ui->tw_colaboradores->setColumnCount(8);                                                                    // SETA A TABLE EM 8 COLUNAS
-    while(query.next()){
+        ui->tw_colaboradores->setColumnCount(8);                                                                    // SETA A TABLE EM 8 COLUNAS
+        while(query.next()){
 
-        ui->tw_colaboradores->insertRow(tb_linha);
+            ui->tw_colaboradores->insertRow(tb_linha);
 
-        for(int i = 0; i <= 7; i++){
-            ui->tw_colaboradores->setItem(tb_linha,i,new QTableWidgetItem(query.value(i).toString()));          // LOOP QUE PREENCHE A TABLE COM OS DADOS DO BANCO
+            for(int i = 0; i <= 7; i++){
+                ui->tw_colaboradores->setItem(tb_linha,i,new QTableWidgetItem(query.value(i).toString()));          // LOOP QUE PREENCHE A TABLE COM OS DADOS DO BANCO
+            }
+            ui->tw_colaboradores->setRowHeight(tb_linha,20);
+
+            tb_linha++;
         }
-        ui->tw_colaboradores->setRowHeight(tb_linha,20);
 
-        tb_linha++;
+        // Setando a largura das colunas da tabela                                                                  // DEFINIÇÃO DA ESTRUTURA DA TABLE
+        ui->tw_colaboradores->setColumnWidth(0, 80);  // ID
+        ui->tw_colaboradores->setColumnWidth(1, 280); // Nome
+        ui->tw_colaboradores->setColumnWidth(2, 40);  // Idade
+        ui->tw_colaboradores->setColumnWidth(3, 135); // CPF
+        ui->tw_colaboradores->setColumnWidth(3, 135); // Cargo
+        ui->tw_colaboradores->setColumnWidth(5, 124); // NºCelular
+        ui->tw_colaboradores->setColumnWidth(6, 180); // E-mail
+        ui->tw_colaboradores->setColumnWidth(7, 70); // Nascimento
+
+        QStringList cabecalho = {"ID", "Nome", "Idade", "CPF", "Cargo", "NºCelular", "E-mail", "Nascimento"};
+        ui->tw_colaboradores->setHorizontalHeaderLabels(cabecalho);
+        ui->tw_colaboradores->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        ui->tw_colaboradores->setSelectionBehavior(QAbstractItemView::SelectRows);
+        ui->tw_colaboradores->verticalHeader()->setVisible(false);
+        ui->tw_colaboradores->setStyleSheet("QTableWidget::item:selected {background-color: blue}");                // FIM DA DEFINIÇÃO
     }
 
-    // Setando a largura das colunas da tabela                                                                  // DEFINIÇÃO DA ESTRUTURA DA TABLE
-    ui->tw_colaboradores->setColumnWidth(0, 80);  // ID
-    ui->tw_colaboradores->setColumnWidth(1, 280); // Nome
-    ui->tw_colaboradores->setColumnWidth(2, 40);  // Idade
-    ui->tw_colaboradores->setColumnWidth(3, 135); // CPF
-    ui->tw_colaboradores->setColumnWidth(3, 135); // Cargo
-    ui->tw_colaboradores->setColumnWidth(5, 124); // NºCelular
-    ui->tw_colaboradores->setColumnWidth(6, 180); // E-mail
-    ui->tw_colaboradores->setColumnWidth(7, 70); // Nascimento
+    void MainWindow::on_btnCadastroCol_clicked()
+    {
+        cadastroColaboradores cadastramento(this);                                                                     // CRIANDO A JANELA DE CADASTRO
 
-    QStringList cabecalho = {"ID", "Nome", "Idade", "CPF", "Cargo", "NºCelular", "E-mail", "Nascimento"};
-    ui->tw_colaboradores->setHorizontalHeaderLabels(cabecalho);
-    ui->tw_colaboradores->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->tw_colaboradores->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tw_colaboradores->verticalHeader()->setVisible(false);
-    ui->tw_colaboradores->setStyleSheet("QTableWidget::item:selected {background-color: blue}");                // FIM DA DEFINIÇÃO
-}
+        // O SINAL QUE TRAZ O ID DO COLABORADOR CADASTRADO PARA JANELA
+        bool connected = connect(&cadastramento, &cadastroColaboradores::colaboradorCadastrado,                        // PRINCIPAL É EMITIDO PELO OBJETO COLABORADOR, QUE É O ÚNICO QUE
+                                 this, &MainWindow::adicionarColaboradorNaTabela);                                  // TEM ACESSO DIRETO A QUERY DE INSERT, PARA A JANELA DE
+        if (!connected) {                                                                                              // CADASTRO E POR FIM PARA ESSA JANELA PRINCIPAL QUE ACESSA O MÉTODO
+            qDebug() << "Erro ao conectar o sinal colaboradorCadastrado";                                              // DE ADICIONAR O COLABORADOR NA TABLE
+        }                                                                                                              //            |
+        cadastramento.exec();                                                                                          //            |
+    }                                                                                                                  //            |
+    //                                                                                                                               |
+    // MÉTODO PARA CARREGAR NOVO COLABORADOR CADASTRADO NA TABELA AUTOMATICAMENTE A PARTIR DO ID GERADO NO BANCO                     |
+    //                                                                                                                               |
+    void MainWindow::adicionarColaboradorNaTabela(int id)                                                              // <----------
+    {
+        QSqlQuery query;                                                                                               // ESSE MÉTODO SÓ SERÁ USADO QUANDO A CONEXÃO RETORNAR TRUE, OU SEJA, QUANDO O COLABORADOR FOR CADASTRADO
+        query.prepare("SELECT * FROM tb_colaboradores WHERE id = :id");                                                // FAZENDO A QUERY SELECT COM O ID DO NOVO COLABORADOR VINDO DO SIGNAL PROPAGADO PELO OBJETO
+        query.bindValue(":id", id);
 
-void MainWindow::on_btnCadastroCol_clicked()
-{
-    cadastroColaboradores cadastramento(this);                                                                     // CRIANDO A JANELA DE CADASTRO
-
-    // O SINAL QUE TRAZ O ID DO COLABORADOR CADASTRADO PARA JANELA
-    bool connected = connect(&cadastramento, &cadastroColaboradores::colaboradorCadastrado,                        // PRINCIPAL É EMITIDO PELO OBJETO COLABORADOR, QUE É O ÚNICO QUE
-                             this, &MainWindow::adicionarColaboradorNaTabela);                                  // TEM ACESSO DIRETO A QUERY DE INSERT, PARA A JANELA DE
-    if (!connected) {                                                                                              // CADASTRO E POR FIM PARA ESSA JANELA PRINCIPAL QUE ACESSA O MÉTODO
-        qDebug() << "Erro ao conectar o sinal colaboradorCadastrado";                                              // DE ADICIONAR O COLABORADOR NA TABLE
-    }                                                                                                              //            |
-    cadastramento.exec();                                                                                          //            |
-}                                                                                                                  //            |
-//                                                                                                                               |
-// MÉTODO PARA CARREGAR NOVO COLABORADOR CADASTRADO NA TABELA AUTOMATICAMENTE A PARTIR DO ID GERADO NO BANCO                     |
-//                                                                                                                               |
-void MainWindow::adicionarColaboradorNaTabela(int id)                                                              // <----------
-{
-    QSqlQuery query;                                                                                               // ESSE MÉTODO SÓ SERÁ USADO QUANDO A CONEXÃO RETORNAR TRUE, OU SEJA, QUANDO O COLABORADOR FOR CADASTRADO
-    query.prepare("SELECT * FROM tb_colaboradores WHERE id = :id");                                                // FAZENDO A QUERY SELECT COM O ID DO NOVO COLABORADOR VINDO DO SIGNAL PROPAGADO PELO OBJETO
-    query.bindValue(":id", id);
-
-    if(query.exec() && query.first()){
-        int linha = ui->tw_colaboradores->rowCount();
-        ui->tw_colaboradores->insertRow(linha);                                                                    // ADICIONANDO LINHA NA TABLE
-        for(int i = 0; i <= 7; i++){
-            ui->tw_colaboradores->setItem(linha, i, new QTableWidgetItem(query.value(i).toString()));              // CARREGANDO A TABLE COM OS DADOS DO BANCO
+        if(query.exec() && query.first()){
+            int linha = ui->tw_colaboradores->rowCount();
+            ui->tw_colaboradores->insertRow(linha);                                                                    // ADICIONANDO LINHA NA TABLE
+            for(int i = 0; i <= 7; i++){
+                ui->tw_colaboradores->setItem(linha, i, new QTableWidgetItem(query.value(i).toString()));              // CARREGANDO A TABLE COM OS DADOS DO BANCO
+            }
+        } else {
+            QMessageBox::warning(this, "ERRO", "Erro ao carregar o novo colaborador.");
         }
-    } else {
-        QMessageBox::warning(this, "ERRO", "Erro ao carregar o novo colaborador.");
     }
-}
 
 // FIM PÁGINA COLABORADORES
 
