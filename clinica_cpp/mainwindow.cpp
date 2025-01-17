@@ -162,9 +162,9 @@ void MainWindow::on_btnPacientes_clicked()
             QMessageBox::warning(this, "ERRO", "Erro ao carregar o novo paciente.");
         }
     }
-
+    //
     // MÉTODO DE APAGAR PACIENTE
-
+    //
     void MainWindow::on_btnApagarPac_clicked()
     {
         // Conferindo se o usuário selecionou alguma linha (currentRow() retorna -1 quando não há linha selecionada)
@@ -188,9 +188,9 @@ void MainWindow::on_btnPacientes_clicked()
             QMessageBox::warning(this, "ERRO", "Erro ao excluir registro");
         }
     }
-
+    //
     // MÉTODO DE EDITAR PACIENTE
-
+    //
     void MainWindow::on_btnEditarPac_clicked()
     {
         // Conferindo se o usuário selecionou alguma linha (currentRow() retorna -1 quando não há linha selecionada)
@@ -216,9 +216,9 @@ void MainWindow::on_btnPacientes_clicked()
             QMessageBox::warning(this, "ERRO", "Erro ao atualizar paciente na tabela");
         }
     }
-
+    //
     // MÉTODO DE PESQUISA DE PACIENTE PELO NOME
-
+    //
     void MainWindow::on_linePesquisaPac_textChanged(const QString &arg1)
     {
         QString nome = ui->linePesquisaPac->text(); // Pegando o texto do linePesquisaPac                               // MÉTODO SLOT DO QT PARA RECONHCER O QUE ESTÁ SENDO DIGITADO NA LINHA EM TEMPO REAL
@@ -242,7 +242,7 @@ void MainWindow::on_btnPacientes_clicked()
 
 // MÉTODO PARA ACESSAR A PÁGINA "COLABORADORES"
 
-void MainWindow::on_btnProfissionais_clicked()
+void MainWindow::on_btnColaboradores_clicked()
 {
     int index = ui->paginas->indexOf(ui->Colaboradores);                                                            // PÁGINA COLABORADORES
     ui->paginas->setCurrentIndex(index);                                                                            // ACESSANDO A PÁGINA
@@ -287,10 +287,10 @@ void MainWindow::on_btnProfissionais_clicked()
         ui->tw_colaboradores->setColumnWidth(1, 280); // Nome
         ui->tw_colaboradores->setColumnWidth(2, 40);  // Idade
         ui->tw_colaboradores->setColumnWidth(3, 135); // CPF
-        ui->tw_colaboradores->setColumnWidth(3, 135); // Cargo
-        ui->tw_colaboradores->setColumnWidth(5, 124); // NºCelular
+        ui->tw_colaboradores->setColumnWidth(4, 160); // Cargo
+        ui->tw_colaboradores->setColumnWidth(5, 144); // NºCelular
         ui->tw_colaboradores->setColumnWidth(6, 180); // E-mail
-        ui->tw_colaboradores->setColumnWidth(7, 70); // Nascimento
+        ui->tw_colaboradores->setColumnWidth(7, 70);  // Nascimento
 
         QStringList cabecalho = {"ID", "Nome", "Idade", "CPF", "Cargo", "NºCelular", "E-mail", "Nascimento"};
         ui->tw_colaboradores->setHorizontalHeaderLabels(cabecalho);
@@ -331,6 +331,78 @@ void MainWindow::on_btnProfissionais_clicked()
             QMessageBox::warning(this, "ERRO", "Erro ao carregar o novo colaborador.");
         }
     }
+    //
+    // MÉTODO DE APAGAR COLABORADOR
+    //
+    void MainWindow::on_btnApagarCol_clicked()
+    {
+        // Conferindo se o usuário selecionou alguma linha (currentRow() retorna -1 quando não há linha selecionada)
+        if (ui->tw_colaboradores->currentRow() == -1) {
+            QMessageBox::warning(nullptr, "Aviso", "Nenhuma colaborador foi selecionado.");                             // CONFERINDO SE ALGUM COLABORADOR  FOI SELECIONADO
+            return;
+        }
+        // Verificando qual é a linha selecionada e descobrindo o id dela
+        int linha = ui->tw_colaboradores->currentRow();                                                                 // ARMAZENANDO A LINHA SELECIONADA
+        QString id = ui->tw_colaboradores->item(linha, 0)->text();                                                      // ARMAZENANDO O ID DO COLABORADOR  SELECIONADO
+
+        // Query para excluir
+        QSqlQuery query;
+        query.prepare("DELETE FROM tb_colaboradores WHERE id="+id);                                                     // DELETANDO O COLABORADOR DO BANCO DE DADOS
+
+        if(query.exec()){
+            // Removendo a linha do Table
+            ui->tw_colaboradores->removeRow(linha);
+            QMessageBox::information(this,"","Excluído");                                                               // REMOVENDO LINHA DA TABLE E GERANDO O POP-UP
+        }else{
+            QMessageBox::warning(this, "ERRO", "Erro ao excluir registro");
+        }
+    }
+    //
+    // MÉTODO DE EDITAR COLABORADOR
+    //
+    void MainWindow::on_btnEditarCol_clicked()
+    {
+        // Conferindo se o usuário selecionou alguma linha (currentRow() retorna -1 quando não há linha selecionada)
+        if (ui->tw_colaboradores->currentRow() == -1) {
+            QMessageBox::warning(nullptr, "Aviso", "Nenhuma colaborador foi selecionado.");                             // CONFERINDO SE ALGUM COLABORADOR FOI SELECIONADO
+            return;
+        }
+        int linha = ui->tw_colaboradores->currentRow();                                                                 // ARMAZENANDO A LINHA SELECIONADA
+        int id = ui->tw_colaboradores->item(linha, 0)->text().toInt();                                                  // ARMAZENANDO O ID DO COLABORADOR SELECIONADO
+
+        edicaoColaboradores editarColaborador(this, id);                                                                // CRIANDO A JENELA DE EDITAR COLABORADOR
+        editarColaborador.exec();
+
+        // Carregar colaborador na Table novamente
+        QSqlQuery query;
+        query.prepare("SELECT * FROM tb_colaboradores WHERE id="+QString::number(id));                                  // QUERY SELECT PARA BUSCAR O COLABORADOR PELO ID
+
+        if(query.exec() && query.first()){
+            for(int i = 1; i <= 8; i++){
+                ui->tw_colaboradores->setItem(linha,i,new QTableWidgetItem(query.value(i).toString()));                 // ATUALIZANDO A TABLE COM A EDIÇÃO DO COLABORADOR NO BANCO
+            }
+        }else{
+            QMessageBox::warning(this, "ERRO", "Erro ao atualizar colaborador na tabela");
+        }
+    }
+    //
+    // MÉTODO DE PESQUISAR COLABORADOR
+    //
+    void MainWindow::on_linePesquisaCol_textChanged(const QString &arg1)
+    {
+        QString nome = ui->linePesquisaCol->text(); // Pegando o texto do linePesquisaPac                               // MÉTODO SLOT DO QT PARA RECONHCER O QUE ESTÁ SENDO DIGITADO NA LINHA EM TEMPO REAL
+
+        QSqlQuery query;
+        query.prepare("SELECT * FROM tb_colaboradores WHERE nome LIKE :nome");                                          // FAZENDO A QUERY DE SELECT PELO NOME
+        query.bindValue(":nome", nome + "%");
+
+        if(query.exec()){
+            setTabelaColaboradores(query);                                                                              // SETANDO A TABLE EM TEMPO REAL
+        }else{
+            QMessageBox::warning(this, "ERRO", "Não foi possível acessar os colaboradores no banco de dados");
+        }
+    }
+
 
 // FIM PÁGINA COLABORADORES
 

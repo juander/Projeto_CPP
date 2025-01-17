@@ -800,7 +800,7 @@ color: rgb(255, 255, 255);</string>
        <normaloff>:/icons/People.png</normaloff>:/icons/People.png</iconset>
      </property>
     </widget>
-    <widget class="QCommandLinkButton" name="btnProfissionais">
+    <widget class="QCommandLinkButton" name="btnColaboradores">
      <property name="geometry">
       <rect>
        <x>30</x>
