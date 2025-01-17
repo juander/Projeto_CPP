@@ -78,7 +78,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="txtconvenio"/>
+        <widget class="QLineEdit" name="txtcargo"/>
        </item>
        <item>
         <widget class="QLabel" name="label_7">
@@ -109,14 +109,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_5">
        <item>
-        <widget class="QPushButton" name="btnCadastrar">
+        <widget class="QPushButton" name="btnCadastrarCol">
          <property name="text">
           <string>Cadastrar</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="btnCancelar">
+        <widget class="QPushButton" name="btnCancelarCol">
          <property name="text">
           <string>Cancelar</string>
          </property>

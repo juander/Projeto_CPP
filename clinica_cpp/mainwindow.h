@@ -42,6 +42,8 @@ private slots:
 
     // Método para adicionar um paciente na tabela
     void adicionarPacienteNaTabela(int id = 0);
+    // Método para adicionar um paciente na tabela
+    void adicionarColaboradorNaTabela(int id = 0);
     // Método para cadastrar um novo paciente
     void on_btnCadastro_clicked();
     // Método para apagar um paciente selecionado
@@ -50,8 +52,12 @@ private slots:
     void on_btnEditarPac_clicked();
     // Método para configurar a tabela de pacientes
     void setTabelaPacientes(QSqlQuery &query);
+    // Método para configurar a tabela de colaboradores
+    void setTabelaColaboradores(QSqlQuery &query);
     // Método para pesquisar pacientes pelo nome
     void on_linePesquisa_textChanged(const QString &arg1);
+
+    void on_btnCadastro_2_clicked();
 
 private:
     Ui::MainWindow *ui;

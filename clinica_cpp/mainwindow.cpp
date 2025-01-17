@@ -71,7 +71,7 @@ void MainWindow::on_btnProfissionais_clicked()
     query.prepare("SELECT * FROM tb_colaboradores");
 
     if(query.exec()){
-        setTabelaPacientes(query);
+        setTabelaColaboradores(query);
 
     }else{
         QMessageBox::warning(this, "ERRO", "Não foi possível acessar os colaboradores no banco de dados");
@@ -212,6 +212,47 @@ void MainWindow::setTabelaPacientes(QSqlQuery &query)
     ui->tw_pacientes->setStyleSheet("QTableWidget::item:selected {background-color: blue}");
 }
 
+// Método para configurar a tabela de colaboradores
+void MainWindow::setTabelaColaboradores(QSqlQuery &query)
+{
+    int tb_linha = 0;
+
+    // Limpa os dados antigos da tabela
+    ui->tw_colaboradores->clearContents();
+    ui->tw_colaboradores->setRowCount(0);  // Reseta as linhas
+
+    ui->tw_colaboradores->setColumnCount(8);
+    while(query.next()){
+
+        ui->tw_colaboradores->insertRow(tb_linha);
+
+        for(int i = 0; i <= 7; i++){
+            ui->tw_colaboradores->setItem(tb_linha,i,new QTableWidgetItem(query.value(i).toString()));
+        }
+        ui->tw_colaboradores->setRowHeight(tb_linha,20);
+
+        tb_linha++;
+    }
+
+    // Setando a largura das colunas da tabela
+    ui->tw_colaboradores->setColumnWidth(0, 80);  // ID
+    ui->tw_colaboradores->setColumnWidth(1, 280); // Nome
+    ui->tw_colaboradores->setColumnWidth(2, 40);  // Idade
+    ui->tw_colaboradores->setColumnWidth(3, 135); // CPF
+    ui->tw_colaboradores->setColumnWidth(3, 135); // Cargo
+    ui->tw_colaboradores->setColumnWidth(5, 124); // NºCelular
+    ui->tw_colaboradores->setColumnWidth(6, 180); // E-mail
+    ui->tw_colaboradores->setColumnWidth(7, 70); // Nascimento
+
+    QStringList cabecalho = {"ID", "Nome", "Idade", "CPF", "Cargo", "NºCelular", "E-mail", "Nascimento"};
+    ui->tw_colaboradores->setHorizontalHeaderLabels(cabecalho);
+    ui->tw_colaboradores->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tw_colaboradores->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tw_colaboradores->verticalHeader()->setVisible(false);
+    ui->tw_colaboradores->setStyleSheet("QTableWidget::item:selected {background-color: blue}");
+}
+
+
 // Método para pesquisar pacientes pelo nome
 void MainWindow::on_linePesquisa_textChanged(const QString &arg1)
 {
@@ -226,5 +267,31 @@ void MainWindow::on_linePesquisa_textChanged(const QString &arg1)
     }else{
         QMessageBox::warning(this, "ERRO", "Não foi possível acessar os pacientes no banco de dados");
     }
+}
+
+
+// Novo método para carregar o colaborador pelo ID
+void MainWindow::adicionarColaboradorNaTabela(int id)
+{
+    QSqlQuery query;
+    query.prepare("SELECT * FROM tb_colaboradores WHERE id = :id");
+    query.bindValue(":id", id);
+
+    if(query.exec() && query.first()){
+        int linha = ui->tw_colaboradores->rowCount();
+        ui->tw_colaboradores->insertRow(linha);
+        for(int i = 0; i <= 8; i++){
+            ui->tw_colaboradores->setItem(linha, i, new QTableWidgetItem(query.value(i).toString()));
+        }
+    } else {
+        QMessageBox::warning(this, "ERRO", "Erro ao carregar o novo colaborador.");
+    }
+}
+
+void MainWindow::on_btnCadastro_2_clicked()
+{
+    cadastroColaboradores cadastramento(this);
+    connect(&cadastramento, &cadastroColaboradores::colaboradorCadastrado, this, &MainWindow::adicionarColaboradorNaTabela);
+    cadastramento.exec();
 }
 
