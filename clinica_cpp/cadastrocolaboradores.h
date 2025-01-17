@@ -2,6 +2,9 @@
 #define CADASTROCOLABORADORES_H
 
 #include <QDialog>
+#include <QtSql>
+
+#include "pessoa.h"
 
 namespace Ui {
 class cadastroColaboradores;
