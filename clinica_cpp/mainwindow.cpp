@@ -66,6 +66,16 @@ void MainWindow::on_btnProfissionais_clicked()
 {
     int index = ui->paginas->indexOf(ui->Colaboradores);
     ui->paginas->setCurrentIndex(index);
+
+    QSqlQuery query;
+    query.prepare("SELECT * FROM tb_colaboradores");
+
+    if(query.exec()){
+        setTabelaPacientes(query);
+
+    }else{
+        QMessageBox::warning(this, "ERRO", "Não foi possível acessar os colaboradores no banco de dados");
+    }
 }
 
 // Método para trocar para a aba "Relatórios"

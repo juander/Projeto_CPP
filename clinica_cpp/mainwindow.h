@@ -13,6 +13,8 @@
 
 #include "cadastropacientes.h"
 #include "edicaopaciente.h"
+#include "cadastrocolaboradores.h"
+#include "edicaopaciente.h"
 #include "pessoa.h"
 
 QT_BEGIN_NAMESPACE
