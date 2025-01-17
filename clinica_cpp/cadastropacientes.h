@@ -19,10 +19,12 @@ public:
     ~cadastroPacientes();
 
 private slots:
+
     // Método para cadastrar um novo paciente
-    void on_btnCadastrar_clicked();
-    // Método para cancelar o cadastro
-    void on_btnCancelar_clicked();
+    void on_btnCadastrarPac_clicked();
+
+    // Método para cancelar o cadastro    
+    void on_btnCancelarPac_clicked();
 
 private:
     Ui::cadastroPacientes *ui;

@@ -27,7 +27,7 @@ cadastroPacientes::~cadastroPacientes()
 
 // DEFINIÇÃO DO METODO CADASTRAR PACIENCE SELECIONADO
 
-void cadastroPacientes::on_btnCadastrar_clicked()
+void cadastroPacientes::on_btnCadastrarPac_clicked()
 {
     // Recupera os dados dos campos da interface do usuário                                                         // OBTÉM OS DADOS DOS CAMPOS DA INTERFACE
     QString nom = ui->txtnome->text();                                                                                   
@@ -58,9 +58,10 @@ void cadastroPacientes::on_btnCadastrar_clicked()
 
 // DEFINIÇÃO DO METODO CANCELAR CADASTRO
 
-void cadastroPacientes::on_btnCancelar_clicked()
+void cadastroPacientes::on_btnCancelarPac_clicked()
 {
     this->close();
 }
 
 // FIM
+

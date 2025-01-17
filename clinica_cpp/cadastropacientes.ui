@@ -123,14 +123,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_5">
        <item>
-        <widget class="QPushButton" name="btnCadastrar">
+        <widget class="QPushButton" name="btnCadastrarPac">
          <property name="text">
           <string>Cadastrar</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="btnCancelar">
+        <widget class="QPushButton" name="btnCancelarPac">
          <property name="text">
           <string>Cancelar</string>
          </property>
