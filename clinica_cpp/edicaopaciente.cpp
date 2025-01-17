@@ -4,6 +4,8 @@
 // Criando globalmente
 static int id;
 
+// DEFINIÇÃO DO CONSTRUTOR DA CLASSE EDICAOPACIENTE
+
 edicaopaciente::edicaopaciente(QWidget *parent, int id_paciente)
     : QDialog(parent)
     , ui(new Ui::edicaopaciente)
@@ -24,7 +26,7 @@ edicaopaciente::edicaopaciente(QWidget *parent, int id_paciente)
         ui->txtDiagn->setText(query.value(4).toString());
         ui->txtcontato->setText(query.value(5).toString());
         ui->txtemail->setText(query.value(6).toString());
-        ui->txtconvenio->setText(query.value(7).toString());
+        ui->txtconvenio->setText(query.value(7).toString()); 
 
         // Convertendo a string da data para QDate
         QDate date = QDate::fromString(query.value(8).toString(), "dd/MM/yyyy");
@@ -35,10 +37,20 @@ edicaopaciente::edicaopaciente(QWidget *parent, int id_paciente)
     }
 }
 
+// FIM
+
+
+// DEFINIÇÃO DO DESTRUTOR DA CLASSE EDICAOPACIENTE
+
 edicaopaciente::~edicaopaciente()
 {
     delete ui;
 }
+
+// FIM
+
+
+// DEFINIÇÃO DO METODO EDITAR PACIENCE SELECIONADO
 
 void edicaopaciente::on_editar_clicked()
 {
@@ -54,6 +66,7 @@ void edicaopaciente::on_editar_clicked()
     // Calculando idade
     QDate hoje = QDate::currentDate();
     int idad = hoje.year() - dataNascimento.year();
+
 
     // Se ainda não fez aniversário no ano atual, subtrai 1
     if ((hoje.month() < dataNascimento.month()) ||
@@ -90,7 +103,15 @@ void edicaopaciente::on_editar_clicked()
     }
 }
 
+// FIM
+
+
+
+// DEFINIÇÃO DO METODO EDITAR PACIENCE SELECIONADO
+
 void edicaopaciente::on_cancelarEdit_clicked()
 {
     this->close();
 }
+
+// FIM
