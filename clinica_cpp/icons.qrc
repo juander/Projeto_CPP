@@ -6,5 +6,6 @@
         <file>icons/Medical Doctor.png</file>
         <file>icons/City Buildings.png</file>
         <file>icons/Brief.png</file>
+        <file>icons/Home Page.png</file>
     </qresource>
 </RCC>

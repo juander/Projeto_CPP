@@ -90,6 +90,8 @@ private slots:
 
     void on_linePesquisaCol_textChanged(const QString &arg1);
 
+    void on_btnInicio_clicked();
+
 private:
     Ui::MainWindow *ui;
     QSqlDatabase bancoDeDados; // Objeto para conexão com o banco de dados

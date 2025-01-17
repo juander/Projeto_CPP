@@ -35,6 +35,19 @@ MainWindow::~MainWindow()
 
 
 
+// MÉTODO PARA ACESSAR A PÁGINA "INICIO"
+
+void MainWindow::on_btnInicio_clicked()
+{
+    int index = ui->paginas->indexOf(ui->Inicio);                                                                   // PÁGINA INICIO
+    ui->paginas->setCurrentIndex(index);                                                                            // ACESSANDO A PÁGINA
+}
+
+// FIM DA PÁGINA INICIO
+
+
+
+
 
 // MÉTODO PARA ACESSAR A PÁGINA "AGENDA"
 
@@ -432,3 +445,5 @@ void MainWindow::on_btnFornecedores_clicked()
 }
 
 // FIM DA PÁGINA FORNCEDORES
+
+
