@@ -2033,19 +2033,19 @@ color: rgb(255, 255, 255);</string>
         </layout>
        </item>
        <item>
-        <widget class="QTableWidget" name="tw_pacientes_2"/>
+        <widget class="QTableWidget" name="tw_colaboradores"/>
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_4">
          <item>
-          <widget class="QPushButton" name="btnApagarPac_2">
+          <widget class="QPushButton" name="btnApagarCol">
            <property name="text">
             <string>Apagar</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="btnEditarPac_2">
+          <widget class="QPushButton" name="btnEditarCol">
            <property name="text">
             <string>Editar</string>
            </property>
