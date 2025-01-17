@@ -32,32 +32,51 @@ public:
     ~MainWindow();
 
 private slots:
-    // Métodos para trocar entre as abas
+
+    // MÉTODOS DA TROCA DE PÁGINAS
+
     void on_btnAgenda_clicked();
+
     void on_btnAtendimento_clicked();
+
     void on_btnPacientes_clicked();
+
     void on_btnProfissionais_clicked();
+
     void on_btnFornecedores_clicked();
+
     void on_btnRelatorios_clicked();
+
+    //////////////////////////////////////////////
+
+    // Método para configurar a tabela de pacientes
+    void setTabelaPacientes(QSqlQuery &query);
 
     // Método para adicionar um paciente na tabela
     void adicionarPacienteNaTabela(int id = 0);
-    // Método para adicionar um paciente na tabela
-    void adicionarColaboradorNaTabela(int id = 0);
-    // Método para cadastrar um novo paciente
+
+    // Método para cadastrar um novo paciente               // MÉTODOS DO PACIENTE
     void on_btnCadastro_clicked();
+
     // Método para apagar um paciente selecionado
     void on_btnApagarPac_clicked();
+
     // Método para editar um paciente selecionado
     void on_btnEditarPac_clicked();
-    // Método para configurar a tabela de pacientes
-    void setTabelaPacientes(QSqlQuery &query);
-    // Método para configurar a tabela de colaboradores
-    void setTabelaColaboradores(QSqlQuery &query);
+
     // Método para pesquisar pacientes pelo nome
     void on_linePesquisa_textChanged(const QString &arg1);
 
+    ///////////////////////////////////////////////
+
+    // Método para configurar a tabela de colaboradores
+    void setTabelaColaboradores(QSqlQuery &query);
+    // Método para adicionar um paciente na tabela
+    void adicionarColaboradorNaTabela(int id = 0);          // MÉTODOS DO COLABORADOR
+
     void on_btnCadastro_2_clicked();
+
+    //////////////////////////////////////////////
 
 private:
     Ui::MainWindow *ui;
