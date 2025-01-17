@@ -20,11 +20,15 @@ MainWindow::MainWindow(QWidget *parent)
         qDebug() << "Banco de dados conectado com sucesso!";
     }
 
+    on_btnInicio_clicked();                                                                                         // DEFINI A PÁGINA INICIAL COMO SEMPRE A PRIMEIRA AO ABRIR O PROGRAMA
+    ui->btnInicio->setStyleSheet("background-color: rgb(179, 213, 243);");                                          // ALTERAR A COR DE DESTAQUE DO BOTÃO
+
     // Adicionando efeito de sombra ao frame superior
     QGraphicsDropShadowEffect *shadowEffect = new QGraphicsDropShadowEffect(this);                                  // EFEITOS DE COMBRA NA PARTE SUPERIOR DA JANELA
     shadowEffect->setBlurRadius(10);
     shadowEffect->setOffset(0, 5);
     ui->frame->setGraphicsEffect(shadowEffect);
+
 }
 
 MainWindow::~MainWindow()
@@ -35,10 +39,27 @@ MainWindow::~MainWindow()
 
 
 
+// MÉTODO PARA RESETAR O ESTILO DOS BOTÕES
+
+void MainWindow::resetButtonStyles() {
+    ui->btnAgenda->setStyleSheet("");
+    ui->btnAtendimento->setStyleSheet("");
+    ui->btnPacientes->setStyleSheet("");
+    ui->btnColaboradores->setStyleSheet("");
+    ui->btnFornecedores->setStyleSheet("");
+    ui->btnRelatorios->setStyleSheet("");
+    ui->btnInicio->setStyleSheet("");
+}
+
+/////////////////////////////////////////
+
 // MÉTODO PARA ACESSAR A PÁGINA "INICIO"
 
 void MainWindow::on_btnInicio_clicked()
 {
+    resetButtonStyles();
+    ui->btnInicio->setStyleSheet("background-color: rgb(179, 213, 243);");                                       // ALTERAR A COR DE DESTAQUE DO BOTÃO
+
     int index = ui->paginas->indexOf(ui->Inicio);                                                                   // PÁGINA INICIO
     ui->paginas->setCurrentIndex(index);                                                                            // ACESSANDO A PÁGINA
 }
@@ -46,13 +67,16 @@ void MainWindow::on_btnInicio_clicked()
 // FIM DA PÁGINA INICIO
 
 
-
+///////////////////////////////////////////
 
 
 // MÉTODO PARA ACESSAR A PÁGINA "AGENDA"
 
 void MainWindow::on_btnAgenda_clicked()
 {
+    resetButtonStyles();
+    ui->btnAgenda->setStyleSheet("background-color: rgb(179, 213, 243);");                                          // ALTERAR A COR DE DESTAQUE DO BOTÃO
+
     int index = ui->paginas->indexOf(ui->Agenda);                                                                   // PÁGINA AGENDA
     ui->paginas->setCurrentIndex(index);                                                                            // ACESSANDO A PÁGINA
 }
@@ -60,13 +84,16 @@ void MainWindow::on_btnAgenda_clicked()
 // FIM DA PÁGINA AGENDA
 
 
-
+////////////////////////////////////////////
 
 
 // MÉTODO PARA ACESSAR A PÁGINA "ATENDIMENTO"
 
 void MainWindow::on_btnAtendimento_clicked()
 {
+    resetButtonStyles();
+    ui->btnAtendimento->setStyleSheet("background-color: rgb(179, 213, 243);");                                       // ALTERAR A COR DE DESTAQUE DO BOTÃO
+
     int index = ui->paginas->indexOf(ui->Atendimento);                                                              // PÁGINA ATENDIMENTO
     ui->paginas->setCurrentIndex(index);                                                                            // ACESSANDO A PÁGINA
 }
@@ -74,13 +101,16 @@ void MainWindow::on_btnAtendimento_clicked()
 // FIM DA PÁGINA ATENDIMENTO
 
 
-
+/////////////////////////////////////////////
 
 
 // MÉTODO PARA ACESSAR A PÁGINA "PACIENTES"
 
 void MainWindow::on_btnPacientes_clicked()
 {
+    resetButtonStyles();
+    ui->btnPacientes->setStyleSheet("background-color: rgb(179, 213, 243);");                                       // ALTERAR A COR DE DESTAQUE DO BOTÃO
+
     int index = ui->paginas->indexOf(ui->Pacientes);                                                                // PÁGINA PACIENTES
     ui->paginas->setCurrentIndex(index);                                                                            // ACESSANDO A PÁGINA
 
@@ -250,13 +280,16 @@ void MainWindow::on_btnPacientes_clicked()
 // FIM PÁGINA PACIENTES
 
 
-
+//////////////////////////////////////////////
 
 
 // MÉTODO PARA ACESSAR A PÁGINA "COLABORADORES"
 
 void MainWindow::on_btnColaboradores_clicked()
 {
+    resetButtonStyles();
+    ui->btnColaboradores->setStyleSheet("background-color: rgb(179, 213, 243);");                                   // ALTERAR A COR DE DESTAQUE DO BOTÃO
+
     int index = ui->paginas->indexOf(ui->Colaboradores);                                                            // PÁGINA COLABORADORES
     ui->paginas->setCurrentIndex(index);                                                                            // ACESSANDO A PÁGINA
 
@@ -420,12 +453,17 @@ void MainWindow::on_btnColaboradores_clicked()
 // FIM PÁGINA COLABORADORES
 
 
+//////////////////////////////////////////////////
+
 
 
 // MÉTODO PARA ACESSAR A PÁGINA "RELATÓRIOS"
 
 void MainWindow::on_btnRelatorios_clicked()
 {
+    resetButtonStyles();
+    ui->btnRelatorios->setStyleSheet("background-color: rgb(179, 213, 243);");                                      // ALTERAR A COR DE DESTAQUE DO BOTÃO
+
     int index = ui->paginas->indexOf(ui->Relatorios);                                                               // PÁGINA RELATÓRIOS
     ui->paginas->setCurrentIndex(index);                                                                            // ACESSANDO A PÁGINA
 }
@@ -433,13 +471,16 @@ void MainWindow::on_btnRelatorios_clicked()
 // FIM DA PÁGINA RELATÓRIOS
 
 
-
+////////////////////////////////////////////////////
 
 
 // MÉTODO PARA ACESSAR A PÁGINA "FORNECEDORES"
 
 void MainWindow::on_btnFornecedores_clicked()
 {
+    resetButtonStyles();
+    ui->btnFornecedores->setStyleSheet("background-color: rgb(179, 213, 243);");                                    // ALTERAR A COR DE DESTAQUE DO BOTÃO
+
     int index = ui->paginas->indexOf(ui->Fornecedores);                                                             // PÁGINA FORNECEDORES
     ui->paginas->setCurrentIndex(index);                                                                            // ACESSANDO A PÁGINA
 }
@@ -447,3 +488,4 @@ void MainWindow::on_btnFornecedores_clicked()
 // FIM DA PÁGINA FORNCEDORES
 
 
+///////////////////////////////////////////////////

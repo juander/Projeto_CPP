@@ -95,6 +95,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QSqlDatabase bancoDeDados; // Objeto para conexão com o banco de dados
+
+    void resetButtonStyles();                               // MÉTODO PARA RESETAR OS ESTILOS DOS BOTÕES
 };
 
 #endif // MAINWINDOW_H
