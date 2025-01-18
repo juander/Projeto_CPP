@@ -6,9 +6,7 @@ Pessoa::Pessoa(const QString& nome, const QString& cpf, const QString& contato,
                const QString& email, const QDate& dataNascimento)
     : nome(nome), cpf(cpf), contato(contato), email(email), dataNascimento(dataNascimento) {}                // CONSTRUTOR
 
-Pessoa::~Pessoa(){
-    qDebug() << "Pessoa destruída";                                                                          // DESTRUTOR
-}
+Pessoa::~Pessoa(){}                                                                                          // DESTRUTOR
 
 int Pessoa::calcularIdade() const {
     QDate hoje = QDate::currentDate();
@@ -42,9 +40,7 @@ Paciente::Paciente(const QString& nome, const QString& cpf, const QString& conta
                    const QString& convenio, const QString& diagnostico)
     : Pessoa(nome, cpf, contato, email, dataNascimento), convenio(convenio), diagnostico(diagnostico) {}
 
-Paciente::~Paciente(){
-    qDebug() << "Paciente destruído";                                                                        // DESTRUTOR
-}
+Paciente::~Paciente(){}                                                                                      // DESTRUTOR
 
 bool Paciente::salvarNoBanco() {
     // Converte a data de nascimento para string no formato QString

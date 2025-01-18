@@ -33,6 +33,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    QSqlDatabase bancoDeDados = QSqlDatabase::addDatabase("QSQLITE");  // DEFININDO O TIPO DO BANCO SQLITE
+
 private slots:
 
     // MÉTODOS DA TROCA DE PÁGINAS
@@ -94,7 +96,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QSqlDatabase bancoDeDados; // Objeto para conexão com o banco de dados
 
     void resetButtonStyles();                               // MÉTODO PARA RESETAR OS ESTILOS DOS BOTÕES
 };

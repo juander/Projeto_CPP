@@ -10,8 +10,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);                                                                                              // CONSTRUTOR
 
     // Configuração do banco de dados SQLite
-    bancoDeDados = QSqlDatabase::addDatabase("QSQLITE");
-    bancoDeDados.setDatabaseName("..\\..\\banco_clinica.db");                                                       // CRIANDO CONEXÃO COM O BANCO
+    QString local = qApp->applicationDirPath();
+    QString banco = local + "\\banco_clinica.db";
+    bancoDeDados.setDatabaseName(banco);                                                                            // CRIANDO CONEXÃO COM O BANCO
 
     // Verificação da conexão com o banco de dados
     if (!bancoDeDados.open()) {
@@ -120,6 +121,7 @@ void MainWindow::on_btnPacientes_clicked()
     if(query.exec()){
         setTabelaPacientes(query);                                                                                  // CARREGANDO A TABELA NA TABLE ATRAVÉS DO MÉTODO
     }else{
+        qDebug() << "Erro ao executar a query:" << query.lastError().text();
         QMessageBox::warning(this, "ERRO", "Não foi possível acessar os pacientes no banco de dados");
     }
 }
