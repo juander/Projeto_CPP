@@ -93,49 +93,51 @@ void MainWindow::janelaFormatada(){
 
     ui->line1->setStyleSheet("QFrame {"
                              "border: 1px solid #000000;"                   // Cor de borda
-                             "background: transparent;"                     // Fundo transparente
                              "}");
 
     ui->line2->setStyleSheet("QFrame {"
                              "border: 1px solid #000000;"                   // Cor de borda
-                             "background: transparent;"                     // Fundo transparente
                              "}");
 
     ui->line3->setStyleSheet("QFrame {"
                              "border: 1px solid #000000;"                   // Cor de borda
-                             "background: transparent;"                     // Fundo transparente
                              "}");
 
     ui->line4->setStyleSheet("QFrame {"
                              "border: 1px solid #000000;"                   // Cor de borda
-                             "background: transparent;"                     // Fundo transparente
                              "}");
 
     ui->line5->setStyleSheet("QFrame {"
                              "border: 1px solid #000000;"                   // Cor de borda
-                             "background: transparent;"                     // Fundo transparente
                              "}");
 
     ui->line6->setStyleSheet("QFrame {"
                              "border: 1px solid #000000;"                   // Cor de borda
-                             "background: transparent;"                     // Fundo transparente
                              "}");
 
     ui->line7->setStyleSheet("QFrame {"
                              "border: 1px solid #000000;"                   // Cor de borda
-                             "background: transparent;"                     // Fundo transparente
                              "}");
 
     ui->frameSuperior->raise(); // Traz o frame para frente
     ui->frameLateral->lower(); // Envia o frame_2 para trás
 
-    //////////////////////////////////////////////////
+    /////////////////////////////////////////////////
+
+    // COLOCANDO IMAGENS NA JANELA PRINCIPAL
+
+    QPixmap icone (":/icons/Generic avatar.png");
+    ui->labelPerfilClin->setPixmap(icone);
+
+    QMovie *gif = new QMovie(":/icons/giftest.gif");                        // FAZENDO TESTE COM GIFS
+    ui->labelGif->setMovie(gif);
+    gif->start();
+
+    /////////////////////////////////////////////////
 
     on_btnInicio_clicked();                                                                                         // DEFINI A PÁGINA INICIAL COMO SEMPRE A PRIMEIRA AO ABRIR O PROGRAMA
     ui->btnInicio->setStyleSheet("background-color: rgb(179, 213, 243);");                                          // ALTERAR A COR DE DESTAQUE DO BOTÃO
 }
-
-
 
 
 //////////////////////////////////////////

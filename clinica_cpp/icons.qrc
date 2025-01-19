@@ -7,5 +7,7 @@
         <file>icons/City Buildings.png</file>
         <file>icons/Brief.png</file>
         <file>icons/Home Page.png</file>
+        <file>icons/Generic avatar.png</file>
+        <file>icons/giftest.gif</file>
     </qresource>
 </RCC>

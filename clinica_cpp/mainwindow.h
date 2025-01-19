@@ -12,6 +12,8 @@
 #include <QDebug>
 #include <QFileInfo>
 #include <QMessageBox>
+#include <QMovie>
+
 
 #include "cadastropacientes.h"
 #include "cadastrocolaboradores.h"
