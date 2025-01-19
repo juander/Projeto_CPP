@@ -126,6 +126,19 @@
           </spacer>
          </item>
          <item>
+          <spacer name="horizontalSpacer_16">
+           <property name="orientation">
+            <enum>Qt::Orientation::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
           <widget class="QLabel" name="label">
            <property name="styleSheet">
             <string notr="true">color: rgb(0, 0, 0);</string>
@@ -172,6 +185,19 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <item>
+            <spacer name="verticalSpacer_16">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
             <widget class="QLabel" name="label_3">
              <property name="font">
               <font>
@@ -186,7 +212,7 @@
             </widget>
            </item>
            <item>
-            <widget class="Line" name="line">
+            <widget class="Line" name="line1">
              <property name="styleSheet">
               <string notr="true">color:rgb(0, 0, 0)</string>
              </property>
@@ -469,7 +495,7 @@
             </widget>
            </item>
            <item>
-            <widget class="Line" name="line_2">
+            <widget class="Line" name="line2">
              <property name="styleSheet">
               <string notr="true">color:rgb(0, 0, 0)</string>
              </property>
@@ -742,7 +768,7 @@
             </widget>
            </item>
            <item>
-            <widget class="Line" name="line_3">
+            <widget class="Line" name="line3">
              <property name="styleSheet">
               <string notr="true">color:rgb(0, 0, 0)</string>
              </property>
@@ -1001,7 +1027,7 @@
             </widget>
            </item>
            <item>
-            <widget class="Line" name="line_4">
+            <widget class="Line" name="line4">
              <property name="styleSheet">
               <string notr="true">color:rgb(0, 0, 0)</string>
              </property>
@@ -1260,7 +1286,7 @@
             </widget>
            </item>
            <item>
-            <widget class="Line" name="line_5">
+            <widget class="Line" name="line5">
              <property name="styleSheet">
               <string notr="true">color:rgb(0, 0, 0)</string>
              </property>
@@ -1519,7 +1545,7 @@
             </widget>
            </item>
            <item>
-            <widget class="Line" name="line_6">
+            <widget class="Line" name="line6">
              <property name="styleSheet">
               <string notr="true">color:rgb(0, 0, 0)</string>
              </property>
@@ -1778,6 +1804,45 @@
             </widget>
            </item>
            <item>
+            <spacer name="verticalSpacer_19">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_18">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <spacer name="verticalSpacer_17">
+             <property name="orientation">
+              <enum>Qt::Orientation::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
             <spacer name="verticalSpacer">
              <property name="orientation">
               <enum>Qt::Orientation::Vertical</enum>
@@ -1791,7 +1856,7 @@
             </spacer>
            </item>
            <item>
-            <widget class="Line" name="line_7">
+            <widget class="Line" name="line7">
              <property name="styleSheet">
               <string notr="true">color:rgb(0, 0, 0)</string>
              </property>
@@ -2060,6 +2125,27 @@
             </widget>
            </item>
           </layout>
+          <zorder>label_3</zorder>
+          <zorder>btnAgenda</zorder>
+          <zorder>label_4</zorder>
+          <zorder>line2</zorder>
+          <zorder>btnAtendimento</zorder>
+          <zorder>label_5</zorder>
+          <zorder>line3</zorder>
+          <zorder>btnPacientes</zorder>
+          <zorder>line4</zorder>
+          <zorder>btnColaboradores</zorder>
+          <zorder>line5</zorder>
+          <zorder>btnRelatorios</zorder>
+          <zorder>line6</zorder>
+          <zorder>btnFornecedores</zorder>
+          <zorder>line7</zorder>
+          <zorder>btnInicio</zorder>
+          <zorder>verticalSpacer_16</zorder>
+          <zorder>verticalSpacer_17</zorder>
+          <zorder>verticalSpacer_18</zorder>
+          <zorder>verticalSpacer_19</zorder>
+          <zorder>line1</zorder>
          </widget>
         </item>
         <item>
@@ -2305,35 +2391,9 @@
                </spacer>
               </item>
               <item>
-               <spacer name="horizontalSpacer_11">
-                <property name="orientation">
-                 <enum>Qt::Orientation::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>40</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
                <layout class="QVBoxLayout" name="verticalLayout_8">
                 <item>
                  <spacer name="verticalSpacer_3">
-                  <property name="orientation">
-                   <enum>Qt::Orientation::Vertical</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>20</width>
-                    <height>40</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <spacer name="verticalSpacer_4">
                   <property name="orientation">
                    <enum>Qt::Orientation::Vertical</enum>
                   </property>
@@ -2472,7 +2532,20 @@
                </layout>
               </item>
               <item>
-               <spacer name="horizontalSpacer_16">
+               <spacer name="horizontalSpacer_14">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_11">
                 <property name="orientation">
                  <enum>Qt::Orientation::Horizontal</enum>
                 </property>
@@ -2764,29 +2837,7 @@
      </layout>
     </item>
    </layout>
-   <zorder>paginas</zorder>
-   <zorder>frameSuperior</zorder>
-   <zorder>frameLateral</zorder>
-   <zorder>btnApagarPac</zorder>
-   <zorder>btnEditarPac</zorder>
    <zorder></zorder>
-   <zorder>tw_pacientes</zorder>
-   <zorder>groupBox</zorder>
-   <zorder>label_15</zorder>
-   <zorder>label_9</zorder>
-   <zorder>label_16</zorder>
-   <zorder>label_17</zorder>
-   <zorder>label_32</zorder>
-   <zorder>label_33</zorder>
-   <zorder>label_13</zorder>
-   <zorder>label_14</zorder>
-   <zorder>label_34</zorder>
-   <zorder>label_35</zorder>
-   <zorder>label_36</zorder>
-   <zorder>groupBox</zorder>
-   <zorder>pushButton_3</zorder>
-   <zorder>label_83</zorder>
-   <zorder>pushButton_3</zorder>
   </widget>
  </widget>
  <resources>

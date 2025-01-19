@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
         qDebug() << "Banco de dados conectado com sucesso!";
     }
 
-    paginaFormatada();
+    janelaFormatada();
 }
 
 MainWindow::~MainWindow()
@@ -33,11 +33,35 @@ MainWindow::~MainWindow()
 
 //////////////////////////////////////////
 
+// MÉTODO PARA SETAR A PALETA DE CORES DO SISTEMA PARA CLARO EM QUALQUER DISPOSITIVO
+
+void MainWindow::setPaletaCor(QApplication &app){
+    // Definir o estilo Fusion
+    app.setStyle(QStyleFactory::create("Fusion"));
+
+    // Definir uma paleta clara personalizada
+    QPalette palette;
+    palette.setColor(QPalette::Window, QColor(255, 255, 255));          // Fundo branco
+    palette.setColor(QPalette::WindowText, QColor(0, 0, 0));            // Texto preto
+    palette.setColor(QPalette::Base, QColor(255, 255, 255));            // Fundo de widgets (ex: QLineEdit)
+    palette.setColor(QPalette::AlternateBase, QColor(240, 240, 240));   // Cor alternativa de fundo
+    palette.setColor(QPalette::ToolTipBase, QColor(255, 255, 220));
+    palette.setColor(QPalette::ToolTipText, QColor(0, 0, 0));
+    palette.setColor(QPalette::Text, QColor(0, 0, 0));                  // Texto
+    palette.setColor(QPalette::Button, QColor(240, 240, 240));          // Cor de fundo do botão
+    palette.setColor(QPalette::ButtonText, QColor(0, 0, 0));            // Cor do texto do botão
+    palette.setColor(QPalette::BrightText, QColor(255, 0, 0));
+
+    app.setPalette(palette);                                            // Setando a peleta no app
+}
+
+
+//////////////////////////////////////////
 
 
 // MÉTODO PARA FORMATAR A PÁGINA PRINCIPAL E DEFINIR A PÁGINA DE INÍCIO
 
-void MainWindow::paginaFormatada(){
+void MainWindow::janelaFormatada(){
     ui->layoutPrincipal->setSpacing(0);                                                                             // SETANDO OS ESPAÇOS ENTRE OS LAYOUTS
 
     ui->paginas->tabBar()->setVisible(false);                                                                       // DEIXANDO OS ÍCONES DAS PÁGINAS DA TABWIDGET INVISÍVEIS
@@ -64,8 +88,43 @@ void MainWindow::paginaFormatada(){
 
     ui->frameLateral->setStyleSheet("QFrame {"
                                     "background-color: rgb(109, 176, 236);"  // Cor de fundo da barra lateral
-                                    "border-bottom-left-radius: 15px;"
+                                    "border-bottom-left-radius: 10px;"
                                     "}");
+
+    ui->line1->setStyleSheet("QFrame {"
+                             "border: 1px solid #000000;"                   // Cor de borda
+                             "background: transparent;"                     // Fundo transparente
+                             "}");
+
+    ui->line2->setStyleSheet("QFrame {"
+                             "border: 1px solid #000000;"                   // Cor de borda
+                             "background: transparent;"                     // Fundo transparente
+                             "}");
+
+    ui->line3->setStyleSheet("QFrame {"
+                             "border: 1px solid #000000;"                   // Cor de borda
+                             "background: transparent;"                     // Fundo transparente
+                             "}");
+
+    ui->line4->setStyleSheet("QFrame {"
+                             "border: 1px solid #000000;"                   // Cor de borda
+                             "background: transparent;"                     // Fundo transparente
+                             "}");
+
+    ui->line5->setStyleSheet("QFrame {"
+                             "border: 1px solid #000000;"                   // Cor de borda
+                             "background: transparent;"                     // Fundo transparente
+                             "}");
+
+    ui->line6->setStyleSheet("QFrame {"
+                             "border: 1px solid #000000;"                   // Cor de borda
+                             "background: transparent;"                     // Fundo transparente
+                             "}");
+
+    ui->line7->setStyleSheet("QFrame {"
+                             "border: 1px solid #000000;"                   // Cor de borda
+                             "background: transparent;"                     // Fundo transparente
+                             "}");
 
     ui->frameSuperior->raise(); // Traz o frame para frente
     ui->frameLateral->lower(); // Envia o frame_2 para trás

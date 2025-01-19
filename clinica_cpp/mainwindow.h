@@ -1,11 +1,13 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QApplication>
 #include <QGraphicsDropShadowEffect>
 #include <QMainWindow>
 #include <QTabWidget>
 #include <QTableWidget>
 #include <QCommandLinkButton>
+#include <QStyleFactory>
 #include <QtSql>
 #include <QDebug>
 #include <QFileInfo>
@@ -35,11 +37,17 @@ public:
 
     QSqlDatabase bancoDeDados = QSqlDatabase::addDatabase("QSQLITE");  // DEFININDO O TIPO DO BANCO SQLITE
 
-    void paginaFormatada();                                 // MÉTODO PARA FORMATAR A PÁGINA
+    void setPaletaCor(QApplication &app);                              // MÉTODO PARA SETAR A PALETA DE CORES DO SISTEMA PARA CLARO EM QUALQUER DISPOSITIVO
+
+    void janelaFormatada();                                            // MÉTODO PARA FORMATAR A PÁGINA
 
 private slots:
 
     // MÉTODOS DA TROCA DE PÁGINAS
+
+    void on_btnInicio_clicked();
+
+    /////////////////////////////////////////////
 
     void on_btnAgenda_clicked();
 
@@ -90,11 +98,9 @@ private slots:
     // Método para editar um colaborador
     void on_btnEditarCol_clicked();
 
-    //////////////////////////////////////////////
-
     void on_linePesquisaCol_textChanged(const QString &arg1);
 
-    void on_btnInicio_clicked();
+    /////////////////////////////////////////////////
 
 private:
     Ui::MainWindow *ui;

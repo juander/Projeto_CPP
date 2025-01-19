@@ -1,12 +1,12 @@
 #include "mainwindow.h"
-#include <QApplication>
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv); // Inicializa a aplicação Qt
-    MainWindow w; // Cria a janela principal
-    w.show(); // Exibe a janela principal
-    return a.exec(); // Executa o loop de eventos da aplicação
-}
+    QApplication app(argc, argv);             // Inicializa a aplicação Qt
+    MainWindow janelaPrincipal;               // Cria a janela principal
 
-// Vê se foi 2
+    janelaPrincipal.setPaletaCor(app);        // Setando o tema claro para a aplicação usando método implementado
+
+    janelaPrincipal.showMaximized();          // Exibe a janela principal
+    return app.exec();                        // Executa o loop de eventos da aplicação
+}
