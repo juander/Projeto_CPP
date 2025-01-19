@@ -35,6 +35,8 @@ public:
 
     QSqlDatabase bancoDeDados = QSqlDatabase::addDatabase("QSQLITE");  // DEFININDO O TIPO DO BANCO SQLITE
 
+    void paginaFormatada();                                 // MÉTODO PARA FORMATAR A PÁGINA
+
 private slots:
 
     // MÉTODOS DA TROCA DE PÁGINAS
@@ -96,6 +98,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
+    void redimensionarTable(QTableWidget* table);           // MÉTODO PARA REDIMENSÃO DAS TABELAS AUTOMATICAMENTE
 
     void resetButtonStyles();                               // MÉTODO PARA RESETAR OS ESTILOS DOS BOTÕES
 };

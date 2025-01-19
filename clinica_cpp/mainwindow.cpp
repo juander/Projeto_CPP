@@ -21,15 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
         qDebug() << "Banco de dados conectado com sucesso!";
     }
 
-    on_btnInicio_clicked();                                                                                         // DEFINI A PÁGINA INICIAL COMO SEMPRE A PRIMEIRA AO ABRIR O PROGRAMA
-    ui->btnInicio->setStyleSheet("background-color: rgb(179, 213, 243);");                                          // ALTERAR A COR DE DESTAQUE DO BOTÃO
-
-    // Adicionando efeito de sombra ao frame superior
-    QGraphicsDropShadowEffect *shadowEffect = new QGraphicsDropShadowEffect(this);                                  // EFEITOS DE COMBRA NA PARTE SUPERIOR DA JANELA
-    shadowEffect->setBlurRadius(10);
-    shadowEffect->setOffset(0, 5);
-    ui->frame->setGraphicsEffect(shadowEffect);
-
+    paginaFormatada();
 }
 
 MainWindow::~MainWindow()
@@ -39,6 +31,86 @@ MainWindow::~MainWindow()
 
 
 
+//////////////////////////////////////////
+
+
+
+// MÉTODO PARA FORMATAR A PÁGINA PRINCIPAL E DEFINIR A PÁGINA DE INÍCIO
+
+void MainWindow::paginaFormatada(){
+    ui->layoutPrincipal->setSpacing(0);                                                                             // SETANDO OS ESPAÇOS ENTRE OS LAYOUTS
+
+    ui->paginas->tabBar()->setVisible(false);                                                                       // DEIXANDO OS ÍCONES DAS PÁGINAS DA TABWIDGET INVISÍVEIS
+
+    // FORMATANDO O LAYOUT SUPERIOR
+
+    ui->frameSuperior->setFixedHeight(ui->frameSuperior->height() + 40);  // Aumenta a altura vertical do QFrame
+
+    ui->frameSuperior->setStyleSheet("QFrame {"
+                                     "background-color: rgb(109, 176, 236);"  // Cor de fundo da barra lateral
+                                     "border-top-left-radius: 10px;"  // Borda superior esquerda
+                                     "border-top-right-radius: 10px;" // Borda superior direitaz
+                                     "}");
+
+    // Adicionando efeito de sombra ao frame superior
+    QGraphicsDropShadowEffect *shadowEffect = new QGraphicsDropShadowEffect(this);
+    shadowEffect->setBlurRadius(15);  // Aumentando o desfoque para 15px
+    shadowEffect->setOffset(0, 7);  // Deslocando a sombra 10px para baixo
+    shadowEffect->setColor(QColor(0, 0, 0, 150));  // Definindo cor da sombra com maior opacidade
+
+    ui->frameSuperior->setGraphicsEffect(shadowEffect);
+
+    // FORMATANDO O LAYOUT LATERAL
+
+    ui->frameLateral->setStyleSheet("QFrame {"
+                                    "background-color: rgb(109, 176, 236);"  // Cor de fundo da barra lateral
+                                    "border-bottom-left-radius: 15px;"
+                                    "}");
+
+    ui->frameSuperior->raise(); // Traz o frame para frente
+    ui->frameLateral->lower(); // Envia o frame_2 para trás
+
+    //////////////////////////////////////////////////
+
+    on_btnInicio_clicked();                                                                                         // DEFINI A PÁGINA INICIAL COMO SEMPRE A PRIMEIRA AO ABRIR O PROGRAMA
+    ui->btnInicio->setStyleSheet("background-color: rgb(179, 213, 243);");                                          // ALTERAR A COR DE DESTAQUE DO BOTÃO
+}
+
+
+
+
+//////////////////////////////////////////
+
+
+
+
+// MÉTODO PARA REDIMENSIONAR AS TABELAS AUTOMATICAMENTE E CASO ALGO NÃO CAIBA EXIBIR O TEXTO COMPLETO AO COLOCAR O MOUSE EM CIMA
+
+void MainWindow::redimensionarTable(QTableWidget* table){
+
+    table->resizeColumnsToContents();  // Ajusta as colunas ao conteúdo
+
+    // Agora, fazemos as colunas se expandirem para preencher a largura total da tabela
+    for (int i = 0; i < table->columnCount(); ++i) {
+        table->horizontalHeader()->setSectionResizeMode(i, QHeaderView::Stretch);
+    }
+
+    // Após redimensionar as colunas, fazemos o ajuste de layout
+    table->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    // Adicionando Tooltips para mostrar o conteúdo completo ao passar o mouse sobre a célula
+    for (int row = 0; row < table->rowCount(); ++row) {
+        for (int col = 0; col < table->columnCount(); ++col) {
+            QTableWidgetItem* item = table->item(row, col);
+            if (item) {
+                // Define o conteúdo completo da célula como o Tooltip
+                item->setToolTip(item->text());
+            }
+        }
+    }
+}
+
+//////////////////////////////////////////
 
 // MÉTODO PARA RESETAR O ESTILO DOS BOTÕES
 
@@ -152,23 +224,14 @@ void MainWindow::on_btnPacientes_clicked()
             tb_linha++;
         }
 
-        // Setando a largura das colunas da tabela                                                                  // DEFINIÇÃO DA ESTRUTURA DA TABLE
-        ui->tw_pacientes->setColumnWidth(0, 80);  // ID
-        ui->tw_pacientes->setColumnWidth(1, 280); // Nome
-        ui->tw_pacientes->setColumnWidth(2, 40);  // Idade
-        ui->tw_pacientes->setColumnWidth(3, 135); // CPF
-        ui->tw_pacientes->setColumnWidth(4, 150); // Diagnóstico
-        ui->tw_pacientes->setColumnWidth(5, 124); // NºCelular
-        ui->tw_pacientes->setColumnWidth(6, 180); // E-mail
-        ui->tw_pacientes->setColumnWidth(7, 135); // Convênio/Plano
-        ui->tw_pacientes->setColumnWidth(8, 70); // Nascimento
-
         QStringList cabecalho = {"ID", "Nome", "Idade", "CPF", "Diagnóstico", "NºCelular", "E-mail", "Convêvio/Plano", "Nascimento"};
         ui->tw_pacientes->setHorizontalHeaderLabels(cabecalho);
         ui->tw_pacientes->setEditTriggers(QAbstractItemView::NoEditTriggers);
         ui->tw_pacientes->setSelectionBehavior(QAbstractItemView::SelectRows);
         ui->tw_pacientes->verticalHeader()->setVisible(false);
-        ui->tw_pacientes->setStyleSheet("QTableWidget::item:selected {background-color: blue}");                    // FIM DA DEFINIÇÃO
+        ui->tw_pacientes->setStyleSheet("QTableWidget::item:selected {background-color: blue}");
+
+        redimensionarTable(ui->tw_pacientes);                                                                       // REDIMENSIONANDO A TABELA
     }
 
     // MÉTODOS DE CADASTRO DO PACIENTE:
@@ -190,7 +253,7 @@ void MainWindow::on_btnPacientes_clicked()
     //                                                                                                                               |
     // MÉTODO PARA CARREGAR NOVO PACIENTE CADASTRADO NA TABELA AUTOMATICAMENTE A PARTIR DO ID GERADO NO BANCO                        |
     //                                                                                                                               |
-    void MainWindow::adicionarPacienteNaTabela(int id)                                                        //    <----------------
+    void MainWindow::adicionarPacienteNaTabela(int id)                                                                 //    <-------
     {
         QSqlQuery query;                                                                                               // ESSE MÉTODO SÓ SERÁ USADO QUANDO A CONEXÃO RETORNAR TRUE, OU SEJA, QUANDO O PACIENTE FOR CADASTRADO
         query.prepare("SELECT * FROM tb_pacientes WHERE id = :id");                                                    // FAZENDO A QUERY SELECT COM O NOVO ID VINDO DAS CONEXÕES
@@ -202,6 +265,7 @@ void MainWindow::on_btnPacientes_clicked()
             ui->tw_pacientes->insertRow(linha);                                                                        // ADICIONANDO UMA NOVA LINHA NA TABLE
             for(int i = 0; i <= 8; i++){
                 ui->tw_pacientes->setItem(linha, i, new QTableWidgetItem(query.value(i).toString()));                  // ATUALIZANDO A TABLE
+                redimensionarTable(ui->tw_pacientes);                                                                  // REDIMENSIONANDO A TABLE
             }
         } else {
             QMessageBox::warning(this, "ERRO", "Erro ao carregar o novo paciente.");
@@ -330,22 +394,14 @@ void MainWindow::on_btnColaboradores_clicked()
             tb_linha++;
         }
 
-        // Setando a largura das colunas da tabela                                                                  // DEFINIÇÃO DA ESTRUTURA DA TABLE
-        ui->tw_colaboradores->setColumnWidth(0, 80);  // ID
-        ui->tw_colaboradores->setColumnWidth(1, 280); // Nome
-        ui->tw_colaboradores->setColumnWidth(2, 40);  // Idade
-        ui->tw_colaboradores->setColumnWidth(3, 135); // CPF
-        ui->tw_colaboradores->setColumnWidth(4, 160); // Cargo
-        ui->tw_colaboradores->setColumnWidth(5, 144); // NºCelular
-        ui->tw_colaboradores->setColumnWidth(6, 180); // E-mail
-        ui->tw_colaboradores->setColumnWidth(7, 70);  // Nascimento
-
         QStringList cabecalho = {"ID", "Nome", "Idade", "CPF", "Cargo", "NºCelular", "E-mail", "Nascimento"};
         ui->tw_colaboradores->setHorizontalHeaderLabels(cabecalho);
         ui->tw_colaboradores->setEditTriggers(QAbstractItemView::NoEditTriggers);
         ui->tw_colaboradores->setSelectionBehavior(QAbstractItemView::SelectRows);
         ui->tw_colaboradores->verticalHeader()->setVisible(false);
-        ui->tw_colaboradores->setStyleSheet("QTableWidget::item:selected {background-color: blue}");                // FIM DA DEFINIÇÃO
+        ui->tw_colaboradores->setStyleSheet("QTableWidget::item:selected {background-color: blue}");
+
+        redimensionarTable(ui->tw_colaboradores);                                                                   // REDIMENSIONANDO A TABELA
     }
 
     void MainWindow::on_btnCadastroCol_clicked()
@@ -354,7 +410,7 @@ void MainWindow::on_btnColaboradores_clicked()
 
         // O SINAL QUE TRAZ O ID DO COLABORADOR CADASTRADO PARA JANELA
         bool connected = connect(&cadastramento, &cadastroColaboradores::colaboradorCadastrado,                        // PRINCIPAL É EMITIDO PELO OBJETO COLABORADOR, QUE É O ÚNICO QUE
-                                 this, &MainWindow::adicionarColaboradorNaTabela);                                  // TEM ACESSO DIRETO A QUERY DE INSERT, PARA A JANELA DE
+                                 this, &MainWindow::adicionarColaboradorNaTabela);                                     // TEM ACESSO DIRETO A QUERY DE INSERT, PARA A JANELA DE
         if (!connected) {                                                                                              // CADASTRO E POR FIM PARA ESSA JANELA PRINCIPAL QUE ACESSA O MÉTODO
             qDebug() << "Erro ao conectar o sinal colaboradorCadastrado";                                              // DE ADICIONAR O COLABORADOR NA TABLE
         }                                                                                                              //            |
@@ -374,6 +430,7 @@ void MainWindow::on_btnColaboradores_clicked()
             ui->tw_colaboradores->insertRow(linha);                                                                    // ADICIONANDO LINHA NA TABLE
             for(int i = 0; i <= 7; i++){
                 ui->tw_colaboradores->setItem(linha, i, new QTableWidgetItem(query.value(i).toString()));              // CARREGANDO A TABLE COM OS DADOS DO BANCO
+                redimensionarTable(ui->tw_colaboradores);                                                              // REDIMENSIONANDO A TABLE
             }
         } else {
             QMessageBox::warning(this, "ERRO", "Erro ao carregar o novo colaborador.");
