@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>211</height>
+    <height>215</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -73,7 +73,12 @@
        <item>
         <widget class="QPushButton" name="pushButton_2">
          <property name="text">
-          <string>PushButton</string>
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="icons.qrc">
+           <normaloff>:/icons/Hide.png</normaloff>
+           <normalon>:/icons/Eye.png</normalon>:/icons/Hide.png</iconset>
          </property>
         </widget>
        </item>
@@ -101,6 +106,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

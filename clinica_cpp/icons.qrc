@@ -9,5 +9,7 @@
         <file>icons/Home Page.png</file>
         <file>icons/Generic avatar.png</file>
         <file>icons/giftest.gif</file>
+        <file>icons/Eye.png</file>
+        <file>icons/Hide.png</file>
     </qresource>
 </RCC>
