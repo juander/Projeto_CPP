@@ -90,7 +90,7 @@
      <item>
       <widget class="QLabel" name="label_4">
        <property name="text">
-        <string>Profissional Responsáve:</string>
+        <string>Profissional Responsável:</string>
        </property>
       </widget>
      </item>
