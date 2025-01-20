@@ -126,8 +126,8 @@ void MainWindow::janelaFormatada(){
 
     // COLOCANDO IMAGENS NA JANELA PRINCIPAL
 
-    QPixmap icone (":/icons/Generic avatar.png");
-    ui->labelPerfilClin->setPixmap(icone);
+    // QPixmap icone (":/icons/Generic avatar.png");
+    // ui->labelPerfilClin->setPixmap(icone);
 
     QMovie *gif = new QMovie(":/icons/giftest.gif");                        // FAZENDO TESTE COM GIFS
     ui->labelGif->setMovie(gif);
