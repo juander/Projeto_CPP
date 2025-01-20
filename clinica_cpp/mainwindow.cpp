@@ -9,17 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);                                                                                              // CONSTRUTOR
 
-    // Configuração do banco de dados SQLite
-    QString local = qApp->applicationDirPath();
-    QString banco = local + "\\banco_clinica.db";
-    bancoDeDados.setDatabaseName(banco);                                                                            // CRIANDO CONEXÃO COM O BANCO
 
-    // Verificação da conexão com o banco de dados
-    if (!bancoDeDados.open()) {
-        qDebug() << "Erro ao abrir o banco de dados:" << bancoDeDados.lastError().text();                           // CONFERINDO SE O BANCO FOI CONECTADO
-    } else {
-        qDebug() << "Banco de dados conectado com sucesso!";
-    }
 
     janelaFormatada();
 }
@@ -30,6 +20,17 @@ MainWindow::~MainWindow()
 }
 
 
+
+
+//////////////////////////////////////////
+
+// MÉTODO PARA ACESSAR A JANELA "ENTRAR"
+
+void MainWindow::on_btnEntrar_clicked()
+{
+    janela_entrar janela_entrar;
+    janela_entrar.exec();
+}
 
 //////////////////////////////////////////
 
@@ -632,13 +633,4 @@ void MainWindow::on_btnFornecedores_clicked()
 
 
 ///////////////////////////////////////////////////
-
-
-// MÉTODO PARA ACESSAR A JANELA "ENTRAR"
-
-void MainWindow::on_btnEntrar_clicked()
-{
-    janela_entrar janela_entrar;
-    janela_entrar.exec();
-}
 

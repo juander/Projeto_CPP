@@ -45,6 +45,12 @@ void janela_entrar::on_btnEntrar_clicked()
     }
 }
 
+void janela_entrar::on_pushButton_clicked()
+{
+    logado = false;
+    close();
+}
+
 void janela_entrar::on_btnMostrar_clicked()
 {
     if(ui->txtsenha->echoMode() == QLineEdit::Password){
