@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1313</width>
+    <width>1280</width>
     <height>720</height>
    </rect>
   </property>
@@ -266,7 +266,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_3">
+          <widget class="QPushButton" name="btnEntrar">
            <property name="text">
             <string>Entrar</string>
            </property>

@@ -632,3 +632,13 @@ void MainWindow::on_btnFornecedores_clicked()
 
 
 ///////////////////////////////////////////////////
+
+
+// MÉTODO PARA ACESSAR A JANELA "ENTRAR"
+
+void MainWindow::on_btnEntrar_clicked()
+{
+    janela_entrar janela_entrar;
+    janela_entrar.exec();
+}
+

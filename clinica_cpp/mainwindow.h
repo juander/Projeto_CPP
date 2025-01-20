@@ -14,6 +14,7 @@
 #include <QMessageBox>
 #include <QMovie>
 
+#include "janela_entrar.h"
 
 #include "cadastropacientes.h"
 #include "cadastrocolaboradores.h"
@@ -103,6 +104,8 @@ private slots:
     void on_linePesquisaCol_textChanged(const QString &arg1);
 
     /////////////////////////////////////////////////
+
+    void on_btnEntrar_clicked();
 
 private:
     Ui::MainWindow *ui;
