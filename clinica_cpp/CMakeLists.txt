@@ -18,17 +18,16 @@ set(PROJECT_SOURCES
     mainwindow.h
     mainwindow.ui
     icons.qrc
-    cadastropacientes.h
-    cadastropacientes.cpp
-    cadastropacientes.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(clinica_cpp
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        cadastropacientes.h cadastropacientes.cpp cadastropacientes.ui
         edicaopaciente.h edicaopaciente.cpp edicaopaciente.ui
         pessoa.h pessoa.cpp
+        janela_entrar.h janela_entrar.cpp janela_entrar.ui
         cadastrocolaboradores.h cadastrocolaboradores.cpp cadastrocolaboradores.ui
         edicaocolaboradores.h edicaocolaboradores.cpp edicaocolaboradores.ui
     )
