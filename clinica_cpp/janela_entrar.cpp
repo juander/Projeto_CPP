@@ -44,3 +44,14 @@ void janela_entrar::on_btnEntrar_clicked()
         }
     }
 }
+
+void janela_entrar::on_btnMostrar_clicked()
+{
+    if(ui->txtsenha->echoMode() == QLineEdit::Password){
+        ui->txtsenha->setEchoMode(QLineEdit::Normal);
+        ui->btnMostrar->setIcon(QIcon(":/icons/Eye.png")); // Ícone de olho aberto
+    } else {
+        ui->txtsenha->setEchoMode(QLineEdit::Password);
+        ui->btnMostrar->setIcon(QIcon(":/icons/Hide.png")); // Ícone de olho com risco
+    }
+}

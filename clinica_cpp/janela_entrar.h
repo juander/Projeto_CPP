@@ -23,6 +23,7 @@ public:
 
 private slots:
     void on_btnEntrar_clicked();
+    void on_btnMostrar_clicked();
 
 private:
     Ui::janela_entrar *ui;
