@@ -166,6 +166,8 @@ void MainWindow::redimensionarTable(QTableWidget* table){
             if (item) {
                 // Define o conteúdo completo da célula como o Tooltip
                 item->setToolTip(item->text());
+                // Alinha os itens das tabelas no centro das colunas
+                item->setTextAlignment(Qt::AlignCenter);
             }
         }
     }
@@ -192,7 +194,7 @@ void MainWindow::resetButtonStyles() {
 void MainWindow::on_btnInicio_clicked()
 {
     resetButtonStyles();
-    ui->btnInicio->setStyleSheet("background-color: rgb(179, 213, 243);");                                       // ALTERAR A COR DE DESTAQUE DO BOTÃO
+    ui->btnInicio->setStyleSheet("background-color: rgb(179, 213, 243);");                                          // ALTERAR A COR DE DESTAQUE DO BOTÃO
 
     int index = ui->paginas->indexOf(ui->Inicio);                                                                   // PÁGINA INICIO
     ui->paginas->setCurrentIndex(index);                                                                            // ACESSANDO A PÁGINA
@@ -329,7 +331,7 @@ void MainWindow::on_btnPacientes_clicked()
                 redimensionarTable(ui->tw_pacientes);                                                                  // REDIMENSIONANDO A TABLE
             }
         } else {
-            QMessageBox::warning(this, "ERRO", "Erro ao carregar o novo paciente.");
+            QMessageBox::warning(this, " ", "Erro ao carregar o novo paciente.");
         }
     }
     //
@@ -339,25 +341,36 @@ void MainWindow::on_btnPacientes_clicked()
     {
         // Conferindo se o usuário selecionou alguma linha (currentRow() retorna -1 quando não há linha selecionada)
         if (ui->tw_pacientes->currentRow() == -1) {
-            QMessageBox::warning(nullptr, "Aviso", "Nenhuma paciente foi selecionado.");                               // CONFERINDO SE ALGUM PACIENTE FOI SELECIONADO
+            QMessageBox::warning(nullptr, " ", "Nenhuma paciente foi selecionado.");                                  // CONFERINDO SE ALGUM PACIENTE FOI SELECIONADO
             return;
         }
-        // Verificando qual é a linha selecionada e descobrindo o id dela
-        int linha = ui->tw_pacientes->currentRow();                                                                    // ARMAZENANDO A LINHA SELECIONADA
-        QString id = ui->tw_pacientes->item(linha, 0)->text();                                                         // ARMAZENANDO O ID DO PACIENTE SELECIONADO
+        QMessageBox::StandardButton resposta;
+        resposta = QMessageBox::question(nullptr,
+                                         " ",
+                                         "Deseja apagar o paciente ?",                                                    // CONFIRMANDO A AÇÃO DO USUÁRIO
+                                         QMessageBox::Ok | QMessageBox::Cancel);
 
-        // Query para excluir
-        QSqlQuery query;
-        query.prepare("DELETE FROM tb_pacientes WHERE id="+id);                                                        // DELETANDO O PACIENTE DO BANCO DE DADOS
+        if (resposta == QMessageBox::Cancel) {
+            return;
+        } else {
+            // Verificando qual é a linha selecionada e descobrindo o id dela
+            int linha = ui->tw_pacientes->currentRow();                                                                    // ARMAZENANDO A LINHA SELECIONADA
+            QString id = ui->tw_pacientes->item(linha, 0)->text();                                                         // ARMAZENANDO O ID DO PACIENTE SELECIONADO
 
-        if(query.exec()){
-            // Removendo a linha do Table
-            ui->tw_pacientes->removeRow(linha);
-            QMessageBox::information(this,"","Excluído");                                                              // REMOVENDO LINHA DA TABLE E GERANDO O POP-UP
-        }else{
-            QMessageBox::warning(this, "ERRO", "Erro ao excluir registro");
+            // Query para excluir
+            QSqlQuery query;
+            query.prepare("DELETE FROM tb_pacientes WHERE id="+id);                                                        // DELETANDO O PACIENTE DO BANCO DE DADOS
+
+            if(query.exec()){
+                // Removendo a linha do Table
+                ui->tw_pacientes->removeRow(linha);
+                QMessageBox::information(this," ","Excluído");                                                              // REMOVENDO LINHA DA TABLE E GERANDO O POP-UP
+            }else{
+                QMessageBox::warning(this, "ERRO", "Erro ao excluir registro");
+            }
         }
     }
+
     //
     // MÉTODO DE EDITAR PACIENTE
     //
@@ -365,7 +378,7 @@ void MainWindow::on_btnPacientes_clicked()
     {
         // Conferindo se o usuário selecionou alguma linha (currentRow() retorna -1 quando não há linha selecionada)
         if (ui->tw_pacientes->currentRow() == -1) {
-            QMessageBox::warning(nullptr, "Aviso", "Nenhuma paciente foi selecionado.");                                // CONFERINDO SE ALGUM PACIENTE FOI SELECIONADO
+            QMessageBox::warning(nullptr, " ", "Nenhuma paciente foi selecionado.");                                // CONFERINDO SE ALGUM PACIENTE FOI SELECIONADO
             return;
         }
         int linha = ui->tw_pacientes->currentRow();                                                                     // ARMAZENANDO A LINHA SELECIONADA
@@ -383,7 +396,7 @@ void MainWindow::on_btnPacientes_clicked()
                 ui->tw_pacientes->setItem(linha,i,new QTableWidgetItem(query.value(i).toString()));                     // ATUALIZANDO A TABLE COM A EDIÇÃO DO PACIENTE NO BANCO
             }
         }else{
-            QMessageBox::warning(this, "ERRO", "Erro ao atualizar paciente na tabela");
+            QMessageBox::warning(this, " ", "Erro ao atualizar paciente na tabela");
         }
     }
     //
@@ -400,7 +413,7 @@ void MainWindow::on_btnPacientes_clicked()
         if(query.exec()){
             setTabelaPacientes(query);                                                                                  // SETANDO A TABLE EM TEMPO REAL
         }else{
-            QMessageBox::warning(this, "ERRO", "Não foi possível acessar os pacientes no banco de dados");
+            QMessageBox::warning(this, " ", "Não foi possível acessar os pacientes no banco de dados");
         }
     }
 
@@ -426,7 +439,7 @@ void MainWindow::on_btnColaboradores_clicked()
     if(query.exec()){
         setTabelaColaboradores(query);                                                                              // CARREGANDO A TABELA NA TABLE ATRAVÉS DO MÉTODO
     }else{
-        QMessageBox::warning(this, "ERRO", "Não foi possível acessar os colaboradores no banco de dados");
+        QMessageBox::warning(this, " ", "Não foi possível acessar os colaboradores no banco de dados");
     }
 }
 
@@ -494,7 +507,7 @@ void MainWindow::on_btnColaboradores_clicked()
                 redimensionarTable(ui->tw_colaboradores);                                                              // REDIMENSIONANDO A TABLE
             }
         } else {
-            QMessageBox::warning(this, "ERRO", "Erro ao carregar o novo colaborador.");
+            QMessageBox::warning(this, " ", "Erro ao carregar o novo colaborador.");
         }
     }
     //
@@ -504,23 +517,33 @@ void MainWindow::on_btnColaboradores_clicked()
     {
         // Conferindo se o usuário selecionou alguma linha (currentRow() retorna -1 quando não há linha selecionada)
         if (ui->tw_colaboradores->currentRow() == -1) {
-            QMessageBox::warning(nullptr, "Aviso", "Nenhuma colaborador foi selecionado.");                             // CONFERINDO SE ALGUM COLABORADOR  FOI SELECIONADO
+            QMessageBox::warning(nullptr, " ", "Nenhuma colaborador foi selecionado.");                                     // CONFERINDO SE ALGUM COLABORADOR  FOI SELECIONADO
             return;
         }
-        // Verificando qual é a linha selecionada e descobrindo o id dela
-        int linha = ui->tw_colaboradores->currentRow();                                                                 // ARMAZENANDO A LINHA SELECIONADA
-        QString id = ui->tw_colaboradores->item(linha, 0)->text();                                                      // ARMAZENANDO O ID DO COLABORADOR  SELECIONADO
+        QMessageBox::StandardButton resposta;
+        resposta = QMessageBox::question(nullptr,
+                                         " ",
+                                         "Deseja apagar o colaborador ?",                                                   // CONFIRMANDO A AÇÃO DO USUÁRIO
+                                         QMessageBox::Ok | QMessageBox::Cancel);
 
-        // Query para excluir
-        QSqlQuery query;
-        query.prepare("DELETE FROM tb_colaboradores WHERE id="+id);                                                     // DELETANDO O COLABORADOR DO BANCO DE DADOS
+        if (resposta == QMessageBox::Cancel) {
+            return;
+        } else {
+            // Verificando qual é a linha selecionada e descobrindo o id dela
+            int linha = ui->tw_colaboradores->currentRow();                                                                 // ARMAZENANDO A LINHA SELECIONADA
+            QString id = ui->tw_colaboradores->item(linha, 0)->text();                                                      // ARMAZENANDO O ID DO COLABORADOR  SELECIONADO
 
-        if(query.exec()){
-            // Removendo a linha do Table
-            ui->tw_colaboradores->removeRow(linha);
-            QMessageBox::information(this,"","Excluído");                                                               // REMOVENDO LINHA DA TABLE E GERANDO O POP-UP
-        }else{
-            QMessageBox::warning(this, "ERRO", "Erro ao excluir registro");
+            // Query para excluir
+            QSqlQuery query;
+            query.prepare("DELETE FROM tb_colaboradores WHERE id="+id);                                                     // DELETANDO O COLABORADOR DO BANCO DE DADOS
+
+            if(query.exec()){
+                // Removendo a linha do Table
+                ui->tw_colaboradores->removeRow(linha);
+                QMessageBox::information(this," ","Excluído");                                                               // REMOVENDO LINHA DA TABLE E GERANDO O POP-UP
+            }else{
+                QMessageBox::warning(this, " ", "Erro ao excluir registro");
+            }
         }
     }
     //
@@ -530,7 +553,7 @@ void MainWindow::on_btnColaboradores_clicked()
     {
         // Conferindo se o usuário selecionou alguma linha (currentRow() retorna -1 quando não há linha selecionada)
         if (ui->tw_colaboradores->currentRow() == -1) {
-            QMessageBox::warning(nullptr, "Aviso", "Nenhuma colaborador foi selecionado.");                             // CONFERINDO SE ALGUM COLABORADOR FOI SELECIONADO
+            QMessageBox::warning(nullptr, " ", "Nenhuma colaborador foi selecionado.");                             // CONFERINDO SE ALGUM COLABORADOR FOI SELECIONADO
             return;
         }
         int linha = ui->tw_colaboradores->currentRow();                                                                 // ARMAZENANDO A LINHA SELECIONADA
@@ -548,7 +571,7 @@ void MainWindow::on_btnColaboradores_clicked()
                 ui->tw_colaboradores->setItem(linha,i,new QTableWidgetItem(query.value(i).toString()));                 // ATUALIZANDO A TABLE COM A EDIÇÃO DO COLABORADOR NO BANCO
             }
         }else{
-            QMessageBox::warning(this, "ERRO", "Erro ao atualizar colaborador na tabela");
+            QMessageBox::warning(this, " ", "Erro ao atualizar colaborador na tabela");
         }
     }
     //
@@ -565,7 +588,7 @@ void MainWindow::on_btnColaboradores_clicked()
         if(query.exec()){
             setTabelaColaboradores(query);                                                                              // SETANDO A TABLE EM TEMPO REAL
         }else{
-            QMessageBox::warning(this, "ERRO", "Não foi possível acessar os colaboradores no banco de dados");
+            QMessageBox::warning(this, " ", "Não foi possível acessar os colaboradores no banco de dados");
         }
     }
 
