@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>602</width>
-    <height>373</height>
+    <height>443</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -96,6 +96,24 @@
      </item>
      <item>
       <widget class="QLineEdit" name="lineEdit_2"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_6">
+     <item>
+      <widget class="QPushButton" name="btnAgendar">
+       <property name="text">
+        <string>Agendar</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="text">
+        <string>Cancelar</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
