@@ -199,10 +199,12 @@ void MainWindow::on_btnEntrar_clicked()
             conexao.abrir();
 
             ui->btnEntrar->setText("Sair");
+            ui->btnEntrar->setStyleSheet("background-color: red;");
 
             QPixmap icone (":/icons/Generic avatar.png");
             ui->iconPerfil->setPixmap(icone);
             ui->txtUsuario->setText(nome_usuario);
+            ui->txtClinica->setText("clinica");
         }
 
     }else{
@@ -211,6 +213,8 @@ void MainWindow::on_btnEntrar_clicked()
         ui->iconPerfil->clear();
         ui->txtUsuario->clear();
         ui->btnEntrar->setText("Entrar");
+        ui->txtClinica->setText("<html><head/><body><p><span style=\"font-size:18pt; font-weight:700;\">NOME_CLÍNICA</span></p></body></html>");
+        ui->btnEntrar->setStyleSheet("background-color: lightblue;");
 
         on_btnInicio_clicked();
 
