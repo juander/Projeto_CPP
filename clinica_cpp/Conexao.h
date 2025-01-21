@@ -2,39 +2,22 @@
 #define CONEXAO_H
 
 #include <QtSql>
+#include <QDebug>
+#include <QCoreApplication>
 
 class Conexao {
 public:
 
+    Conexao();
+
+    void fechar();
+    bool abrir();
+    QSqlDatabase getbancoDeDados() const ;
+
+private:
+
     QSqlDatabase bancoDeDados;
     QString local, banco;
-
-    Conexao(){
-        local = qApp->applicationDirPath();
-        banco = local + "\\banco_clinica.db";
-        bancoDeDados = QSqlDatabase::addDatabase("QSQLITE");
-    }
-
-    void fechar() {
-        bancoDeDados.close();
-    }
-    bool abrir(){
-        bancoDeDados.setDatabaseName(banco);                                                                            // CRIANDO CONEXÃO COM O BANCO
-
-        // Verificação da conexão com o banco de dados
-        if (!bancoDeDados.open()) {
-            return false;
-        }else{
-            return true;
-        }
-    }
-    bool aberto(){
-        if(bancoDeDados.isOpen()) {
-            return true;
-        }else{
-            return false;
-        }
-    }
 
 };
 

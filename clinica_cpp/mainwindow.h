@@ -44,12 +44,6 @@ public:
 
     void janelaFormatada();                                            // MÉTODO PARA FORMATAR A PÁGINA
 
-    static bool logado;
-
-    static int id;
-
-    static QString nome_usuario, clinica, cargo;
-
 private slots:
 
     // MÉTODOS DA TROCA DE PÁGINAS
@@ -120,7 +114,13 @@ private:
 
     void resetButtonStyles();                               // MÉTODO PARA RESETAR OS ESTILOS DOS BOTÕES
 
+    // Conexão com o banco de dados
     Conexao conexao;
+
+    // Estado de login e informações do usuário
+    bool logado;                                               // Indica se o usuário está logado
+    QString nome_usuario, clinica_usuario, cargo_usuario;      // Nome do usuário logado
+    int id_usuario;
 
 };
 

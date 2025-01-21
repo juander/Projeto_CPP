@@ -8,19 +8,19 @@ namespace Ui {
 class janela_entrar;
 }
 
-class MainWindow;
-
-class janela_entrar : public QDialog
-{
+class janela_entrar : public QDialog {
     Q_OBJECT
 
 public:
     explicit janela_entrar(QWidget *parent = nullptr, Conexao *conexao = nullptr);
     ~janela_entrar();
 
-    bool logado;
+    bool logadoJanela;
+    QString nome, clinica, cargo;
+    int id;
 
-    QString nome, cargo;
+signals:
+    void loginRealizado(const int &id, const QString &nome, const QString &clinica, const QString &cargo);
 
 private slots:
     void on_btnEnt_clicked();
