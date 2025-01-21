@@ -2283,7 +2283,7 @@ color: white;</string>
         <item>
          <widget class="QTabWidget" name="paginas">
           <property name="currentIndex">
-           <number>2</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="Inicio">
            <property name="styleSheet">
@@ -2638,6 +2638,20 @@ color: white;</string>
                  </widget>
                 </item>
                 <item>
+                 <widget class="QPushButton" name="pushButton_4">
+                  <property name="text">
+                   <string>Editar</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="pushButton_5">
+                  <property name="text">
+                   <string>Apagar</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
                  <spacer name="horizontalSpacer_12">
                   <property name="orientation">
                    <enum>Qt::Orientation::Horizontal</enum>
@@ -2731,9 +2745,9 @@ color: white;</string>
               <item>
                <layout class="QHBoxLayout" name="horizontalLayout_2">
                 <item>
-                 <widget class="QPushButton" name="btnApagarPac">
+                 <widget class="QPushButton" name="pushButton_2">
                   <property name="text">
-                   <string>Apagar</string>
+                   <string>Agendar</string>
                   </property>
                  </widget>
                 </item>
@@ -2745,9 +2759,9 @@ color: white;</string>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="pushButton_2">
+                 <widget class="QPushButton" name="btnApagarPac">
                   <property name="text">
-                   <string>Agendar</string>
+                   <string>Apagar</string>
                   </property>
                  </widget>
                 </item>

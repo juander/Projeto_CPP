@@ -8,5 +8,7 @@ int main(int argc, char *argv[])
     janelaPrincipal.setPaletaCor(app);        // Setando o tema claro para a aplicação usando método implementado
 
     janelaPrincipal.showMaximized();          // Exibe a janela principal
+
+    janelaPrincipal.janelaFormatada();
     return app.exec();                        // Executa o loop de eventos da aplicação
 }
