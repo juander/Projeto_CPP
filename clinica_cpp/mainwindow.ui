@@ -2283,7 +2283,7 @@ color: white;</string>
         <item>
          <widget class="QTabWidget" name="paginas">
           <property name="currentIndex">
-           <number>1</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="Inicio">
            <property name="styleSheet">
@@ -2599,52 +2599,81 @@ color: white;</string>
             <item>
              <layout class="QVBoxLayout" name="verticalLayout_6">
               <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_9">
-                <item>
-                 <widget class="QLabel" name="label">
-                  <property name="text">
-                   <string>Pesquisar :</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="lineEdit"/>
-                </item>
-                <item>
-                 <widget class="QComboBox" name="comboBox">
-                  <property name="enabled">
-                   <bool>true</bool>
-                  </property>
-                  <item>
-                   <property name="text">
-                    <string>Paciente</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>Médico</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>Especialidade</string>
-                   </property>
-                  </item>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QCheckBox" name="checkData">
-                  <property name="text">
-                   <string>Pesquisar por data</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-              <item>
                <layout class="QHBoxLayout" name="horizontalLayout_10">
                 <item>
-                 <widget class="QTableView" name="tableView"/>
+                 <layout class="QVBoxLayout" name="verticalLayout_15">
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_9">
+                    <item>
+                     <widget class="QLabel" name="label">
+                      <property name="text">
+                       <string>Pesquisar :</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="lineEdit"/>
+                    </item>
+                    <item>
+                     <widget class="QComboBox" name="comboBox">
+                      <property name="enabled">
+                       <bool>true</bool>
+                      </property>
+                      <item>
+                       <property name="text">
+                        <string>Paciente</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Médico</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Especialidade</string>
+                       </property>
+                      </item>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QCheckBox" name="checkData">
+                      <property name="text">
+                       <string>Pesquisar por data</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                  <item>
+                   <widget class="QTableView" name="tableView"/>
+                  </item>
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_8">
+                    <item>
+                     <widget class="QPushButton" name="pushButton_3">
+                      <property name="text">
+                       <string>Novo Agendamento</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="pushButton_4">
+                      <property name="text">
+                       <string>Editar</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="pushButton_5">
+                      <property name="text">
+                       <string>Apagar</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
                 </item>
                 <item>
                  <widget class="QCalendarWidget" name="calendarWidget">
@@ -2658,44 +2687,6 @@ color: white;</string>
                 </item>
                </layout>
               </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_8">
-                <item>
-                 <widget class="QPushButton" name="pushButton_3">
-                  <property name="text">
-                   <string>Novo Agendamento</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="pushButton_4">
-                  <property name="text">
-                   <string>Editar</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="pushButton_5">
-                  <property name="text">
-                   <string>Apagar</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_12">
-                  <property name="orientation">
-                   <enum>Qt::Orientation::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </item>
              </layout>
             </item>
            </layout>
@@ -2704,22 +2695,78 @@ color: white;</string>
            <attribute name="title">
             <string>Tab 2</string>
            </attribute>
-           <widget class="QLabel" name="label_7">
-            <property name="geometry">
-             <rect>
-              <x>40</x>
-              <y>50</y>
-              <width>111</width>
-              <height>20</height>
-             </rect>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">color: rgb(0, 0, 0);</string>
-            </property>
-            <property name="text">
-             <string>ATENDIMENTO</string>
-            </property>
-           </widget>
+           <layout class="QVBoxLayout" name="verticalLayout_12">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_11">
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_14">
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_12">
+                  <item>
+                   <widget class="QLabel" name="label_6">
+                    <property name="text">
+                     <string>Pesquisar Paciente:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="lineEdit_2"/>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <widget class="QTableView" name="tableView_2"/>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_13">
+                <item>
+                 <widget class="QListView" name="listView"/>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_13">
+              <item>
+               <widget class="QPushButton" name="pushButton_7">
+                <property name="text">
+                 <string>????????????????</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton">
+                <property name="text">
+                 <string>Editar</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_6">
+                <property name="text">
+                 <string>Apagar</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_12">
+                <property name="orientation">
+                 <enum>Qt::Orientation::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+           </layout>
           </widget>
           <widget class="QWidget" name="Pacientes">
            <attribute name="title">
