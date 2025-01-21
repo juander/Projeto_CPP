@@ -46,6 +46,14 @@ public:
 
 private slots:
 
+    // MÉTODOS DE LOGIN
+
+    void usuarioEntrou();
+
+    void usuarioSaiu();
+
+    void on_btnEntrar_clicked();
+
     // MÉTODOS DA TROCA DE PÁGINAS
 
     void on_btnInicio_clicked();
@@ -104,8 +112,6 @@ private slots:
     void on_linePesquisaCol_textChanged(const QString &arg1);
 
     /////////////////////////////////////////////////
-
-    void on_btnEntrar_clicked();
 
 private:
     Ui::MainWindow *ui;

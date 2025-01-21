@@ -175,9 +175,61 @@ void MainWindow::resetButtonStyles() {
     ui->btnInicio->setStyleSheet("");
 }
 
+//////////////////////////////////////////
 
+// MÉTODO PARA ATUALIZAR O SISTEMA QUANDO O USUÁRIO LOGAR
 
+void MainWindow::usuarioEntrou(){
 
+    logado = true;                                                                                              // ESTADO DE LOGIN TRUE
+    conexao.abrir();                                                                                            // ABRINDO A CONEXÃO COM O BANCO
+
+    // Interface para usuário logado
+    ui->btnEntrar->setText("Sair");
+    ui->btnEntrar->setStyleSheet("background-color: darkred; color: white;");
+    QPixmap icone(":/icons/Generic avatar.png");
+    ui->iconPerfil->setPixmap(icone.scaled(35, 35, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+
+    ui->txtUsuario->setText(
+        QString("<html><head/><body><p><span style=\" font-size:18pt; "
+                "font-weight:700; color:#000000;\">%1</span></p></body></html>")
+
+            .arg(nome_usuario)
+        );
+    ui->txtClinica->setText(
+        QString("<html><head/><body><p><span style=\"font-size:18pt; "
+                "font-weight:700;\">%1 -</span></p></body></html>")
+
+            .arg(clinica_usuario)
+        );
+}
+
+/////////////////////////////////////////
+
+// MÉTODO PARA ATUALIZAR O SISTEMA QUANDO O USUÁRIO DESLOGAR
+
+void MainWindow::usuarioSaiu(){
+
+    logado = false;                                                                                               // ESTADO DE LOGIN FALSE
+    conexao.fechar();                                                                                             // FECHANDO CONEXÃO COM O BANCO
+
+    // Reseta a interface
+    ui->btnEntrar->setText("Entrar");
+    ui->btnEntrar->setStyleSheet("background-color: darkblue; color: white;");
+    ui->iconPerfil->clear();
+    ui->txtUsuario->clear();
+    ui->txtClinica->setText(
+        "<html><head/><body><p><span style=\"font-size:18pt; "
+        "font-weight:700;\">NOME_CLÍNICA</span></p></body></html>"
+        );
+
+    // Atualiza outras partes da interface
+    on_btnInicio_clicked();
+    ui->tw_pacientes->setRowCount(0);
+    ui->tw_pacientes->setColumnCount(0);
+    ui->tw_colaboradores->setRowCount(0);
+    ui->tw_colaboradores->setColumnCount(0);
+}
 
 
 //////////////////////////////////////////
@@ -185,61 +237,25 @@ void MainWindow::resetButtonStyles() {
 // MÉTODO PARA ACESSAR A JANELA "ENTRAR"
 
 void MainWindow::on_btnEntrar_clicked() {
-    if (!logado) { // Estado: não logado
-        janela_entrar janelaEntrar(this, &conexao); // Passando a conexão para a janela de login
-        janelaEntrar.exec(); // Exibe a janela de login como modal
+    if (!logado) {                                                                                                   // NÃO LOGADO, LOGANDO
+        janela_entrar janelaEntrar(this, &conexao);                                                                  // Passando a conexão para a janela de login
+        janelaEntrar.exec();
 
-        if (janelaEntrar.logadoJanela) { // Verifica se o login foi bem-sucedido
-            logado = true;
-            conexao.abrir();
+        if (janelaEntrar.logadoJanela) {                                                                             // Verifica se o login foi bem-sucedido
 
-            // Atualiza informações do usuário
+            // Atualiza informações do usuário usando os dados emitidos pela janela_entrar
             id_usuario = janelaEntrar.id;
             nome_usuario = janelaEntrar.nome;
             clinica_usuario = janelaEntrar.clinica;
             cargo_usuario = janelaEntrar.cargo;
 
-            // Interface para usuário logado
-            ui->btnEntrar->setText("Sair");
-            ui->btnEntrar->setStyleSheet("background-color: darkred; color: white;");
-            QPixmap icone(":/icons/Generic avatar.png");
-            ui->iconPerfil->setPixmap(icone.scaled(35, 35, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-
-            ui->txtUsuario->setText(
-                QString("<html><head/><body><p><span style=\" font-size:18pt; font-weight:700; color:#000000;\">%1</span></p></body></html>")
-                    .arg(nome_usuario)
-                );
-            ui->txtClinica->setText(
-                QString("<html><head/><body><p><span style=\"font-size:18pt; font-weight:700;\">%1 -</span></p></body></html>")
-                    .arg(clinica_usuario) // Atualize se precisar usar informações do banco
-                );
-
+            usuarioEntrou();
         } else {
             conexao.fechar();
         }
 
-    } else { // Estado: logado
-        // Realiza logout
-        logado = false;
-
-        // Fecha a conexão
-        conexao.fechar();
-
-        // Reseta a interface
-        ui->btnEntrar->setText("Entrar");
-        ui->btnEntrar->setStyleSheet("background-color: darkblue; color: white;");
-        ui->iconPerfil->clear();
-        ui->txtUsuario->clear();
-        ui->txtClinica->setText(
-            "<html><head/><body><p><span style=\"font-size:18pt; font-weight:700;\">NOME_CLÍNICA</span></p></body></html>"
-            );
-
-        // Atualiza outras partes da interface
-        on_btnInicio_clicked();
-        ui->tw_pacientes->setRowCount(0);
-        ui->tw_pacientes->setColumnCount(0);
-        ui->tw_colaboradores->setRowCount(0);
-        ui->tw_colaboradores->setColumnCount(0);
+    } else {                                                                                                        // LOGADO, SAINDO
+        usuarioSaiu();
     }
 }
 
