@@ -256,7 +256,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="QLabel" name="label">
+          <widget class="QLabel" name="txtClinica">
            <property name="styleSheet">
             <string notr="true">color: rgb(0, 0, 0);</string>
            </property>
@@ -281,6 +281,9 @@
          </item>
          <item>
           <widget class="QPushButton" name="btnEntrar">
+           <property name="styleSheet">
+            <string notr="true">background-color: lightblue;</string>
+           </property>
            <property name="text">
             <string>Entrar</string>
            </property>
