@@ -128,7 +128,6 @@ void MainWindow::janelaFormatada(){
     /////////////////////////////////////////////////
 
     on_btnInicio_clicked();                                                                                         // DEFINI A PÁGINA INICIAL COMO SEMPRE A PRIMEIRA AO ABRIR O PROGRAMA
-    ui->btnInicio->setStyleSheet("background-color: rgb(179, 213, 243);");                                          // ALTERAR A COR DE DESTAQUE DO BOTÃO
 
     logado = false;
 
@@ -237,6 +236,7 @@ void MainWindow::on_btnInicio_clicked()
 {
     resetButtonStyles();
     ui->btnInicio->setStyleSheet("background-color: rgb(179, 213, 243);");                                          // ALTERAR A COR DE DESTAQUE DO BOTÃO
+    ui->btnInicio->setAutoFillBackground(true);
 
     int index = ui->paginas->indexOf(ui->Inicio);                                                                   // PÁGINA INICIO
     ui->paginas->setCurrentIndex(index);                                                                            // ACESSANDO A PÁGINA
@@ -255,6 +255,7 @@ void MainWindow::on_btnAgenda_clicked()
     if(logado){
         resetButtonStyles();
         ui->btnAgenda->setStyleSheet("background-color: rgb(179, 213, 243);");                                          // ALTERAR A COR DE DESTAQUE DO BOTÃO
+        ui->btnAgenda->setAutoFillBackground(true);
 
         int index = ui->paginas->indexOf(ui->Agenda);                                                                   // PÁGINA AGENDA
         ui->paginas->setCurrentIndex(index);
@@ -276,6 +277,7 @@ void MainWindow::on_btnAtendimento_clicked()
     if(logado){
         resetButtonStyles();
         ui->btnAtendimento->setStyleSheet("background-color: rgb(179, 213, 243);");                                       // ALTERAR A COR DE DESTAQUE DO BOTÃO
+        ui->btnAtendimento->setAutoFillBackground(true);
 
         int index = ui->paginas->indexOf(ui->Atendimento);                                                              // PÁGINA ATENDIMENTO
         ui->paginas->setCurrentIndex(index);                                                                            // ACESSANDO A PÁGINA
@@ -297,6 +299,7 @@ void MainWindow::on_btnPacientes_clicked()
     if(logado){
         resetButtonStyles();
         ui->btnPacientes->setStyleSheet("background-color: rgb(179, 213, 243);");                                       // ALTERAR A COR DE DESTAQUE DO BOTÃO
+        ui->btnPacientes->setAutoFillBackground(true);
 
         int index = ui->paginas->indexOf(ui->Pacientes);                                                                // PÁGINA PACIENTES
         ui->paginas->setCurrentIndex(index);                                                                            // ACESSANDO A PÁGINA
@@ -484,6 +487,7 @@ void MainWindow::on_btnColaboradores_clicked()
     if(logado){
         resetButtonStyles();
         ui->btnColaboradores->setStyleSheet("background-color: rgb(179, 213, 243);");                                   // ALTERAR A COR DE DESTAQUE DO BOTÃO
+        ui->btnColaboradores->setAutoFillBackground(true);
 
         int index = ui->paginas->indexOf(ui->Colaboradores);                                                            // PÁGINA COLABORADORES
         ui->paginas->setCurrentIndex(index);                                                                            // ACESSANDO A PÁGINA
@@ -666,6 +670,7 @@ void MainWindow::on_btnRelatorios_clicked()
     if(logado){
         resetButtonStyles();
         ui->btnRelatorios->setStyleSheet("background-color: rgb(179, 213, 243);");                                      // ALTERAR A COR DE DESTAQUE DO BOTÃO
+        ui->btnRelatorios->setAutoFillBackground(true);
 
         int index = ui->paginas->indexOf(ui->Relatorios);                                                               // PÁGINA RELATÓRIOS
         ui->paginas->setCurrentIndex(index);                                                                            // ACESSANDO A PÁGINA
@@ -687,6 +692,7 @@ void MainWindow::on_btnFornecedores_clicked()
     if(logado){
         resetButtonStyles();
         ui->btnFornecedores->setStyleSheet("background-color: rgb(179, 213, 243);");                                    // ALTERAR A COR DE DESTAQUE DO BOTÃO
+        ui->btnFornecedores->setAutoFillBackground(true);
 
         int index = ui->paginas->indexOf(ui->Fornecedores);                                                             // PÁGINA FORNECEDORES
         ui->paginas->setCurrentIndex(index);                                                                            // ACESSANDO A PÁGINA
