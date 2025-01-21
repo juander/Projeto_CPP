@@ -282,7 +282,7 @@
          <item>
           <widget class="QPushButton" name="btnEntrar">
            <property name="styleSheet">
-            <string notr="true">background-color: lightblue;</string>
+            <string notr="true">background-color: darkblue;</string>
            </property>
            <property name="text">
             <string>Entrar</string>
@@ -2279,7 +2279,7 @@
         <item>
          <widget class="QTabWidget" name="paginas">
           <property name="currentIndex">
-           <number>0</number>
+           <number>3</number>
           </property>
           <widget class="QWidget" name="Inicio">
            <property name="styleSheet">
