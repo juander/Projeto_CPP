@@ -17,8 +17,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     janelaFormatada();
 
-    logado = false;
-
 }
 
 MainWindow::~MainWindow()
@@ -131,6 +129,8 @@ void MainWindow::janelaFormatada(){
 
     on_btnInicio_clicked();                                                                                         // DEFINI A PÁGINA INICIAL COMO SEMPRE A PRIMEIRA AO ABRIR O PROGRAMA
     ui->btnInicio->setStyleSheet("background-color: rgb(179, 213, 243);");                                          // ALTERAR A COR DE DESTAQUE DO BOTÃO
+
+    logado = false;
 
 }
 
@@ -257,6 +257,7 @@ void MainWindow::on_btnAgenda_clicked()
         ui->btnAgenda->setStyleSheet("background-color: rgb(179, 213, 243);");                                          // ALTERAR A COR DE DESTAQUE DO BOTÃO
 
         int index = ui->paginas->indexOf(ui->Agenda);                                                                   // PÁGINA AGENDA
+        ui->paginas->setCurrentIndex(index);
     } else {
         QMessageBox::information(this, " ", "Contrate nosso serviço para ter acesso ao sistema!");
     }
@@ -447,6 +448,7 @@ void MainWindow::on_btnPacientes_clicked()
             for(int i = 1; i <= 8; i++){
                 ui->tw_pacientes->setItem(linha,i,new QTableWidgetItem(query.value(i).toString()));                     // ATUALIZANDO A TABLE COM A EDIÇÃO DO PACIENTE NO BANCO
             }
+            redimensionarTable(ui->tw_pacientes);                                                                       // AJUSTAR TABLE
         }else{
             QMessageBox::warning(this, " ", "Erro ao atualizar paciente na tabela");
         }
@@ -626,6 +628,7 @@ void MainWindow::on_btnColaboradores_clicked()
             for(int i = 1; i <= 8; i++){
                 ui->tw_colaboradores->setItem(linha,i,new QTableWidgetItem(query.value(i).toString()));                 // ATUALIZANDO A TABLE COM A EDIÇÃO DO COLABORADOR NO BANCO
             }
+            redimensionarTable(ui->tw_colaboradores);                                                                   // AJUSTAR TABLE
         }else{
             QMessageBox::warning(this, " ", "Erro ao atualizar colaborador na tabela");
         }
