@@ -206,8 +206,8 @@ void MainWindow::on_btnEntrar_clicked()
 
             QPixmap icone (":/icons/Generic avatar.png");
             ui->iconPerfil->setPixmap(icone);
-            ui->txtUsuario->setText(nome_usuario);
-            ui->txtClinica->setText(clinica);
+            ui->txtUsuario->setText("<html><head/><body><p><span style=\" font-size:11pt; color:#000000;\">" + nome_usuario + "</span></p></body></html>");
+            ui->txtClinica->setText("<html><head/><body><p><span style=\"font-size:18pt; font-weight:700;\">" + clinica + "</span></p></body></html>");
         }
 
     }else{
