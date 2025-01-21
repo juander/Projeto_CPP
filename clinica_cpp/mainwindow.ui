@@ -2603,7 +2603,7 @@ color: white;</string>
                 <item>
                  <widget class="QLabel" name="label">
                   <property name="text">
-                   <string>Pesquisar Paciente:</string>
+                   <string>Pesquisar :</string>
                   </property>
                  </widget>
                 </item>
@@ -2611,22 +2611,52 @@ color: white;</string>
                  <widget class="QLineEdit" name="lineEdit"/>
                 </item>
                 <item>
-                 <widget class="QComboBox" name="comboBox"/>
+                 <widget class="QComboBox" name="comboBox">
+                  <property name="enabled">
+                   <bool>true</bool>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>Paciente</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Médico</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Especialidade</string>
+                   </property>
+                  </item>
+                 </widget>
                 </item>
                 <item>
-                 <widget class="QDateEdit" name="dateEdit"/>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="pushButton">
+                 <widget class="QCheckBox" name="checkData">
                   <property name="text">
-                   <string>Filtrar</string>
+                   <string>Pesquisar por data</string>
                   </property>
                  </widget>
                 </item>
                </layout>
               </item>
               <item>
-               <widget class="QTableView" name="tableView"/>
+               <layout class="QHBoxLayout" name="horizontalLayout_10">
+                <item>
+                 <widget class="QTableView" name="tableView"/>
+                </item>
+                <item>
+                 <widget class="QCalendarWidget" name="calendarWidget">
+                  <property name="toolTipDuration">
+                   <number>-9</number>
+                  </property>
+                  <property name="verticalHeaderFormat">
+                   <enum>QCalendarWidget::VerticalHeaderFormat::NoVerticalHeader</enum>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
               <item>
                <layout class="QHBoxLayout" name="horizontalLayout_8">

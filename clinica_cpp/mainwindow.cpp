@@ -123,6 +123,8 @@ void MainWindow::janelaFormatada(){
 
     logado = false;
 
+    ui->checkData->setChecked(true);
+
 }
 
 
