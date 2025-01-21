@@ -109,6 +109,13 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>txtnome</tabstop>
+  <tabstop>txtsenha</tabstop>
+  <tabstop>btnEnt</tabstop>
+  <tabstop>btnCancelar</tabstop>
+  <tabstop>btnMostrar</tabstop>
+ </tabstops>
  <resources>
   <include location="icons.qrc"/>
  </resources>
