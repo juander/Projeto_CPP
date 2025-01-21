@@ -282,7 +282,8 @@
          <item>
           <widget class="QPushButton" name="btnEntrar">
            <property name="styleSheet">
-            <string notr="true">background-color: darkblue;</string>
+            <string notr="true">background-color: darkblue;
+color: white;</string>
            </property>
            <property name="text">
             <string>Entrar</string>
