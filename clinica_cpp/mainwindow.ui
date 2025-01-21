@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1283</width>
-    <height>796</height>
+    <width>1280</width>
+    <height>720</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -266,16 +266,19 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="iconPerfil">
+          <widget class="QLabel" name="txtUsuario">
            <property name="text">
             <string/>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="txtUsuario">
+          <widget class="QLabel" name="iconPerfil">
            <property name="text">
             <string/>
+           </property>
+           <property name="scaledContents">
+            <bool>false</bool>
            </property>
           </widget>
          </item>
@@ -2602,7 +2605,7 @@ color: white;</string>
              </rect>
             </property>
            </widget>
-           <widget class="QWidget" name="">
+           <widget class="QWidget" name="layoutWidget">
             <property name="geometry">
              <rect>
               <x>100</x>
@@ -2871,9 +2874,6 @@ color: white;</string>
     </item>
    </layout>
    <zorder></zorder>
-   <zorder>pushButton</zorder>
-   <zorder>dateEdit</zorder>
-   <zorder>comboBox</zorder>
   </widget>
  </widget>
  <resources>
