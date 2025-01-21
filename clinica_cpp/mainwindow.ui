@@ -2283,7 +2283,7 @@ color: white;</string>
         <item>
          <widget class="QTabWidget" name="paginas">
           <property name="currentIndex">
-           <number>5</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="Inicio">
            <property name="styleSheet">
@@ -2612,7 +2612,7 @@ color: white;</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLineEdit" name="lineEditAgenda"/>
+                     <widget class="QLineEdit" name="lineEdit"/>
                     </item>
                     <item>
                      <widget class="QComboBox" name="comboBoxAgenda">
@@ -2637,7 +2637,7 @@ color: white;</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QCheckBox" name="checkDataAgenda">
+                     <widget class="QCheckBox" name="checkData">
                       <property name="text">
                        <string>Pesquisar por data</string>
                       </property>
@@ -2646,26 +2646,26 @@ color: white;</string>
                    </layout>
                   </item>
                   <item>
-                   <widget class="QTableWidget" name="tw_agenda"/>
+                   <widget class="QTableView" name="tableView"/>
                   </item>
                   <item>
                    <layout class="QHBoxLayout" name="horizontalLayout_8">
                     <item>
-                     <widget class="QPushButton" name="btnAgendar">
+                     <widget class="QPushButton" name="pushButton_3">
                       <property name="text">
                        <string>Novo Agendamento</string>
                       </property>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QPushButton" name="btnEditarAgenda">
+                     <widget class="QPushButton" name="pushButton_4">
                       <property name="text">
                        <string>Editar</string>
                       </property>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QPushButton" name="btnApagarAgenda">
+                     <widget class="QPushButton" name="pushButton_5">
                       <property name="text">
                        <string>Apagar</string>
                       </property>
@@ -3886,7 +3886,7 @@ color: white;</string>
               <item>
                <widget class="QTabWidget" name="tabWidget">
                 <property name="currentIndex">
-                 <number>1</number>
+                 <number>0</number>
                 </property>
                 <widget class="QWidget" name="tab">
                  <attribute name="title">
