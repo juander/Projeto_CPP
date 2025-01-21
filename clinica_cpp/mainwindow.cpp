@@ -123,8 +123,6 @@ void MainWindow::janelaFormatada(){
 
     logado = false;
 
-    ui->checkData->setChecked(true);
-
 }
 
 
@@ -286,16 +284,70 @@ void MainWindow::on_btnAgenda_clicked()
 {
     if(logado){
         resetButtonStyles();
-        ui->btnAgenda->setStyleSheet("background-color: rgb(179, 213, 243);");                                          // ALTERAR A COR DE DESTAQUE DO BOTÃO
+        ui->btnAgenda->setStyleSheet("background-color: rgb(179, 213, 243);");                                            // ALTERAR A COR DE DESTAQUE DO BOTÃO
         ui->btnAgenda->setAutoFillBackground(true);
 
-        int index = ui->paginas->indexOf(ui->Agenda);                                                                   // PÁGINA AGENDA
+        int index = ui->paginas->indexOf(ui->Agenda);                                                                     // PÁGINA AGENDA
         ui->paginas->setCurrentIndex(index);
+
+        QSqlQuery query;
+        query.prepare("SELECT * FROM tb_agendamentos WHERE paciente LIKE :paciente");                                     // ACESSANDO A TABELA NO BANCO
+        query.bindValue(":paciente", nome_usuario + "%");
+
+        if(query.exec()){
+            setAgenda(query);                                                                                              // CARREGANDO A TABELA NA TABLE ATRAVÉS DO MÉTODO
+        }else{
+            qDebug() << "Erro ao executar a query:" << query.lastError().text();
+        }
+
     } else {
         QMessageBox::information(this, " ", "Contrate nosso serviço para ter acesso ao sistema!");
     }
 }
+    void MainWindow::on_lineEditAgenda_textChanged(const QString &arg1)
+    {
+        QString nome = ui->lineEditAgenda->text(); // Pegando o texto do linePesquisaPac
 
+        QSqlQuery query;
+        query.prepare("SELECT * FROM tb_agendamentos WHERE profissional LIKE :profissional");                               // FAZENDO A QUERY DE SELECT PELO NOME
+        query.bindValue(":profissional", nome + "%");
+        if(query.exec()){
+            setAgenda(query);                                                                                               // CARREGANDO A TABELA NA TABLE ATRAVÉS DO MÉTODO
+        }else{
+            qDebug() << "Erro ao executar a query:" << query.lastError().text();
+        }
+    }
+
+    void MainWindow::setAgenda(QSqlQuery &query)
+    {
+        int tb_linha = 0;
+
+        // Limpa os dados antigos da tabela
+        ui->tw_agenda->clearContents();
+        ui->tw_agenda->setRowCount(0);  // Reseta as linhas
+
+        ui->tw_agenda->setColumnCount(7);                                                                        // SETA A TABLE EM 9 COLUNAS
+        while(query.next()){
+
+            ui->tw_agenda->insertRow(tb_linha);
+
+            for(int i = 0; i <= 6; i++){
+                ui->tw_agenda->setItem(tb_linha,i,new QTableWidgetItem(query.value(i).toString()));              // LOOP QUE PREENCHE A TABLE COM OS DADOS DO BANCO
+            }
+            ui->tw_agenda->setRowHeight(tb_linha,20);
+
+            tb_linha++;
+        }
+
+        QStringList cabecalho = {"ID", "Profissional", "Paciente", "Especialidade", "Data", "Hora", "Status"};
+        ui->tw_agenda->setHorizontalHeaderLabels(cabecalho);
+        ui->tw_agenda->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        ui->tw_agenda->setSelectionBehavior(QAbstractItemView::SelectRows);
+        ui->tw_agenda->verticalHeader()->setVisible(false);
+        ui->tw_agenda->setStyleSheet("QTableWidget::item:selected {background-color: blue}");
+
+        redimensionarTable(ui->tw_agenda);                                                                          // REDIMENSIONANDO A TABELA
+    }
 // FIM DA PÁGINA AGENDA
 
 

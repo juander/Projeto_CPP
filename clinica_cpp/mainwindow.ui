@@ -2612,10 +2612,10 @@ color: white;</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QLineEdit" name="lineEdit"/>
+                     <widget class="QLineEdit" name="lineEditAgenda"/>
                     </item>
                     <item>
-                     <widget class="QComboBox" name="comboBox">
+                     <widget class="QComboBox" name="comboBoxAgenda">
                       <property name="enabled">
                        <bool>true</bool>
                       </property>
@@ -2637,7 +2637,7 @@ color: white;</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QCheckBox" name="checkData">
+                     <widget class="QCheckBox" name="checkDataAgenda">
                       <property name="text">
                        <string>Pesquisar por data</string>
                       </property>
@@ -2646,26 +2646,26 @@ color: white;</string>
                    </layout>
                   </item>
                   <item>
-                   <widget class="QTableView" name="tableView"/>
+                   <widget class="QTableWidget" name="tw_agenda"/>
                   </item>
                   <item>
                    <layout class="QHBoxLayout" name="horizontalLayout_8">
                     <item>
-                     <widget class="QPushButton" name="pushButton_3">
+                     <widget class="QPushButton" name="btnAgendar">
                       <property name="text">
                        <string>Novo Agendamento</string>
                       </property>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QPushButton" name="pushButton_4">
+                     <widget class="QPushButton" name="btnEditarAgenda">
                       <property name="text">
                        <string>Editar</string>
                       </property>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QPushButton" name="pushButton_5">
+                     <widget class="QPushButton" name="btnApagarAgenda">
                       <property name="text">
                        <string>Apagar</string>
                       </property>

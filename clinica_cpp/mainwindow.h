@@ -54,11 +54,12 @@ private slots:
 
     void on_btnEntrar_clicked();
 
+    //////////////////////////////////////////////
+
     // MÉTODOS DA TROCA DE PÁGINAS
 
-    void on_btnInicio_clicked();
 
-    /////////////////////////////////////////////
+    void on_btnInicio_clicked();
 
     void on_btnAgenda_clicked();
 
@@ -71,6 +72,12 @@ private slots:
     void on_btnFornecedores_clicked();
 
     void on_btnRelatorios_clicked();
+
+    //////////////////////////////////////////////
+
+    void setAgenda(QSqlQuery &query);                      // MÉTODOS DE AGENDAMENTO
+
+    void on_lineEditAgenda_textChanged(const QString &arg1);
 
     //////////////////////////////////////////////
 
