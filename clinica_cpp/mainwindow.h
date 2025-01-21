@@ -46,7 +46,9 @@ public:
 
     static bool logado;
 
-    static QString nome_usuario;
+    static int id;
+
+    static QString nome_usuario, clinica, cargo;
 
 private slots:
 

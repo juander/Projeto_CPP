@@ -2,6 +2,9 @@
 #include "./ui_mainwindow.h"
 
 QString MainWindow::nome_usuario;
+QString MainWindow::clinica;
+QString MainWindow::cargo;
+int MainWindow::id;
 bool MainWindow::logado;
 
 // DEFINIÇÃO DA JANELA PRINCIPAL, QUE INCLUEM AS TABLEWIDGETS E SEUS BOTÕES
@@ -204,7 +207,7 @@ void MainWindow::on_btnEntrar_clicked()
             QPixmap icone (":/icons/Generic avatar.png");
             ui->iconPerfil->setPixmap(icone);
             ui->txtUsuario->setText(nome_usuario);
-            ui->txtClinica->setText("clinica");
+            ui->txtClinica->setText(clinica);
         }
 
     }else{

@@ -34,7 +34,10 @@ void janela_entrar::on_btnEnt_clicked()
             if(query.first()){
                 if(query.value(2).toString() == senha){
                     MainWindow::logado = true;
+                    MainWindow::id = query.value(0).toInt();
                     MainWindow::nome_usuario = query.value(1).toString();
+                    MainWindow::clinica = query.value(3).toString();
+                    MainWindow::cargo = query.value(4).toString();
                     close();
                 } else {
                     QMessageBox::warning(this, " ", "Senha incorreta");
