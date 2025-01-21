@@ -291,8 +291,8 @@ void MainWindow::on_btnAgenda_clicked()
         ui->paginas->setCurrentIndex(index);
 
         QSqlQuery query;
-        query.prepare("SELECT * FROM tb_agendamentos WHERE paciente LIKE :paciente");                                     // ACESSANDO A TABELA NO BANCO
-        query.bindValue(":paciente", nome_usuario + "%");
+        query.prepare("SELECT * FROM tb_agendamentos WHERE profissional LIKE :profissional");                                     // ACESSANDO A TABELA NO BANCO
+        query.bindValue(":profissional", nome_usuario + "%");
 
         if(query.exec()){
             setAgenda(query);                                                                                              // CARREGANDO A TABELA NA TABLE ATRAVÉS DO MÉTODO
@@ -304,19 +304,47 @@ void MainWindow::on_btnAgenda_clicked()
         QMessageBox::information(this, " ", "Contrate nosso serviço para ter acesso ao sistema!");
     }
 }
+
+    ////////////////////////////////////////////////////////////////////
+
+    // MÉTODOS DA PÁGINA "AGENDA"
+
+
+    // MÉTODO DE PESQUISA
+
     void MainWindow::on_lineEditAgenda_textChanged(const QString &arg1)
     {
-        QString nome = ui->lineEditAgenda->text(); // Pegando o texto do linePesquisaPac
+        QString pesquisado = ui->lineEditAgenda->text(); // Pegando o texto do lineEditAgenda
+
+        QString opcaoSelecionada = ui->comboBoxAgenda->currentText(); // Pegando a opção selecionada no ComboBox
 
         QSqlQuery query;
-        query.prepare("SELECT * FROM tb_agendamentos WHERE profissional LIKE :profissional");                               // FAZENDO A QUERY DE SELECT PELO NOME
-        query.bindValue(":profissional", nome + "%");
-        if(query.exec()){
-            setAgenda(query);                                                                                               // CARREGANDO A TABELA NA TABLE ATRAVÉS DO MÉTODO
-        }else{
+
+        if (opcaoSelecionada == "Profissional") {
+            query.prepare("SELECT * FROM tb_agendamentos WHERE profissional LIKE :profissional"); // Query para Profissional
+            query.bindValue(":profissional", pesquisado + "%");
+
+        } else if (opcaoSelecionada == "Paciente") {
+            query.prepare("SELECT * FROM tb_agendamentos WHERE paciente LIKE :paciente"); // Query para Paciente                          // CONFERINDO QUAL QUERY ELE QUER SELECIONAR DE ACORDO COM A COMBOBOX
+            query.bindValue(":paciente", pesquisado + "%");
+
+        } else if (opcaoSelecionada == "Especialidade") {
+            query.prepare("SELECT * FROM tb_agendamentos WHERE especialidade LIKE :especialidade"); // Query para Especialidade
+            query.bindValue(":especialidade", pesquisado + "%");
+
+        }
+
+        if (query.exec()) {
+            setAgenda(query); // Carregando a tabela na TableWidget através do método
+        } else {
             qDebug() << "Erro ao executar a query:" << query.lastError().text();
         }
     }
+
+
+    /////////////////////////////////////////////////////////////////
+
+    // MÉTODO PARA AJUSTAR A TABLE DA AGENDA
 
     void MainWindow::setAgenda(QSqlQuery &query)
     {
@@ -326,7 +354,7 @@ void MainWindow::on_btnAgenda_clicked()
         ui->tw_agenda->clearContents();
         ui->tw_agenda->setRowCount(0);  // Reseta as linhas
 
-        ui->tw_agenda->setColumnCount(7);                                                                        // SETA A TABLE EM 9 COLUNAS
+        ui->tw_agenda->setColumnCount(7);                                                                        // SETA A TABLE EM 7 COLUNAS
         while(query.next()){
 
             ui->tw_agenda->insertRow(tb_linha);
@@ -348,6 +376,8 @@ void MainWindow::on_btnAgenda_clicked()
 
         redimensionarTable(ui->tw_agenda);                                                                          // REDIMENSIONANDO A TABELA
     }
+
+
 // FIM DA PÁGINA AGENDA
 
 
