@@ -1,14 +1,14 @@
 #include "cadastrosessao.h"
 #include "ui_cadastrosessao.h"
 
-cadastrosessao::cadastrosessao(QWidget *parent)
+cadastroSessao::cadastroSessao(QWidget *parent)
     : QDialog(parent)
-    , ui(new Ui::cadastrosessao)
+    , ui(new Ui::cadastroSessao)
 {
     ui->setupUi(this);
 }
 
-cadastrosessao::~cadastrosessao()
+cadastroSessao::~cadastroSessao()
 {
     delete ui;
 }

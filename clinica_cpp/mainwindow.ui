@@ -2745,16 +2745,29 @@ color: white;</string>
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_13">
                 <item>
-                 <widget class="QTextEdit" name="textEdit">
-                  <property name="documentTitle">
-                   <string/>
+                 <widget class="QGroupBox" name="groupBox_2">
+                  <property name="title">
+                   <string>Editor de Texto</string>
                   </property>
-                  <property name="markdown">
-                   <string/>
-                  </property>
-                  <property name="placeholderText">
-                   <string>Digite aqui o teu pai</string>
-                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_37">
+                   <item>
+                    <layout class="QVBoxLayout" name="verticalLayout_17">
+                     <item>
+                      <widget class="QTextEdit" name="textEdit">
+                       <property name="documentTitle">
+                        <string/>
+                       </property>
+                       <property name="markdown">
+                        <string/>
+                       </property>
+                       <property name="placeholderText">
+                        <string>Digite aqui o teu pai</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
                  </widget>
                 </item>
                 <item>
