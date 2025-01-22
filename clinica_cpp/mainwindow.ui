@@ -2283,7 +2283,7 @@ color: white;</string>
         <item>
          <widget class="QTabWidget" name="paginas">
           <property name="currentIndex">
-           <number>6</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="Inicio">
            <property name="styleSheet">
@@ -2619,6 +2619,11 @@ color: white;</string>
                       <property name="enabled">
                        <bool>true</bool>
                       </property>
+                      <item>
+                       <property name="text">
+                        <string>Minha Agenda</string>
+                       </property>
+                      </item>
                       <item>
                        <property name="text">
                         <string>Profissional</string>
