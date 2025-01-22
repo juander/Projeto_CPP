@@ -45,6 +45,10 @@ public:
 
     void janelaFormatada();                                            // MÉTODO PARA FORMATAR A PÁGINA
 
+    QString getNomeUsuario() const;                                     // Método público para obter o nome do usuário
+
+    int getIdUsuario() const;                                          // MÉTODO PARA OBTER O ID DO USUÁRIO
+
 private slots:
 
     // MÉTODOS DE LOGIN

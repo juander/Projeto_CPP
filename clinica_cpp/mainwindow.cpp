@@ -21,6 +21,20 @@ MainWindow::~MainWindow()
 
 
 
+
+//////////////////////////////////////////
+
+
+// MÉTODOS GET PARA ACESO DE DADOS PRIVADOS
+
+QString MainWindow::getNomeUsuario() const {
+    return nome_usuario;
+}
+
+int MainWindow::getIdUsuario() const {
+    return id_usuario;
+}
+
 //////////////////////////////////////////
 
 // MÉTODO PARA SETAR A PALETA DE CORES DO SISTEMA PARA CLARO EM QUALQUER DISPOSITIVO
