@@ -844,6 +844,7 @@ void MainWindow::on_tw_atendimento_cellClicked(int row, int column)
     // pegar id do agendamento selecionado
     // pesquisar esse id na tabela atendimentos, se tiver, recuperar valores, senao criar novo elemento
     QString texto;
+
     int id = ui->tw_atendimento->item(row, 0)->text().toInt();
     QSqlQuery query;
     qDebug() << id;
@@ -854,6 +855,17 @@ void MainWindow::on_tw_atendimento_cellClicked(int row, int column)
         if (query.next()) {
             texto = query.value(1).toString(); // Pega o valor da segunda coluna
             ui->textEdit->setText(texto); // Use a variável texto aqui
+
+            QString status = ui->tw_atendimento->item(row, 1)->text(); // Pega o valor da segunda coluna
+            qDebug() << status;
+            if(status == "realizado") {
+                ui->radioRealizado->setChecked(true);
+            } else if(status == "aguardando"){
+                ui->radioAguardando->setChecked(true);
+            } else { // paciente ausente
+                ui->radioAusente->setChecked(true);
+            }
+
         }
     } else {
         qDebug() << "Erro ao executar a query:" << query.lastError().text();

@@ -2780,21 +2780,21 @@ color: white;</string>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QRadioButton" name="radioButton_3">
+                   <widget class="QRadioButton" name="radioRealizado">
                     <property name="text">
                      <string>Realizado</string>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QRadioButton" name="radioButton_5">
+                   <widget class="QRadioButton" name="radioAusente">
                     <property name="text">
                      <string>Paciente ausente</string>
                     </property>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QRadioButton" name="radioButton_4">
+                   <widget class="QRadioButton" name="radioAguardando">
                     <property name="text">
                      <string>Aguardando</string>
                     </property>
