@@ -2672,11 +2672,17 @@ color: white;</string>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QPushButton" name="btnApagarAgenda">
-                      <property name="text">
-                       <string>Apagar</string>
+                     <spacer name="horizontalSpacer_13">
+                      <property name="orientation">
+                       <enum>Qt::Orientation::Horizontal</enum>
                       </property>
-                     </widget>
+                      <property name="sizeHint" stdset="0">
+                       <size>
+                        <width>40</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </spacer>
                     </item>
                    </layout>
                   </item>
