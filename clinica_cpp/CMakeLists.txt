@@ -33,6 +33,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         edicaocolaboradores.h edicaocolaboradores.cpp edicaocolaboradores.ui
         janela_agendar.h janela_agendar.cpp janela_agendar.ui
         Conexao.cpp
+        cadastrosessao.h cadastrosessao.cpp cadastrosessao.ui
+
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET clinica_cpp APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

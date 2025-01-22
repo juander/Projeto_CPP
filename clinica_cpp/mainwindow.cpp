@@ -319,6 +319,43 @@ void MainWindow::on_btnAgenda_clicked()
 
     // MÉTODOS DA PÁGINA "AGENDA"
 
+    ////////////////////////////////////////////////////////////////
+
+
+    // MÉTODO PARA AJUSTAR A TABLE DA AGENDA
+
+    void MainWindow::setAgenda(QSqlQuery &query)
+    {
+        int tb_linha = 0;
+
+        // Limpa os dados antigos da tabela
+        ui->tw_agenda->clearContents();
+        ui->tw_agenda->setRowCount(0);  // Reseta as linhas
+
+        ui->tw_agenda->setColumnCount(7);                                                                        // SETA A TABLE EM 7 COLUNAS
+        while(query.next()){
+
+            ui->tw_agenda->insertRow(tb_linha);
+
+            for(int i = 0; i <= 6; i++){
+                ui->tw_agenda->setItem(tb_linha,i,new QTableWidgetItem(query.value(i).toString()));              // LOOP QUE PREENCHE A TABLE COM OS DADOS DO BANCO
+            }
+            ui->tw_agenda->setRowHeight(tb_linha,20);
+
+            tb_linha++;
+        }
+
+        QStringList cabecalho = {"ID", "Profissional", "Paciente", "Especialidade", "Data", "Hora", "Status"};
+        ui->tw_agenda->setHorizontalHeaderLabels(cabecalho);
+        ui->tw_agenda->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        ui->tw_agenda->setSelectionBehavior(QAbstractItemView::SelectRows);
+        ui->tw_agenda->verticalHeader()->setVisible(false);
+        ui->tw_agenda->setStyleSheet("QTableWidget::item:selected {background-color: blue}");
+
+        redimensionarTable(ui->tw_agenda);                                                                          // REDIMENSIONANDO A TABELA
+    }
+
+    ////////////////////////////////////////////////////////////////
 
     // MÉTODO DE PESQUISA
 
@@ -652,44 +689,14 @@ void MainWindow::on_btnAgenda_clicked()
         }
     }
 
-
-
-
     /////////////////////////////////////////////////////////////////
 
-    // MÉTODO PARA AJUSTAR A TABLE DA AGENDA
+    // MÉTODO DE CADASTRO DE SESSÃO
 
-    void MainWindow::setAgenda(QSqlQuery &query)
+    void MainWindow::on_btnAgendar_clicked()
     {
-        int tb_linha = 0;
 
-        // Limpa os dados antigos da tabela
-        ui->tw_agenda->clearContents();
-        ui->tw_agenda->setRowCount(0);  // Reseta as linhas
-
-        ui->tw_agenda->setColumnCount(7);                                                                        // SETA A TABLE EM 7 COLUNAS
-        while(query.next()){
-
-            ui->tw_agenda->insertRow(tb_linha);
-
-            for(int i = 0; i <= 6; i++){
-                ui->tw_agenda->setItem(tb_linha,i,new QTableWidgetItem(query.value(i).toString()));              // LOOP QUE PREENCHE A TABLE COM OS DADOS DO BANCO
-            }
-            ui->tw_agenda->setRowHeight(tb_linha,20);
-
-            tb_linha++;
-        }
-
-        QStringList cabecalho = {"ID", "Profissional", "Paciente", "Especialidade", "Data", "Hora", "Status"};
-        ui->tw_agenda->setHorizontalHeaderLabels(cabecalho);
-        ui->tw_agenda->setEditTriggers(QAbstractItemView::NoEditTriggers);
-        ui->tw_agenda->setSelectionBehavior(QAbstractItemView::SelectRows);
-        ui->tw_agenda->verticalHeader()->setVisible(false);
-        ui->tw_agenda->setStyleSheet("QTableWidget::item:selected {background-color: blue}");
-
-        redimensionarTable(ui->tw_agenda);                                                                          // REDIMENSIONANDO A TABELA
     }
-
 
 // FIM DA PÁGINA AGENDA
 

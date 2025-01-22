@@ -91,6 +91,8 @@ private slots:
 
     void atualizarTabelaPorData();
 
+    void on_btnAgendar_clicked();
+
     //////////////////////////////////////////////
 
     // Método para configurar a tabela de pacientes
