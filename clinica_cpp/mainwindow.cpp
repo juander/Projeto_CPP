@@ -695,7 +695,8 @@ void MainWindow::on_btnAgenda_clicked()
 
     void MainWindow::on_btnAgendar_clicked()
     {
-
+        cadastroSessao cadastrarSessao;
+        cadastrarSessao.exec();
     }
 
 // FIM DA PÁGINA AGENDA

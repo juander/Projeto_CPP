@@ -20,6 +20,7 @@
 
 #include "cadastropacientes.h"
 #include "cadastrocolaboradores.h"
+#include "cadastrosessao.h"
 
 #include "edicaopaciente.h"
 #include "edicaocolaboradores.h"

@@ -31,7 +31,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         janela_entrar.h janela_entrar.cpp janela_entrar.ui
         cadastrocolaboradores.h cadastrocolaboradores.cpp cadastrocolaboradores.ui
         edicaocolaboradores.h edicaocolaboradores.cpp edicaocolaboradores.ui
-        janela_agendar.h janela_agendar.cpp janela_agendar.ui
         Conexao.cpp
         cadastrosessao.h cadastrosessao.cpp cadastrosessao.ui
 
