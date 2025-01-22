@@ -2722,7 +2722,7 @@ color: white;</string>
                 <item>
                  <layout class="QHBoxLayout" name="horizontalLayout_12">
                   <item>
-                   <widget class="QLineEdit" name="lineEdit_2">
+                   <widget class="QLineEdit" name="lineEditAtendimento">
                     <property name="placeholderText">
                      <string>Pesquisar Paciente</string>
                     </property>
@@ -2738,7 +2738,7 @@ color: white;</string>
                  </layout>
                 </item>
                 <item>
-                 <widget class="QTableView" name="tableView_2"/>
+                 <widget class="QTableWidget" name="tw_atendimento"/>
                 </item>
                </layout>
               </item>

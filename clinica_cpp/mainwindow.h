@@ -95,6 +95,10 @@ private slots:
 
     //////////////////////////////////////////////
 
+    void setTabelaAtendimento(QSqlQuery &query);            // MÉTODOS DE ATENDIMENTO
+
+    ///
+
     // Método para configurar a tabela de pacientes
     void setTabelaPacientes(QSqlQuery &query);
 
@@ -133,6 +137,12 @@ private slots:
     void on_linePesquisaCol_textChanged(const QString &arg1);
 
     /////////////////////////////////////////////////
+
+    void on_lineEditAtendimento_textChanged(const QString &arg1);
+
+    void on_checkHoje_checkStateChanged(const Qt::CheckState &arg1);
+
+    void on_tw_atendimento_cellClicked(int row, int column);
 
 private:
     Ui::MainWindow *ui;

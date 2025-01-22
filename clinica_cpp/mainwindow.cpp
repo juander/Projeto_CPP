@@ -590,7 +590,6 @@ void MainWindow::on_btnAgenda_clicked()
         }
     }
 
-
     void MainWindow::on_checkDataAgenda_stateChanged(int arg1)
     {
 
@@ -708,16 +707,155 @@ void MainWindow::on_btnAgenda_clicked()
 // MÉTODO PARA ACESSAR A PÁGINA "ATENDIMENTO"
 
 void MainWindow::on_btnAtendimento_clicked()
-{
-    if(logado){
-        resetButtonStyles();
-        ui->btnAtendimento->setStyleSheet("background-color: rgb(179, 213, 243);");                                       // ALTERAR A COR DE DESTAQUE DO BOTÃO
-        ui->btnAtendimento->setAutoFillBackground(true);
+    {
+        if(logado){
+            resetButtonStyles();
+            ui->btnAtendimento->setStyleSheet("background-color: rgb(179, 213, 243);");                                            // ALTERAR A COR DE DESTAQUE DO BOTÃO
+            ui->btnAtendimento->setAutoFillBackground(true);
 
-        int index = ui->paginas->indexOf(ui->Atendimento);                                                              // PÁGINA ATENDIMENTO
-        ui->paginas->setCurrentIndex(index);                                                                            // ACESSANDO A PÁGINA
+            ui->checkHoje->setChecked(true);
+
+            int index = ui->paginas->indexOf(ui->Atendimento);                                                                     // PÁGINA AGENDA
+            ui->paginas->setCurrentIndex(index);
+
+            QSqlQuery query;
+
+            QDate data = QDate::currentDate();
+
+            query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data");                          // ACESSANDO A TABELA NO BANCO
+            query.bindValue(":id_profissional", id_usuario);
+            query.bindValue(":data", data.toString("dd/MM/yyyy"));
+
+            if(query.exec()){
+                setTabelaAtendimento(query);                                                                                              // CARREGANDO A TABELA NA TABLE ATRAVÉS DO MÉTODO
+            }else{
+                qDebug() << "Erro ao executar a query:" << query.lastError().text();
+            }
+        } else {
+            QMessageBox::information(this, " ", "Contrate nosso serviço para ter acesso ao sistema!");
+        }
+    }
+
+
+void MainWindow::setTabelaAtendimento(QSqlQuery &query)
+    {
+        int tb_linha = 0;
+
+        // Limpa os dados antigos da tabela
+        ui->tw_atendimento->clearContents();
+        ui->tw_atendimento->setRowCount(0);  // Reseta as linhas
+
+        ui->tw_atendimento->setColumnCount(7);                                                                        // SETA A TABLE EM 7 COLUNAS
+        while(query.next()){
+
+            ui->tw_atendimento->insertRow(tb_linha);
+
+            for(int i = 0; i <= 6; i++){
+                ui->tw_atendimento->setItem(tb_linha,i,new QTableWidgetItem(query.value(i).toString()));              // LOOP QUE PREENCHE A TABLE COM OS DADOS DO BANCO
+            }
+            ui->tw_atendimento->setRowHeight(tb_linha,20);
+
+            tb_linha++;
+        }
+
+        QStringList cabecalho = {"ID", "Profissional", "Paciente", "Especialidade", "Data", "Hora", "Status"};
+        ui->tw_atendimento->setHorizontalHeaderLabels(cabecalho);
+        ui->tw_atendimento->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        ui->tw_atendimento->setSelectionBehavior(QAbstractItemView::SelectRows);
+        ui->tw_atendimento->verticalHeader()->setVisible(false);
+        ui->tw_atendimento->setStyleSheet("QTableWidget::item:selected {background-color: blue}");
+
+        redimensionarTable(ui->tw_atendimento);                                                                          // REDIMENSIONANDO A TABELA
+    }
+
+void MainWindow::on_lineEditAtendimento_textChanged(const QString &arg1)
+{
+    QString pesquisado = ui->lineEditAtendimento->text();
+    bool filtrarHoje = ui->checkHoje->isChecked();
+    QDate data = QDate::currentDate();
+    QSqlQuery query;
+
+    if(!filtrarHoje){
+        query.prepare("SELECT * FROM tb_agendamentos WHERE paciente LIKE :paciente AND id_profissional = :id_profissional");
+        query.bindValue(":id_profissional", id_usuario);
+        query.bindValue(":paciente", pesquisado + "%");
     } else {
-        QMessageBox::information(this, " ", "Contrate nosso serviço para ter acesso ao sistema!");
+        query.prepare("SELECT * FROM tb_agendamentos WHERE paciente LIKE :paciente AND data = :data AND id_profissional = :id_profissional");
+        query.bindValue(":paciente", pesquisado + "%");
+        query.bindValue(":id_profissional", id_usuario);
+        query.bindValue(":data", data.toString("dd/MM/yyyy"));
+    }
+
+    if(query.exec()){
+        setTabelaAtendimento(query);                                                                                              // CARREGANDO A TABELA NA TABLE ATRAVÉS DO MÉTODO
+    }else{
+        qDebug() << "Erro ao executar a query:" << query.lastError().text();
+    }
+}
+
+void MainWindow::on_checkHoje_checkStateChanged(const Qt::CheckState &arg1)
+{
+    bool filtrarHoje = ui->checkHoje->isChecked(); // Verifica se o filtro por data está ativo
+    QString pesquisado = ui->lineEditAtendimento->text();
+    QDate data = QDate::currentDate();
+
+    QSqlQuery query;
+
+    if(pesquisado == ""){
+        if(!filtrarHoje){
+
+            query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional");
+            query.bindValue(":id_profissional", id_usuario);
+
+        } else {
+
+            query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data");
+            query.bindValue(":id_profissional", id_usuario);
+            query.bindValue(":data", data.toString("dd/MM/yyyy"));
+        }
+    } else {
+
+        if(!filtrarHoje){
+
+            query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND paciente LIKE :paciente");
+            query.bindValue(":id_profissional", id_usuario);
+            query.bindValue(":paciente", pesquisado + "%");
+
+        } else {
+
+            query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data AND paciente LIKE :paciente");
+            query.bindValue(":paciente", pesquisado + "%");
+            query.bindValue(":id_profissional", id_usuario);
+            query.bindValue(":data", data.toString("dd/MM/yyyy"));
+        }
+    }
+
+    // Executa a query
+    if (query.exec()) {
+        setTabelaAtendimento(query); // Atualiza a tabela
+    } else {
+        qDebug() << "Erro ao executar a query:" << query.lastError().text();
+    }
+}
+
+void MainWindow::on_tw_atendimento_cellClicked(int row, int column)
+{   
+    // pegar id do agendamento selecionado
+    // pesquisar esse id na tabela atendimentos, se tiver, recuperar valores, senao criar novo elemento
+    QString texto;
+    int id = ui->tw_atendimento->item(row, 0)->text().toInt();
+    QSqlQuery query;
+    qDebug() << id;
+    query.prepare("SELECT * FROM tb_atendimentos WHERE id_agendamento = :id_agendamento");
+    query.bindValue(":id_agendamento", id);
+
+    if (query.exec()) {
+        if (query.next()) {
+            texto = query.value(1).toString(); // Pega o valor da segunda coluna
+            ui->textEdit->setText(texto); // Use a variável texto aqui
+        }
+    } else {
+        qDebug() << "Erro ao executar a query:" << query.lastError().text();
     }
 }
 
@@ -1140,4 +1278,5 @@ void MainWindow::on_btnFornecedores_clicked()
 
 
 ///////////////////////////////////////////////////
+
 
