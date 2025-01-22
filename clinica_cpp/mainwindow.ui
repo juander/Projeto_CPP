@@ -2621,12 +2621,12 @@ color: white;</string>
                       </property>
                       <item>
                        <property name="text">
-                        <string>Profissional</string>
+                        <string>Paciente</string>
                        </property>
                       </item>
                       <item>
                        <property name="text">
-                        <string>Paciente</string>
+                        <string>Profissional</string>
                        </property>
                       </item>
                       <item>
