@@ -291,8 +291,8 @@ void MainWindow::on_btnAgenda_clicked()
         ui->paginas->setCurrentIndex(index);
 
         QSqlQuery query;
-        query.prepare("SELECT * FROM tb_agendamentos WHERE profissional LIKE :profissional");                                     // ACESSANDO A TABELA NO BANCO
-        query.bindValue(":profissional", nome_usuario + "%");
+        query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional");                          // ACESSANDO A TABELA NO BANCO
+        query.bindValue(":id_profissional", id_usuario);
 
         if(query.exec()){
             setAgenda(query);                                                                                              // CARREGANDO A TABELA NA TABLE ATRAVÉS DO MÉTODO
@@ -305,42 +305,208 @@ void MainWindow::on_btnAgenda_clicked()
     }
 }
 
-    ////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
 
     // MÉTODOS DA PÁGINA "AGENDA"
 
 
     // MÉTODO DE PESQUISA
 
-    void MainWindow::on_lineEditAgenda_textChanged(const QString &arg1)
+    void MainWindow::on_checkMinhaAgenda_stateChanged(int arg1)
     {
-        QString pesquisado = ui->lineEditAgenda->text(); // Pegando o texto do lineEditAgenda
+        bool filtrarMinhaAgenda = ui->checkMinhaAgenda->isChecked();
+        qDebug() << "Minha agenda: " << filtrarMinhaAgenda;
 
-        QString opcaoSelecionada = ui->comboBoxAgenda->currentText(); // Pegando a opção selecionada no ComboBox
+        bool filtrarData = ui->checkDataAgenda->isChecked(); // Verifica se o filtro por data está ativo
 
         QSqlQuery query;
 
-        if (opcaoSelecionada == "Profissional") {
-            query.prepare("SELECT * FROM tb_agendamentos WHERE profissional LIKE :profissional"); // Query para Profissional
-            query.bindValue(":profissional", pesquisado + "%");
+        if (filtrarMinhaAgenda){
+            ui->lineEditAgenda->clear();
 
-        } else if (opcaoSelecionada == "Paciente") {
-            query.prepare("SELECT * FROM tb_agendamentos WHERE paciente LIKE :paciente"); // Query para Paciente                          // CONFERINDO QUAL QUERY ELE QUER SELECIONAR DE ACORDO COM A COMBOBOX
-            query.bindValue(":paciente", pesquisado + "%");
+            query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional");
+            query.bindValue(":id_profissional", id_usuario);
 
-        } else if (opcaoSelecionada == "Especialidade") {
-            query.prepare("SELECT * FROM tb_agendamentos WHERE especialidade LIKE :especialidade"); // Query para Especialidade
-            query.bindValue(":especialidade", pesquisado + "%");
+            ui->comboBoxAgenda->setCurrentIndex(0);
+        } else {
 
+            if(!filtrarData){
+                query.prepare("SELECT * FROM tb_agendamentos");
+            } else {
+
+                QDate data = ui->calendarioAgenda->selectedDate();
+
+                query.prepare("SELECT * FROM tb_agendamentos WHERE data = :data");
+                query.bindValue(":data", data);
+            }
         }
 
+        // Executa a query
         if (query.exec()) {
-            setAgenda(query); // Carregando a tabela na TableWidget através do método
+            setAgenda(query); // Atualiza a tabela
         } else {
             qDebug() << "Erro ao executar a query:" << query.lastError().text();
         }
     }
 
+    void MainWindow::on_comboBoxAgenda_currentTextChanged(const QString &arg1)
+    {
+        ui->lineEditAgenda->clear();
+
+        QSqlQuery query;
+
+        bool filtrarMinhaAgenda = ui->checkMinhaAgenda->isChecked();
+
+        if (filtrarMinhaAgenda){
+            query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional");
+            query.bindValue(":id_profissional", id_usuario);
+
+            ui->comboBoxAgenda->setCurrentIndex(0);
+
+        } else {
+            query.prepare("SELECT * FROM tb_agendamentos");
+        }
+        // Executa a query
+        if (query.exec()) {
+            setAgenda(query); // Atualiza a tabela
+        } else {
+            qDebug() << "Erro ao executar a query:" << query.lastError().text();
+        }
+    }
+
+    void MainWindow::on_lineEditAgenda_textChanged(const QString &arg1)
+    {
+        QString pesquisado = ui->lineEditAgenda->text(); // Pegando o texto do lineEditAgenda
+
+        bool filtrarData = ui->checkDataAgenda->isChecked(); // Verifica se o filtro por data está ativo
+
+        bool filtrarMinhaAgenda = ui->checkMinhaAgenda->isChecked();
+
+        QSqlQuery query;
+
+        if (!filtrarMinhaAgenda){
+
+
+            if (!filtrarData) {
+
+                if (pesquisado.isEmpty()) {
+                    // Query padrão: Mostra apenas a agenda do profissional logado
+                    query.prepare("SELECT * FROM tb_agendamentos");
+                } else {
+                    // Filtra conforme o texto digitado e a opção selecionada na comboBox
+                    QString opcaoSelecionada = ui->comboBoxAgenda->currentText(); // Pega a opção selecionada no ComboBox
+
+                    if (opcaoSelecionada == "Profissional") {
+                        query.prepare("SELECT * FROM tb_agendamentos WHERE profissional LIKE :profissional");
+                        query.bindValue(":profissional", pesquisado + "%");
+
+                    } else if (opcaoSelecionada == "Paciente") {
+                        query.prepare("SELECT * FROM tb_agendamentos WHERE paciente LIKE :paciente");
+                        query.bindValue(":paciente", pesquisado + "%");
+
+                    } else if (opcaoSelecionada == "Especialidade") {
+                        query.prepare("SELECT * FROM tb_agendamentos WHERE especialidade LIKE :especialidade");
+                        query.bindValue(":especialidade", pesquisado + "%");
+                    }
+                }
+            }
+        } else {
+
+            if (pesquisado.isEmpty()) {
+                // Query padrão: Mostra apenas a agenda do profissional logado
+                query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional");
+                query.bindValue(":id_profissional", id_usuario);
+            } else {
+                query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND paciente LIKE : paciente");
+                query.bindValue(":id_profissional", id_usuario);
+                query.bindValue(":paciente", pesquisado + "%");
+            }
+        }
+        // Executa a query
+        if (query.exec()) {
+            setAgenda(query); // Atualiza a tabela
+        } else {
+            qDebug() << "Erro ao executar a query:" << query.lastError().text();
+        }
+    }
+
+    void MainWindow::on_checkDataAgenda_stateChanged(int arg1)
+    {
+
+    }
+
+    void MainWindow::on_calendarioAgenda_clicked(const QDate &date)
+    {
+        atualizarTabelaPorData();
+    }
+
+    void MainWindow::atualizarTabelaPorData()
+    {
+        // Verifica se o filtro por data está ativo
+        bool filtrarData = ui->checkDataAgenda->isChecked();
+
+        bool filtrarMinhaAgenda = ui->checkMinhaAgenda->isChecked();
+
+        // Obtém a data selecionada
+        QDate data = ui->calendarioAgenda->selectedDate();
+
+        QString pesquisado = ui->lineEditAgenda->text(); // Pegando o texto do lineEditAgenda
+
+        QSqlQuery query;
+
+        if (!filtrarMinhaAgenda){
+
+            if (filtrarData && pesquisado.isEmpty()) {
+
+                query.prepare("SELECT * FROM tb_agendamentos WHERE data = :data");
+                query.bindValue(":data", data.toString("dd/MM/yyyy")); // Ou qualquer formato necessário
+
+            } else if (filtrarData && !pesquisado.isEmpty()){
+
+                // Filtra conforme o texto digitado e a opção selecionada na comboBox
+                QString opcaoSelecionada = ui->comboBoxAgenda->currentText(); // Pega a opção selecionada no ComboBox
+
+                if (opcaoSelecionada == "Profissional") {
+                    query.prepare("SELECT * FROM tb_agendamentos WHERE profissional LIKE :profissional AND data = :data");                                                              // ERRO
+                    query.bindValue(":profissional", pesquisado + "%");
+                    query.bindValue(":data", data.toString("dd/MM/yyyy"));
+
+                } else if (opcaoSelecionada == "Paciente") {
+                    query.prepare("SELECT * FROM tb_agendamentos WHERE paciente LIKE :paciente AND data = :data");                                                                      // ERRO
+                    query.bindValue(":paciente", pesquisado + "%");
+                    query.bindValue(":data", data.toString("dd/MM/yyyy"));
+
+                } else if (opcaoSelecionada == "Especialidade") {
+                    query.prepare("SELECT * FROM tb_agendamentos WHERE especialidade LIKE :especialidade AND data = :data");                                                            // ERRO
+                    query.bindValue(":especialidade", pesquisado + "%");
+                    query.bindValue(":data", data.toString("dd/MM/yyyy"));
+                }
+            }
+        } else {
+
+            if (filtrarData && pesquisado.isEmpty()) {
+
+                query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data");
+                query.bindValue(":id_profissional", id_usuario);
+                query.bindValue(":data", data.toString("dd/MM/yyyy")); // Ou qualquer formato necessário
+
+            } if (filtrarData && !pesquisado.isEmpty()){
+
+                query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND paciente LIKE :paciente AND data = :data");
+                query.bindValue(":id_profissional", id_usuario);
+                query.bindValue(":paciente", pesquisado + "%");
+                query.bindValue(":data", data.toString("dd/MM/yyyy"));
+
+            }
+        }
+
+        if (query.exec()) {
+            setAgenda(query); // Atualiza a tabela
+        } else {
+            qDebug() << "Erro ao executar a query:" << query.lastError().text();
+        }
+
+    }
 
     /////////////////////////////////////////////////////////////////
 
