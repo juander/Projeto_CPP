@@ -38,6 +38,7 @@ void MainWindow::setPaletaCor(QApplication &app){
     palette.setColor(QPalette::ToolTipBase, QColor(255, 255, 220));
     palette.setColor(QPalette::ToolTipText, QColor(0, 0, 0));
     palette.setColor(QPalette::Text, QColor(0, 0, 0));                  // Texto
+    palette.setColor(QPalette::PlaceholderText, QColor(127, 127, 127));
     palette.setColor(QPalette::Button, QColor(240, 240, 240));          // Cor de fundo do botão
     palette.setColor(QPalette::ButtonText, QColor(0, 0, 0));            // Cor do texto do botão
     palette.setColor(QPalette::BrightText, QColor(255, 0, 0));
