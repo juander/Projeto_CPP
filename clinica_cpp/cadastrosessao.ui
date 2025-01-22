@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>594</width>
-    <height>436</height>
+    <width>1071</width>
+    <height>503</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>700</width>
+    <height>350</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
@@ -38,7 +44,28 @@
       </layout>
      </item>
      <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Selecione um paciente abaixo&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QTableWidget" name="tw_paciente_ses"/>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Paciente selecionado:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="txtPacienteSelecionado"/>
+       </item>
+      </layout>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -61,6 +88,32 @@
        </item>
        <item>
         <widget class="QTimeEdit" name="horaAgenda"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>Especialidade:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboBoxEspecialidades">
+         <item>
+          <property name="text">
+           <string>Otorrinolaringologia</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Fisioterapia</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Fonoaudiologia</string>
+          </property>
+         </item>
+        </widget>
        </item>
       </layout>
      </item>

@@ -6,6 +6,10 @@
 #include <QTableWidget>
 #include <QMessageBox>
 
+#include "mainwindow.h"
+
+class MainWindow;
+
 namespace Ui {
 class cadastroSessao;
 }
@@ -15,7 +19,7 @@ class cadastroSessao : public QDialog
     Q_OBJECT
 
 public:
-    explicit cadastroSessao(QWidget *parent = nullptr);
+    explicit cadastroSessao(MainWindow *mainWindow, QWidget *parent = nullptr);
     ~cadastroSessao();
 
 private slots:
@@ -32,12 +36,15 @@ private slots:
 
     void setTabelaPacSes(QSqlQuery &query);
 
+    void on_tw_paciente_ses_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
+
+signals:
+    void sessaoCadastrada(int idSessao);  // Sinal que enviará o ID da sessão cadastrada
+
 private:
     Ui::cadastroSessao *ui;
 
-signals:
-    // Sinal emitido quando um paciente é cadastrado
-    void sessaoCadastrada(int id);
+    MainWindow *m_mainWindow;
 };
 
 #endif // CADASTROSESSAO_H

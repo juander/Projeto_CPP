@@ -98,6 +98,8 @@ private slots:
 
     void on_btnAgendar_clicked();
 
+    void adicionarSessaoNaTabela(int idSessao);
+
     //////////////////////////////////////////////
 
     void setTabelaAtendimento(QSqlQuery &query);            // MÉTODOS DE ATENDIMENTO

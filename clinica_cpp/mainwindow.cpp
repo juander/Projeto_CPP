@@ -710,7 +710,35 @@ void MainWindow::on_btnAgenda_clicked()
     void MainWindow::on_btnAgendar_clicked()
     {
         cadastroSessao *cadastrarSessao = new cadastroSessao(this);
+
+        // Conectando o sinal ao slot que adiciona a sessão na tabela
+        bool connected = connect(cadastrarSessao, &cadastroSessao::sessaoCadastrada,
+                                 this, &MainWindow::adicionarSessaoNaTabela);
+
+        if (!connected) {
+            qDebug() << "Erro ao conectar o sinal sessaoCadastrada";
+        }
+
         cadastrarSessao->show();
+    }
+
+    void MainWindow::adicionarSessaoNaTabela(int idSessao)
+    {
+        QSqlQuery query;
+        query.prepare("SELECT * FROM tb_agendamentos WHERE id = :id");
+        query.bindValue(":id", idSessao);
+
+        if (query.exec() && query.first()) {
+            int linha = ui->tw_agenda->rowCount();
+            ui->tw_agenda->insertRow(linha);
+
+            for (int i = 0; i < query.record().count(); ++i) {
+                ui->tw_agenda->setItem(linha, i, new QTableWidgetItem(query.value(i).toString()));
+                redimensionarTable(ui->tw_agenda);
+            }
+        } else {
+            QMessageBox::warning(this, " ", "Erro ao carregar a nova sessão.");
+        }
     }
 
 // FIM DA PÁGINA AGENDA
