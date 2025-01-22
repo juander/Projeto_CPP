@@ -2621,11 +2621,6 @@ color: white;</string>
                       </property>
                       <item>
                        <property name="text">
-                        <string>Minha Agenda</string>
-                       </property>
-                      </item>
-                      <item>
-                       <property name="text">
                         <string>Profissional</string>
                        </property>
                       </item>
@@ -2645,6 +2640,13 @@ color: white;</string>
                      <widget class="QCheckBox" name="checkDataAgenda">
                       <property name="text">
                        <string>Pesquisar por data</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QCheckBox" name="checkMinhaAgenda">
+                      <property name="text">
+                       <string>Minha Agenda</string>
                       </property>
                      </widget>
                     </item>
