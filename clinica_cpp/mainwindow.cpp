@@ -844,33 +844,39 @@ void MainWindow::on_tw_atendimento_cellClicked(int row, int column)
     // pegar id do agendamento selecionado
     // pesquisar esse id na tabela atendimentos, se tiver, recuperar valores, senao criar novo elemento
     QString texto;
+    QString status;
 
     int id = ui->tw_atendimento->item(row, 0)->text().toInt();
     QSqlQuery query;
-    qDebug() << id;
     query.prepare("SELECT * FROM tb_atendimentos WHERE id_agendamento = :id_agendamento");
     query.bindValue(":id_agendamento", id);
+
+    status = ui->tw_atendimento->item(row, 6)->text(); // Pega o valor da sexta coluna
+    if(status == "Realizado") {
+        ui->radioRealizado->setChecked(true);
+    } else if(status == "Aguardando"){
+        ui->radioAguardando->setChecked(true);
+    } else { // paciente ausente
+        ui->radioAusente->setChecked(true);
+    }
 
     if (query.exec()) {
         if (query.next()) {
             texto = query.value(1).toString(); // Pega o valor da segunda coluna
-            ui->textEdit->setText(texto); // Use a variável texto aqui
-
-            QString status = ui->tw_atendimento->item(row, 1)->text(); // Pega o valor da segunda coluna
-            qDebug() << status;
-            if(status == "realizado") {
-                ui->radioRealizado->setChecked(true);
-            } else if(status == "aguardando"){
-                ui->radioAguardando->setChecked(true);
-            } else { // paciente ausente
-                ui->radioAusente->setChecked(true);
-            }
+            ui->textEdit->setText(texto);
 
         }
     } else {
         qDebug() << "Erro ao executar a query:" << query.lastError().text();
     }
 }
+
+void MainWindow::on_pushButton_5_clicked()
+{
+
+}
+
+
 
 // FIM DA PÁGINA ATENDIMENTO
 
@@ -1291,5 +1297,3 @@ void MainWindow::on_btnFornecedores_clicked()
 
 
 ///////////////////////////////////////////////////
-
-
