@@ -749,6 +749,8 @@ void MainWindow::on_btnAtendimento_clicked()
         } else {
             QMessageBox::information(this, " ", "Contrate nosso serviço para ter acesso ao sistema!");
         }
+
+        ui->textEdit->clear();
     }
 
 
@@ -878,16 +880,68 @@ void MainWindow::on_tw_atendimento_cellClicked(int row, int column)
         if (query.next()) {
             texto = query.value(1).toString(); // Pega o valor da segunda coluna
             ui->textEdit->setText(texto);
-
         }
     } else {
         qDebug() << "Erro ao executar a query:" << query.lastError().text();
     }
 }
 
-void MainWindow::on_pushButton_5_clicked()
+void MainWindow::on_btnSalvar_clicked()
 {
+    QString texto;
+    int row = ui->tw_atendimento->currentRow();
+    if (row == -1) {
+        qDebug() << "Nenhuma linha selecionada.";
+        return;
+    }
 
+    int id = ui->tw_atendimento->item(row, 0)->text().toInt();
+    texto = ui->textEdit->toPlainText();
+
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM tb_atendimentos WHERE id_agendamento = :id_agendamento");
+    query.bindValue(":id_agendamento", id);
+
+    if (query.exec() && query.next()) {
+        int count = query.value(0).toInt();
+        if (count > 0) {
+            // Atualiza o registro existente
+            query.prepare("UPDATE tb_atendimentos SET texto = :texto WHERE id_agendamento = :id_agendamento");
+            query.bindValue(":id_agendamento", id);
+            query.bindValue(":texto", texto);
+        } else {
+            // Insere um novo registro
+            query.prepare("INSERT INTO tb_atendimentos (id_agendamento, texto) VALUES (:id_agendamento, :texto)");
+            query.bindValue(":id_agendamento", id);
+            query.bindValue(":texto", texto);
+        }
+
+        if (query.exec()) {
+            qDebug() << "Dados inseridos/atualizados com sucesso.";
+        } else {
+            qDebug() << "Erro ao executar a query:" << query.lastError().text();
+        }
+    } else {
+        qDebug() << "Erro ao executar a query de verificação:" << query.lastError().text();
+    }
+
+    QSqlQuery query_2;
+    query_2.prepare("UPDATE tb_agendamentos SET status_sessao = :status_sessao WHERE id = :id");
+    query_2.bindValue(":id", id);
+
+    if (ui->radioRealizado->isChecked()) {
+        query_2.bindValue(":status_sessao", "Realizado");
+    } else if (ui->radioAguardando->isChecked()) {
+        query_2.bindValue(":status_sessao", "Aguardando");
+    } else {
+        query_2.bindValue(":status_sessao", "Ausente");
+    }
+
+    if (query_2.exec()) {
+        QMessageBox::information(this, " ", "Atendimento Salvo!");
+    } else {
+        qDebug() << "Erro ao executar a query:" << query_2.lastError().text();
+    }
 }
 
 

@@ -149,6 +149,8 @@ private slots:
 
     void on_tw_atendimento_cellClicked(int row, int column);
 
+    void on_btnSalvar_clicked();
+
 private:
     Ui::MainWindow *ui;
 

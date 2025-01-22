@@ -2805,7 +2805,7 @@ color: white;</string>
                 <item>
                  <layout class="QHBoxLayout" name="horizontalLayout_21">
                   <item>
-                   <widget class="QPushButton" name="pushButton_5">
+                   <widget class="QPushButton" name="btnSalvar">
                     <property name="text">
                      <string>Salvar</string>
                     </property>
