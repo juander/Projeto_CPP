@@ -77,6 +77,8 @@ private slots:
 
     void setAgenda(QSqlQuery &query);                      // MÉTODOS DE AGENDAMENTO
 
+    void on_checkDataAgenda_checkStateChanged(const Qt::CheckState &arg1);
+
     void on_checkMinhaAgenda_stateChanged(int arg1);
 
     void on_comboBoxAgenda_currentTextChanged(const QString &arg1);
