@@ -35,6 +35,7 @@ void cadastroSessao::setModo(const QString &modo)
 
     if (modo == "Editar" && m_idSessao != -1) {
         ui->btnCadastrarSes->setText("Salvar Alterações");
+        ui->tituloSessao->setText("Editar sessão");
         this->setWindowTitle("Editar Sessão");
 
         QSqlQuery query;
