@@ -1607,7 +1607,6 @@ void MainWindow::on_lineEditEstoque_textChanged(const QString &arg1)
     }
 
     if (query.exec()) {
-            qDebug() << query.lastQuery();
             setTabelaEstoque(query); // CARREGANDO A TABELA NA TABLE ATRAVÉS DO MÉTODO
     } else {
         qDebug() << "Erro ao executar a query:" << query.lastError().text();
@@ -1629,8 +1628,6 @@ void MainWindow::on_tw_estoque_cellClicked(int row, int column)
 
     query.prepare("SELECT * FROM tb_estoque WHERE id = :id");
     query.bindValue(":id", id);
-
-    qDebug() << "ok";
 
     if (query.exec()) {
         if (query.next()) {

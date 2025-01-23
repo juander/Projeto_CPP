@@ -4102,7 +4102,11 @@ color: white;</string>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QSpinBox" name="spinQuantidade"/>
+                   <widget class="QSpinBox" name="spinQuantidade">
+                    <property name="maximum">
+                     <number>999999999</number>
+                    </property>
+                   </widget>
                   </item>
                  </layout>
                 </item>
