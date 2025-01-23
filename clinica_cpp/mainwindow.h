@@ -100,7 +100,11 @@ private slots:
 
     void adicionarSessaoNaTabela(int idSessao);
 
+    void carregarTabelaAgendamentos();
+
     void on_btnEditarAgenda_clicked();
+
+    void atualizarSessaoNaTabela(int idSessao);
 
     void on_tw_agenda_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
 

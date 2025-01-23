@@ -732,45 +732,110 @@ void MainWindow::on_btnAgenda_clicked()
         query.bindValue(":id", idSessao);
 
         if (query.exec() && query.first()) {
-            QDate dataSessao = query.value("data").toDate(); // Supondo que a coluna de data se chame 'data'
+            QDate dataSessao = QDate::fromString(query.value("data").toString(), "dd/MM/yyyy");
 
-            // Verifica se deve filtrar por data e se a sessão cadastrada é para a data selecionada
-            if (!filtrarData || (filtrarData && dataSessao == dataSelecionada)) {
+            if (!filtrarData || dataSessao == dataSelecionada) {
                 int linha = ui->tw_agenda->rowCount();
                 ui->tw_agenda->insertRow(linha);
 
                 for (int i = 0; i < query.record().count(); ++i) {
-                    ui->tw_agenda->setItem(linha, i, new QTableWidgetItem(query.value(i).toString()));
+                    QVariant value = query.value(i);
+                    ui->tw_agenda->setItem(linha, i, new QTableWidgetItem(value.toString()));
                 }
                 redimensionarTable(ui->tw_agenda);
+            } else {
+                // Se o filtro de data estiver ativo e a sessão não for da data selecionada, recarrega a tabela inteira
+                carregarTabelaAgendamentos();
             }
         } else {
             QMessageBox::warning(this, " ", "Erro ao carregar a nova sessão.");
         }
     }
 
+    void MainWindow::carregarTabelaAgendamentos()
+    {
+        ui->tw_agenda->setRowCount(0);  // Limpa a tabela antes de carregar os dados
+
+        QSqlQuery query;
+        if (ui->checkDataAgenda->isChecked()) {
+            query.prepare("SELECT * FROM tb_agendamentos WHERE data = :data");
+            query.bindValue(":data", ui->calendarioAgenda->selectedDate().toString("dd/MM/yyyy"));
+        } else {
+            query.prepare("SELECT * FROM tb_agendamentos");
+        }
+
+        if (query.exec()) {
+            while (query.next()) {
+                int linha = ui->tw_agenda->rowCount();
+                ui->tw_agenda->insertRow(linha);
+
+                for (int i = 0; i < query.record().count(); ++i) {
+                    QVariant value = query.value(i);
+                    ui->tw_agenda->setItem(linha, i, new QTableWidgetItem(value.toString()));
+                }
+            }
+            redimensionarTable(ui->tw_agenda);
+        } else {
+            QMessageBox::warning(this, " ", "Erro ao carregar os agendamentos.");
+        }
+    }
+
+
 
     // MÉTODOS DE EDIÇÃO DE SESSÃO
 
     void MainWindow::on_tw_agenda_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
     {
-        if (currentRow >= 0) {
+        if (currentRow >= 0 && ui->tw_agenda->item(currentRow, 0)) {
             QString idStr = ui->tw_agenda->item(currentRow, 0)->text();
             m_idSessaoSelecionada = idStr.toInt();  // Convertendo para inteiro
         } else {
-            m_idSessaoSelecionada = -1;  // Define um valor inválido caso nenhuma linha esteja selecionada
+            m_idSessaoSelecionada = -1;  // Define um valor inválido caso nenhuma linha esteja selecionada ou a célula esteja vazia
         }
     }
 
     void MainWindow::on_btnEditarAgenda_clicked()
     {
-        if (m_idSessaoSelecionada != -1 && ui->tw_agenda->currentRow() >= 0) {  // Verifica se há um ID válido e se tem alguma linha selecionada
+        int linha = ui->tw_agenda->currentRow();
+
+        if (m_idSessaoSelecionada != -1 && linha >= 0) {
             cadastroSessao *cadastrarSessao = new cadastroSessao(this, "Editar", m_idSessaoSelecionada);
+
+            // Conectar o sinal de edição ao slot de atualização
+            connect(cadastrarSessao, &cadastroSessao::sessaoEditada,
+                    this, &MainWindow::atualizarSessaoNaTabela);
+
             cadastrarSessao->show();
         } else {
             QMessageBox::warning(this, " ", "Selecione uma sessão para editar.");
         }
     }
+
+    void MainWindow::atualizarSessaoNaTabela(int idSessao)
+    {
+        int linha = ui->tw_agenda->currentRow();
+        if (linha < 0) {
+            QMessageBox::warning(this, " ", "Erro: nenhuma linha selecionada para atualização.");
+            return;
+        }
+
+        QSqlQuery query;
+        query.prepare("SELECT * FROM tb_agendamentos WHERE id = :id");
+        query.bindValue(":id", idSessao);
+
+        if (query.exec() && query.first()) {
+            int linha = ui->tw_agenda->currentRow();
+
+            for (int i = 0; i < query.record().count(); ++i) {
+                QVariant value = query.value(i);
+                ui->tw_agenda->setItem(linha, i, new QTableWidgetItem(value.toString()));
+            }
+            redimensionarTable(ui->tw_agenda);
+        } else {
+            QMessageBox::warning(this, " ", "Erro ao atualizar sessão na tabela.");
+        }
+    }
+
 
 // FIM DA PÁGINA AGENDA
 

@@ -111,6 +111,9 @@ void cadastroSessao::on_btnCadastrarSes_clicked()
 
         if (query.exec()) {
             QMessageBox::information(this, "", "Sessão atualizada com sucesso!");
+
+            emit sessaoEditada(m_idSessao);
+
             this->close();
         } else {
             qDebug() << "Erro ao atualizar a sessão." ;
@@ -134,6 +137,7 @@ void cadastroSessao::on_btnCadastrarSes_clicked()
         if (query.exec()) {
 
             int idSessao = query.lastInsertId().toInt();
+
             emit sessaoCadastrada(idSessao);  // Emite o sinal para atualizar a tabela
 
             QMessageBox::information(this, "", "Nova sessão cadastrada com sucesso!");

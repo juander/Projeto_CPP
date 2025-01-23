@@ -43,6 +43,8 @@ private slots:
 signals:
     void sessaoCadastrada(int idSessao);  // Sinal que enviará o ID da sessão cadastrada
 
+    void sessaoEditada(int idSessao);
+
 private:
     Ui::cadastroSessao *ui;
 
