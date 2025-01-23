@@ -877,7 +877,7 @@ color: white;</string>
               <string notr="true">color: rgb(0, 0, 0);</string>
              </property>
              <property name="text">
-              <string notr="true">Atendimento</string>
+              <string notr="true">Atender</string>
              </property>
              <property name="icon">
               <iconset resource="icons.qrc">
@@ -1668,7 +1668,7 @@ color: white;</string>
               <string notr="true">color: rgb(0, 0, 0);</string>
              </property>
              <property name="text">
-              <string notr="true">Relatórios</string>
+              <string notr="true">Relatórios/Atendimentos</string>
              </property>
              <property name="icon">
               <iconset resource="icons.qrc">
