@@ -109,6 +109,8 @@ private slots:
 
     void on_tw_agenda_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
 
+    void on_btnVerRelatorio_clicked();
+
     //////////////////////////////////////////////
 
     void setTabelaAtendimento(QSqlQuery &query);
@@ -179,6 +181,14 @@ private slots:
     void on_btnAdicionar_clicked();
 
     void on_btnApagar_clicked();
+
+    //////////////////////////////////////////////////
+
+    void setTreeWidget(QTreeWidget *treeWidget);
+
+    void carregarRelatorio(int idSessao);                                      // MÉTODOS DOS RELATÓRIOS
+
+    void on_trw_atendimentos_itemClicked(QTreeWidgetItem *item, int column);
 
 private:
     Ui::MainWindow *ui;

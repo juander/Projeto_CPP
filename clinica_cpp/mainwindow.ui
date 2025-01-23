@@ -2283,7 +2283,7 @@ color: white;</string>
         <item>
          <widget class="QTabWidget" name="paginas">
           <property name="currentIndex">
-           <number>6</number>
+           <number>5</number>
           </property>
           <widget class="QWidget" name="Inicio">
            <property name="styleSheet">
@@ -2674,6 +2674,13 @@ color: white;</string>
                      <widget class="QPushButton" name="btnEditarAgenda">
                       <property name="text">
                        <string>Editar</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="btnVerRelatorio">
+                      <property name="text">
+                       <string>Ver relatório</string>
                       </property>
                      </widget>
                     </item>
@@ -3679,11 +3686,11 @@ color: white;</string>
                </widget>
               </item>
               <item>
-               <widget class="QTabWidget" name="tw_relatorios">
+               <widget class="QTabWidget" name="tab_relatorios">
                 <property name="currentIndex">
                  <number>0</number>
                 </property>
-                <widget class="QWidget" name="tab">
+                <widget class="QWidget" name="Atendimentos">
                  <attribute name="title">
                   <string>Atendimentos</string>
                  </attribute>
@@ -3693,47 +3700,40 @@ color: white;</string>
                     <x>420</x>
                     <y>10</y>
                     <width>331</width>
-                    <height>501</height>
+                    <height>491</height>
                    </rect>
                   </property>
                   <property name="title">
                    <string>Atendimento</string>
                   </property>
-                  <widget class="QTextEdit" name="textEdit_2">
+                  <widget class="QTextEdit" name="txtRelAtendimento">
                    <property name="geometry">
                     <rect>
                      <x>10</x>
                      <y>30</y>
                      <width>311</width>
-                     <height>461</height>
+                     <height>451</height>
                     </rect>
                    </property>
                   </widget>
                  </widget>
-                 <widget class="QWidget" name="horizontalLayoutWidget">
+                 <widget class="QTreeWidget" name="trw_atendimentos">
                   <property name="geometry">
                    <rect>
-                    <x>40</x>
-                    <y>40</y>
-                    <width>160</width>
-                    <height>41</height>
+                    <x>10</x>
+                    <y>30</y>
+                    <width>391</width>
+                    <height>471</height>
                    </rect>
                   </property>
-                  <layout class="QHBoxLayout" name="horizontalLayout_16">
-                   <item>
-                    <widget class="QLabel" name="label_7">
-                     <property name="text">
-                      <string>TextLabel</string>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QLineEdit" name="lineEdit"/>
-                   </item>
-                  </layout>
+                  <column>
+                   <property name="text">
+                    <string notr="true">1</string>
+                   </property>
+                  </column>
                  </widget>
                 </widget>
-                <widget class="QWidget" name="tab_2">
+                <widget class="QWidget" name="Adm_Financeiro">
                  <attribute name="title">
                   <string>Adm / Financeiro</string>
                  </attribute>

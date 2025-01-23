@@ -836,6 +836,31 @@ void MainWindow::on_btnAgenda_clicked()
         }
     }
 
+    // MÉTODO PARA ENVIAR PARA O RELATÓRIO DE ATENDIMENTO ARMAZENADO DAQUELA SESSÃO
+
+    void MainWindow::on_btnVerRelatorio_clicked()
+    {
+        int linhaSelecionada = ui->tw_agenda->currentRow();
+        if (linhaSelecionada < 0) {
+            QMessageBox::warning(this, "Aviso", "Selecione uma sessão para ver o relatório.");
+            return;
+        }
+
+        // Obter o ID da sessão selecionada (supondo que a coluna 0 contenha o ID)
+        int idSessao = ui->tw_agenda->item(linhaSelecionada, 0)->text().toInt();
+
+        // Chama a função para carregar o relatório
+        carregarRelatorio(idSessao);
+
+        // Alterna para a aba de relatórios
+        ui->paginas->setCurrentWidget(ui->Relatorios);
+        ui->tab_relatorios->setCurrentWidget(ui->Atendimentos);
+
+        resetButtonStyles();
+        ui->btnRelatorios->setStyleSheet("background-color: rgb(179, 213, 243);");                                      // ALTERARA A COR DE DESTAQUE DO BOTÃO PARA MOSTRAR PARA QUAL PÁGINA TROCOU
+        ui->btnRelatorios->setAutoFillBackground(true);
+    }
+
 
 // FIM DA PÁGINA AGENDA
 
@@ -1526,6 +1551,107 @@ void MainWindow::on_btnRelatorios_clicked()
     }
 }
 
+
+    // MÉTODOS DA PÁGINA DE RELATÓRIOS
+
+    void MainWindow::setTreeWidget(QTreeWidget *treeWidget)
+    {
+        // Definir cabeçalhos personalizados
+        QStringList headers;
+        headers << "Sessões e Atendimentos";  // Cabeçalho informativo
+        treeWidget->setHeaderLabels(headers);
+
+        // Ocultar cabeçalho caso não queira mostrar
+        treeWidget->setHeaderHidden(false);
+
+        // Ajuste automático da largura para o conteúdo
+        treeWidget->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
+
+        // Alternância de cores das linhas para melhor visualização
+        treeWidget->setAlternatingRowColors(true);
+        treeWidget->setStyleSheet("QTreeWidget::item { padding: 5px; }");
+
+        // Definir a seleção apenas na linha inteira
+        treeWidget->setSelectionMode(QAbstractItemView::SingleSelection);
+        treeWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+        // Expandir automaticamente os itens ao serem adicionados
+        treeWidget->setExpandsOnDoubleClick(true);
+        treeWidget->setAnimated(true);
+
+        // Ocultar colunas extras (caso existam)
+        if (treeWidget->columnCount() > 1) {
+            treeWidget->setColumnHidden(1, true);  // Exemplo: oculta segunda coluna
+        }
+
+        // Fonte personalizada para melhorar a aparência
+        QFont font = treeWidget->font();
+        font.setPointSize(10);  // Tamanho da fonte maior para melhor leitura
+        treeWidget->setFont(font);
+
+        // Desabilitar edição dos itens para evitar alterações acidentais
+        treeWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+        // Expandir automaticamente o primeiro nível de itens
+        treeWidget->expandAll();
+    }
+
+    void MainWindow::carregarRelatorio(int idSessao)
+    {
+        ui->trw_atendimentos->clear();  // Limpa a TreeWidget
+
+        QSqlQuery query;
+        query.prepare("SELECT a.id, a.data, a.hora, a.profissional, a.paciente, t.texto "
+                      "FROM tb_agendamentos a "
+                      "LEFT JOIN tb_atendimentos t ON a.id = t.id_agendamento "
+                      "WHERE a.id = :idSessao");
+        query.bindValue(":idSessao", idSessao);
+
+        if (query.exec()) {
+            if (query.next()) {
+                // Criando o item pai (Sessão) com informações detalhadas
+                QString sessaoInfo = QString("Data: %1 | Hora: %2\nProfissional: %3\nPaciente: %4")
+                                         .arg(query.value("data").toString())
+                                         .arg(query.value("hora").toString())
+                                         .arg(query.value("profissional").toString())
+                                         .arg(query.value("paciente").toString());
+
+                QTreeWidgetItem *sessaoItem = new QTreeWidgetItem(ui->trw_atendimentos);
+                sessaoItem->setText(0, sessaoInfo);
+                sessaoItem->setData(0, Qt::UserRole, query.value("id").toInt());
+
+                // Criando o item filho (Texto do Atendimento)
+                QString textoAtendimento = query.value("texto").toString();
+                if (!textoAtendimento.isEmpty()) {
+                    QTreeWidgetItem *atendimentoItem = new QTreeWidgetItem(sessaoItem);
+                    atendimentoItem->setText(0, "Atendimento: " + textoAtendimento);
+                }
+
+                // Expande automaticamente a sessão
+                ui->trw_atendimentos->expandItem(sessaoItem);
+
+                ui->trw_atendimentos->addTopLevelItem(sessaoItem);
+
+                setTreeWidget(ui->trw_atendimentos);
+
+                // Seleciona automaticamente o texto na QTextEdit e desabilita edição
+                ui->txtRelAtendimento->setText(textoAtendimento);
+                ui->txtRelAtendimento->setReadOnly(true);
+            } else {
+                QMessageBox::information(this, "Relatório", "Nenhum relatório encontrado para esta sessão.");
+            }
+        } else {
+            QMessageBox::critical(this, "Erro", "Falha ao carregar o relatório.");
+        }
+    }
+
+    void MainWindow::on_trw_atendimentos_itemClicked(QTreeWidgetItem *item, int column)
+{
+    if (item->parent()) {  // Verifica se é um item filho (atendimento)
+        ui->txtRelAtendimento->setText(item->text(0));
+    }
+}
+
 // FIM DA PÁGINA RELATÓRIOS
 
 
@@ -1677,11 +1803,6 @@ void MainWindow::on_btnAdicionar_clicked()
 
 }
 
-void MainWindow::on_btnLimpar_clicked()
-{
-
-}
-
 void MainWindow::on_btnApagar_clicked()
 {
 
@@ -1691,4 +1812,3 @@ void MainWindow::on_btnApagar_clicked()
 
 
 ///////////////////////////////////////////////////
-
