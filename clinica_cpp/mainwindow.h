@@ -45,7 +45,7 @@ public:
 
     void janelaFormatada();                                            // MÉTODO PARA FORMATAR A PÁGINA
 
-    QString getNomeUsuario() const;                                     // Método público para obter o nome do usuário
+    QString getNomeUsuario() const;                                    // Método público para obter o nome do usuário
 
     int getIdUsuario() const;                                          // MÉTODO PARA OBTER O ID DO USUÁRIO
 
@@ -80,7 +80,7 @@ private slots:
 
     //////////////////////////////////////////////
 
-    void setAgenda(QSqlQuery &query);                      // MÉTODOS DE AGENDAMENTO
+    void setAgenda(QSqlQuery &query);
 
     void on_checkDataAgenda_checkStateChanged(const Qt::CheckState &arg1);
 
@@ -90,7 +90,7 @@ private slots:
 
     void on_lineEditAgenda_textChanged(const QString &arg1);
 
-    void on_checkDataAgenda_stateChanged(int arg1);
+    void on_checkDataAgenda_stateChanged(int arg1);                              // MÉTODOS DE AGENDAMENTO
 
     void on_calendarioAgenda_clicked(const QDate &date);
 
@@ -100,11 +100,23 @@ private slots:
 
     void adicionarSessaoNaTabela(int idSessao);
 
+    void on_btnEditarAgenda_clicked();
+
+    void on_tw_agenda_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
+
     //////////////////////////////////////////////
 
-    void setTabelaAtendimento(QSqlQuery &query);            // MÉTODOS DE ATENDIMENTO
+    void setTabelaAtendimento(QSqlQuery &query);
 
-    ///
+    void on_lineEditAtendimento_textChanged(const QString &arg1);
+
+    void on_checkHoje_checkStateChanged(const Qt::CheckState &arg1);            // MÉTODOS DE ATENDIMENTO
+
+    void on_tw_atendimento_cellClicked(int row, int column);
+
+    void on_btnSalvar_clicked();
+
+    /////////////////////////////////////////////
 
     // Método para configurar a tabela de pacientes
     void setTabelaPacientes(QSqlQuery &query);
@@ -112,7 +124,7 @@ private slots:
     // Método para adicionar um paciente na tabela
     void adicionarPacienteNaTabela(int id = 0);
 
-    // Método para cadastrar um novo paciente               // MÉTODOS DO PACIENTE
+    // Método para cadastrar um novo paciente                                   // MÉTODOS DO PACIENTE
     void on_btnCadastroPac_clicked();
 
     // Método para apagar um paciente selecionado
@@ -130,7 +142,7 @@ private slots:
     void setTabelaColaboradores(QSqlQuery &query);
 
     // Método para adicionar um paciente na tabela
-    void adicionarColaboradorNaTabela(int id = 0);          // MÉTODOS DO COLABORADOR
+    void adicionarColaboradorNaTabela(int id = 0);                              // MÉTODOS DO COLABORADOR
 
     // Método para cadastrar um novo colaborador
     void on_btnCadastroCol_clicked();
@@ -145,14 +157,6 @@ private slots:
 
     /////////////////////////////////////////////////
 
-    void on_lineEditAtendimento_textChanged(const QString &arg1);
-
-    void on_checkHoje_checkStateChanged(const Qt::CheckState &arg1);
-
-    void on_tw_atendimento_cellClicked(int row, int column);
-
-    void on_btnSalvar_clicked();
-
 private:
     Ui::MainWindow *ui;
 
@@ -165,8 +169,12 @@ private:
 
     // Estado de login e informações do usuário
     bool logado;                                               // Indica se o usuário está logado
+
     QString nome_usuario, clinica_usuario, cargo_usuario;      // Nome do usuário logado
+
     int id_usuario;
+
+    int m_idSessaoSelecionada;
 
 };
 

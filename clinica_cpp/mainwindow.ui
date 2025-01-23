@@ -2283,7 +2283,7 @@ color: white;</string>
         <item>
          <widget class="QTabWidget" name="paginas">
           <property name="currentIndex">
-           <number>2</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="Inicio">
            <property name="styleSheet">
@@ -2613,7 +2613,7 @@ color: white;</string>
                        <string/>
                       </property>
                       <property name="placeholderText">
-                       <string>Pesquisa aqui fdp</string>
+                       <string>Pesquise aqui</string>
                       </property>
                       <property name="clearButtonEnabled">
                        <bool>false</bool>
@@ -2695,14 +2695,25 @@ color: white;</string>
                  </layout>
                 </item>
                 <item>
-                 <widget class="QCalendarWidget" name="calendarioAgenda">
-                  <property name="toolTipDuration">
-                   <number>-9</number>
-                  </property>
-                  <property name="verticalHeaderFormat">
-                   <enum>QCalendarWidget::VerticalHeaderFormat::NoVerticalHeader</enum>
-                  </property>
-                 </widget>
+                 <layout class="QVBoxLayout" name="verticalLayout_38">
+                  <item>
+                   <widget class="QLabel" name="label">
+                    <property name="text">
+                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Selecione a data desejada abaixo&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QCalendarWidget" name="calendarioAgenda">
+                    <property name="toolTipDuration">
+                     <number>-9</number>
+                    </property>
+                    <property name="verticalHeaderFormat">
+                     <enum>QCalendarWidget::VerticalHeaderFormat::NoVerticalHeader</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </item>
                </layout>
               </item>
@@ -2875,13 +2886,6 @@ color: white;</string>
               </item>
               <item>
                <layout class="QHBoxLayout" name="horizontalLayout_2">
-                <item>
-                 <widget class="QPushButton" name="pushButton_2">
-                  <property name="text">
-                   <string>Agendar</string>
-                  </property>
-                 </widget>
-                </item>
                 <item>
                  <widget class="QPushButton" name="btnEditarPac">
                   <property name="text">
@@ -3936,7 +3940,7 @@ color: white;</string>
               <item>
                <widget class="QTabWidget" name="tabWidget">
                 <property name="currentIndex">
-                 <number>2</number>
+                 <number>1</number>
                 </property>
                 <widget class="QWidget" name="tab">
                  <attribute name="title">
@@ -3947,7 +3951,7 @@ color: white;</string>
                    <rect>
                     <x>150</x>
                     <y>160</y>
-                    <width>63</width>
+                    <width>121</width>
                     <height>20</height>
                    </rect>
                   </property>
@@ -3965,7 +3969,7 @@ color: white;</string>
                    <rect>
                     <x>100</x>
                     <y>130</y>
-                    <width>63</width>
+                    <width>61</width>
                     <height>20</height>
                    </rect>
                   </property>
@@ -3983,7 +3987,7 @@ color: white;</string>
                    <rect>
                     <x>280</x>
                     <y>140</y>
-                    <width>63</width>
+                    <width>101</width>
                     <height>20</height>
                    </rect>
                   </property>

@@ -19,8 +19,10 @@ class cadastroSessao : public QDialog
     Q_OBJECT
 
 public:
-    explicit cadastroSessao(MainWindow *mainWindow, QWidget *parent = nullptr);
+    explicit cadastroSessao(MainWindow *mainWindow, const QString &modo = "", int idSessao = -1, QWidget *parent = nullptr);
     ~cadastroSessao();
+
+    void setModo(const QString &modo);
 
 private slots:
 
@@ -45,6 +47,10 @@ private:
     Ui::cadastroSessao *ui;
 
     MainWindow *m_mainWindow;
+
+    QString tipoUso;
+
+    int m_idSessao;
 };
 
 #endif // CADASTROSESSAO_H

@@ -355,7 +355,7 @@ void MainWindow::on_btnAgenda_clicked()
             for(int i = 0; i <= 6; i++){
                 ui->tw_agenda->setItem(tb_linha,i,new QTableWidgetItem(query.value(i).toString()));              // LOOP QUE PREENCHE A TABLE COM OS DADOS DO BANCO
             }
-            ui->tw_agenda->setRowHeight(tb_linha,20);
+            ui->tw_agenda->setRowHeight(tb_linha,30);
 
             tb_linha++;
         }
@@ -705,11 +705,11 @@ void MainWindow::on_btnAgenda_clicked()
 
     /////////////////////////////////////////////////////////////////
 
-    // MÉTODO DE CADASTRO DE SESSÃO
+    // MÉTODOS DE CADASTRO DE SESSÃO
 
     void MainWindow::on_btnAgendar_clicked()
     {
-        cadastroSessao *cadastrarSessao = new cadastroSessao(this);
+        cadastroSessao *cadastrarSessao = new cadastroSessao(this, "Cadastrar");
 
         // Conectando o sinal ao slot que adiciona a sessão na tabela
         bool connected = connect(cadastrarSessao, &cadastroSessao::sessaoCadastrada,
@@ -738,6 +738,28 @@ void MainWindow::on_btnAgenda_clicked()
             }
         } else {
             QMessageBox::warning(this, " ", "Erro ao carregar a nova sessão.");
+        }
+    }
+
+    // MÉTODOS DE EDIÇÃO DE SESSÃO
+
+    void MainWindow::on_tw_agenda_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
+    {
+        if (currentRow >= 0) {
+            QString idStr = ui->tw_agenda->item(currentRow, 0)->text();
+            m_idSessaoSelecionada = idStr.toInt();  // Convertendo para inteiro
+        } else {
+            m_idSessaoSelecionada = -1;  // Define um valor inválido caso nenhuma linha esteja selecionada
+        }
+    }
+
+    void MainWindow::on_btnEditarAgenda_clicked()
+    {
+        if (m_idSessaoSelecionada != -1 && ui->tw_agenda->currentRow() >= 0) {  // Verifica se há um ID válido e se tem alguma linha selecionada
+            cadastroSessao *cadastrarSessao = new cadastroSessao(this, "Editar", m_idSessaoSelecionada);
+            cadastrarSessao->show();
+        } else {
+            QMessageBox::warning(this, " ", "Selecione uma sessão para editar.");
         }
     }
 
@@ -798,7 +820,7 @@ void MainWindow::setTabelaAtendimento(QSqlQuery &query)
             for(int i = 0; i <= 6; i++){
                 ui->tw_atendimento->setItem(tb_linha,i,new QTableWidgetItem(query.value(i).toString()));              // LOOP QUE PREENCHE A TABLE COM OS DADOS DO BANCO
             }
-            ui->tw_atendimento->setRowHeight(tb_linha,20);
+            ui->tw_atendimento->setRowHeight(tb_linha,30);
 
             tb_linha++;
         }
@@ -939,9 +961,10 @@ void MainWindow::on_btnSalvar_clicked()
             query.bindValue(":texto", texto);
         } else {
             // Insere um novo registro
-            query.prepare("INSERT INTO tb_atendimentos (id_agendamento, texto) VALUES (:id_agendamento, :texto)");
+            query.prepare("INSERT INTO tb_atendimentos (id_agendamento, texto, id_profissional) VALUES (:id_agendamento, :texto, :id_profissional)");
             query.bindValue(":id_agendamento", id);
             query.bindValue(":texto", texto);
+            query.bindValue(":id_profissional", id_usuario);
         }
 
         if (query.exec()) {
@@ -1068,7 +1091,7 @@ void MainWindow::on_btnPacientes_clicked()
             for(int i = 0; i <= 8; i++){
                 ui->tw_pacientes->setItem(tb_linha,i,new QTableWidgetItem(query.value(i).toString()));              // LOOP QUE PREENCHE A TABLE COM OS DADOS DO BANCO
             }
-            ui->tw_pacientes->setRowHeight(tb_linha,20);
+            ui->tw_pacientes->setRowHeight(tb_linha,30);
 
             tb_linha++;
         }
@@ -1255,7 +1278,7 @@ void MainWindow::on_btnColaboradores_clicked()
             for(int i = 0; i <= 7; i++){
                 ui->tw_colaboradores->setItem(tb_linha,i,new QTableWidgetItem(query.value(i).toString()));          // LOOP QUE PREENCHE A TABLE COM OS DADOS DO BANCO
             }
-            ui->tw_colaboradores->setRowHeight(tb_linha,20);
+            ui->tw_colaboradores->setRowHeight(tb_linha,30);
 
             tb_linha++;
         }

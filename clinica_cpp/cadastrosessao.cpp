@@ -1,10 +1,13 @@
 #include "cadastrosessao.h"
 #include "ui_cadastrosessao.h"
 
-cadastroSessao::cadastroSessao(MainWindow *mainWindow, QWidget *parent)
+cadastroSessao::cadastroSessao(MainWindow *mainWindow, const QString &modo, int idSessao, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::cadastroSessao)
     , m_mainWindow(mainWindow)
+    , tipoUso(modo)
+    , m_idSessao(idSessao)
+
 {
     ui->setupUi(this);
 
@@ -16,6 +19,8 @@ cadastroSessao::cadastroSessao(MainWindow *mainWindow, QWidget *parent)
     } else {
         qDebug() << "Erro ao carregar a tabela de pacientes na janela de cadastro de sessões";
     }
+
+    setModo(tipoUso);
 }
 
 cadastroSessao::~cadastroSessao()
@@ -23,6 +28,37 @@ cadastroSessao::~cadastroSessao()
     delete ui;
 }
 
+
+void cadastroSessao::setModo(const QString &modo)
+{
+    tipoUso = modo;
+
+    if (modo == "Editar" && m_idSessao != -1) {
+        ui->btnCadastrarSes->setText("Salvar Alterações");
+        this->setWindowTitle("Editar Sessão");
+
+        QSqlQuery query;
+        query.prepare("SELECT profissional, paciente, especialidade, data, hora FROM tb_agendamentos WHERE id = :id");
+        query.bindValue(":id", m_idSessao);
+
+        if (query.exec() && query.first()) {
+            ui->txtPacienteSelecionado->setText(query.value("paciente").toString());
+            ui->comboBoxEspecialidades->setCurrentText(query.value("especialidade").toString());
+
+            // Convertendo strings de data e hora para os formatos corretos
+            QDate data = QDate::fromString(query.value("data").toString(), "dd/MM/yyyy");
+            ui->dataAgenda->setDate(data);
+
+            QTime hora = QTime::fromString(query.value("hora").toString(), "hh:mm");
+            ui->horaAgenda->setTime(hora);
+        } else {
+            QMessageBox::warning(this, " ", "Não foi possível carregar os dados da sessão.");
+        }
+    } else {
+
+        this->setWindowTitle("Nova Sessão");
+    }
+}
 
 
 void cadastroSessao::on_tw_paciente_ses_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
@@ -37,52 +73,71 @@ void cadastroSessao::on_tw_paciente_ses_currentCellChanged(int currentRow, int c
 
 void cadastroSessao::on_btnCadastrarSes_clicked()
 {
-    // Recupera os dados dos campos da interface do usuário                                                         // OBTÉM OS DADOS DOS CAMPOS DA SESSÃO
-
     QString data = ui->dataAgenda->date().toString("dd/MM/yyyy");
 
-    QString hora = ui->horaAgenda->time().toString("hh:mm");
+    QString hora = ui->horaAgenda->time().toString("hh:mm");                                                        // OBTÉM OS DADOS DOS CAMPOS DA SESSÃO
 
     QString paciente = ui->txtPacienteSelecionado->text();
 
-    QString opcaoSelecionada = ui->comboBoxEspecialidades->currentText(); // Opção do comboBox
+    QString especialidade = ui->comboBoxEspecialidades->currentText(); // Opção do comboBox
 
-    int linha = ui->tw_paciente_ses->currentRow();
-
-    if (linha >= 0) {                                                                                           // SÓ SE TIVER ALGUMA LINHA SELECIONADA POIS CURRENTROW RETORNA -1 CASO NÃO
-        QTableWidgetItem *item = ui->tw_paciente_ses->item(linha, 2);                                           // EXTRAINDO O PACIENTE SELECIONADO
-        QString paciente = item->text();
-
-    } else{
-        QMessageBox::information(this, " ", "Nenhuma paciente foi selecionado");
+    if (paciente.isEmpty() || especialidade.isEmpty() || data.isEmpty() || hora.isEmpty()) {
+        QMessageBox::warning(this, " ", "Todos os campos devem ser preenchidos antes de salvar.");
+        return;
     }
 
-    // Conecta o sinal pacienteCadastrado ao slot correspondente                                                   // CONECTA O SINAL PACIENTE CADASTRADO AO SLOT CORRESPONDENTE
-    // connect(&paciente, &Paciente::pacienteCadastrado, this, &cadastroPacientes::pacienteCadastrado);
+    if (paciente == "") {                                                                                               // SÓ SE TIVER ALGUMA LINHA SELECIONADA POIS CURRENTROW RETORNA -1 CASO NÃO
+        QMessageBox::information(this, " ", "Nenhuma paciente foi selecionado");
+        return;
+    }
 
     QSqlQuery query;
-    query.prepare("INSERT INTO tb_agendamentos (profissional, paciente, especialidade, data, hora, status_sessao, id_profissional) "
-                  "VALUES (:profissional, :paciente, :especialidade, :data, :hora, :status_sessao, :id_profissional)");
 
-    query.bindValue(":profissional", m_mainWindow->getNomeUsuario());                                                  // AUTOMATICAMENTE SELECIONA O USUÁRIO LOGADO
-    query.bindValue(":paciente", paciente);      // Usando o método de calculo de idade para enviar a idade para o banco
-    query.bindValue(":especialidade", opcaoSelecionada);
-    query.bindValue(":data", data);
-    query.bindValue(":hora", hora);
-    query.bindValue(":status_sessao", "Aguardando");
-    query.bindValue(":id_profissional", m_mainWindow->getIdUsuario());
+    if (tipoUso == "Editar") {
 
-    // Salva o objeto Paciente no banco de dados                                                                   // SALVA O OBJETO PACIENTE NO BANCO DE DADOS
-    if (query.exec()) {
-        QMessageBox::information(this, "", "Nova sessão cadastrada");
+        // Atualizar sessão existente
+        query.prepare("UPDATE tb_agendamentos SET data = :data, hora = :hora, paciente = :paciente, especialidade = :especialidade "
+                      "WHERE id = :idSessao");
 
-        int idSessao = query.lastInsertId().toInt();  // Obtém o ID gerado pelo banco de dados
+        query.bindValue(":data", data);
+        query.bindValue(":hora", hora);
+        query.bindValue(":paciente", paciente);
+        query.bindValue(":especialidade", especialidade);
+        query.bindValue(":idSessao", m_idSessao);
 
-        emit sessaoCadastrada(idSessao);  // Emite o sinal passando o ID gerado
+        if (query.exec()) {
+            QMessageBox::information(this, "", "Sessão atualizada com sucesso!");
+            this->close();
+        } else {
+            qDebug() << "Erro ao atualizar a sessão." ;
+        }
 
-        this->close();
     } else {
-        QMessageBox::information(this, " ", "Erro ao cadastrar sessão");
+
+        // Inserir nova sessão
+
+        query.prepare("INSERT INTO tb_agendamentos (profissional, paciente, especialidade, data, hora, status_sessao, id_profissional) "
+                      "VALUES (:profissional, :paciente, :especialidade, :data, :hora, :status_sessao, :id_profissional)");
+
+        query.bindValue(":profissional", m_mainWindow->getNomeUsuario());
+        query.bindValue(":paciente", paciente);
+        query.bindValue(":especialidade", especialidade);
+        query.bindValue(":data", data);
+        query.bindValue(":hora", hora);
+        query.bindValue(":status_sessao", "Aguardando");
+        query.bindValue(":id_profissional", m_mainWindow->getIdUsuario());
+
+        if (query.exec()) {
+
+            int idSessao = query.lastInsertId().toInt();
+            emit sessaoCadastrada(idSessao);  // Emite o sinal para atualizar a tabela
+
+            QMessageBox::information(this, "", "Nova sessão cadastrada com sucesso!");
+            this->close();
+
+        } else {
+            QMessageBox::warning(this, " ", "Erro ao salvar a sessão.");
+        }
     }
 }
 
@@ -141,7 +196,7 @@ void cadastroSessao::setTabelaPacSes(QSqlQuery &query)
         for(int i = 0; i <= 8; i++){
             ui->tw_paciente_ses->setItem(tb_linha,i,new QTableWidgetItem(query.value(i).toString()));              // LOOP QUE PREENCHE A TABLE COM OS DADOS DO BANCO
         }
-        ui->tw_paciente_ses->setRowHeight(tb_linha,20);
+        ui->tw_paciente_ses->setRowHeight(tb_linha,30);
 
         tb_linha++;
     }
