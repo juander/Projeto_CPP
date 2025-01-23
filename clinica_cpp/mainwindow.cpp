@@ -1624,8 +1624,6 @@ void MainWindow::on_tw_estoque_cellClicked(int row, int column)
 
     int id = ui->tw_estoque->item(row, 0)->text().toInt();
 
-    qDebug() << id;
-
     query.prepare("SELECT * FROM tb_estoque WHERE id = :id");
     query.bindValue(":id", id);
 
