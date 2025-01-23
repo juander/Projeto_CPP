@@ -1076,7 +1076,6 @@ void MainWindow::on_btnSalvar_clicked()
 
     if (query.exec()) {
         qDebug() << "query 1 foi";
-        ui->textEdit->clear();
     } else {
         qDebug() << "Erro ao executar a query:" << query.lastError().text();
     }
@@ -1099,47 +1098,9 @@ void MainWindow::on_btnSalvar_clicked()
         qDebug() << "Erro ao executar a query:" << query_2.lastError().text();
     }
 
-    bool filtrarHoje = ui->checkHoje->isChecked(); // Verifica se o filtro por data está ativo
-    QString pesquisado = ui->lineEditAtendimento->text();
-    QDate data = QDate::currentDate();
+    on_lineEditAtendimento_textChanged("");
 
-    QSqlQuery query_3;
-
-    if(pesquisado == ""){
-        if(!filtrarHoje){
-
-            query_3.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional");
-            query_3.bindValue(":id_profissional", id_usuario);
-
-        } else {
-
-            query_3.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data");
-            query_3.bindValue(":id_profissional", id_usuario);
-            query_3.bindValue(":data", data.toString("dd/MM/yyyy"));
-        }
-    } else {
-
-        if(!filtrarHoje){
-
-            query_3.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND paciente LIKE :paciente");
-            query_3.bindValue(":id_profissional", id_usuario);
-            query_3.bindValue(":paciente", pesquisado + "%");
-
-        } else {
-
-            query_3.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data AND paciente LIKE :paciente");
-            query_3.bindValue(":paciente", pesquisado + "%");
-            query_3.bindValue(":id_profissional", id_usuario);
-            query_3.bindValue(":data", data.toString("dd/MM/yyyy"));
-        }
-    }
-
-    // Executa a query
-    if (query_3.exec()) {
-        setTabelaAtendimento(query_3); // Atualiza a tabela
-    } else {
-        qDebug() << "Erro ao executar a query:" << query_3.lastError().text();
-    }
+    ui->tw_atendimento->selectRow(row);
 }
 
 void MainWindow::on_btnDesfazer_clicked()
