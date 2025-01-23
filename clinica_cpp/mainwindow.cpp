@@ -1650,7 +1650,45 @@ void MainWindow::on_tw_estoque_cellClicked(int row, int column)
     }
 }
 
+void MainWindow::on_btnDesfazerEstoque_clicked()
+{
+    int row = ui->tw_estoque->currentRow();
+
+    if (row != -1) {
+        QMessageBox::StandardButton resposta;
+        resposta = QMessageBox::question(this, "Desfazer Mudanças", "Tem certeza que deseja desfazer as mudanças?", QMessageBox::Yes | QMessageBox::No);
+        if (resposta == QMessageBox::Yes) {
+            on_tw_estoque_cellClicked(row, 0);
+        }
+    } else {
+        qDebug() << "Nenhuma linha selecionada.";
+
+    }
+
+}
+
+void MainWindow::on_btnAtualizar_clicked()
+{
+
+}
+
+void MainWindow::on_btnAdicionar_clicked()
+{
+
+}
+
+void MainWindow::on_btnLimpar_clicked()
+{
+
+}
+
+void MainWindow::on_btnApagar_clicked()
+{
+
+}
+
 // FIM DA PÁGINA FORNCEDORES
 
 
 ///////////////////////////////////////////////////
+

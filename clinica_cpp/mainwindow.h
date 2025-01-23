@@ -171,6 +171,8 @@ private slots:
 
     void on_tw_estoque_cellClicked(int row, int column);
 
+    void on_btnDesfazerEstoque_clicked();
+
 private:
     Ui::MainWindow *ui;
 
