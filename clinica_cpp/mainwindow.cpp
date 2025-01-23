@@ -71,6 +71,8 @@ void MainWindow::janelaFormatada(){
 
     ui->paginas->tabBar()->setVisible(false);                                                                       // DEIXANDO OS ÍCONES DAS PÁGINAS DA TABWIDGET INVISÍVEIS
 
+    ui->tab_relatorios->tabBar()->setVisible(false);                                                                // MESMA COISA AQUI PARA A OUTRA TABWIDGET
+
     // FORMATANDO O LAYOUT SUPERIOR
 
     ui->frameSuperior->setFixedHeight(ui->frameSuperior->height() + 40);  // Aumenta a altura vertical do QFrame
@@ -182,13 +184,34 @@ void MainWindow::redimensionarTable(QTableWidget* table){
 // MÉTODO PARA RESETAR O ESTILO DOS BOTÕES
 
 void MainWindow::resetButtonStyles() {
-    ui->btnAgenda->setStyleSheet("");
-    ui->btnAtendimento->setStyleSheet("");
-    ui->btnPacientes->setStyleSheet("");
-    ui->btnColaboradores->setStyleSheet("");
-    ui->btnEstoque->setStyleSheet("");
-    ui->btnRelatorios->setStyleSheet("");
-    ui->btnInicio->setStyleSheet("");
+    QList<QPushButton*> botoes = {
+        ui->btnAgenda, ui->btnAtendimento, ui->btnPacientes,
+        ui->btnColaboradores, ui->btnEstoque, ui->btnRelatorios, ui->btnInicio,
+        ui->btnRelAtendimentos, ui->btnAdmFinanceiro
+    };
+
+    for (auto botao : botoes) {
+        botao->setStyleSheet("");
+    }
+}
+
+void MainWindow::setButtonHighlight(QPushButton *botao)
+{
+    if (botaoAtivo != botao) {
+        resetButtonStyles();
+        botao->setStyleSheet("background-color: rgb(179, 213, 243);");
+        botaoAtivo = botao;
+    }
+
+    if (botaoAtivo == ui->btnRelatorios){
+        ui->btnRelAtendimentos->setStyleSheet("background-color: rgb(179, 213, 243);");
+        ui->btnRelAtendimentos->setAutoFillBackground(true);
+    }
+
+    if (botaoAtivo == ui->btnAdmFinanceiro || botaoAtivo == ui->btnRelAtendimentos){
+        ui->btnRelatorios->setStyleSheet("background-color: rgb(179, 213, 243);");
+        ui->btnRelatorios->setAutoFillBackground(true);
+    }
 }
 
 //////////////////////////////////////////
@@ -282,8 +305,7 @@ void MainWindow::on_btnEntrar_clicked() {
 
 void MainWindow::on_btnInicio_clicked()
 {
-    resetButtonStyles();
-    ui->btnInicio->setStyleSheet("background-color: rgb(179, 213, 243);");                                          // ALTERAR A COR DE DESTAQUE DO BOTÃO
+    setButtonHighlight(ui->btnInicio);                                                                              // ALTERAR A COR DE DESTAQUE DO BOTÃO
     ui->btnInicio->setAutoFillBackground(true);
 
     int index = ui->paginas->indexOf(ui->Inicio);                                                                   // PÁGINA INICIO
@@ -301,8 +323,7 @@ void MainWindow::on_btnInicio_clicked()
 void MainWindow::on_btnAgenda_clicked()
 {
     if(logado){
-        resetButtonStyles();
-        ui->btnAgenda->setStyleSheet("background-color: rgb(179, 213, 243);");                                            // ALTERAR A COR DE DESTAQUE DO BOTÃO
+        setButtonHighlight(ui->btnAgenda);                                                                              // ALTERAR A COR DE DESTAQUE DO BOTÃO
         ui->btnAgenda->setAutoFillBackground(true);
 
         int index = ui->paginas->indexOf(ui->Agenda);                                                                     // PÁGINA AGENDA
@@ -873,8 +894,7 @@ void MainWindow::on_btnAgenda_clicked()
 void MainWindow::on_btnAtendimento_clicked()
     {
         if(logado){
-            resetButtonStyles();
-            ui->btnAtendimento->setStyleSheet("background-color: rgb(179, 213, 243);");                                            // ALTERAR A COR DE DESTAQUE DO BOTÃO
+            setButtonHighlight(ui->btnAtendimento);                                                                              // ALTERAR A COR DE DESTAQUE DO BOTÃO
             ui->btnAtendimento->setAutoFillBackground(true);
 
             ui->checkHoje->setChecked(true);
@@ -1130,8 +1150,7 @@ void MainWindow::on_btnDesfazer_clicked()
 void MainWindow::on_btnPacientes_clicked()
 {
     if(logado){
-        resetButtonStyles();
-        ui->btnPacientes->setStyleSheet("background-color: rgb(179, 213, 243);");                                       // ALTERAR A COR DE DESTAQUE DO BOTÃO
+        setButtonHighlight(ui->btnPacientes);                                                                              // ALTERAR A COR DE DESTAQUE DO BOTÃO
         ui->btnPacientes->setAutoFillBackground(true);
 
         int index = ui->paginas->indexOf(ui->Pacientes);                                                                // PÁGINA PACIENTES
@@ -1318,8 +1337,7 @@ void MainWindow::on_btnPacientes_clicked()
 void MainWindow::on_btnColaboradores_clicked()
 {
     if(logado){
-        resetButtonStyles();
-        ui->btnColaboradores->setStyleSheet("background-color: rgb(179, 213, 243);");                                   // ALTERAR A COR DE DESTAQUE DO BOTÃO
+        setButtonHighlight(ui->btnColaboradores);                                                                              // ALTERAR A COR DE DESTAQUE DO BOTÃO
         ui->btnColaboradores->setAutoFillBackground(true);
 
         int index = ui->paginas->indexOf(ui->Colaboradores);                                                            // PÁGINA COLABORADORES
@@ -1501,8 +1519,7 @@ void MainWindow::on_btnColaboradores_clicked()
 void MainWindow::on_btnRelatorios_clicked()
 {
     if(logado){
-        resetButtonStyles();
-        ui->btnRelatorios->setStyleSheet("background-color: rgb(179, 213, 243);");                                      // ALTERAR A COR DE DESTAQUE DO BOTÃO
+        setButtonHighlight(ui->btnRelatorios);                                                                              // ALTERAR A COR DE DESTAQUE DO BOTÃO
         ui->btnRelatorios->setAutoFillBackground(true);
 
         int index = ui->paginas->indexOf(ui->Relatorios);                                                               // PÁGINA RELATÓRIOS
@@ -1512,6 +1529,25 @@ void MainWindow::on_btnRelatorios_clicked()
     }
 }
 
+    // MÉTODOS PARA TROCAR ENTRE AS SUBPÁGINAS
+
+    void MainWindow::on_btnRelAtendimentos_clicked()
+    {
+        int index = ui->tab_relatorios->indexOf(ui->Atendimentos);                                                               // PÁGINA RELATÓRIOS
+        ui->tab_relatorios->setCurrentIndex(index);                                                                            // ACESSANDO A PÁGINA
+
+        setButtonHighlight(ui->btnRelAtendimentos);                                                                              // ALTERAR A COR DE DESTAQUE DO BOTÃO
+        ui->btnRelAtendimentos->setAutoFillBackground(true);
+    }
+
+    void MainWindow::on_btnAdmFinanceiro_clicked()
+    {
+        int index = ui->tab_relatorios->indexOf(ui->Adm_Financeiro);                                                               // PÁGINA RELATÓRIOS
+        ui->tab_relatorios->setCurrentIndex(index);                                                                            // ACESSANDO A PÁGINA
+
+        setButtonHighlight(ui->btnAdmFinanceiro);                                                                              // ALTERAR A COR DE DESTAQUE DO BOTÃO
+        ui->btnAdmFinanceiro->setAutoFillBackground(true);
+    }
 
     // MÉTODOS DA PÁGINA DE RELATÓRIOS
 
@@ -1613,6 +1649,7 @@ void MainWindow::on_btnRelatorios_clicked()
     }
 }
 
+
 // FIM DA PÁGINA RELATÓRIOS
 
 
@@ -1624,9 +1661,9 @@ void MainWindow::on_btnRelatorios_clicked()
 void MainWindow::on_btnEstoque_clicked()
 {
     if(logado){
-        resetButtonStyles();
-        ui->btnEstoque->setStyleSheet("background-color: rgb(179, 213, 243);");                                    // ALTERAR A COR DE DESTAQUE DO BOTÃO
+        setButtonHighlight(ui->btnEstoque);                                                                              // ALTERAR A COR DE DESTAQUE DO BOTÃO
         ui->btnEstoque->setAutoFillBackground(true);
+
         ui->radioProduto->setChecked(true);
 
         int index = ui->paginas->indexOf(ui->Estoque);                                                             // PÁGINA ESTOQUE
@@ -1864,3 +1901,4 @@ void MainWindow::on_btnApagar_clicked()
 
 
 ///////////////////////////////////////////////////
+

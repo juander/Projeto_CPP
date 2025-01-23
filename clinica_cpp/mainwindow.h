@@ -184,6 +184,10 @@ private slots:
 
     //////////////////////////////////////////////////
 
+    void on_btnRelAtendimentos_clicked();
+
+    void on_btnAdmFinanceiro_clicked();
+
     void setTreeWidget(QTreeWidget *treeWidget);
 
     void carregarRelatorio(int idSessao);                                      // MÉTODOS DOS RELATÓRIOS
@@ -191,11 +195,16 @@ private slots:
     void on_trw_atendimentos_itemClicked(QTreeWidgetItem *item, int column);
 
 private:
+
     Ui::MainWindow *ui;
 
     void redimensionarTable(QTableWidget* table);           // MÉTODO PARA REDIMENSÃO DAS TABELAS AUTOMATICAMENTE
 
+    QPushButton *botaoAtivo = nullptr;  // Armazena o botão atualmente selecionado
+
     void resetButtonStyles();                               // MÉTODO PARA RESETAR OS ESTILOS DOS BOTÕES
+
+    void setButtonHighlight(QPushButton *botao);  // Destaca o botão clicado
 
     // Conexão com o banco de dados
     Conexao conexao;
