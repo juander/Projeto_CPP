@@ -1504,7 +1504,7 @@ void MainWindow::on_btnColaboradores_clicked()
 
 
 
-// MÉTODO PARA ACESSAR A PÁGINA "RELATÓRIOS"
+// MÉTODO PARA ACESSAR A PÁGINA "ATENDIMENTOS" (OBS: DECIDÍMOS MUDAR O NOME DA PÁGINA POSTERIORMENTE, POR ISSO O NOME FICOU btnRelatorio)
 
 void MainWindow::on_btnRelatorios_clicked()
 {
