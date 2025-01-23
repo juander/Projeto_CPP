@@ -186,7 +186,7 @@ private slots:
 
     void setTreeWidget(QTreeWidget *treeWidget);
 
-    void carregarRelatorio(int idSessao);                                      // MÉTODOS DOS RELATÓRIOS
+    void carregarRelatorios(int* idSessao = nullptr);                                    // MÉTODOS DOS RELATÓRIOS
 
     void on_trw_atendimentos_itemClicked(QTreeWidgetItem *item, int column);
 

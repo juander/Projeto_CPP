@@ -2800,7 +2800,7 @@ color: white;</string>
                   <item>
                    <widget class="QRadioButton" name="radioRealizado">
                     <property name="text">
-                     <string>Realizado</string>
+                     <string>Realizada</string>
                     </property>
                    </widget>
                   </item>
