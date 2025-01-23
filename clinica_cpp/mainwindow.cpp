@@ -724,22 +724,31 @@ void MainWindow::on_btnAgenda_clicked()
 
     void MainWindow::adicionarSessaoNaTabela(int idSessao)
     {
+        bool filtrarData = ui->checkDataAgenda->isChecked();
+        QDate dataSelecionada = ui->calendarioAgenda->selectedDate();
+
         QSqlQuery query;
         query.prepare("SELECT * FROM tb_agendamentos WHERE id = :id");
         query.bindValue(":id", idSessao);
 
         if (query.exec() && query.first()) {
-            int linha = ui->tw_agenda->rowCount();
-            ui->tw_agenda->insertRow(linha);
+            QDate dataSessao = query.value("data").toDate(); // Supondo que a coluna de data se chame 'data'
 
-            for (int i = 0; i < query.record().count(); ++i) {
-                ui->tw_agenda->setItem(linha, i, new QTableWidgetItem(query.value(i).toString()));
+            // Verifica se deve filtrar por data e se a sessão cadastrada é para a data selecionada
+            if (!filtrarData || (filtrarData && dataSessao == dataSelecionada)) {
+                int linha = ui->tw_agenda->rowCount();
+                ui->tw_agenda->insertRow(linha);
+
+                for (int i = 0; i < query.record().count(); ++i) {
+                    ui->tw_agenda->setItem(linha, i, new QTableWidgetItem(query.value(i).toString()));
+                }
                 redimensionarTable(ui->tw_agenda);
             }
         } else {
             QMessageBox::warning(this, " ", "Erro ao carregar a nova sessão.");
         }
     }
+
 
     // MÉTODOS DE EDIÇÃO DE SESSÃO
 
