@@ -186,7 +186,7 @@ void MainWindow::resetButtonStyles() {
     ui->btnAtendimento->setStyleSheet("");
     ui->btnPacientes->setStyleSheet("");
     ui->btnColaboradores->setStyleSheet("");
-    ui->btnFornecedores->setStyleSheet("");
+    ui->btnEstoque->setStyleSheet("");
     ui->btnRelatorios->setStyleSheet("");
     ui->btnInicio->setStyleSheet("");
 }
@@ -1458,24 +1458,90 @@ void MainWindow::on_btnRelatorios_clicked()
 ////////////////////////////////////////////////////
 
 
-// MÉTODO PARA ACESSAR A PÁGINA "FORNECEDORES"
+// MÉTODO PARA ACESSAR A PÁGINA "ESTOQUE"
 
-void MainWindow::on_btnFornecedores_clicked()
+void MainWindow::on_btnEstoque_clicked()
 {
     if(logado){
         resetButtonStyles();
-        ui->btnFornecedores->setStyleSheet("background-color: rgb(179, 213, 243);");                                    // ALTERAR A COR DE DESTAQUE DO BOTÃO
-        ui->btnFornecedores->setAutoFillBackground(true);
+        ui->btnEstoque->setStyleSheet("background-color: rgb(179, 213, 243);");                                    // ALTERAR A COR DE DESTAQUE DO BOTÃO
+        ui->btnEstoque->setAutoFillBackground(true);
+        ui->radioProduto->setChecked(true);
 
-        int index = ui->paginas->indexOf(ui->Fornecedores);                                                             // PÁGINA FORNECEDORES
+        int index = ui->paginas->indexOf(ui->Estoque);                                                             // PÁGINA ESTOQUE
         ui->paginas->setCurrentIndex(index);                                                                            // ACESSANDO A PÁGINA
+
+        QSqlQuery query;
+
+        query.prepare("SELECT * FROM tb_estoque");                          // ACESSANDO A TABELA NO BANCO
+
+        if(query.exec()){
+            setTabelaEstoque(query);                                                                                              // CARREGANDO A TABELA NA TABLE ATRAVÉS DO MÉTODO
+        }else{
+            qDebug() << "Erro ao executar a query:" << query.lastError().text();
+        }
+
     } else {
         QMessageBox::information(this, " ", "Contrate nosso serviço para ter acesso ao sistema!");
     }
 }
 
+void MainWindow::setTabelaEstoque(QSqlQuery &query)
+{
+    int tb_linha = 0;
+
+    // Limpa os dados antigos da tabela
+    ui->tw_estoque->clearContents();
+    ui->tw_estoque->setRowCount(0);  // Reseta as linhas
+
+    ui->tw_estoque->setColumnCount(6);                                                                    // SETA A TABLE EM 8 COLUNAS
+    while(query.next()){
+
+        ui->tw_estoque->insertRow(tb_linha);
+
+        for(int i = 0; i <= 5; i++){
+            ui->tw_estoque->setItem(tb_linha,i,new QTableWidgetItem(query.value(i).toString()));          // LOOP QUE PREENCHE A TABLE COM OS DADOS DO BANCO
+        }
+        ui->tw_estoque->setRowHeight(tb_linha,30);
+
+        tb_linha++;
+    }
+
+    QStringList cabecalho = {"ID", "Produto", "Quantidade", "Valor de Compra", "Valor de Venda", "Fornecedor"};
+    ui->tw_estoque->setHorizontalHeaderLabels(cabecalho);
+    ui->tw_estoque->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tw_estoque->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tw_estoque->verticalHeader()->setVisible(false);
+    ui->tw_estoque->setStyleSheet("QTableWidget::item:selected {background-color: blue}");
+
+    redimensionarTable(ui->tw_estoque);
+
+}
+
+void MainWindow::on_lineEditEstoque_textChanged(const QString &arg1)
+{
+    QString pesquisado = ui->lineEditEstoque->text();
+    bool filtrarProduto = ui->radioProduto->isChecked();
+    QSqlQuery query;
+
+    if (filtrarProduto) {
+        query.prepare("SELECT * FROM tb_estoque WHERE produto LIKE :produto");
+        query.bindValue(":produto", pesquisado + "%");
+    } else {
+        query.prepare("SELECT * FROM tb_estoque WHERE fornecedor LIKE :fornecedor");
+        query.bindValue(":fornecedor", pesquisado + "%");
+    }
+
+    if (query.exec()) {
+            qDebug() << query.lastQuery();
+            setTabelaEstoque(query); // CARREGANDO A TABELA NA TABLE ATRAVÉS DO MÉTODO
+    } else {
+        qDebug() << "Erro ao executar a query:" << query.lastError().text();
+    }
+}
+
+
 // FIM DA PÁGINA FORNCEDORES
 
 
 ///////////////////////////////////////////////////
-

@@ -74,7 +74,7 @@ private slots:
 
     void on_btnColaboradores_clicked();
 
-    void on_btnFornecedores_clicked();
+    void on_btnEstoque_clicked();
 
     void on_btnRelatorios_clicked();
 
@@ -115,6 +115,8 @@ private slots:
     void on_tw_atendimento_cellClicked(int row, int column);
 
     void on_btnSalvar_clicked();
+
+    void on_btnDesfazer_clicked();
 
     /////////////////////////////////////////////
 
@@ -157,7 +159,11 @@ private slots:
 
     /////////////////////////////////////////////////
 
-    void on_btnDesfazer_clicked();
+    void setTabelaEstoque(QSqlQuery &query);                                   // MÉTODOS DO ESTOQUE
+
+    void on_lineEditEstoque_textChanged(const QString &arg1);
+
+    void on_btnFornecedores_clicked();
 
 private:
     Ui::MainWindow *ui;

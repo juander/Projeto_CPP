@@ -1687,7 +1687,7 @@ color: white;</string>
             </widget>
            </item>
            <item>
-            <widget class="QCommandLinkButton" name="btnFornecedores">
+            <widget class="QCommandLinkButton" name="btnEstoque">
              <property name="palette">
               <palette>
                <active>
@@ -2270,7 +2270,7 @@ color: white;</string>
           <zorder>line5</zorder>
           <zorder>btnRelatorios</zorder>
           <zorder>line6</zorder>
-          <zorder>btnFornecedores</zorder>
+          <zorder>btnEstoque</zorder>
           <zorder>line7</zorder>
           <zorder>btnInicio</zorder>
           <zorder>verticalSpacer_16</zorder>
@@ -2283,7 +2283,7 @@ color: white;</string>
         <item>
          <widget class="QTabWidget" name="paginas">
           <property name="currentIndex">
-           <number>2</number>
+           <number>6</number>
           </property>
           <widget class="QWidget" name="Inicio">
            <property name="styleSheet">
@@ -4002,7 +4002,7 @@ color: white;</string>
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="Fornecedores">
+          <widget class="QWidget" name="Estoque">
            <attribute name="title">
             <string>Estoque</string>
            </attribute>
@@ -4014,53 +4014,45 @@ color: white;</string>
                 <item>
                  <layout class="QHBoxLayout" name="horizontalLayout_15">
                   <item>
-                   <widget class="QGroupBox" name="groupBox">
-                    <property name="title">
-                     <string>Filtrar por:</string>
-                    </property>
-                    <property name="flat">
-                     <bool>false</bool>
-                    </property>
-                    <layout class="QVBoxLayout" name="verticalLayout_24">
-                     <item>
-                      <layout class="QHBoxLayout" name="horizontalLayout_18">
-                       <item>
-                        <widget class="QRadioButton" name="radioButton">
-                         <property name="text">
-                          <string>Nome Produto</string>
-                         </property>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QRadioButton" name="radioButton_2">
-                         <property name="text">
-                          <string>Fornecedor</string>
-                         </property>
-                        </widget>
-                       </item>
-                      </layout>
-                     </item>
-                    </layout>
-                   </widget>
-                  </item>
-                  <item>
-                   <layout class="QVBoxLayout" name="verticalLayout_25">
+                   <layout class="QHBoxLayout" name="horizontalLayout_13">
                     <item>
-                     <widget class="QLabel" name="label_22">
-                      <property name="text">
-                       <string>Pesquisa:</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLineEdit" name="lineEdit_7"/>
+                     <layout class="QHBoxLayout" name="horizontalLayout_18">
+                      <item>
+                       <widget class="QLineEdit" name="lineEditEstoque">
+                        <property name="placeholderText">
+                         <string>Pesquisar</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QLabel" name="label_6">
+                        <property name="text">
+                         <string>Filtro:</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QRadioButton" name="radioProduto">
+                        <property name="text">
+                         <string>Nome Produto</string>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QRadioButton" name="radioFornecedor">
+                        <property name="text">
+                         <string>Fornecedor</string>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
                     </item>
                    </layout>
                   </item>
                  </layout>
                 </item>
                 <item>
-                 <widget class="QTableWidget" name="tableWidget"/>
+                 <widget class="QTableWidget" name="tw_estoque"/>
                 </item>
                </layout>
               </item>
