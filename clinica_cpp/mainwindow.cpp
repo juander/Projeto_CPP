@@ -1551,10 +1551,24 @@ void MainWindow::on_lineEditEstoque_textChanged(const QString &arg1)
 
 void MainWindow::on_radioProduto_toggled(bool checked)
 {
-
+    on_lineEditEstoque_textChanged("");
 }
 
+void MainWindow::on_tw_estoque_cellClicked(int row, int column)
+{
+    QSqlQuery query;
 
+    int id = ui->tw_atendimento->item(row, 0)->text().toInt();
+
+    query.prepare("SELECT * FROM tb_estoque WHERE id = :id");
+    query.bindValue(":id", id);
+
+    if (query.exec()) {
+        setTabelaEstoque(query); // CARREGANDO A TABELA NA TABLE ATRAVÉS DO MÉTODO
+    } else {
+        qDebug() << "Erro ao executar a query:" << query.lastError().text();
+    }
+}
 
 // FIM DA PÁGINA FORNCEDORES
 
