@@ -1540,6 +1540,12 @@ void MainWindow::on_lineEditEstoque_textChanged(const QString &arg1)
     }
 }
 
+void MainWindow::on_radioProduto_toggled(bool checked)
+{
+
+}
+
+
 
 // FIM DA PÁGINA FORNCEDORES
 

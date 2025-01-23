@@ -1,5 +1,6 @@
 #include "cadastrosessao.h"
 #include "ui_cadastrosessao.h"
+#include "mainwindow.h"
 
 cadastroSessao::cadastroSessao(MainWindow *mainWindow, const QString &modo, int idSessao, QWidget *parent)
     : QDialog(parent)

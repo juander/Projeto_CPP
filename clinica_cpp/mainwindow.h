@@ -163,7 +163,7 @@ private slots:
 
     void on_lineEditEstoque_textChanged(const QString &arg1);
 
-    void on_btnFornecedores_clicked();
+    void on_radioProduto_toggled(bool checked);
 
 private:
     Ui::MainWindow *ui;

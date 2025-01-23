@@ -6,7 +6,7 @@
 #include <QTableWidget>
 #include <QMessageBox>
 
-#include "mainwindow.h"
+
 
 class MainWindow;
 
