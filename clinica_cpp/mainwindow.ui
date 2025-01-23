@@ -3821,7 +3821,7 @@ color: white;</string>
               <item>
                <widget class="QTabWidget" name="paginas_gerencia">
                 <property name="currentIndex">
-                 <number>1</number>
+                 <number>0</number>
                 </property>
                 <widget class="QWidget" name="Gerenciar_Produto">
                  <attribute name="title">
@@ -3923,16 +3923,16 @@ color: white;</string>
                      </layout>
                     </item>
                     <item>
-                     <widget class="QPushButton" name="btnDesfazer_2">
+                     <widget class="QPushButton" name="btnAtualizar">
                       <property name="text">
-                       <string>Desfazer Mudanças</string>
+                       <string>Atualizar</string>
                       </property>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QPushButton" name="btnAtualizar">
+                     <widget class="QPushButton" name="btnDesfazerEstoque">
                       <property name="text">
-                       <string>Atualizar</string>
+                       <string>Desfazer Mudanças</string>
                       </property>
                      </widget>
                     </item>
