@@ -1518,11 +1518,13 @@ void MainWindow::on_btnRelatorios_clicked()
 
         int index = ui->paginas->indexOf(ui->Relatorios);  // Página de Relatórios
         ui->paginas->setCurrentIndex(index);               // Troca para a página de relatórios
+        ui->txtRelAtendimento->clear();
 
         carregarRelatorios();  // Carrega todos os atendimentos na TreeWidget
     } else {
         QMessageBox::information(this, "Acesso Negado", "Contrate nosso serviço para ter acesso ao sistema!");
     }
+
 }
 
 ////////////////////////////////////////////////////////////////
@@ -1567,7 +1569,7 @@ void MainWindow::on_btnRelatorios_clicked()
                           "FROM tb_agendamentos a "
                           "LEFT JOIN tb_atendimentos t ON a.id = t.id_agendamento "
                           "WHERE a.status_sessao = 'Realizada' "
-                          "ORDER BY a.data, a.hora");  // Ordena por data e hora
+                          "ORDER BY a.data DESC, a.hora DESC;");  // Ordena por data e hora
         } else {
             // Carregar uma sessão específica realizada
             int sessao = *idSessao;
@@ -1644,6 +1646,12 @@ void MainWindow::on_btnEstoque_clicked()
         ui->btnEstoque->setAutoFillBackground(true);
 
         ui->radioProduto->setChecked(true);
+
+        ui->lineEditProduto->setText("");
+        ui->spinQuantidade->setValue(0);
+        ui->doubleSpinCompra->setValue(0);
+        ui->doubleSpinVenda->setValue(0);
+        ui->lineEditFornecedor->setText("");
 
         int index = ui->paginas->indexOf(ui->Estoque);                                                             // PÁGINA ESTOQUE
         ui->paginas->setCurrentIndex(index);                                                                            // ACESSANDO A PÁGINA
@@ -1738,6 +1746,9 @@ void MainWindow::on_tw_estoque_cellClicked(int row, int column)
             double valor_compra = query.value("valor_compra").toDouble();
             double valor_venda = query.value("valor_venda").toDouble();
             QString fornecedor = query.value("fornecedor").toString();
+
+            qDebug() << valor_compra;
+            qDebug() << valor_venda;
 
             ui->lineEditProduto->setText(produto);
             ui->spinQuantidade->setValue(quantidade);

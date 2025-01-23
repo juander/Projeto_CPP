@@ -73,7 +73,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <item>
         <widget class="QLabel" name="label_9">
          <property name="text">
-          <string>Diagnóstico:</string>
+          <string>Diagnóstico (opcional):</string>
          </property>
         </widget>
        </item>

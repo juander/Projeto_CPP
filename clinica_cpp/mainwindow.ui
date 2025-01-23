@@ -2283,7 +2283,7 @@ color: white;</string>
         <item>
          <widget class="QTabWidget" name="paginas">
           <property name="currentIndex">
-           <number>5</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="Inicio">
            <property name="styleSheet">
@@ -2779,7 +2779,7 @@ color: white;</string>
                         <string/>
                        </property>
                        <property name="placeholderText">
-                        <string>Digite aqui o teu pai</string>
+                        <string>Digite aqui</string>
                        </property>
                       </widget>
                      </item>
