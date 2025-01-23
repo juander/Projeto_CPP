@@ -67,6 +67,7 @@ void MainWindow::setPaletaCor(QApplication &app){
 // MÉTODO PARA FORMATAR A PÁGINA PRINCIPAL E DEFINIR A PÁGINA DE INÍCIO
 
 void MainWindow::janelaFormatada(){
+
     ui->layoutPrincipal->setSpacing(0);                                                                             // SETANDO OS ESPAÇOS ENTRE OS LAYOUTS
 
     ui->paginas->tabBar()->setVisible(false);                                                                       // DEIXANDO OS ÍCONES DAS PÁGINAS DA TABWIDGET INVISÍVEIS
@@ -186,8 +187,7 @@ void MainWindow::redimensionarTable(QTableWidget* table){
 void MainWindow::resetButtonStyles() {
     QList<QPushButton*> botoes = {
         ui->btnAgenda, ui->btnAtendimento, ui->btnPacientes,
-        ui->btnColaboradores, ui->btnEstoque, ui->btnRelatorios, ui->btnInicio,
-        ui->btnRelAtendimentos, ui->btnAdmFinanceiro
+        ui->btnColaboradores, ui->btnEstoque, ui->btnRelatorios, ui->btnInicio
     };
 
     for (auto botao : botoes) {
@@ -201,16 +201,6 @@ void MainWindow::setButtonHighlight(QPushButton *botao)
         resetButtonStyles();
         botao->setStyleSheet("background-color: rgb(179, 213, 243);");
         botaoAtivo = botao;
-    }
-
-    if (botaoAtivo == ui->btnRelatorios){
-        ui->btnRelAtendimentos->setStyleSheet("background-color: rgb(179, 213, 243);");
-        ui->btnRelAtendimentos->setAutoFillBackground(true);
-    }
-
-    if (botaoAtivo == ui->btnAdmFinanceiro || botaoAtivo == ui->btnRelAtendimentos){
-        ui->btnRelatorios->setStyleSheet("background-color: rgb(179, 213, 243);");
-        ui->btnRelatorios->setAutoFillBackground(true);
     }
 }
 
@@ -1528,26 +1518,6 @@ void MainWindow::on_btnRelatorios_clicked()
         QMessageBox::information(this, " ", "Contrate nosso serviço para ter acesso ao sistema!");
     }
 }
-
-    // MÉTODOS PARA TROCAR ENTRE AS SUBPÁGINAS
-
-    void MainWindow::on_btnRelAtendimentos_clicked()
-    {
-        int index = ui->tab_relatorios->indexOf(ui->Atendimentos);                                                               // PÁGINA RELATÓRIOS
-        ui->tab_relatorios->setCurrentIndex(index);                                                                            // ACESSANDO A PÁGINA
-
-        setButtonHighlight(ui->btnRelAtendimentos);                                                                              // ALTERAR A COR DE DESTAQUE DO BOTÃO
-        ui->btnRelAtendimentos->setAutoFillBackground(true);
-    }
-
-    void MainWindow::on_btnAdmFinanceiro_clicked()
-    {
-        int index = ui->tab_relatorios->indexOf(ui->Adm_Financeiro);                                                               // PÁGINA RELATÓRIOS
-        ui->tab_relatorios->setCurrentIndex(index);                                                                            // ACESSANDO A PÁGINA
-
-        setButtonHighlight(ui->btnAdmFinanceiro);                                                                              // ALTERAR A COR DE DESTAQUE DO BOTÃO
-        ui->btnAdmFinanceiro->setAutoFillBackground(true);
-    }
 
     // MÉTODOS DA PÁGINA DE RELATÓRIOS
 

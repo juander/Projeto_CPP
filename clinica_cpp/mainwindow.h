@@ -184,10 +184,6 @@ private slots:
 
     //////////////////////////////////////////////////
 
-    void on_btnRelAtendimentos_clicked();
-
-    void on_btnAdmFinanceiro_clicked();
-
     void setTreeWidget(QTreeWidget *treeWidget);
 
     void carregarRelatorio(int idSessao);                                      // MÉTODOS DOS RELATÓRIOS
