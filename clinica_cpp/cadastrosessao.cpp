@@ -59,6 +59,8 @@ void cadastroSessao::setModo(const QString &modo)
     } else {
 
         this->setWindowTitle("Nova Sessão");
+
+        ui->dataAgenda->setDate(QDate::currentDate());
     }
 }
 
