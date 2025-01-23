@@ -178,8 +178,6 @@ private slots:
 
     void on_btnAdicionar_clicked();
 
-    void on_btnLimpar_clicked();
-
     void on_btnApagar_clicked();
 
 private:
