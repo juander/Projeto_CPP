@@ -2283,7 +2283,7 @@ color: white;</string>
         <item>
          <widget class="QTabWidget" name="paginas">
           <property name="currentIndex">
-           <number>1</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="Inicio">
            <property name="styleSheet">
@@ -2823,7 +2823,7 @@ color: white;</string>
                    </widget>
                   </item>
                   <item>
-                   <widget class="QPushButton" name="pushButton_9">
+                   <widget class="QPushButton" name="btnDesfazer">
                     <property name="text">
                      <string>Desfazer Mudançar</string>
                     </property>

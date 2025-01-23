@@ -157,6 +157,8 @@ private slots:
 
     /////////////////////////////////////////////////
 
+    void on_btnDesfazer_clicked();
+
 private:
     Ui::MainWindow *ui;
 

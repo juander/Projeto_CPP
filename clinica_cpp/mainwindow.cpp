@@ -906,7 +906,7 @@ void MainWindow::on_checkHoje_checkStateChanged(const Qt::CheckState &arg1)
 }
 
 void MainWindow::on_tw_atendimento_cellClicked(int row, int column)
-{   
+{
     // pegar id do agendamento selecionado
     // pesquisar esse id na tabela atendimentos, se tiver, recuperar valores, senao criar novo elemento
     QString texto;
@@ -930,6 +930,8 @@ void MainWindow::on_tw_atendimento_cellClicked(int row, int column)
         if (query.next()) {
             texto = query.value(1).toString(); // Pega o valor da segunda coluna
             ui->textEdit->setText(texto);
+        } else {
+            ui->textEdit->clear();
         }
     } else {
         qDebug() << "Erro ao executar a query:" << query.lastError().text();
@@ -949,31 +951,35 @@ void MainWindow::on_btnSalvar_clicked()
     texto = ui->textEdit->toPlainText();
 
     QSqlQuery query;
-    query.prepare("SELECT COUNT(*) FROM tb_atendimentos WHERE id_agendamento = :id_agendamento");
+    query.prepare("SELECT * FROM tb_atendimentos WHERE id_agendamento = :id_agendamento");
     query.bindValue(":id_agendamento", id);
 
-    if (query.exec() && query.next()) {
-        int count = query.value(0).toInt();
-        if (count > 0) {
-            // Atualiza o registro existente
-            query.prepare("UPDATE tb_atendimentos SET texto = :texto WHERE id_agendamento = :id_agendamento");
-            query.bindValue(":id_agendamento", id);
-            query.bindValue(":texto", texto);
-        } else {
-            // Insere um novo registro
-            query.prepare("INSERT INTO tb_atendimentos (id_agendamento, texto, id_profissional) VALUES (:id_agendamento, :texto, :id_profissional)");
-            query.bindValue(":id_agendamento", id);
-            query.bindValue(":texto", texto);
-            query.bindValue(":id_profissional", id_usuario);
-        }
+    if (query.exec()) {
+        if (query.next()) {
+                qDebug() << "entrou 1";
+                // Atualiza o registro existente
+                query.prepare("UPDATE tb_atendimentos SET texto = :texto WHERE id_agendamento = :id_agendamento");
+                query.bindValue(":id_agendamento", id);
+                query.bindValue(":texto", texto);
+            } else {
+                qDebug() << "entrou 2";
+                // Insere um novo registro
+                query.prepare("INSERT INTO tb_atendimentos (id_agendamento, texto) " "VALUES (:id_agendamento, :texto)");
+                query.bindValue(":id_agendamento", id);
+                query.bindValue(":texto", texto);
+            }
 
-        if (query.exec()) {
-            qDebug() << "Dados inseridos/atualizados com sucesso.";
-        } else {
-            qDebug() << "Erro ao executar a query:" << query.lastError().text();
-        }
+        qDebug() << "Dados inseridos/atualizados com sucesso.";
+
     } else {
-        qDebug() << "Erro ao executar a query de verificação:" << query.lastError().text();
+        qDebug() << "Erro ao executar a query:" << query.lastError().text();
+    }
+
+    if (query.exec()) {
+        qDebug() << "query 1 foi";
+        ui->textEdit->clear();
+    } else {
+        qDebug() << "Erro ao executar a query:" << query.lastError().text();
     }
 
     QSqlQuery query_2;
@@ -1037,7 +1043,21 @@ void MainWindow::on_btnSalvar_clicked()
     }
 }
 
+void MainWindow::on_btnDesfazer_clicked()
+{
+    int row = ui->tw_atendimento->currentRow();
 
+    if (row != -1) {
+        QMessageBox::StandardButton resposta;
+        resposta = QMessageBox::question(this, "Desfazer Mudanças", "Tem certeza que deseja desfazer as mudanças?", QMessageBox::Yes | QMessageBox::No);
+            if (resposta == QMessageBox::Yes) {
+                on_tw_atendimento_cellClicked(row, 0);
+            }
+    } else {
+        qDebug() << "Nenhuma linha selecionada.";
+
+    }
+}
 
 // FIM DA PÁGINA ATENDIMENTO
 
@@ -1458,3 +1478,4 @@ void MainWindow::on_btnFornecedores_clicked()
 
 
 ///////////////////////////////////////////////////
+
