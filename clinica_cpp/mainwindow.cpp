@@ -1623,13 +1623,33 @@ void MainWindow::on_tw_estoque_cellClicked(int row, int column)
 {
     QSqlQuery query;
 
-    int id = ui->tw_atendimento->item(row, 0)->text().toInt();
+    int id = ui->tw_estoque->item(row, 0)->text().toInt();
+
+    qDebug() << id;
 
     query.prepare("SELECT * FROM tb_estoque WHERE id = :id");
     query.bindValue(":id", id);
 
+    qDebug() << "ok";
+
     if (query.exec()) {
-        setTabelaEstoque(query); // CARREGANDO A TABELA NA TABLE ATRAVÉS DO MÉTODO
+        if (query.next()) {
+            // Pegando os valores das colunas
+            QString produto = query.value("produto").toString();
+            int quantidade = query.value("quantidade").toInt();
+            double valor_compra = query.value("valor_compra").toDouble();
+            double valor_venda = query.value("valor_venda").toDouble();
+            QString fornecedor = query.value("fornecedor").toString();
+
+            ui->lineEditProduto->setText(produto);
+            ui->spinQuantidade->setValue(quantidade);
+            ui->doubleSpinCompra->setValue(valor_compra);
+            ui->doubleSpinVenda->setValue(valor_venda);
+            ui->lineEditFornecedor->setText(fornecedor);
+
+        } else {
+            qDebug() << "Nenhum resultado encontrado.";
+        }
     } else {
         qDebug() << "Erro ao executar a query:" << query.lastError().text();
     }
