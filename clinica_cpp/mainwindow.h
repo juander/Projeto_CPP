@@ -165,6 +165,8 @@ private slots:
 
     void on_radioProduto_toggled(bool checked);
 
+    void on_tw_estoque_cellClicked(int row, int column);
+
 private:
     Ui::MainWindow *ui;
 
