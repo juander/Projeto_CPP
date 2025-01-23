@@ -4052,9 +4052,6 @@ color: white;</string>
                  </layout>
                 </item>
                 <item>
-                 <layout class="QVBoxLayout" name="verticalLayout_20"/>
-                </item>
-                <item>
                  <widget class="QTableWidget" name="tw_estoque"/>
                 </item>
                 <item>
