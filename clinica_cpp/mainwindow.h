@@ -13,6 +13,7 @@
 #include <QFileInfo>
 #include <QMessageBox>
 #include <QMovie>
+#include <QTreeWidget>
 
 #include "Conexao.h"
 
@@ -172,6 +173,14 @@ private slots:
     void on_tw_estoque_cellClicked(int row, int column);
 
     void on_btnDesfazerEstoque_clicked();
+
+    void on_btnAtualizar_clicked();
+
+    void on_btnAdicionar_clicked();
+
+    void on_btnLimpar_clicked();
+
+    void on_btnApagar_clicked();
 
 private:
     Ui::MainWindow *ui;
