@@ -2283,7 +2283,7 @@ color: white;</string>
         <item>
          <widget class="QTabWidget" name="paginas">
           <property name="currentIndex">
-           <number>5</number>
+           <number>6</number>
           </property>
           <widget class="QWidget" name="Inicio">
            <property name="styleSheet">
@@ -3888,7 +3888,11 @@ color: white;</string>
                          </widget>
                         </item>
                         <item>
-                         <widget class="QDoubleSpinBox" name="doubleSpinCompra"/>
+                         <widget class="QDoubleSpinBox" name="doubleSpinCompra">
+                          <property name="maximum">
+                           <double>999999.000000000000000</double>
+                          </property>
+                         </widget>
                         </item>
                        </layout>
                       </item>
@@ -3902,7 +3906,11 @@ color: white;</string>
                          </widget>
                         </item>
                         <item>
-                         <widget class="QDoubleSpinBox" name="doubleSpinVenda"/>
+                         <widget class="QDoubleSpinBox" name="doubleSpinVenda">
+                          <property name="maximum">
+                           <double>999999.000000000000000</double>
+                          </property>
+                         </widget>
                         </item>
                        </layout>
                       </item>
@@ -3933,13 +3941,6 @@ color: white;</string>
                      <widget class="QPushButton" name="btnDesfazerEstoque">
                       <property name="text">
                        <string>Desfazer Mudanças</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QPushButton" name="btnLimpar">
-                      <property name="text">
-                       <string>Limpar Campos</string>
                       </property>
                      </widget>
                     </item>

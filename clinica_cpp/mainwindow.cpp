@@ -1733,7 +1733,7 @@ void MainWindow::on_lineEditEstoque_textChanged(const QString &arg1)
     }
 
     if (query.exec()) {
-            setTabelaEstoque(query); // CARREGANDO A TABELA NA TABLE ATRAVÉS DO MÉTODO
+        setTabelaEstoque(query); // CARREGANDO A TABELA NA TABLE ATRAVÉS DO MÉTODO
     } else {
         qDebug() << "Erro ao executar a query:" << query.lastError().text();
     }
@@ -1795,17 +1795,108 @@ void MainWindow::on_btnDesfazerEstoque_clicked()
 
 void MainWindow::on_btnAtualizar_clicked()
 {
+    int row = ui->tw_estoque->currentRow();
 
+    if(row != -1){
+
+        int id = ui->tw_estoque->item(row, 0)->text().toInt();
+
+        QString produto = ui->lineEditProduto->text();
+        int quantidade = ui->spinQuantidade->value(); // Use value() instead of text().toInt()
+        double valor_compra = ui->doubleSpinCompra->value(); // Use value() instead of text().toDouble()
+        double valor_venda = ui->doubleSpinVenda->value(); // Use value() instead of text().toDouble()
+        QString fornecedor = ui->lineEditFornecedor->text();
+
+        QSqlQuery query;
+
+        query.prepare("UPDATE tb_estoque SET produto = :produto, quantidade = :quantidade, valor_compra = :valor_compra, valor_venda = :valor_venda, fornecedor = :fornecedor WHERE id = :id");
+
+        query.bindValue(":produto", produto);
+        query.bindValue(":quantidade", quantidade);
+        query.bindValue(":valor_compra", valor_compra);
+        query.bindValue(":valor_venda", valor_venda);
+        query.bindValue(":fornecedor", fornecedor);
+        query.bindValue(":id", id);
+
+        if (query.exec()) {
+
+            on_lineEditEstoque_textChanged("");
+
+            ui->tw_estoque->selectRow(row);
+
+        } else {
+            qDebug() << "Erro ao atualizar o produto:" << query.lastError().text();
+        }
+
+    } else {
+        qDebug() << "Nenhuma linha selecionada.";
+    }
 }
 
 void MainWindow::on_btnAdicionar_clicked()
 {
+    QString produto = ui->lineEditProdutoAdd->text();
+    QString fornecedor = ui->lineEditFornecedorAdd->text();
+
+    QSqlQuery query;
+
+    query.prepare("INSERT INTO tb_estoque (produto, fornecedor) " "VALUES (:produto, :fornecedor)");
+    query.bindValue(":produto", produto);
+    query.bindValue(":fornecedor", fornecedor);
+
+    if (query.exec()) {
+        QMessageBox::information(this, " ", "Produto adicionado ao estoque com sucesso.");
+
+        ui->lineEditProdutoAdd->clear();
+        ui->lineEditFornecedorAdd->clear();
+
+        on_lineEditEstoque_textChanged("");
+
+    } else {
+        qDebug() << "Erro ao executar a query:" << query.lastError().text();
+        QMessageBox::warning(this, " ", "Erro ao adicionar o produto.");
+    }
 
 }
 
 void MainWindow::on_btnApagar_clicked()
 {
+    int row = ui->tw_estoque->currentRow();
 
+    if(row != -1){
+
+        int id = ui->tw_estoque->item(row, 0)->text().toInt();
+
+        QMessageBox::StandardButton resposta;
+        resposta = QMessageBox::question(this, "Apagar Produto", "Tem certeza que deseja apagar o produto?", QMessageBox::Yes | QMessageBox::No);
+
+        if (resposta == QMessageBox::Yes) {
+
+            QSqlQuery query;
+
+            query.prepare("DELETE FROM tb_estoque WHERE id = :id");
+            query.bindValue(":id", id);
+
+            if (query.exec()) {
+                QMessageBox::information(this, " ", "Produto excluído com sucesso.");
+                ui->tw_estoque->removeRow(row);
+
+                ui->lineEditProduto->setText("");
+                ui->spinQuantidade->setValue(0);
+                ui->doubleSpinCompra->setValue(0);
+                ui->doubleSpinVenda->setValue(0);
+                ui->lineEditFornecedor->setText("");
+
+            } else {
+                QMessageBox::warning(this, " ", "Erro ao excluir o produto.");
+                qDebug() << "Erro ao executar a query:" << query.lastError().text();
+            }
+
+        }
+
+    } else {
+        qDebug() << "Nenhuma linha selecionada.";
+    }
 }
 
 // FIM DA PÁGINA FORNCEDORES
