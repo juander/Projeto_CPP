@@ -145,8 +145,28 @@ void MainWindow::janelaFormatada(){
     on_btnInicio_clicked();                                                 // DEFINI A PÁGINA INICIAL COMO SEMPRE A PRIMEIRA AO ABRIR O PROGRAMA
 
     ui->txtRelAtendimento->setReadOnly(true);                               // SETANDO A TEXTEDIT DA PÁGINA DE ATENDIMENTOS COMO SOMENTE PARA LEITURA NO PROGRAMA TODO
-}
 
+    // Estilizando o calendário
+    ui->calendarioAgenda->setStyleSheet(
+        "QCalendarWidget QWidget#qt_calendar_navigationbar {"
+        "    background-color: #dcdcdc;"  // Cor de fundo da barra de navegação
+        "}"
+        "QCalendarWidget QToolButton {"
+        "    color: #000000;"  // Cor do texto dos botões
+        "}"
+        "QCalendarWidget QAbstractItemView:enabled {"
+        "    selection-background-color: #a0c4ff;"  // Cor de fundo da seleção
+        "    selection-color: #000000;"  // Cor do texto da seleção
+        "}"
+    );
+
+    // Alterar o ícone das setas de navegação
+    QToolButton *prevMonthButton = ui->calendarioAgenda->findChild<QToolButton *>("qt_calendar_prevmonth");
+    QToolButton *nextMonthButton = ui->calendarioAgenda->findChild<QToolButton *>("qt_calendar_nextmonth");
+
+    prevMonthButton->setIcon(QIcon(":/icons/prev.png"));  // Substitua pelo caminho do seu ícone
+    nextMonthButton->setIcon(QIcon(":/icons/next.png"));  // Substitua pelo caminho do seu ícone
+}
 
 //////////////////////////////////////////
 
@@ -377,7 +397,30 @@ void MainWindow::on_btnAgenda_clicked()
         ui->tw_agenda->setEditTriggers(QAbstractItemView::NoEditTriggers);
         ui->tw_agenda->setSelectionBehavior(QAbstractItemView::SelectRows);
         ui->tw_agenda->verticalHeader()->setVisible(false);
-        ui->tw_agenda->setStyleSheet("QTableWidget::item:selected {background-color: blue}");
+
+        // Estilizando a tabela com CSS
+        ui->tw_agenda->setStyleSheet(
+            "QTableWidget {"
+            "    border: 3px solid #dcdcdc;"
+            "    border-radius: 10px;"
+            "    background-color: #ffffff;"
+            "    gridline-color: #dcdcdc;"
+            "}"
+            "QHeaderView::section {"
+            "    background-color: #f0f0f0;"
+            "    border: 1px solid #dcdcdc;"
+            "    padding: 5px;"
+            "    border-radius: 5px;"
+            "}"
+            "QTableWidget::item {"
+            "    border-bottom: 1px solid #dcdcdc;"
+            "    padding: 5px;"
+            "}"
+            "QTableWidget::item:selected {"
+            "    background-color: #a0c4ff;"
+            "    color: #000000;"
+            "}"
+        );
 
         redimensionarTable(ui->tw_agenda);                                                                          // REDIMENSIONANDO A TABELA
     }
@@ -876,7 +919,30 @@ void MainWindow::on_btnAgenda_clicked()
         ui->tw_atendimento->setEditTriggers(QAbstractItemView::NoEditTriggers);
         ui->tw_atendimento->setSelectionBehavior(QAbstractItemView::SelectRows);
         ui->tw_atendimento->verticalHeader()->setVisible(false);
-        ui->tw_atendimento->setStyleSheet("QTableWidget::item:selected {background-color: blue}");
+
+        // Estilizando a tabela com CSS
+        ui->tw_atendimento->setStyleSheet(
+            "QTableWidget {"
+            "    border: 3px solid #dcdcdc;"
+            "    border-radius: 10px;"
+            "    background-color: #ffffff;"
+            "    gridline-color: #dcdcdc;"
+            "}"
+            "QHeaderView::section {"
+            "    background-color: #f0f0f0;"
+            "    border: 1px solid #dcdcdc;"
+            "    padding: 5px;"
+            "    border-radius: 5px;"
+            "}"
+            "QTableWidget::item {"
+            "    border-bottom: 1px solid #dcdcdc;"
+            "    padding: 5px;"
+            "}"
+            "QTableWidget::item:selected {"
+            "    background-color: #a0c4ff;"
+            "    color: #000000;"
+            "}"
+        );
 
         redimensionarTable(ui->tw_atendimento); // REDIMENSIONANDO A TABELA
     }
@@ -1137,7 +1203,30 @@ void MainWindow::on_btnPacientes_clicked()
         ui->tw_pacientes->setEditTriggers(QAbstractItemView::NoEditTriggers);
         ui->tw_pacientes->setSelectionBehavior(QAbstractItemView::SelectRows);
         ui->tw_pacientes->verticalHeader()->setVisible(false);
-        ui->tw_pacientes->setStyleSheet("QTableWidget::item:selected {background-color: blue}");
+
+        // Estilizando a tabela com CSS
+        ui->tw_pacientes->setStyleSheet(
+            "QTableWidget {"
+            "    border: 3px solid #dcdcdc;"
+            "    border-radius: 10px;"
+            "    background-color: #ffffff;"
+            "    gridline-color: #dcdcdc;"
+            "}"
+            "QHeaderView::section {"
+            "    background-color: #f0f0f0;"
+            "    border: 1px solid #dcdcdc;"
+            "    padding: 5px;"
+            "    border-radius: 5px;"
+            "}"
+            "QTableWidget::item {"
+            "    border-bottom: 1px solid #dcdcdc;"
+            "    padding: 5px;"
+            "}"
+            "QTableWidget::item:selected {"
+            "    background-color: #a0c4ff;"
+            "    color: #000000;"
+            "}"
+        );
 
         redimensionarTable(ui->tw_pacientes);                                                                       // REDIMENSIONANDO A TABELA
     }
@@ -1323,7 +1412,30 @@ void MainWindow::on_btnColaboradores_clicked()
         ui->tw_colaboradores->setEditTriggers(QAbstractItemView::NoEditTriggers);
         ui->tw_colaboradores->setSelectionBehavior(QAbstractItemView::SelectRows);
         ui->tw_colaboradores->verticalHeader()->setVisible(false);
-        ui->tw_colaboradores->setStyleSheet("QTableWidget::item:selected {background-color: blue}");
+
+        // Estilizando a tabela com CSS
+        ui->tw_colaboradores->setStyleSheet(
+            "QTableWidget {"
+            "    border: 3px solid #dcdcdc;"
+            "    border-radius: 10px;"
+            "    background-color: #ffffff;"
+            "    gridline-color: #dcdcdc;"
+            "}"
+            "QHeaderView::section {"
+            "    background-color: #f0f0f0;"
+            "    border: 1px solid #dcdcdc;"
+            "    padding: 5px;"
+            "    border-radius: 5px;"
+            "}"
+            "QTableWidget::item {"
+            "    border-bottom: 1px solid #dcdcdc;"
+            "    padding: 5px;"
+            "}"
+            "QTableWidget::item:selected {"
+            "    background-color: #a0c4ff;"
+            "    color: #000000;"
+            "}"
+        );
 
         redimensionarTable(ui->tw_colaboradores);                                                                   // REDIMENSIONANDO A TABELA
     }
@@ -1488,12 +1600,35 @@ void MainWindow::on_btnRelatorios_clicked()
         treeWidget->setHeaderHidden(false);
         treeWidget->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
         treeWidget->setAlternatingRowColors(true);
-        treeWidget->setStyleSheet("QTreeWidget::item { padding: 5px; }");
         treeWidget->setSelectionMode(QAbstractItemView::SingleSelection);
         treeWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
         treeWidget->setExpandsOnDoubleClick(true);
         treeWidget->setAnimated(true);
         treeWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+        // Estilizando a TreeWidget com CSS
+        treeWidget->setStyleSheet(
+            "QTreeWidget {"
+            "    border: 3px solid #dcdcdc;"
+            "    border-radius: 10px;"
+            "    background-color: #ffffff;"
+            "    gridline-color: #dcdcdc;"
+            "}"
+            "QHeaderView::section {"
+            "    background-color: #f0f0f0;"
+            "    border: 1px solid #dcdcdc;"
+            "    padding: 5px;"
+            "    border-radius: 5px;"
+            "}"
+            "QTreeWidget::item {"
+            "    border-bottom: 1px solid #dcdcdc;"
+            "    padding: 5px;"
+            "}"
+            "QTreeWidget::item:selected {"
+            "    background-color: #a0c4ff;"
+            "    color: #000000;"
+            "}"
+        );
     }
 
 
@@ -1640,7 +1775,30 @@ void MainWindow::setTabelaEstoque(QSqlQuery &query)
     ui->tw_estoque->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tw_estoque->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tw_estoque->verticalHeader()->setVisible(false);
-    ui->tw_estoque->setStyleSheet("QTableWidget::item:selected {background-color: blue}");
+
+    // Estilizando a tabela com CSS
+    ui->tw_estoque->setStyleSheet(
+        "QTableWidget {"
+        "    border: 3px solid #dcdcdc;"
+        "    border-radius: 10px;"
+        "    background-color: #ffffff;"
+        "    gridline-color: #dcdcdc;"
+        "}"
+        "QHeaderView::section {"
+        "    background-color: #f0f0f0;"
+        "    border: 1px solid #dcdcdc;"
+        "    padding: 5px;"
+        "    border-radius: 5px;"
+        "}"
+        "QTableWidget::item {"
+        "    border-bottom: 1px solid #dcdcdc;"
+        "    padding: 5px;"
+        "}"
+        "QTableWidget::item:selected {"
+        "    background-color: #a0c4ff;"
+        "    color: #000000;"
+        "}"
+    );
 
     redimensionarTable(ui->tw_estoque);
 

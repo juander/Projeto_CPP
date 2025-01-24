@@ -10,6 +10,49 @@ janela_entrar::janela_entrar(QWidget *parent, Conexao *conexao)
     , logadoJanela(false) // Inicializa como falso
 {
     ui->setupUi(this);
+
+    // Ajuste de estilo para a janela de login
+    this->setStyleSheet(
+        "QDialog {"
+        "    background-color: #f0f0f0;"
+        "    border-radius: 10px;"
+        "}"
+        "QLabel {"
+        "    font-size: 14pt;"
+        "    color: #333;"
+        "}"
+        "QLineEdit {"
+        "    border: 1px solid #ccc;"
+        "    border-radius: 5px;"
+        "    padding: 5px;"
+        "    font-size: 12pt;"
+        "}"
+        "QPushButton {"
+        "    background-color: #e0e0e0;"
+        "    color: #333;"
+        "    border: 1px solid #ccc;"
+        "    border-radius: 5px;"
+        "    padding: 2px;"
+        "    font-size: 12pt;"
+        "}"
+        "QPushButton#btnCancelar {"
+        "    background-color: #d0d0d0;"
+        "}"
+        "QPushButton:hover {"
+        "    background-color: #c0c0c0;"
+        "}"
+        "QPushButton#btnCancelar:hover {"
+        "    background-color: #b0b0b0;"
+        "}"
+        "QPushButton#btnMostrar {"
+        "    background-color: transparent;"
+        "    border: none;"
+        "}"
+    );
+
+    // Ajuste de ícones
+    ui->btnMostrar->setIcon(QIcon(":/icons/Hide.png"));
+    ui->btnMostrar->setIconSize(QSize(24, 24));
 }
 
 janela_entrar::~janela_entrar() {

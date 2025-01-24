@@ -14,6 +14,8 @@
 #include <QMessageBox>
 #include <QMovie>
 #include <QTreeWidget>
+#include <QToolButton>
+#include <QSplitter>
 
 #include "Conexao.h"
 

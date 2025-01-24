@@ -11,5 +11,7 @@
         <file>icons/giftest.gif</file>
         <file>icons/Eye.png</file>
         <file>icons/Hide.png</file>
+        <file>icons/next.png</file>
+        <file>icons/prev.png</file>
     </qresource>
 </RCC>
