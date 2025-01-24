@@ -327,7 +327,7 @@ void MainWindow::on_btnAgenda_clicked()
         ui->checkDataAgenda->setChecked(true);
         ui->checkMinhaAgenda->setChecked(true);
 
-        query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data");                          // ACESSANDO A TABELA NO BANCO
+        query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data ORDER BY data ASC, hora ASC");                          // ACESSANDO A TABELA NO BANCO
         query.bindValue(":id_profissional", id_usuario);
         query.bindValue(":data", data.toString("dd/MM/yyyy"));
 
@@ -402,12 +402,12 @@ void MainWindow::on_btnAgenda_clicked()
 
             if(!filtrarData){
 
-                query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional");
+                query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional ORDER BY data ASC, hora ASC");
                 query.bindValue(":id_profissional", id_usuario);
 
             } else {
 
-                query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data");
+                query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data ORDER BY data ASC, hora ASC");
                 query.bindValue(":id_profissional", id_usuario);
                 query.bindValue(":data", data.toString("dd/MM/yyyy"));
             }
@@ -417,10 +417,10 @@ void MainWindow::on_btnAgenda_clicked()
             ui->comboBoxAgenda->setEnabled(true);
 
             if(!filtrarData){
-                query.prepare("SELECT * FROM tb_agendamentos");
+                query.prepare("SELECT * FROM tb_agendamentos ORDER BY data ASC, hora ASC");
             } else {
 
-                query.prepare("SELECT * FROM tb_agendamentos WHERE data = :data");
+                query.prepare("SELECT * FROM tb_agendamentos WHERE data = :data ORDER BY data ASC, hora ASC");
                 query.bindValue(":data", data.toString("dd/MM/yyyy"));
             }
         }
@@ -451,12 +451,12 @@ void MainWindow::on_btnAgenda_clicked()
 
             if(!filtrarData){
 
-                query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional");
+                query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional ORDER BY data ASC, hora ASC");
                 query.bindValue(":id_profissional", id_usuario);
 
             } else {
 
-                query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data");
+                query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data ORDER BY data ASC, hora ASC");
                 query.bindValue(":id_profissional", id_usuario);
                 query.bindValue(":data", data.toString("dd/MM/yyyy"));
             }
@@ -466,10 +466,10 @@ void MainWindow::on_btnAgenda_clicked()
             ui->comboBoxAgenda->setEnabled(true);
 
             if(!filtrarData){
-                query.prepare("SELECT * FROM tb_agendamentos");
+                query.prepare("SELECT * FROM tb_agendamentos ORDER BY data ASC, hora ASC");
             } else {
 
-                query.prepare("SELECT * FROM tb_agendamentos WHERE data = :data");
+                query.prepare("SELECT * FROM tb_agendamentos WHERE data = :data ORDER BY data ASC, hora ASC");
                 query.bindValue(":data", data.toString("dd/MM/yyyy"));
             }
         }
@@ -495,17 +495,17 @@ void MainWindow::on_btnAgenda_clicked()
         if (filtrarData) {
             // Filtro por data ativado
             if (pesquisado.isEmpty()) {
-                query.prepare("SELECT * FROM tb_agendamentos WHERE data = :data");
+                query.prepare("SELECT * FROM tb_agendamentos WHERE data = :data ORDER BY data ASC, hora ASC");
                 query.bindValue(":data", data.toString("dd/MM/yyyy"));
             } else {
                 if (opcaoSelecionada == "Profissional") {
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE profissional LIKE :profissional AND data = :data");
+                    query.prepare("SELECT * FROM tb_agendamentos WHERE profissional LIKE :profissional AND data = :data ORDER BY data ASC, hora ASC");
                     query.bindValue(":profissional", pesquisado + "%");
                 } else if (opcaoSelecionada == "Paciente") {
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE paciente LIKE :paciente AND data = :data");
+                    query.prepare("SELECT * FROM tb_agendamentos WHERE paciente LIKE :paciente AND data = :data ORDER BY data ASC, hora ASC");
                     query.bindValue(":paciente", pesquisado + "%");
                 } else if (opcaoSelecionada == "Especialidade") {
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE especialidade LIKE :especialidade AND data = :data");
+                    query.prepare("SELECT * FROM tb_agendamentos WHERE especialidade LIKE :especialidade AND data = :data ORDER BY data ASC, hora ASC");
                     query.bindValue(":especialidade", pesquisado + "%");
                 }
                 query.bindValue(":data", data.toString("dd/MM/yyyy"));
@@ -513,16 +513,16 @@ void MainWindow::on_btnAgenda_clicked()
         } else {
             // Filtro por data desativado
             if (pesquisado.isEmpty()) {
-                query.prepare("SELECT * FROM tb_agendamentos");
+                query.prepare("SELECT * FROM tb_agendamentos ORDER BY data ASC, hora ASC");
             } else {
                 if (opcaoSelecionada == "Profissional") {
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE profissional LIKE :profissional");
+                    query.prepare("SELECT * FROM tb_agendamentos WHERE profissional LIKE :profissional ORDER BY data ASC, hora ASC");
                     query.bindValue(":profissional", pesquisado + "%");
                 } else if (opcaoSelecionada == "Paciente") {
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE paciente LIKE :paciente");
+                    query.prepare("SELECT * FROM tb_agendamentos WHERE paciente LIKE :paciente ORDER BY data ASC, hora ASC");
                     query.bindValue(":paciente", pesquisado + "%");
                 } else if (opcaoSelecionada == "Especialidade") {
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE especialidade LIKE :especialidade");
+                    query.prepare("SELECT * FROM tb_agendamentos WHERE especialidade LIKE :especialidade ORDER BY data ASC, hora ASC");
                     query.bindValue(":especialidade", pesquisado + "%");
                 }
             }
@@ -548,17 +548,17 @@ void MainWindow::on_btnAgenda_clicked()
             if (filtrarData) {
                 // Filtro por data ativado
                 if (pesquisado.isEmpty()) {
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE data = :data");
+                    query.prepare("SELECT * FROM tb_agendamentos WHERE data = :data ORDER BY data ASC, hora ASC");
                     query.bindValue(":data", data.toString("dd/MM/yyyy"));
                 } else {
                     if (opcaoSelecionada == "Profissional") {
-                        query.prepare("SELECT * FROM tb_agendamentos WHERE profissional LIKE :profissional AND data = :data");
+                        query.prepare("SELECT * FROM tb_agendamentos WHERE profissional LIKE :profissional AND data = :data ORDER BY data ASC, hora ASC");
                         query.bindValue(":profissional", pesquisado + "%");
                     } else if (opcaoSelecionada == "Paciente") {
-                        query.prepare("SELECT * FROM tb_agendamentos WHERE paciente LIKE :paciente AND data = :data");
+                        query.prepare("SELECT * FROM tb_agendamentos WHERE paciente LIKE :paciente AND data = :data ORDER BY data ASC, hora ASC");
                         query.bindValue(":paciente", pesquisado + "%");
                     } else if (opcaoSelecionada == "Especialidade") {
-                        query.prepare("SELECT * FROM tb_agendamentos WHERE especialidade LIKE :especialidade AND data = :data");
+                        query.prepare("SELECT * FROM tb_agendamentos WHERE especialidade LIKE :especialidade AND data = :data ORDER BY data ASC, hora ASC");
                         query.bindValue(":especialidade", pesquisado + "%");
                     }
                     query.bindValue(":data", data.toString("dd/MM/yyyy"));
@@ -566,16 +566,16 @@ void MainWindow::on_btnAgenda_clicked()
             } else {
                 // Filtro por data desativado
                 if (pesquisado.isEmpty()) {
-                    query.prepare("SELECT * FROM tb_agendamentos");
+                    query.prepare("SELECT * FROM tb_agendamentos ORDER BY data ASC, hora ASC");
                 } else {
                     if (opcaoSelecionada == "Profissional") {
-                        query.prepare("SELECT * FROM tb_agendamentos WHERE profissional LIKE :profissional");
+                        query.prepare("SELECT * FROM tb_agendamentos WHERE profissional LIKE :profissional ORDER BY data ASC, hora ASC");
                         query.bindValue(":profissional", pesquisado + "%");
                     } else if (opcaoSelecionada == "Paciente") {
-                        query.prepare("SELECT * FROM tb_agendamentos WHERE paciente LIKE :paciente");
+                        query.prepare("SELECT * FROM tb_agendamentos WHERE paciente LIKE :paciente ORDER BY data ASC, hora ASC");
                         query.bindValue(":paciente", pesquisado + "%");
                     } else if (opcaoSelecionada == "Especialidade") {
-                        query.prepare("SELECT * FROM tb_agendamentos WHERE especialidade LIKE :especialidade");
+                        query.prepare("SELECT * FROM tb_agendamentos WHERE especialidade LIKE :especialidade ORDER BY data ASC, hora ASC");
                         query.bindValue(":especialidade", pesquisado + "%");
                     }
                 }
@@ -585,12 +585,12 @@ void MainWindow::on_btnAgenda_clicked()
             if (filtrarData) {
                 if (pesquisado.isEmpty()) {
                     // Filtrar apenas pela data e pela agenda do usuário
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data");
+                    query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data ORDER BY data ASC, hora ASC");
                     query.bindValue(":id_profissional", id_usuario);
                     query.bindValue(":data", data.toString("dd/MM/yyyy"));
                 } else {
                     // Filtrar pela data, pela agenda do usuário e pelo texto digitado
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND paciente LIKE :paciente AND data = :data");
+                    query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND paciente LIKE :paciente AND data = :data ORDER BY data ASC, hora ASC");
                     query.bindValue(":paciente", pesquisado + "%");
                     query.bindValue(":id_profissional", id_usuario);
                     query.bindValue(":data", data.toString("dd/MM/yyyy"));
@@ -598,11 +598,11 @@ void MainWindow::on_btnAgenda_clicked()
             } else {
                 if (pesquisado.isEmpty()) {
                     // Filtrar apenas pela agenda do usuário
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional");
+                    query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional ORDER BY data ASC, hora ASC");
                     query.bindValue(":id_profissional", id_usuario);
                 } else {
                     // Filtrar pela agenda do usuário e pelo texto digitado somente de pacientes porque so posso filtrar pacientes na minha agenda
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND paciente LIKE :paciente");
+                    query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND paciente LIKE :paciente ORDER BY data ASC, hora ASC");
                     query.bindValue(":paciente", pesquisado + "%");
                     query.bindValue(":id_profissional", id_usuario);
                 }
@@ -615,12 +615,6 @@ void MainWindow::on_btnAgenda_clicked()
             qDebug() << "Erro ao executar a query O ERRO ESTÁ AQUI:" << query.lastError().text();
         }
     }
-
-    void MainWindow::on_checkDataAgenda_stateChanged(int arg1)
-    {
-
-    }
-
     void MainWindow::on_calendarioAgenda_clicked(const QDate &date)
     {
         // Mantém a data selecionada visualmente
@@ -643,18 +637,18 @@ void MainWindow::on_btnAgenda_clicked()
             if (filtrarData) {
                 if (pesquisado.isEmpty()) {
                     // Filtrar apenas pela data
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE data = :data");
+                    query.prepare("SELECT * FROM tb_agendamentos WHERE data = :data ORDER BY data ASC, hora ASC");
                     query.bindValue(":data", data.toString("dd/MM/yyyy"));
                 } else {
                     // Filtrar pela data e pelo texto digitado
                     if (opcaoSelecionada == "Profissional") {
-                        query.prepare("SELECT * FROM tb_agendamentos WHERE profissional LIKE :profissional AND data = :data");
+                        query.prepare("SELECT * FROM tb_agendamentos WHERE profissional LIKE :profissional AND data = :data ORDER BY data ASC, hora ASC");
                         query.bindValue(":profissional", pesquisado + "%");
                     } else if (opcaoSelecionada == "Paciente") {
-                        query.prepare("SELECT * FROM tb_agendamentos WHERE paciente LIKE :paciente AND data = :data");
+                        query.prepare("SELECT * FROM tb_agendamentos WHERE paciente LIKE :paciente AND data = :data ORDER BY data ASC, hora ASC");
                         query.bindValue(":paciente", pesquisado + "%");
                     } else if (opcaoSelecionada == "Especialidade") {
-                        query.prepare("SELECT * FROM tb_agendamentos WHERE especialidade LIKE :especialidade AND data = :data");
+                        query.prepare("SELECT * FROM tb_agendamentos WHERE especialidade LIKE :especialidade AND data = :data ORDER BY data ASC, hora ASC");
                         query.bindValue(":especialidade", pesquisado + "%");
                     }
                     query.bindValue(":data", data.toString("dd/MM/yyyy"));
@@ -663,17 +657,17 @@ void MainWindow::on_btnAgenda_clicked()
                 // Filtro por data desativado
                 if (pesquisado.isEmpty()) {
                     // Sem filtros (tudo)
-                    query.prepare("SELECT * FROM tb_agendamentos");
+                    query.prepare("SELECT * FROM tb_agendamentos ORDER BY data ASC, hora ASC");
                 } else {
                     // Filtrar apenas pelo texto digitado
                     if (opcaoSelecionada == "Profissional") {
-                        query.prepare("SELECT * FROM tb_agendamentos WHERE profissional LIKE :profissional");
+                        query.prepare("SELECT * FROM tb_agendamentos WHERE profissional LIKE :profissional ORDER BY data ASC, hora ASC");
                         query.bindValue(":profissional", pesquisado + "%");
                     } else if (opcaoSelecionada == "Paciente") {
-                        query.prepare("SELECT * FROM tb_agendamentos WHERE paciente LIKE :paciente");
+                        query.prepare("SELECT * FROM tb_agendamentos WHERE paciente LIKE :paciente ORDER BY data ASC, hora ASC");
                         query.bindValue(":paciente", pesquisado + "%");
                     } else if (opcaoSelecionada == "Especialidade") {
-                        query.prepare("SELECT * FROM tb_agendamentos WHERE especialidade LIKE :especialidade");
+                        query.prepare("SELECT * FROM tb_agendamentos WHERE especialidade LIKE :especialidade ORDER BY data ASC, hora ASC");
                         query.bindValue(":especialidade", pesquisado + "%");
                     }
                 }
@@ -683,12 +677,12 @@ void MainWindow::on_btnAgenda_clicked()
             if (filtrarData) {
                 if (pesquisado.isEmpty()) {
                     // Filtrar apenas pela data e pela agenda do usuário
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data");
+                    query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data ORDER BY data ASC, hora ASC");
                     query.bindValue(":id_profissional", id_usuario);
                     query.bindValue(":data", data.toString("dd/MM/yyyy"));
                 } else {
                     // Filtrar pela data, pela agenda do usuário e pelo texto digitado
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND paciente LIKE :paciente AND data = :data");
+                    query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND paciente LIKE :paciente AND data = :data ORDER BY data ASC, hora ASC");
                     query.bindValue(":paciente", pesquisado + "%");
                     query.bindValue(":id_profissional", id_usuario);
                     query.bindValue(":data", data.toString("dd/MM/yyyy"));
@@ -696,11 +690,11 @@ void MainWindow::on_btnAgenda_clicked()
             } else {
                 if (pesquisado.isEmpty()) {
                     // Filtrar apenas pela agenda do usuário
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional");
+                    query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional ORDER BY data ASC, hora ASC");
                     query.bindValue(":id_profissional", id_usuario);
                 } else {
                     // Filtrar pela agenda do usuário e pelo texto digitado somente de pacientes porque so posso filtrar pacientes na minha agenda
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND paciente LIKE :paciente");
+                    query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND paciente LIKE :paciente ORDER BY data ASC, hora ASC");
                     query.bindValue(":paciente", pesquisado + "%");
                     query.bindValue(":id_profissional", id_usuario);
                 }
@@ -736,32 +730,7 @@ void MainWindow::on_btnAgenda_clicked()
 
     void MainWindow::adicionarSessaoNaTabela(int idSessao)
     {
-        bool filtrarData = ui->checkDataAgenda->isChecked();
-        QDate dataSelecionada = ui->calendarioAgenda->selectedDate();
-
-        QSqlQuery query;
-        query.prepare("SELECT * FROM tb_agendamentos WHERE id = :id");
-        query.bindValue(":id", idSessao);
-
-        if (query.exec() && query.first()) {
-            QDate dataSessao = QDate::fromString(query.value("data").toString(), "dd/MM/yyyy");
-
-            if (!filtrarData || dataSessao == dataSelecionada) {
-                int linha = ui->tw_agenda->rowCount();
-                ui->tw_agenda->insertRow(linha);
-
-                for (int i = 0; i < query.record().count(); ++i) {
-                    QVariant value = query.value(i);
-                    ui->tw_agenda->setItem(linha, i, new QTableWidgetItem(value.toString()));
-                }
-                redimensionarTable(ui->tw_agenda);
-            } else {
-                // Se o filtro de data estiver ativo e a sessão não for da data selecionada, recarrega a tabela inteira
-                carregarTabelaAgendamentos();
-            }
-        } else {
-            QMessageBox::warning(this, " ", "Erro ao carregar a nova sessão.");
-        }
+        carregarTabelaAgendamentos();
     }
 
     void MainWindow::carregarTabelaAgendamentos()
@@ -770,10 +739,10 @@ void MainWindow::on_btnAgenda_clicked()
 
         QSqlQuery query;
         if (ui->checkDataAgenda->isChecked()) {
-            query.prepare("SELECT * FROM tb_agendamentos WHERE data = :data");
+            query.prepare("SELECT * FROM tb_agendamentos WHERE data = :data ORDER BY data ASC, hora ASC");
             query.bindValue(":data", ui->calendarioAgenda->selectedDate().toString("dd/MM/yyyy"));
         } else {
-            query.prepare("SELECT * FROM tb_agendamentos");
+            query.prepare("SELECT * FROM tb_agendamentos ORDER BY data ASC, hora ASC");
         }
 
         if (query.exec()) {
@@ -791,8 +760,6 @@ void MainWindow::on_btnAgenda_clicked()
             QMessageBox::warning(this, " ", "Erro ao carregar os agendamentos.");
         }
     }
-
-
 
     // MÉTODOS DE EDIÇÃO DE SESSÃO
 
@@ -825,27 +792,7 @@ void MainWindow::on_btnAgenda_clicked()
 
     void MainWindow::atualizarSessaoNaTabela(int idSessao)
     {
-        int linha = ui->tw_agenda->currentRow();
-        if (linha < 0) {
-            QMessageBox::warning(this, " ", "Erro: nenhuma linha selecionada para atualização.");
-            return;
-        }
-
-        QSqlQuery query;
-        query.prepare("SELECT * FROM tb_agendamentos WHERE id = :id");
-        query.bindValue(":id", idSessao);
-
-        if (query.exec() && query.first()) {
-            int linha = ui->tw_agenda->currentRow();
-
-            for (int i = 0; i < query.record().count(); ++i) {
-                QVariant value = query.value(i);
-                ui->tw_agenda->setItem(linha, i, new QTableWidgetItem(value.toString()));
-            }
-            redimensionarTable(ui->tw_agenda);
-        } else {
-            QMessageBox::warning(this, " ", "Erro ao atualizar sessão na tabela.");
-        }
+        carregarTabelaAgendamentos();
     }
 
     // MÉTODO PARA ENVIAR PARA O RELATÓRIO DE ATENDIMENTO ARMAZENADO DAQUELA SESSÃO
@@ -1062,19 +1009,19 @@ void MainWindow::on_btnAgenda_clicked()
 
         if (query.exec()) {
             if (query.next()) {
-                    qDebug() << "entrou 1";
-                    // Atualiza o registro existente
-                    query.prepare("UPDATE tb_atendimentos SET texto = :texto WHERE id_agendamento = :id_agendamento");
-                    query.bindValue(":id_agendamento", id);
-                    query.bindValue(":texto", texto);
-                } else {
-                    qDebug() << "entrou 2";
-                    // Insere um novo registro
-                    query.prepare("INSERT INTO tb_atendimentos (id_agendamento, texto) " "VALUES (:id_agendamento, :texto)");
-                    query.bindValue(":id_agendamento", id);
-                    query.bindValue(":texto", texto);
+                qDebug() << "entrou 1";
+                // Atualiza o registro existente
+                query.prepare("UPDATE tb_atendimentos SET texto = :texto WHERE id_agendamento = :id_agendamento");
+                query.bindValue(":id_agendamento", id);
+                query.bindValue(":texto", texto);
+            } else {
+                qDebug() << "entrou 2";
+                // Insere um novo registro
+                query.prepare("INSERT INTO tb_atendimentos (id_agendamento, texto) " "VALUES (:id_agendamento, :texto)");
+                query.bindValue(":id_agendamento", id);
+                query.bindValue(":texto", texto);
 
-                }
+            }
 
             qDebug() << "Dados inseridos/atualizados com sucesso.";
 
@@ -1106,7 +1053,9 @@ void MainWindow::on_btnAgenda_clicked()
             qDebug() << "Erro ao executar a query:" << query_2.lastError().text();
         }
 
-        on_lineEditAtendimento_textChanged("");
+        ui->textEdit->clear();
+
+        atualizarTabelaAtendimento();
 
         ui->tw_atendimento->selectRow(row);
     }
