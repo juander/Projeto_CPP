@@ -2283,7 +2283,7 @@ color: white;</string>
         <item>
          <widget class="QTabWidget" name="paginas">
           <property name="currentIndex">
-           <number>2</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="Inicio">
            <property name="styleSheet">
@@ -2744,6 +2744,28 @@ color: white;</string>
                     <property name="placeholderText">
                      <string>Pesquisar Paciente</string>
                     </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QComboBox" name="comboBoxAtender">
+                    <property name="sizeAdjustPolicy">
+                     <enum>QComboBox::SizeAdjustPolicy::AdjustToContents</enum>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>Aguardando</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Realizada</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Paciente ausente</string>
+                     </property>
+                    </item>
                    </widget>
                   </item>
                   <item>
