@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>471</width>
-    <height>286</height>
+    <width>592</width>
+    <height>270</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,13 +18,6 @@
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_10">
-       <item>
-        <widget class="QLabel" name="label_7">
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt; font-weight:700;&quot;&gt;Editar Paciente&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-        </widget>
-       </item>
        <item>
         <spacer name="horizontalSpacer">
          <property name="orientation">
@@ -41,7 +34,7 @@
        <item>
         <widget class="QLabel" name="label_8">
          <property name="text">
-          <string>ID:</string>
+          <string>ID</string>
          </property>
         </widget>
        </item>
@@ -52,6 +45,19 @@
          </property>
         </widget>
        </item>
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
       </layout>
      </item>
      <item>
@@ -59,7 +65,7 @@
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>Nome:</string>
+          <string>Nome</string>
          </property>
         </widget>
        </item>
@@ -73,7 +79,7 @@
        <item>
         <widget class="QLabel" name="label_5">
          <property name="text">
-          <string>CPF:</string>
+          <string>CPF</string>
          </property>
         </widget>
        </item>
@@ -83,7 +89,7 @@
        <item>
         <widget class="QLabel" name="label_2">
          <property name="text">
-          <string>Nascimento:</string>
+          <string>Nascimento</string>
          </property>
         </widget>
        </item>
@@ -97,7 +103,7 @@
        <item>
         <widget class="QLabel" name="label_9">
          <property name="text">
-          <string>Diagnóstico:</string>
+          <string>Diagnóstico</string>
          </property>
         </widget>
        </item>
@@ -121,7 +127,7 @@
        <item>
         <widget class="QLabel" name="label_3">
          <property name="text">
-          <string>NºCelular:</string>
+          <string>NºCelular</string>
          </property>
         </widget>
        </item>
@@ -135,7 +141,7 @@
        <item>
         <widget class="QLabel" name="label_4">
          <property name="text">
-          <string>E-mail:</string>
+          <string>E-mail</string>
          </property>
         </widget>
        </item>

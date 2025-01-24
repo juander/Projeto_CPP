@@ -11,6 +11,8 @@ janela_entrar::janela_entrar(QWidget *parent, Conexao *conexao)
 {
     ui->setupUi(this);
 
+    setWindowTitle("MEDICALSOFT");
+
     // Ajuste de estilo para a janela de login
     this->setStyleSheet(
         "QDialog {"
@@ -48,7 +50,14 @@ janela_entrar::janela_entrar(QWidget *parent, Conexao *conexao)
         "    background-color: transparent;"
         "    border: none;"
         "}"
-    );
+        "QPushButton#btnEnt {"
+        "    background-color: #6db0ec;"
+        "}"
+        "QPushButton#btnEnt:hover {"
+        "    background-color: #5a9bd8;"
+        "}"
+        );
+
 
     // Ajuste de ícones
     ui->btnMostrar->setIcon(QIcon(":/icons/Hide.png"));

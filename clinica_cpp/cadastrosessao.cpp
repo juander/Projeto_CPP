@@ -12,6 +12,8 @@ cadastroSessao::cadastroSessao(MainWindow *mainWindow, const QString &modo, int 
 {
     ui->setupUi(this);
 
+    setWindowTitle("MEDICALSOFT");
+
     QSqlQuery query;
     query.prepare("SELECT * FROM tb_pacientes");
 
@@ -36,7 +38,6 @@ void cadastroSessao::setModo(const QString &modo)
 
     if (modo == "Editar" && m_idSessao != -1) {
         ui->btnCadastrarSes->setText("Salvar Alterações");
-        ui->tituloSessao->setText("Editar sessão");
         this->setWindowTitle("Editar Sessão");
 
         QSqlQuery query;
@@ -217,6 +218,29 @@ void cadastroSessao::setTabelaPacSes(QSqlQuery &query)
     ui->tw_paciente_ses->setStyleSheet("QTableWidget::item:selected {background-color: blue}");
 
     redimensionarTable(ui->tw_paciente_ses);                                                                       // REDIMENSIONANDO A TABELA
+
+    ui->tw_paciente_ses->setStyleSheet(
+        "QTableWidget {"
+        "    border: 3px solid #dcdcdc;"
+        "    border-radius: 10px;"
+        "    background-color: #ffffff;"
+        "    gridline-color: #dcdcdc;"
+        "}"
+        "QHeaderView::section {"
+        "    background-color: #f0f0f0;"
+        "    border: 1px solid #dcdcdc;"
+        "    padding: 5px;"
+        "    border-radius: 5px;"
+        "}"
+        "QTableWidget::item {"
+        "    border-bottom: 1px solid #dcdcdc;"
+        "    padding: 5px;"
+        "}"
+        "QTableWidget::item:selected {"
+        "    background-color: #a0c4ff;"
+        "    color: #000000;"
+        "}"
+        );
 }
 
 void cadastroSessao::on_pesquisarPacAg_textChanged(const QString &arg1)

@@ -68,6 +68,8 @@ void MainWindow::setPaletaCor(QApplication &app){
 
 void MainWindow::janelaFormatada(){
 
+    setWindowTitle("MEDICALSOFT");                                                                                  // TÍTULO DA JANELA
+
     ui->layoutPrincipal->setSpacing(0);                                                                             // SETANDO OS ESPAÇOS ENTRE OS LAYOUTS
 
     ui->paginas->tabBar()->setVisible(false);                                                                       // DEIXANDO OS ÍCONES DAS PÁGINAS DA TABWIDGET INVISÍVEIS
@@ -133,6 +135,18 @@ void MainWindow::janelaFormatada(){
     /////////////////////////////////////////////////
 
     // COLOCANDO IMAGENS NA JANELA PRINCIPAL
+
+    ui->btnEntrar->setStyleSheet(
+        "QPushButton {"
+        "    background-color: #6db0ec; "
+        "    color: #0056B3; "
+        "    border: 2px solid #dcdcdc; "
+        "    border-radius: 10px; "
+        "}"
+        "QPushButton:hover {"
+        "    background-color: #dcdcdc;"  // Cor de fundo ao passar o mouse
+        "}"
+        );
 
     QMovie *gif = new QMovie(":/icons/giftest.gif");                        // FAZENDO TESTE COM GIFS
     ui->labelGif->setMovie(gif);
@@ -268,10 +282,6 @@ void MainWindow::usuarioSaiu(){
     ui->btnEntrar->setStyleSheet("background-color: darkblue; color: white;");
     ui->iconPerfil->clear();
     ui->txtUsuario->clear();
-    ui->txtClinica->setText(
-        "<html><head/><body><p><span style=\"font-size:18pt; "
-        "font-weight:700;\">NOME_CLÍNICA</span></p></body></html>"
-        );
 
     // Atualiza outras partes da interface
     on_btnInicio_clicked();
@@ -855,6 +865,8 @@ void MainWindow::on_btnAgenda_clicked()
         }
 
         int idSessao = ui->tw_agenda->item(linhaSelecionada, 0)->text().toInt();
+
+        ui->txtRelAtendimento->clear();
 
         carregarRelatorios(&idSessao);
 
@@ -1634,12 +1646,12 @@ void MainWindow::on_btnRelatorios_clicked()
 
 
     // Método para carregar todos os atendimentos na TreeWidget
-    // Método para carregar todos os atendimentos na TreeWidget
     void MainWindow::carregarRelatorios(int* idSessao)
     {
         ui->trw_atendimentos->clear();  // Limpa a TreeWidget antes de carregar os dados
 
         QSqlQuery query;
+        QString textoRelatorio;  // Variável para armazenar o texto do relatório
 
         if (idSessao == nullptr) {
             // Carregar todas as sessões realizadas
@@ -1678,7 +1690,10 @@ void MainWindow::on_btnRelatorios_clicked()
                 if (!textoAtendimento.isEmpty()) {
                     // Cria o item filho (texto do atendimento)
                     QTreeWidgetItem *atendimentoItem = new QTreeWidgetItem(sessaoItem);
-                    atendimentoItem->setText(0, "Atendimento: " + textoAtendimento);
+                    atendimentoItem->setText(0, textoAtendimento);
+
+                    // Adiciona o texto do atendimento ao texto do relatório
+                    textoRelatorio += textoAtendimento + "\n";
                 }
 
                 // Adiciona o item pai à TreeWidget
@@ -1688,6 +1703,9 @@ void MainWindow::on_btnRelatorios_clicked()
             if (idSessao != nullptr) {
                 // Expande automaticamente a sessão
                 ui->trw_atendimentos->expandAll();
+
+                // Define o texto do relatório no TextEdit
+                ui->txtRelAtendimento->setPlainText(textoRelatorio);
             }
 
             // Configurações visuais da TreeWidget
