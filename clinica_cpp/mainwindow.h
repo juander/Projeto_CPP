@@ -83,8 +83,6 @@ private slots:
 
     void setAgenda(QSqlQuery &query);
 
-    void updateAgendaTable();
-
     void on_checkDataAgenda_checkStateChanged(const Qt::CheckState &arg1);
 
     void on_checkMinhaAgenda_stateChanged(int arg1);
@@ -97,7 +95,13 @@ private slots:
 
     void on_calendarioAgenda_clicked(const QDate &date);
 
+    void atualizarTabelaPorData();
+
     void on_btnAgendar_clicked();
+
+    void adicionarSessaoNaTabela(int idSessao);
+
+    void carregarTabelaAgendamentos();
 
     void on_btnEditarAgenda_clicked();
 
