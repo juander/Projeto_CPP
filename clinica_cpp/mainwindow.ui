@@ -2717,7 +2717,7 @@ border-radius: 10px;</string>
         <item>
          <widget class="QTabWidget" name="paginas">
           <property name="currentIndex">
-           <number>5</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="Inicio">
            <property name="styleSheet">
@@ -2764,7 +2764,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
 &lt;li style=&quot; font-family:'Arial','sans-serif'; font-size:18px;&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:40px; margin-right:20px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;Acessar relatórios detalhados para tomada de decisão. &lt;/li&gt;
 &lt;li style=&quot; font-family:'Arial','sans-serif'; font-size:18px;&quot; style=&quot; margin-top:0px; margin-bottom:12px; margin-left:40px; margin-right:20px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;Controlar o estoque de materiais essenciais. &lt;/li&gt;&lt;/ul&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:20px; margin-right:20px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:18px;&quot;&gt;Tudo isso em um único lugar, garantindo agilidade no atendimento e mais tempo para cuidar do que realmente importa: a saúde dos seus pacientes. &lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:20px; margin-right:20px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:18px;&quot;&gt;Vamos começar?&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:20px; margin-right:20px; -qt-block-indent:0; text-indent:0px; line-height:160%;&quot;&gt;&lt;span style=&quot; font-family:'Arial','sans-serif'; font-size:18px; font-weight:700;&quot;&gt;Vamos começar?&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                  </widget>
                 </item>
