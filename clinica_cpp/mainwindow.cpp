@@ -89,12 +89,15 @@ void MainWindow::janelaFormatada(){
     QPixmap logo(":/icons/logo.png");
     ui->logo->setPixmap(logo.scaled(105, 105, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
-    ui->labelPdf->setText("<a href=\"guide.pdf\">Abrir PDF</a>");
+    ui->labelPdf->setText("<a href=\"guide.pdf\">Instruções de uso</a>");
     ui->labelPdf->setTextInteractionFlags(Qt::LinksAccessibleByMouse);
     ui->labelPdf->setOpenExternalLinks(false);  // Para capturar o clique no link
 
     // Conecte o sinal linkActivated ao slot
     connect(ui->labelPdf, &QLabel::linkActivated, this, &MainWindow::abrirPdf);
+
+    QPixmap img(":/imgInicial.jpg");
+    ui->imgInicial->setPixmap(img.scaled(600, 800, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
     // FORMATANDO O LAYOUT SUPERIOR
 
@@ -168,7 +171,17 @@ void MainWindow::janelaFormatada(){
         "}"
         );
 
-    QMovie *gif = new QMovie(":/icons/giftest.gif");                        // FAZENDO TESTE COM GIFS
+    ui->paginas->widget(0)->setStyleSheet("background-color: #ffffff;");
+
+    QMovie *gif = new QMovie(":/dna.gif");
+
+    // Defina o tamanho desejado para o QLabel
+    ui->labelGif->setFixedSize(120, 90);
+
+    // Ajuste o tamanho do QMovie
+    gif->setScaledSize(ui->labelGif->size());
+
+    // Defina o QMovie no QLabel
     ui->labelGif->setMovie(gif);
     gif->start();
 

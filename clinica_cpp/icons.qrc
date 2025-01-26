@@ -8,7 +8,6 @@
         <file>icons/Brief.png</file>
         <file>icons/Home Page.png</file>
         <file>icons/Generic avatar.png</file>
-        <file>icons/giftest.gif</file>
         <file>icons/Eye.png</file>
         <file>icons/Hide.png</file>
         <file>icons/next.png</file>
@@ -16,6 +15,9 @@
         <file>icons/down-arrow.png</file>
         <file>icons/up-arrow.png</file>
         <file>icons/logo.png</file>
+        <file>icons/icone.png</file>
         <file>guide.pdf</file>
+        <file>imgInicial.jpg</file>
+        <file>dna.gif</file>
     </qresource>
 </RCC>
