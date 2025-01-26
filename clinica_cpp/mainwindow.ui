@@ -2394,7 +2394,7 @@ border-radius: 10px;</string>
         <item>
          <widget class="QTabWidget" name="paginas">
           <property name="currentIndex">
-           <number>2</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="Inicio">
            <property name="styleSheet">
@@ -2736,6 +2736,9 @@ border-radius: 10px;</string>
                       <property name="enabled">
                        <bool>true</bool>
                       </property>
+                      <property name="sizeAdjustPolicy">
+                       <enum>QComboBox::SizeAdjustPolicy::AdjustToContents</enum>
+                      </property>
                       <item>
                        <property name="text">
                         <string>Paciente</string>
@@ -2749,6 +2752,28 @@ border-radius: 10px;</string>
                       <item>
                        <property name="text">
                         <string>Especialidade</string>
+                       </property>
+                      </item>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QComboBox" name="comboBoxStatusAgenda">
+                      <property name="sizeAdjustPolicy">
+                       <enum>QComboBox::SizeAdjustPolicy::AdjustToContents</enum>
+                      </property>
+                      <item>
+                       <property name="text">
+                        <string>Aguardando</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Realizada</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Paciente ausente</string>
                        </property>
                       </item>
                      </widget>
@@ -2954,7 +2979,7 @@ border-radius: 10px;</string>
                   <item>
                    <widget class="QLineEdit" name="lineEditAtendimento">
                     <property name="placeholderText">
-                     <string>Pesquisar Paciente</string>
+                     <string>Pesquisar paciente</string>
                     </property>
                    </widget>
                   </item>
@@ -3421,7 +3446,7 @@ border-radius: 10px;</string>
                         <item>
                          <widget class="QLabel" name="label_40">
                           <property name="text">
-                           <string>Valor Compra</string>
+                           <string>Valor de compra</string>
                           </property>
                          </widget>
                         </item>
@@ -3439,7 +3464,7 @@ border-radius: 10px;</string>
                         <item>
                          <widget class="QLabel" name="label_41">
                           <property name="text">
-                           <string>Valor Venda</string>
+                           <string>Valor de venda</string>
                           </property>
                          </widget>
                         </item>

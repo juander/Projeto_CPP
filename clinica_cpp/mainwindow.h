@@ -91,6 +91,8 @@ private slots:
 
     void on_comboBoxAgenda_currentTextChanged(const QString &arg1);
 
+    void on_comboBoxStatusAgenda_currentTextChanged(const QString &arg1);
+
     void on_lineEditAgenda_textChanged(const QString &arg1);                             // MÉTODOS DE AGENDAMENTO
 
     void on_calendarioAgenda_clicked(const QDate &date);

@@ -63,6 +63,19 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
         <widget class="QLabel" name="label_3">
          <property name="text">
           <string>Data:</string>
@@ -73,6 +86,19 @@
         <widget class="QDateEdit" name="dataAgenda"/>
        </item>
        <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
         <widget class="QLabel" name="label_6">
          <property name="text">
           <string>Horário:</string>
@@ -81,6 +107,19 @@
        </item>
        <item>
         <widget class="QTimeEdit" name="horaAgenda"/>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
        </item>
        <item>
         <widget class="QLabel" name="label_7">
