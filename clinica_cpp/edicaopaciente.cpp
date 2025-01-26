@@ -17,7 +17,7 @@ edicaopaciente::edicaopaciente(QWidget *parent, int id_paciente)
     this->setStyleSheet(
         "QDialog { background-color: #f0f0f0; border-radius: 10px; }"
         "QLabel { font-size: 14pt; color: #333; }"
-        "QLineEdit, QDateEdit { border: 1px solid #ccc; border-radius: 5px; font-size: 12pt; background-color: #fff; color: #333; height: 30px; padding: 5px; }"
+        "QLineEdit, QDateEdit { border: 1px solid #ccc; border-radius: 5px; font-size: 12pt; background-color: #fff; color: #333; height: 30px; }"
         "QLineEdit { padding-left: 5px; }"
         "QDateEdit { padding-right: 8px; }"
         "QDateEdit::up-button, QDateEdit::down-button { background-color: #e0e0e0; border: none; width: 16px; height: 16px; padding: 0px; }"
