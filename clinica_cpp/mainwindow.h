@@ -14,7 +14,6 @@
 #include <QDebug>
 #include <QFileInfo>
 #include <QMessageBox>
-#include <QMovie>
 #include <QTreeWidget>
 #include <QToolButton>
 #include <QSplitter>

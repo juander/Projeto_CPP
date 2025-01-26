@@ -97,7 +97,7 @@ void MainWindow::janelaFormatada(){
     connect(ui->labelPdf, &QLabel::linkActivated, this, &MainWindow::abrirPdf);
 
     QPixmap img(":/imgInicial.jpg");
-    ui->imgInicial->setPixmap(img.scaled(600, 900, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->imgInicial->setPixmap(img.scaled(500, 750, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
     // FORMATANDO O LAYOUT SUPERIOR
 
@@ -171,27 +171,11 @@ void MainWindow::janelaFormatada(){
         "}"
         );
 
-    ui->paginas->widget(0)->setStyleSheet("background-color: #ffffff;");
-
-    QMovie *gif = new QMovie(":/dna.gif");
-
-    // Defina o tamanho desejado para o QLabel
-    ui->labelGif->setFixedSize(120, 90);
-
-    // Ajuste o tamanho do QMovie
-    gif->setScaledSize(ui->labelGif->size());
-
-    // Defina o QMovie no QLabel
-    ui->labelGif->setMovie(gif);
-    gif->start();
-
     /////////////////////////////////////////////////
 
     logado = false;
 
     on_btnInicio_clicked();                                                 // DEFINI A PÁGINA INICIAL COMO SEMPRE A PRIMEIRA AO ABRIR O PROGRAMA
-
-    ui->txtRelAtendimento->setReadOnly(true);                               // SETANDO A TEXTEDIT DA PÁGINA DE ATENDIMENTOS COMO SOMENTE PARA LEITURA NO PROGRAMA TODO
 
     // Estilizando o calendário
     ui->calendarioAgenda->setStyleSheet(
