@@ -97,7 +97,7 @@ void MainWindow::janelaFormatada(){
     connect(ui->labelPdf, &QLabel::linkActivated, this, &MainWindow::abrirPdf);
 
     QPixmap img(":/imgInicial.jpg");
-    ui->imgInicial->setPixmap(img.scaled(800, 1200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->imgInicial->setPixmap(img.scaled(600, 900, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
     // FORMATANDO O LAYOUT SUPERIOR
 
