@@ -76,6 +76,9 @@ void MainWindow::janelaFormatada(){
 
     ui->tab_relatorios->tabBar()->setVisible(false);                                                                // MESMA COISA AQUI PARA A OUTRA TABWIDGET
 
+    QPixmap logo(":/icons/logo.png");
+    ui->logo->setPixmap(logo.scaled(105, 105, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+
     // FORMATANDO O LAYOUT SUPERIOR
 
     ui->frameSuperior->setFixedHeight(ui->frameSuperior->height() + 40);  // Aumenta a altura vertical do QFrame
@@ -139,7 +142,7 @@ void MainWindow::janelaFormatada(){
     ui->btnEntrar->setStyleSheet(
         "QPushButton {"
         "    background-color: #6db0ec; "
-        "    color: #0056B3; "
+        "    color: #000000; "
         "    border: 2px solid #dcdcdc; "
         "    border-radius: 10px; "
         "}"
@@ -250,22 +253,45 @@ void MainWindow::usuarioEntrou(){
 
     // Interface para usuário logado
     ui->btnEntrar->setText("Sair");
-    ui->btnEntrar->setStyleSheet("background-color: darkred; color: white;");
+    ui->btnEntrar->setStyleSheet(
+        "QPushButton {"
+        "    background-color: rgb(200, 20, 20); "
+        "    color: #ffffff; "
+        "    border-radius: 10px; "
+        "}"
+        "QPushButton:hover {"
+        "    background-color: darkred;"  // Cor de fundo ao passar o mouse
+        "}"
+        );
     QPixmap icone(":/icons/Generic avatar.png");
-    ui->iconPerfil->setPixmap(icone.scaled(35, 35, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->iconPerfil->setPixmap(icone.scaled(50, 50, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
-    ui->txtUsuario->setText(
-        QString("<html><head/><body><p><span style=\" font-size:18pt; "
-                "font-weight:700; color:#000000;\">%1</span></p></body></html>")
+    ui->txtUsuario->setText(nome_usuario);
 
-            .arg(nome_usuario)
+    ui->txtUsuario->setStyleSheet(
+        "QLabel {"
+        "    font-family: 'Poppins', sans-serif;"
+        "    font-size: 18pt;"
+        "    font-weight: bold;"
+        "    color: #000000;"  // Azul mais escuro
+        "    letter-spacing: 1px;"
+        "    text-transform: uppercase;"
+        "}"
         );
-    ui->txtClinica->setText(
-        QString("<html><head/><body><p><span style=\"font-size:18pt; "
-                "font-weight:700;\">%1 -</span></p></body></html>")
 
-            .arg(clinica_usuario)
+    ui->txtClinica->setText(clinica_usuario + " -");
+
+    ui->txtClinica->setStyleSheet(
+        "QLabel {"
+        "    font-family: 'Poppins', sans-serif;"
+        "    font-size: 18pt;"
+        "    font-weight: bold;"
+        "    color: #000000;"  // Azul mais escuro
+        "    letter-spacing: 1px;"
+        "    text-transform: uppercase;"
+        "}"
         );
+
 }
 
 /////////////////////////////////////////
@@ -279,9 +305,20 @@ void MainWindow::usuarioSaiu(){
 
     // Reseta a interface
     ui->btnEntrar->setText("Entrar");
-    ui->btnEntrar->setStyleSheet("background-color: darkblue; color: white;");
+    ui->btnEntrar->setStyleSheet(
+        "QPushButton {"
+        "    background-color: #6db0ec; "
+        "    color: #000000; "
+        "    border: 2px solid #dcdcdc; "
+        "    border-radius: 10px; "
+        "}"
+        "QPushButton:hover {"
+        "    background-color: #dcdcdc;"  // Cor de fundo ao passar o mouse
+        "}"
+        );
     ui->iconPerfil->clear();
     ui->txtUsuario->clear();
+    ui->txtClinica->clear();
 
     // Atualiza outras partes da interface
     on_btnInicio_clicked();
@@ -315,7 +352,12 @@ void MainWindow::on_btnEntrar_clicked() {
         }
 
     } else {                                                                                                        // LOGADO, SAINDO
-        usuarioSaiu();
+        QMessageBox::StandardButton resposta;
+        resposta = QMessageBox::question(this, " ", "Tem certeza que deseja sair de sua conta?", QMessageBox::Yes | QMessageBox::No);
+
+        if (resposta == QMessageBox::Yes) {
+            usuarioSaiu();
+        }
     }
 }
 
