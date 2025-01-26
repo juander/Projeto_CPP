@@ -60,6 +60,16 @@ void MainWindow::setPaletaCor(QApplication &app){
     app.setPalette(palette);                                            // Setando a peleta no app
 }
 
+void MainWindow::abrirPdf(const QString &link) {
+    // Caminho temporário para salvar o PDF
+    QString tempPath = QStandardPaths::writableLocation(QStandardPaths::TempLocation) + "/guide.pdf";
+
+    // Copia o arquivo PDF do recurso para o caminho temporário
+    QFile::copy(":/guide.pdf", tempPath);
+
+    // Abre o arquivo PDF
+    QDesktopServices::openUrl(QUrl::fromLocalFile(tempPath));
+}
 
 //////////////////////////////////////////
 
@@ -78,6 +88,13 @@ void MainWindow::janelaFormatada(){
 
     QPixmap logo(":/icons/logo.png");
     ui->logo->setPixmap(logo.scaled(105, 105, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+
+    ui->labelPdf->setText("<a href=\"guide.pdf\">Abrir PDF</a>");
+    ui->labelPdf->setTextInteractionFlags(Qt::LinksAccessibleByMouse);
+    ui->labelPdf->setOpenExternalLinks(false);  // Para capturar o clique no link
+
+    // Conecte o sinal linkActivated ao slot
+    connect(ui->labelPdf, &QLabel::linkActivated, this, &MainWindow::abrirPdf);
 
     // FORMATANDO O LAYOUT SUPERIOR
 

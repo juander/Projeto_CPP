@@ -8,6 +8,8 @@
 #include <QTableWidget>
 #include <QCommandLinkButton>
 #include <QStyleFactory>
+#include <QDesktopServices>
+#include <QUrl>
 #include <QtSql>
 #include <QDebug>
 #include <QFileInfo>
@@ -53,6 +55,8 @@ public:
     int getIdUsuario() const;                                          // MÉTODO PARA OBTER O ID DO USUÁRIO
 
 private slots:
+
+    void abrirPdf(const QString &link);
 
     // MÉTODOS DE LOGIN
 

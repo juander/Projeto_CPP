@@ -2713,7 +2713,7 @@ border-radius: 10px;</string>
         <item>
          <widget class="QTabWidget" name="paginas">
           <property name="currentIndex">
-           <number>1</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="Inicio">
            <property name="styleSheet">
@@ -2795,7 +2795,7 @@ border-radius: 10px;</string>
                 <item>
                  <widget class="QLabel" name="label_9">
                   <property name="text">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; font-weight:700;&quot;&gt;Bem-vindo ao [Nome_Software]!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; font-weight:700;&quot;&gt;Bem-vindo a MEDICALSOFT!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                  </widget>
                 </item>
@@ -2954,6 +2954,13 @@ border-radius: 10px;</string>
                  </spacer>
                 </item>
                </layout>
+              </item>
+              <item>
+               <widget class="QLabel" name="labelPdf">
+                <property name="text">
+                 <string>TextLabel</string>
+                </property>
+               </widget>
               </item>
               <item>
                <spacer name="horizontalSpacer_19">
