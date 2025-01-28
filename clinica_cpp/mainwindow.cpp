@@ -9,10 +9,12 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);                                                                                              // CONSTRUTOR
 
-    // Conecta o sinal clicked do calendário ao slot
-    connect(ui->calendarioAgenda, &QCalendarWidget::clicked, this, &MainWindow::on_calendarioAgenda_clicked);
-
 }
+
+
+//////////////////////////////////////////
+
+
 
 MainWindow::~MainWindow()
 {
@@ -20,19 +22,71 @@ MainWindow::~MainWindow()
 }
 
 
-
-
 //////////////////////////////////////////
 
 
-// MÉTODOS GET PARA ACESO DE DADOS PRIVADOS
+// MÉTODOS GET E SET PARA ACESO DE DADOS PRIVADOS
 
-QString MainWindow::getNomeUsuario() const {
+bool MainWindow::getLogado() const
+{
+    return logado;
+}
+
+QString MainWindow::getNomeUsuario() const
+{
     return nome_usuario;
 }
 
-int MainWindow::getIdUsuario() const {
+QString MainWindow::getClinica() const
+{
+    return clinica_usuario;
+}
+
+QString MainWindow::getCargo() const
+{
+    return cargo_usuario;
+}
+
+int MainWindow::getIdUsuario() const
+{
     return id_usuario;
+}
+
+int MainWindow::getIdSessao() const
+{
+    return idSessaoSelecionada;
+}
+
+/////////////////////////////////////////
+
+void MainWindow::setLogado(bool login)
+{
+    logado = login;
+}
+
+void MainWindow::setNomeUsuario(QString nome)
+{
+    nome_usuario = nome;
+}
+
+void MainWindow::setClinica(QString clin)
+{
+    clinica_usuario = clin;
+}
+
+void MainWindow::setCargo(QString carg)
+{
+    cargo_usuario = carg;
+}
+
+void MainWindow::setIdUsuario(int Id)
+{
+    id_usuario = Id;
+}
+
+void MainWindow::setIdSessao(int Id)
+{
+    idSessaoSelecionada = Id;
 }
 
 //////////////////////////////////////////
@@ -60,12 +114,16 @@ void MainWindow::setPaletaCor(QApplication &app){
     app.setPalette(palette);                                            // Setando a peleta no app
 }
 
+///////////////////////////////////////////
+
+// MÉTODO PARA ABRIR O PDF DE INSTRUÇÕES DE USUÁRIO
+
 void MainWindow::abrirPdf(const QString &link) {
     // Caminho temporário para salvar o PDF
     QString tempPath = QStandardPaths::writableLocation(QStandardPaths::TempLocation) + "/guide.pdf";
 
     // Copia o arquivo PDF do recurso para o caminho temporário
-    QFile::copy(":/guide.pdf", tempPath);
+    QFile::copy(":/extraFiles/guide.pdf", tempPath);
 
     // Abre o arquivo PDF
     QDesktopServices::openUrl(QUrl::fromLocalFile(tempPath));
@@ -79,8 +137,6 @@ void MainWindow::abrirPdf(const QString &link) {
 void MainWindow::janelaFormatada(){
 
     setWindowTitle("MEDICALSOFT");                                                                                  // TÍTULO DA JANELA
-
-    ui->layoutPrincipal->setSpacing(0);                                                                             // SETANDO OS ESPAÇOS ENTRE OS LAYOUTS
 
     ui->paginas->tabBar()->setVisible(false);                                                                       // DEIXANDO OS ÍCONES DAS PÁGINAS DA TABWIDGET INVISÍVEIS
 
@@ -96,18 +152,10 @@ void MainWindow::janelaFormatada(){
     // Conecte o sinal linkActivated ao slot
     connect(ui->labelPdf, &QLabel::linkActivated, this, &MainWindow::abrirPdf);
 
-    QPixmap img(":/imgInicial.jpg");
+    QPixmap img(":/extraFiles/imgInicial.jpg");
     ui->imgInicial->setPixmap(img.scaled(500, 750, Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
     // FORMATANDO O LAYOUT SUPERIOR
-
-    ui->frameSuperior->setFixedHeight(ui->frameSuperior->height() + 40);  // Aumenta a altura vertical do QFrame
-
-    ui->frameSuperior->setStyleSheet("QFrame {"
-                                     "background-color: rgb(109, 176, 236);"  // Cor de fundo da barra lateral
-                                     "border-top-left-radius: 10px;"  // Borda superior esquerda
-                                     "border-top-right-radius: 10px;" // Borda superior direitaz
-                                     "}");
 
     // Adicionando efeito de sombra ao frame superior
     QGraphicsDropShadowEffect *shadowEffect = new QGraphicsDropShadowEffect(this);
@@ -117,65 +165,12 @@ void MainWindow::janelaFormatada(){
 
     ui->frameSuperior->setGraphicsEffect(shadowEffect);
 
-    // FORMATANDO O LAYOUT LATERAL
+    //COLOCANDO O LAYOUT LATERAL ABAIXO PARA APLICAR O EFEITO DE SOMBRA
 
-    ui->frameLateral->setStyleSheet("QFrame {"
-                                    "background-color: rgb(109, 176, 236);"  // Cor de fundo da barra lateral
-                                    "border-bottom-left-radius: 10px;"
-                                    "}");
-
-    ui->line1->setStyleSheet("QFrame {"
-                             "border: 1px solid #000000;"                   // Cor de borda
-                             "}");
-
-    ui->line2->setStyleSheet("QFrame {"
-                             "border: 1px solid #000000;"                   // Cor de borda
-                             "}");
-
-    ui->line3->setStyleSheet("QFrame {"
-                             "border: 1px solid #000000;"                   // Cor de borda
-                             "}");
-
-    ui->line4->setStyleSheet("QFrame {"
-                             "border: 1px solid #000000;"                   // Cor de borda
-                             "}");
-
-    ui->line5->setStyleSheet("QFrame {"
-                             "border: 1px solid #000000;"                   // Cor de borda
-                             "}");
-
-    ui->line6->setStyleSheet("QFrame {"
-                             "border: 1px solid #000000;"                   // Cor de borda
-                             "}");
-
-    ui->line7->setStyleSheet("QFrame {"
-                             "border: 1px solid #000000;"                   // Cor de borda
-                             "}");
-
-    ui->frameSuperior->raise(); // Traz o frame para frente
-    ui->frameLateral->lower(); // Envia o frame_2 para trás
+    ui->frameSuperior->raise(); // Traz o framesuperior para frente
+    ui->frameLateral->lower(); // Envia o framelateral para trás
 
     /////////////////////////////////////////////////
-
-    // COLOCANDO IMAGENS NA JANELA PRINCIPAL
-
-    ui->btnEntrar->setStyleSheet(
-        "QPushButton {"
-        "    background-color: #6db0ec; "
-        "    color: #000000; "
-        "    border: 2px solid #dcdcdc; "
-        "    border-radius: 10px; "
-        "}"
-        "QPushButton:hover {"
-        "    background-color: #dcdcdc;"  // Cor de fundo ao passar o mouse
-        "}"
-        );
-
-    /////////////////////////////////////////////////
-
-    logado = false;
-
-    on_btnInicio_clicked();                                                 // DEFINI A PÁGINA INICIAL COMO SEMPRE A PRIMEIRA AO ABRIR O PROGRAMA
 
     // Estilizando o calendário
     ui->calendarioAgenda->setStyleSheet(
@@ -189,7 +184,7 @@ void MainWindow::janelaFormatada(){
         "    selection-background-color: #a0c4ff;"  // Cor de fundo da seleção
         "    selection-color: #000000;"  // Cor do texto da seleção
         "}"
-    );
+        );
 
     // Alterar o ícone das setas de navegação
     QToolButton *prevMonthButton = ui->calendarioAgenda->findChild<QToolButton *>("qt_calendar_prevmonth");
@@ -197,11 +192,15 @@ void MainWindow::janelaFormatada(){
 
     prevMonthButton->setIcon(QIcon(":/icons/prev.png"));  // Substitua pelo caminho do seu ícone
     nextMonthButton->setIcon(QIcon(":/icons/next.png"));  // Substitua pelo caminho do seu ícone
+
+    ///////////////////////////////////////////////////
+
+    setLogado(false);
+
+    on_btnInicio_clicked();                                                 // DEFINI A PÁGINA INICIAL COMO SEMPRE A PRIMEIRA AO ABRIR O PROGRAMA
 }
 
 //////////////////////////////////////////
-
-
 
 
 // MÉTODO PARA REDIMENSIONAR AS TABELAS AUTOMATICAMENTE E CASO ALGO NÃO CAIBA EXIBIR O TEXTO COMPLETO AO COLOCAR O MOUSE EM CIMA
@@ -234,7 +233,7 @@ void MainWindow::redimensionarTable(QTableWidget* table){
 
 //////////////////////////////////////////
 
-// MÉTODO PARA RESETAR O ESTILO DOS BOTÕES
+// MÉTODOS PARA O ESTILO DOS BOTÕES
 
 void MainWindow::resetButtonStyles() {
     QList<QPushButton*> botoes = {
@@ -251,9 +250,96 @@ void MainWindow::setButtonHighlight(QPushButton *botao)
 {
     if (botaoAtivo != botao) {
         resetButtonStyles();
-        botao->setStyleSheet("background-color: rgb(179, 213, 243);");
+        botao->setStyleSheet("background-color: rgb(179, 213, 243);");                                            // APLICANDO UM HIGHLIGHT COM CSS
         botaoAtivo = botao;
     }
+}
+
+void MainWindow::setLayoutEntrar()
+{
+    ui->btnEntrar->setText("Entrar");
+    ui->btnEntrar->setStyleSheet(
+        "QPushButton {"
+        "    background-color: #6db0ec; "
+        "    color: #000000; "                                                                                   // TRANSFORMANDO O BOTÃO EM LOGIN
+        "    border: 2px solid #dcdcdc; "
+        "    border-radius: 10px; "
+        "}"
+        "QPushButton:hover {"
+        "    background-color: #dcdcdc;"  // Cor de fundo ao passar o mouse
+        "}"
+        );
+
+    ui->iconPerfil->clear();
+    ui->txtUsuario->clear();
+    ui->txtClinica->clear();
+    ui->txtCargo->clear();
+
+    // Atualiza outras partes da interface
+    ui->tw_pacientes->setRowCount(0);
+    ui->tw_pacientes->setColumnCount(0);
+    ui->tw_colaboradores->setRowCount(0);
+    ui->tw_colaboradores->setColumnCount(0);
+
+    // Volta para a página inicial
+    on_btnInicio_clicked();
+}
+
+void MainWindow::setLayoutSair()
+{
+    ui->btnEntrar->setText("Sair");
+    ui->btnEntrar->setStyleSheet(
+        "QPushButton {"
+        "    background-color: rgb(200, 20, 20); "
+        "    color: #ffffff; "                                                                                    // TRANFORMANDO O BOTÃO EM LOGOUT
+        "    border-radius: 10px; "
+        "}"
+        "QPushButton:hover {"
+        "    background-color: darkred;"  // Cor de fundo ao passar o mouse
+        "}"
+        );
+
+    QPixmap icone(":/icons/Generic avatar.png");
+    ui->iconPerfil->setPixmap(icone.scaled(50, 50, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+
+    ui->txtUsuario->setText(getNomeUsuario());
+
+    ui->txtUsuario->setStyleSheet(
+        "QLabel {"
+        "    font-family: 'Poppins', sans-serif;"
+        "    font-size: 11pt;"
+        "    font-weight: bold;"
+        "    color: #000000;"  // Azul mais escuro
+        "    letter-spacing: 1px;"
+        "    text-transform: uppercase;"
+        "}"
+        );
+
+    ui->txtCargo->setText(" - " +cargo_usuario);
+
+    ui->txtCargo->setStyleSheet(
+        "QLabel {"
+        "    font-family: 'Poppins', sans-serif;"
+        "    font-size: 11pt;"
+        "    font-weight: bold;"
+        "    color: #000000;"  // Azul mais escuro
+        "    letter-spacing: 1px;"
+        "    text-transform: uppercase;"
+        "}"
+        );
+
+    ui->txtClinica->setText(clinica_usuario);
+
+    ui->txtClinica->setStyleSheet(
+        "QLabel {"
+        "    font-family: 'Poppins', sans-serif;"
+        "    font-size: 11pt;"
+        "    font-weight: bold;"
+        "    color: #000000;"  // Azul mais escuro
+        "    letter-spacing: 1px;"
+        "    text-transform: uppercase;"
+        "}"
+        );
 }
 
 //////////////////////////////////////////
@@ -262,49 +348,9 @@ void MainWindow::setButtonHighlight(QPushButton *botao)
 
 void MainWindow::usuarioEntrou(){
 
-    logado = true;                                                                                              // ESTADO DE LOGIN TRUE
-    conexao.abrir();                                                                                            // ABRINDO A CONEXÃO COM O BANCO
+    setLogado(true);                                                                                              // ESTADO DE LOGIN TRUE
 
-    // Interface para usuário logado
-    ui->btnEntrar->setText("Sair");
-    ui->btnEntrar->setStyleSheet(
-        "QPushButton {"
-        "    background-color: rgb(200, 20, 20); "
-        "    color: #ffffff; "
-        "    border-radius: 10px; "
-        "}"
-        "QPushButton:hover {"
-        "    background-color: darkred;"  // Cor de fundo ao passar o mouse
-        "}"
-        );
-    QPixmap icone(":/icons/Generic avatar.png");
-    ui->iconPerfil->setPixmap(icone.scaled(50, 50, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-
-    ui->txtUsuario->setText(nome_usuario);
-
-    ui->txtUsuario->setStyleSheet(
-        "QLabel {"
-        "    font-family: 'Poppins', sans-serif;"
-        "    font-size: 18pt;"
-        "    font-weight: bold;"
-        "    color: #000000;"  // Azul mais escuro
-        "    letter-spacing: 1px;"
-        "    text-transform: uppercase;"
-        "}"
-        );
-
-    ui->txtClinica->setText(clinica_usuario + " -");
-
-    ui->txtClinica->setStyleSheet(
-        "QLabel {"
-        "    font-family: 'Poppins', sans-serif;"
-        "    font-size: 18pt;"
-        "    font-weight: bold;"
-        "    color: #000000;"  // Azul mais escuro
-        "    letter-spacing: 1px;"
-        "    text-transform: uppercase;"
-        "}"
-        );
+    setLayoutSair();
 
 }
 
@@ -314,32 +360,10 @@ void MainWindow::usuarioEntrou(){
 
 void MainWindow::usuarioSaiu(){
 
-    logado = false;                                                                                               // ESTADO DE LOGIN FALSE
-    conexao.fechar();                                                                                             // FECHANDO CONEXÃO COM O BANCO
+    setLogado(false);                                                                                               // ESTADO DE LOGIN FALSE
+    conexao.fechar();                                                                                               // FECHANDO CONEXÃO COM O BANCO
 
-    // Reseta a interface
-    ui->btnEntrar->setText("Entrar");
-    ui->btnEntrar->setStyleSheet(
-        "QPushButton {"
-        "    background-color: #6db0ec; "
-        "    color: #000000; "
-        "    border: 2px solid #dcdcdc; "
-        "    border-radius: 10px; "
-        "}"
-        "QPushButton:hover {"
-        "    background-color: #dcdcdc;"  // Cor de fundo ao passar o mouse
-        "}"
-        );
-    ui->iconPerfil->clear();
-    ui->txtUsuario->clear();
-    ui->txtClinica->clear();
-
-    // Atualiza outras partes da interface
-    on_btnInicio_clicked();
-    ui->tw_pacientes->setRowCount(0);
-    ui->tw_pacientes->setColumnCount(0);
-    ui->tw_colaboradores->setRowCount(0);
-    ui->tw_colaboradores->setColumnCount(0);
+    setLayoutEntrar();
 }
 
 
@@ -348,17 +372,17 @@ void MainWindow::usuarioSaiu(){
 // MÉTODO PARA ACESSAR A JANELA "ENTRAR"
 
 void MainWindow::on_btnEntrar_clicked() {
-    if (!logado) {                                                                                                   // NÃO LOGADO, LOGANDO
+    if (!getLogado()) {                                                                                                   // NÃO LOGADO, LOGANDO
         janela_entrar janelaEntrar(this, &conexao);                                                                  // Passando a conexão para a janela de login
         janelaEntrar.exec();
 
-        if (janelaEntrar.logadoJanela) {                                                                             // Verifica se o login foi bem-sucedido
+        if (janelaEntrar.getLogadoJanela()) {                                                                             // Verifica se o login foi bem-sucedido
 
             // Atualiza informações do usuário usando os dados emitidos pela janela_entrar
-            id_usuario = janelaEntrar.id;
-            nome_usuario = janelaEntrar.nome;
-            clinica_usuario = janelaEntrar.clinica;
-            cargo_usuario = janelaEntrar.cargo;
+            setIdUsuario(janelaEntrar.getId());
+            setNomeUsuario(janelaEntrar.getNome());
+            setClinica(janelaEntrar.getClinica());
+            setCargo(janelaEntrar.getCargo());
 
             usuarioEntrou();
         } else {
@@ -399,7 +423,7 @@ void MainWindow::on_btnInicio_clicked()
 
 void MainWindow::on_btnAgenda_clicked()
 {
-    if(logado){
+    if(getLogado()){
         setButtonHighlight(ui->btnAgenda);                                                                              // ALTERAR A COR DE DESTAQUE DO BOTÃO
         ui->btnAgenda->setAutoFillBackground(true);
 
@@ -414,8 +438,10 @@ void MainWindow::on_btnAgenda_clicked()
         ui->checkMinhaAgenda->setChecked(true);
         ui->comboBoxStatusAgenda->setCurrentIndex(0);
 
-        query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data and status_sessao = :status ORDER BY data ASC, hora ASC");                          // ACESSANDO A TABELA NO BANCO
-        query.bindValue(":id_profissional", id_usuario);
+        query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional "
+                      "AND data = :data and status_sessao = :status ORDER BY data ASC, hora ASC");                          // ACESSANDO A TABELA NO BANCO
+
+        query.bindValue(":id_profissional", getIdUsuario());
         query.bindValue(":data", data.toString("dd/MM/yyyy"));
         query.bindValue(":status", "Aguardando");
 
@@ -514,12 +540,16 @@ void MainWindow::on_btnAgenda_clicked()
             ui->comboBoxAgenda->setEnabled(false);
 
             if (!filtrarData) {
-                query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                query.bindValue(":id_profissional", id_usuario);
+                query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional "
+                              "AND status_sessao = :status ORDER BY data ASC, hora ASC");
+
+                query.bindValue(":id_profissional", getIdUsuario());
                 query.bindValue(":status", statusSelecionado);
             } else {
-                query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                query.bindValue(":id_profissional", id_usuario);
+                query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional "
+                              "AND data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
+
+                query.bindValue(":id_profissional", getIdUsuario());
                 query.bindValue(":data", data.toString("dd/MM/yyyy"));
                 query.bindValue(":status", statusSelecionado);
             }
@@ -564,11 +594,11 @@ void MainWindow::on_btnAgenda_clicked()
 
             if (!filtrarData) {
                 query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                query.bindValue(":id_profissional", id_usuario);
+                query.bindValue(":id_profissional", getIdUsuario());
                 query.bindValue(":status", statusSelecionado);
             } else {
                 query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                query.bindValue(":id_profissional", id_usuario);
+                query.bindValue(":id_profissional", getIdUsuario());
                 query.bindValue(":data", data.toString("dd/MM/yyyy"));
                 query.bindValue(":status", statusSelecionado);
             }
@@ -676,13 +706,13 @@ void MainWindow::on_btnAgenda_clicked()
             if (filtrarData) {
                 // Filtrar pela data, pela agenda do usuário e pelo status
                 query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                query.bindValue(":id_profissional", id_usuario);
+                query.bindValue(":id_profissional", getIdUsuario());
                 query.bindValue(":data", data.toString("dd/MM/yyyy"));
                 query.bindValue(":status", statusSelecionado);
             } else {
                 // Filtrar pela agenda do usuário e pelo status
                 query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                query.bindValue(":id_profissional", id_usuario);
+                query.bindValue(":id_profissional", getIdUsuario());
                 query.bindValue(":status", statusSelecionado);
             }
         } else {
@@ -768,14 +798,14 @@ void MainWindow::on_btnAgenda_clicked()
                 if (pesquisado.isEmpty()) {
                     // Filtrar apenas pela data e pela agenda do usuário
                     query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                    query.bindValue(":id_profissional", id_usuario);
+                    query.bindValue(":id_profissional", getIdUsuario());
                     query.bindValue(":data", data.toString("dd/MM/yyyy"));
                     query.bindValue(":status", statusSelecionado);
                 } else {
                     // Filtrar pela data, pela agenda do usuário e pelo texto digitado
                     query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND paciente LIKE :paciente AND data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
                     query.bindValue(":paciente", pesquisado + "%");
-                    query.bindValue(":id_profissional", id_usuario);
+                    query.bindValue(":id_profissional", getIdUsuario());
                     query.bindValue(":data", data.toString("dd/MM/yyyy"));
                     query.bindValue(":status", statusSelecionado);
                 }
@@ -783,13 +813,13 @@ void MainWindow::on_btnAgenda_clicked()
                 if (pesquisado.isEmpty()) {
                     // Filtrar apenas pela agenda do usuário
                     query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                    query.bindValue(":id_profissional", id_usuario);
+                    query.bindValue(":id_profissional", getIdUsuario());
                     query.bindValue(":status", statusSelecionado);
                 } else {
                     // Filtrar pela agenda do usuário e pelo texto digitado somente de pacientes porque so posso filtrar pacientes na minha agenda
                     query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND paciente LIKE :paciente AND status_sessao = :status ORDER BY data ASC, hora ASC");
                     query.bindValue(":paciente", pesquisado + "%");
-                    query.bindValue(":id_profissional", id_usuario);
+                    query.bindValue(":id_profissional", getIdUsuario());
                     query.bindValue(":status", statusSelecionado);
                 }
             }
@@ -875,14 +905,14 @@ void MainWindow::on_btnAgenda_clicked()
                 if (pesquisado.isEmpty()) {
                     // Filtrar apenas pela data e pela agenda do usuário
                     query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                    query.bindValue(":id_profissional", id_usuario);
+                    query.bindValue(":id_profissional", getIdUsuario());
                     query.bindValue(":data", data.toString("dd/MM/yyyy"));
                     query.bindValue(":status", statusSelecionado);
                 } else {
                     // Filtrar pela data, pela agenda do usuário e pelo texto digitado
                     query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND paciente LIKE :paciente AND data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
                     query.bindValue(":paciente", pesquisado + "%");
-                    query.bindValue(":id_profissional", id_usuario);
+                    query.bindValue(":id_profissional", getIdUsuario());
                     query.bindValue(":data", data.toString("dd/MM/yyyy"));
                     query.bindValue(":status", statusSelecionado);
                 }
@@ -890,13 +920,13 @@ void MainWindow::on_btnAgenda_clicked()
                 if (pesquisado.isEmpty()) {
                     // Filtrar apenas pela agenda do usuário
                     query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                    query.bindValue(":id_profissional", id_usuario);
+                    query.bindValue(":id_profissional", getIdUsuario());
                     query.bindValue(":status", statusSelecionado);
                 } else {
                     // Filtrar pela agenda do usuário e pelo texto digitado somente de pacientes porque so posso filtrar pacientes na minha agenda
                     query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND paciente LIKE :paciente AND status_sessao = :status ORDER BY data ASC, hora ASC");
                     query.bindValue(":paciente", pesquisado + "%");
-                    query.bindValue(":id_profissional", id_usuario);
+                    query.bindValue(":id_profissional", getIdUsuario());
                     query.bindValue(":status", statusSelecionado);
                 }
             }
@@ -969,9 +999,9 @@ void MainWindow::on_btnAgenda_clicked()
     {
         if (currentRow >= 0 && ui->tw_agenda->item(currentRow, 0)) {
             QString idStr = ui->tw_agenda->item(currentRow, 0)->text();
-            m_idSessaoSelecionada = idStr.toInt();  // Convertendo para inteiro
+            setIdSessao(idStr.toInt());  // Convertendo para inteiro
         } else {
-            m_idSessaoSelecionada = -1;  // Define um valor inválido caso nenhuma linha esteja selecionada ou a célula esteja vazia
+            setIdSessao();  // Define o valor inválido -1 caso nenhuma linha esteja selecionada ou a célula esteja vazia
         }
     }
 
@@ -979,8 +1009,8 @@ void MainWindow::on_btnAgenda_clicked()
     {
         int linha = ui->tw_agenda->currentRow();
 
-        if (m_idSessaoSelecionada != -1 && linha >= 0) {
-            cadastroSessao *cadastrarSessao = new cadastroSessao(this, "Editar", m_idSessaoSelecionada);
+        if (getIdSessao() != -1 && linha >= 0) {
+            cadastroSessao *cadastrarSessao = new cadastroSessao(this, "Editar", getIdSessao());
 
             // Conectar o sinal de edição ao slot de atualização
             connect(cadastrarSessao, &cadastroSessao::sessaoEditada,
@@ -1038,7 +1068,7 @@ void MainWindow::on_btnAgenda_clicked()
 
     void MainWindow::on_btnAtendimento_clicked()
     {
-        if (logado) {
+        if (getLogado()) {
             setButtonHighlight(ui->btnAtendimento); // ALTERAR A COR DE DESTAQUE DO BOTÃO
             ui->btnAtendimento->setAutoFillBackground(true);
 
@@ -1128,14 +1158,14 @@ void MainWindow::on_btnAgenda_clicked()
                     "SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND status_sessao = :status_sessao "
                     "ORDER BY data ASC, hora ASC"
                     );
-                query.bindValue(":id_profissional", id_usuario);
+                query.bindValue(":id_profissional", getIdUsuario());
                 query.bindValue(":status_sessao", statusSelecionado);
             } else {
                 query.prepare(
                     "SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data AND status_sessao = :status_sessao "
                     "ORDER BY data ASC, hora ASC"
                     );
-                query.bindValue(":id_profissional", id_usuario);
+                query.bindValue(":id_profissional", getIdUsuario());
                 query.bindValue(":data", data.toString("dd/MM/yyyy"));
                 query.bindValue(":status_sessao", statusSelecionado);
             }
@@ -1145,7 +1175,7 @@ void MainWindow::on_btnAgenda_clicked()
                     "SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND paciente LIKE :paciente AND status_sessao = :status_sessao "
                     "ORDER BY data ASC, hora ASC"
                     );
-                query.bindValue(":id_profissional", id_usuario);
+                query.bindValue(":id_profissional", getIdUsuario());
                 query.bindValue(":paciente", pesquisado + "%");
                 query.bindValue(":status_sessao", statusSelecionado);
             } else {
@@ -1153,7 +1183,7 @@ void MainWindow::on_btnAgenda_clicked()
                     "SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data AND paciente LIKE :paciente AND status_sessao = :status_sessao "
                     "ORDER BY data ASC, hora ASC"
                     );
-                query.bindValue(":id_profissional", id_usuario);
+                query.bindValue(":id_profissional", getIdUsuario());
                 query.bindValue(":data", data.toString("dd/MM/yyyy"));
                 query.bindValue(":paciente", pesquisado + "%");
                 query.bindValue(":status_sessao", statusSelecionado);
@@ -1202,7 +1232,7 @@ void MainWindow::on_btnAgenda_clicked()
         query.bindValue(":id_agendamento", id);
 
         status = ui->tw_atendimento->item(row, 6)->text(); // Pega o valor da sexta coluna
-        if(status == "Realizado") {
+        if(status == "Realizada") {
             ui->radioRealizado->setChecked(true);
         } else if(status == "Aguardando"){
             ui->radioAguardando->setChecked(true);
@@ -1317,7 +1347,7 @@ void MainWindow::on_btnAgenda_clicked()
 
 void MainWindow::on_btnPacientes_clicked()
 {
-    if(logado){
+    if(getLogado()){
         setButtonHighlight(ui->btnPacientes);                                                                              // ALTERAR A COR DE DESTAQUE DO BOTÃO
         ui->btnPacientes->setAutoFillBackground(true);
 
@@ -1527,7 +1557,7 @@ void MainWindow::on_btnPacientes_clicked()
 
 void MainWindow::on_btnColaboradores_clicked()
 {
-    if(logado){
+    if(getLogado()){
         setButtonHighlight(ui->btnColaboradores);                                                                              // ALTERAR A COR DE DESTAQUE DO BOTÃO
         ui->btnColaboradores->setAutoFillBackground(true);
 
@@ -1732,7 +1762,7 @@ void MainWindow::on_btnColaboradores_clicked()
 
 void MainWindow::on_btnRelatorios_clicked()
 {
-    if (logado) {  // Verifica se o usuário está logado
+    if (getLogado()) {  // Verifica se o usuário está logado
         setButtonHighlight(ui->btnRelatorios);  // Destaque no botão
         ui->btnRelatorios->setAutoFillBackground(true);
 
@@ -1890,7 +1920,7 @@ void MainWindow::on_btnRelatorios_clicked()
 
 void MainWindow::on_btnEstoque_clicked()
 {
-    if(logado){
+    if(getLogado()){
         setButtonHighlight(ui->btnEstoque);                                                                              // ALTERAR A COR DE DESTAQUE DO BOTÃO
         ui->btnEstoque->setAutoFillBackground(true);
 

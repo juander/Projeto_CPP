@@ -13,6 +13,50 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+}
+QLabel {
+    font-size: 14pt;
+    color: #333;
+}
+QLineEdit {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 12pt;
+}
+QPushButton {
+    background-color: #e0e0e0;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 2px;
+    font-size: 12pt;
+}
+QPushButton#btnCancelar {
+    background-color: #d0d0d0;
+}
+QPushButton:hover {
+    background-color: #c0c0c0;
+}
+QPushButton#btnCancelar:hover {
+    background-color: #b0b0b0;
+}
+QPushButton#btnMostrar {
+    background-color: transparent;
+    border: none;
+}
+QPushButton#btnEnt {
+    background-color: #6db0ec;
+}
+QPushButton#btnEnt:hover {
+    background-color: #5a9bd8;
+}
+</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">

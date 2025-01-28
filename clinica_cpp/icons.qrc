@@ -16,8 +16,7 @@
         <file>icons/up-arrow.png</file>
         <file>icons/logo.png</file>
         <file>icons/icone.png</file>
-        <file>guide.pdf</file>
-        <file>imgInicial.jpg</file>
-        <file>dna.gif</file>
+        <file>extraFiles/guide.pdf</file>
+        <file>extraFiles/imgInicial.jpg</file>
     </qresource>
 </RCC>

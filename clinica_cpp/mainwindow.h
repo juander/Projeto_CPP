@@ -45,13 +45,45 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    ////////////////////////////////////////
+
+    // MÉTODOS GET
+
+    bool getLogado() const;
+
+    QString getNomeUsuario() const;
+
+    QString getClinica() const;
+
+    QString getCargo() const;
+
+    int getIdUsuario() const;
+
+    int getIdSessao() const;
+
+    ////////////////////////////////////////
+
+    // MÉTODOS SET
+
+    void setLogado(bool login = false);
+
+    void setNomeUsuario(QString nome = nullptr);
+
+    void setClinica(QString clin = nullptr);
+
+    void setCargo(QString carg = nullptr);
+
+    void setIdUsuario(int Id = -1);
+
+    void setIdSessao(int Id = -1);
+
+    ///////////////////////////////////////
+
     void setPaletaCor(QApplication &app);                              // MÉTODO PARA SETAR A PALETA DE CORES DO SISTEMA PARA CLARO EM QUALQUER DISPOSITIVO
 
     void janelaFormatada();                                            // MÉTODO PARA FORMATAR A PÁGINA
 
-    QString getNomeUsuario() const;                                    // Método público para obter o nome do usuário
-
-    int getIdUsuario() const;                                          // MÉTODO PARA OBTER O ID DO USUÁRIO
+    void redimensionarTable(QTableWidget* table);                      // MÉTODO PARA REDIMENSÃO DAS TABELAS AUTOMATICAMENTE
 
 private slots:
 
@@ -204,13 +236,19 @@ private:
 
     Ui::MainWindow *ui;
 
-    void redimensionarTable(QTableWidget* table);           // MÉTODO PARA REDIMENSÃO DAS TABELAS AUTOMATICAMENTE
+    /////////////////////////////////////////////
 
-    QPushButton *botaoAtivo = nullptr;  // Armazena o botão atualmente selecionado
+    QPushButton *botaoAtivo = nullptr;                      // Armazena o botão atualmente selecionado
 
     void resetButtonStyles();                               // MÉTODO PARA RESETAR OS ESTILOS DOS BOTÕES
 
-    void setButtonHighlight(QPushButton *botao);  // Destaca o botão clicado
+    void setButtonHighlight(QPushButton *botao);            // Destaca o botão clicado
+
+    void setLayoutEntrar();
+
+    void setLayoutSair();
+
+    /////////////////////////////////////////////
 
     // Conexão com o banco de dados
     Conexao conexao;
@@ -222,7 +260,7 @@ private:
 
     int id_usuario;
 
-    int m_idSessaoSelecionada;
+    int idSessaoSelecionada;
 
 };
 

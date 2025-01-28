@@ -13,52 +13,6 @@ janela_entrar::janela_entrar(QWidget *parent, Conexao *conexao)
 
     setWindowTitle("MEDICALSOFT");
 
-    // Ajuste de estilo para a janela de login
-    this->setStyleSheet(
-        "QDialog {"
-        "    background-color: #f0f0f0;"
-        "    border-radius: 10px;"
-        "}"
-        "QLabel {"
-        "    font-size: 14pt;"
-        "    color: #333;"
-        "}"
-        "QLineEdit {"
-        "    border: 1px solid #ccc;"
-        "    border-radius: 5px;"
-        "    padding: 5px;"
-        "    font-size: 12pt;"
-        "}"
-        "QPushButton {"
-        "    background-color: #e0e0e0;"
-        "    color: #333;"
-        "    border: 1px solid #ccc;"
-        "    border-radius: 5px;"
-        "    padding: 2px;"
-        "    font-size: 12pt;"
-        "}"
-        "QPushButton#btnCancelar {"
-        "    background-color: #d0d0d0;"
-        "}"
-        "QPushButton:hover {"
-        "    background-color: #c0c0c0;"
-        "}"
-        "QPushButton#btnCancelar:hover {"
-        "    background-color: #b0b0b0;"
-        "}"
-        "QPushButton#btnMostrar {"
-        "    background-color: transparent;"
-        "    border: none;"
-        "}"
-        "QPushButton#btnEnt {"
-        "    background-color: #6db0ec;"
-        "}"
-        "QPushButton#btnEnt:hover {"
-        "    background-color: #5a9bd8;"
-        "}"
-        );
-
-
     // Ajuste de ícones
     ui->btnMostrar->setIcon(QIcon(":/icons/Hide.png"));
     ui->btnMostrar->setIconSize(QSize(24, 24));
@@ -66,6 +20,56 @@ janela_entrar::janela_entrar(QWidget *parent, Conexao *conexao)
 
 janela_entrar::~janela_entrar() {
     delete ui;
+}
+
+bool janela_entrar::getLogadoJanela()
+{
+    return logadoJanela;
+}
+
+QString janela_entrar::getNome()
+{
+    return nome;
+}
+
+QString janela_entrar::getClinica()
+{
+    return clinica;
+}
+
+QString janela_entrar::getCargo()
+{
+    return cargo;
+}
+
+int janela_entrar::getId()
+{
+    return id;
+}
+
+void janela_entrar::setLogadoJanela(bool login)
+{
+    logadoJanela = login;
+}
+
+void janela_entrar::setNome(QString nom)
+{
+    nome = nom;
+}
+
+void janela_entrar::setClinica(QString clin)
+{
+    clinica = clin;
+}
+
+void janela_entrar::setCargo(QString carg)
+{
+    cargo = carg;
+}
+
+void janela_entrar::setId(int codigo)
+{
+    id = codigo;
 }
 
 void janela_entrar::on_btnEnt_clicked() {
@@ -79,22 +83,22 @@ void janela_entrar::on_btnEnt_clicked() {
         return;
     }
 
-    QString nomeDigitado = ui->txtnome->text();
+    QString loginDigitado = ui->txtnome->text();
     QString senhaDigitada = ui->txtsenha->text();
     QSqlQuery query;
 
     query.prepare("SELECT * FROM tb_usuarios WHERE nome = :nome");
-    query.bindValue(":nome", nomeDigitado);
+    query.bindValue(":login", loginDigitado);
 
     if (query.exec() && query.first()) {
         if (query.value("senha").toString() == senhaDigitada) {
-            logadoJanela = true;
-            id = query.value("id").toInt();
-            nome = query.value("nome").toString();
-            clinica = query.value("clinica").toString();
-            cargo = query.value("cargo").toString();
+            setLogadoJanela(true);
+            setId(query.value("id").toInt());
+            setNome(query.value("nome").toString());
+            setClinica(query.value("clinica").toString());
+            setCargo(query.value("cargo").toString());
 
-            emit loginRealizado(id, nome, clinica, cargo); // Emite o sinal com os dados do usuário
+            emit loginRealizado(getId(), getNome(), getClinica(), getCargo()); // Emite o sinal com os dados do usuário
             close();
         } else {
             QMessageBox::warning(this, " ", "Senha incorreta.");
@@ -105,7 +109,7 @@ void janela_entrar::on_btnEnt_clicked() {
 }
 
 void janela_entrar::on_btnCancelar_clicked() {
-    logadoJanela = false;
+    setLogadoJanela(false);
     close();
 }
 
