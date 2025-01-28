@@ -6,7 +6,7 @@
 #include <QTableWidget>
 #include <QMessageBox>
 
-
+#include "../janelaPrincipal/mainwindow.h"
 
 class MainWindow;
 
