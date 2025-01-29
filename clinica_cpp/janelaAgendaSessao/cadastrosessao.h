@@ -41,9 +41,9 @@ private slots:
     void on_tw_paciente_ses_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn);
 
 signals:
-    void sessaoCadastrada(int idSessao);  // Sinal que enviará o ID da sessão cadastrada
+    void sessaoCadastrada();
 
-    void sessaoEditada(int idSessao);
+    void sessaoEditada();
 
 private:
     Ui::cadastroSessao *ui;

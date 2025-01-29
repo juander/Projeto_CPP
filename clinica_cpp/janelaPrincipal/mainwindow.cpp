@@ -352,6 +352,8 @@ void MainWindow::usuarioEntrou(){
 
     setLayoutSair();
 
+    ui->calendarioAgenda->setSelectedDate(QDate::currentDate());
+
 }
 
 /////////////////////////////////////////
@@ -523,423 +525,98 @@ void MainWindow::on_btnAgenda_clicked()
 
     // MÉTODO DE PESQUISA
 
-    void MainWindow::on_checkDataAgenda_checkStateChanged(const Qt::CheckState &arg1)
-    {
+    void MainWindow::filtrarAgenda() {
+        QString pesquisado = ui->lineEditAgenda->text();
+        bool filtrarData = ui->checkDataAgenda->isChecked();
         bool filtrarMinhaAgenda = ui->checkMinhaAgenda->isChecked();
-        bool filtrarData = ui->checkDataAgenda->isChecked(); // Verifica se o filtro por data está ativo
-        QString statusSelecionado = ui->comboBoxStatusAgenda->currentText(); // Opção do comboBoxStatusAgenda
+        QString opcaoSelecionada = ui->comboBoxAgenda->currentText();
+        QString statusSelecionado = ui->comboBoxStatusAgenda->currentText();
         QDate data = ui->calendarioAgenda->selectedDate();
         QSqlQuery query;
 
-        if (statusSelecionado == "Paciente ausente"){
+        if (statusSelecionado == "Paciente ausente") {
             statusSelecionado = "Ausente";
         }
+
+        QString queryString = "SELECT * FROM tb_agendamentos WHERE status_sessao = :status";
 
         if (filtrarMinhaAgenda) {
-            ui->lineEditAgenda->clear();
-            ui->comboBoxAgenda->setEnabled(false);
-
-            if (!filtrarData) {
-                query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional "
-                              "AND status_sessao = :status ORDER BY data ASC, hora ASC");
-
-                query.bindValue(":id_profissional", getIdUsuario());
-                query.bindValue(":status", statusSelecionado);
-            } else {
-                query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional "
-                              "AND data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
-
-                query.bindValue(":id_profissional", getIdUsuario());
-                query.bindValue(":data", data.toString("dd/MM/yyyy"));
-                query.bindValue(":status", statusSelecionado);
-            }
-        } else {
-            ui->comboBoxAgenda->setEnabled(true);
-
-            if (!filtrarData) {
-                query.prepare("SELECT * FROM tb_agendamentos WHERE status_sessao = :status ORDER BY data ASC, hora ASC");
-                query.bindValue(":status", statusSelecionado);
-            } else {
-                query.prepare("SELECT * FROM tb_agendamentos WHERE data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                query.bindValue(":data", data.toString("dd/MM/yyyy"));
-                query.bindValue(":status", statusSelecionado);
-            }
-        }
-
-        // Executa a query
-        if (query.exec()) {
-            setAgenda(query); // Atualiza a tabela
-        } else {
-            qDebug() << "Erro ao executar a query:" << query.lastError().text();
-        }
-    }
-
-
-    void MainWindow::on_checkMinhaAgenda_stateChanged(int arg1)
-    {
-        bool filtrarMinhaAgenda = ui->checkMinhaAgenda->isChecked();
-        bool filtrarData = ui->checkDataAgenda->isChecked(); // Verifica se o filtro por data está ativo
-        QString statusSelecionado = ui->comboBoxStatusAgenda->currentText(); // Opção do comboBoxStatusAgenda
-        QDate data = ui->calendarioAgenda->selectedDate();
-        QSqlQuery query;
-
-        if (statusSelecionado == "Paciente ausente"){
-            statusSelecionado = "Ausente";
-        }
-
-        if (filtrarMinhaAgenda) {
-            ui->lineEditAgenda->clear();
-            ui->comboBoxAgenda->setCurrentIndex(0);
-            ui->comboBoxAgenda->setEnabled(false);
-
-            if (!filtrarData) {
-                query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                query.bindValue(":id_profissional", getIdUsuario());
-                query.bindValue(":status", statusSelecionado);
-            } else {
-                query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                query.bindValue(":id_profissional", getIdUsuario());
-                query.bindValue(":data", data.toString("dd/MM/yyyy"));
-                query.bindValue(":status", statusSelecionado);
-            }
-        } else {
-            ui->comboBoxAgenda->setEnabled(true);
-
-            if (!filtrarData) {
-                query.prepare("SELECT * FROM tb_agendamentos WHERE status_sessao = :status ORDER BY data ASC, hora ASC");
-                query.bindValue(":status", statusSelecionado);
-            } else {
-                query.prepare("SELECT * FROM tb_agendamentos WHERE data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                query.bindValue(":data", data.toString("dd/MM/yyyy"));
-                query.bindValue(":status", statusSelecionado);
-            }
-        }
-
-        // Executa a query
-        if (query.exec()) {
-            setAgenda(query); // Atualiza a tabela
-        } else {
-            qDebug() << "Erro ao executar a query:" << query.lastError().text();
-        }
-    }
-
-
-    void MainWindow::on_comboBoxAgenda_currentTextChanged(const QString &arg1)
-    {
-        ui->lineEditAgenda->clear();
-
-        QString pesquisado = ui->lineEditAgenda->text(); // Pegando o texto do lineEditAgenda
-        bool filtrarData = ui->checkDataAgenda->isChecked(); // Verifica se o filtro por data está ativo
-        QString opcaoSelecionada = ui->comboBoxAgenda->currentText(); // Opção do comboBox
-        QString statusSelecionado = ui->comboBoxStatusAgenda->currentText(); // Opção do comboBoxStatusAgenda
-        QDate data = ui->calendarioAgenda->selectedDate(); // Data selecionada no calendário
-        QSqlQuery query;
-
-        if (statusSelecionado == "Paciente ausente"){
-            statusSelecionado = "Ausente";
+            queryString += " AND id_profissional = :id_profissional";
         }
 
         if (filtrarData) {
-            // Filtro por data ativado
-            if (pesquisado.isEmpty()) {
-                query.prepare("SELECT * FROM tb_agendamentos WHERE data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                query.bindValue(":data", data.toString("dd/MM/yyyy"));
-                query.bindValue(":status", statusSelecionado);
-            } else {
-                if (opcaoSelecionada == "Profissional") {
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE profissional LIKE :profissional AND data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                    query.bindValue(":profissional", pesquisado + "%");
-                } else if (opcaoSelecionada == "Paciente") {
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE paciente LIKE :paciente AND data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                    query.bindValue(":paciente", pesquisado + "%");
-                } else if (opcaoSelecionada == "Especialidade") {
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE especialidade LIKE :especialidade AND data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                    query.bindValue(":especialidade", pesquisado + "%");
-                }
-                query.bindValue(":data", data.toString("dd/MM/yyyy"));
-                query.bindValue(":status", statusSelecionado);
-            }
-        } else {
-            // Filtro por data desativado
-            if (pesquisado.isEmpty()) {
-                query.prepare("SELECT * FROM tb_agendamentos WHERE status_sessao = :status ORDER BY data ASC, hora ASC");
-                query.bindValue(":status", statusSelecionado);
-            } else {
-                if (opcaoSelecionada == "Profissional") {
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE profissional LIKE :profissional AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                    query.bindValue(":profissional", pesquisado + "%");
-                } else if (opcaoSelecionada == "Paciente") {
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE paciente LIKE :paciente AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                    query.bindValue(":paciente", pesquisado + "%");
-                } else if (opcaoSelecionada == "Especialidade") {
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE especialidade LIKE :especialidade AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                    query.bindValue(":especialidade", pesquisado + "%");
-                }
-                query.bindValue(":status", statusSelecionado);
+            queryString += " AND data = :data";
+        }
+
+        if (!pesquisado.isEmpty()) {
+            if (opcaoSelecionada == "Profissional") {
+                queryString += " AND profissional LIKE :pesquisado";
+            } else if (opcaoSelecionada == "Paciente") {
+                queryString += " AND paciente LIKE :pesquisado";
+            } else if (opcaoSelecionada == "Especialidade") {
+                queryString += " AND especialidade LIKE :pesquisado";
             }
         }
-        // Executa a query
-        if (query.exec()) {
-            setAgenda(query); // Atualiza a tabela
-        } else {
-            qDebug() << "Erro ao executar a query:" << query.lastError().text();
-        }
-    }
 
+        queryString += " ORDER BY data ASC, hora ASC";
+        query.prepare(queryString);
 
-    void MainWindow::on_comboBoxStatusAgenda_currentTextChanged(const QString &arg1)
-    {
-        ui->lineEditAgenda->clear();
-
-        QString statusSelecionado = ui->comboBoxStatusAgenda->currentText(); // Opção do comboBoxStatusAgenda
-        bool filtrarData = ui->checkDataAgenda->isChecked(); // Verifica se o filtro por data está ativo
-        bool filtrarMinhaAgenda = ui->checkMinhaAgenda->isChecked(); // Verifica se o filtro "Minha Agenda" está ativo
-        QDate data = ui->calendarioAgenda->selectedDate(); // Data selecionada no calendário
-        QSqlQuery query;
-
-        if (statusSelecionado == "Paciente ausente"){
-            statusSelecionado = "Ausente";
-        }
+        query.bindValue(":status", statusSelecionado);
 
         if (filtrarMinhaAgenda) {
-            // Lógica para quando "Minha Agenda" está ativado
-            if (filtrarData) {
-                // Filtrar pela data, pela agenda do usuário e pelo status
-                query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                query.bindValue(":id_profissional", getIdUsuario());
-                query.bindValue(":data", data.toString("dd/MM/yyyy"));
-                query.bindValue(":status", statusSelecionado);
-            } else {
-                // Filtrar pela agenda do usuário e pelo status
-                query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                query.bindValue(":id_profissional", getIdUsuario());
-                query.bindValue(":status", statusSelecionado);
-            }
-        } else {
-            // Lógica para quando "Minha Agenda" não está ativado
-            if (filtrarData) {
-                // Filtrar pela data e pelo status
-                query.prepare("SELECT * FROM tb_agendamentos WHERE data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                query.bindValue(":data", data.toString("dd/MM/yyyy"));
-                query.bindValue(":status", statusSelecionado);
-            } else {
-                // Filtrar apenas pelo status
-                query.prepare("SELECT * FROM tb_agendamentos WHERE status_sessao = :status ORDER BY data ASC, hora ASC");
-                query.bindValue(":status", statusSelecionado);
-            }
+            int id_profissional = getIdUsuario();
+            query.bindValue(":id_profissional", id_profissional);
+            qDebug() << "Filtro 'Minha Agenda' ativado - ID do Profissional:" << id_profissional;
         }
 
-        // Executa a query
+        if (filtrarData) {
+            QString dataFormatada = data.toString("dd/MM/yyyy");
+            query.bindValue(":data", dataFormatada);
+            qDebug() << "Filtro por Data ativado - Data selecionada:" << dataFormatada;
+        }
+
+        if (!pesquisado.isEmpty()) {
+            QString pesquisadoFinal = pesquisado + "%";
+            query.bindValue(":pesquisado", pesquisadoFinal);
+            qDebug() << "Filtro de Pesquisa ativado - Opção:" << opcaoSelecionada << "- Valor:" << pesquisadoFinal;
+        }
+
+        qDebug() << "Query Final construída:" << queryString;
+
         if (query.exec()) {
-            setAgenda(query); // Atualiza a tabela
+            qDebug() << "Query executada com sucesso!";
+            setAgenda(query);
         } else {
             qDebug() << "Erro ao executar a query:" << query.lastError().text();
         }
     }
 
+    // Chamada da função filtrarAgenda() dentro das outras funções
 
-    void MainWindow::on_lineEditAgenda_textChanged(const QString &arg1)
-    {
-        QString pesquisado = ui->lineEditAgenda->text(); // Pegando o texto do lineEditAgenda
-        bool filtrarData = ui->checkDataAgenda->isChecked(); // Verifica se o filtro por data está ativo
-        bool filtrarMinhaAgenda = ui->checkMinhaAgenda->isChecked();
-        QString opcaoSelecionada = ui->comboBoxAgenda->currentText(); // Opção do comboBox
-        QString statusSelecionado = ui->comboBoxStatusAgenda->currentText(); // Opção do comboBoxStatusAgenda
-        QDate data = ui->calendarioAgenda->selectedDate(); // Data selecionada no calendário
-        QSqlQuery query;
-
-        if (statusSelecionado == "Paciente ausente"){
-            statusSelecionado = "Ausente";
-        }
-
-        if (!filtrarMinhaAgenda) {
-            if (filtrarData) {
-                // Filtro por data ativado
-                if (pesquisado.isEmpty()) {
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                    query.bindValue(":data", data.toString("dd/MM/yyyy"));
-                    query.bindValue(":status", statusSelecionado);
-                } else {
-                    if (opcaoSelecionada == "Profissional") {
-                        query.prepare("SELECT * FROM tb_agendamentos WHERE profissional LIKE :profissional AND data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                        query.bindValue(":profissional", pesquisado + "%");
-                    } else if (opcaoSelecionada == "Paciente") {
-                        query.prepare("SELECT * FROM tb_agendamentos WHERE paciente LIKE :paciente AND data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                        query.bindValue(":paciente", pesquisado + "%");
-                    } else if (opcaoSelecionada == "Especialidade") {
-                        query.prepare("SELECT * FROM tb_agendamentos WHERE especialidade LIKE :especialidade AND data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                        query.bindValue(":especialidade", pesquisado + "%");
-                    }
-                    query.bindValue(":data", data.toString("dd/MM/yyyy"));
-                    query.bindValue(":status", statusSelecionado);
-                }
-            } else {
-                // Filtro por data desativado
-                if (pesquisado.isEmpty()) {
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE status_sessao = :status ORDER BY data ASC, hora ASC");
-                    query.bindValue(":status", statusSelecionado);
-                } else {
-                    if (opcaoSelecionada == "Profissional") {
-                        query.prepare("SELECT * FROM tb_agendamentos WHERE profissional LIKE :profissional AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                        query.bindValue(":profissional", pesquisado + "%");
-                    } else if (opcaoSelecionada == "Paciente") {
-                        query.prepare("SELECT * FROM tb_agendamentos WHERE paciente LIKE :paciente AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                        query.bindValue(":paciente", pesquisado + "%");
-                    } else if (opcaoSelecionada == "Especialidade") {
-                        query.prepare("SELECT * FROM tb_agendamentos WHERE especialidade LIKE :especialidade AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                        query.bindValue(":especialidade", pesquisado + "%");
-                    }
-                    query.bindValue(":status", statusSelecionado);
-                }
-            }
-        } else {
-            // Lógica para quando "Minha Agenda" está ativado
-            if (filtrarData) {
-                if (pesquisado.isEmpty()) {
-                    // Filtrar apenas pela data e pela agenda do usuário
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                    query.bindValue(":id_profissional", getIdUsuario());
-                    query.bindValue(":data", data.toString("dd/MM/yyyy"));
-                    query.bindValue(":status", statusSelecionado);
-                } else {
-                    // Filtrar pela data, pela agenda do usuário e pelo texto digitado
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND paciente LIKE :paciente AND data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                    query.bindValue(":paciente", pesquisado + "%");
-                    query.bindValue(":id_profissional", getIdUsuario());
-                    query.bindValue(":data", data.toString("dd/MM/yyyy"));
-                    query.bindValue(":status", statusSelecionado);
-                }
-            } else {
-                if (pesquisado.isEmpty()) {
-                    // Filtrar apenas pela agenda do usuário
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                    query.bindValue(":id_profissional", getIdUsuario());
-                    query.bindValue(":status", statusSelecionado);
-                } else {
-                    // Filtrar pela agenda do usuário e pelo texto digitado somente de pacientes porque so posso filtrar pacientes na minha agenda
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND paciente LIKE :paciente AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                    query.bindValue(":paciente", pesquisado + "%");
-                    query.bindValue(":id_profissional", getIdUsuario());
-                    query.bindValue(":status", statusSelecionado);
-                }
-            }
-        }
-
-        if (query.exec()) {
-            setAgenda(query); // Atualiza a tabela
-        } else {
-            qDebug() << "Erro ao executar a query O ERRO ESTÁ AQUI:" << query.lastError().text();
-        }
+    void MainWindow::on_checkDataAgenda_checkStateChanged(const Qt::CheckState &arg1) {
+        filtrarAgenda();
     }
 
+    void MainWindow::on_checkMinhaAgenda_stateChanged(int arg1) {
+        filtrarAgenda();
+    }
 
-    void MainWindow::on_calendarioAgenda_clicked(const QDate &date)
-    {
-        // Mantém a data selecionada visualmente
+    void MainWindow::on_comboBoxAgenda_currentTextChanged(const QString &arg1) {
+        filtrarAgenda();
+    }
+
+    void MainWindow::on_comboBoxStatusAgenda_currentTextChanged(const QString &arg1) {
+        filtrarAgenda();
+    }
+
+    void MainWindow::on_lineEditAgenda_textChanged(const QString &arg1) {
+        filtrarAgenda();
+    }
+
+    void MainWindow::on_calendarioAgenda_clicked(const QDate &date) {
         ui->calendarioAgenda->setSelectedDate(date);
-
-        atualizarTabelaPorData();
+        filtrarAgenda();
     }
-
-    void MainWindow::atualizarTabelaPorData()
-    {
-        QDate data = ui->calendarioAgenda->selectedDate(); // Obtém a data selecionada
-        bool filtrarData = ui->checkDataAgenda->isChecked(); // Verifica se o filtro por data está ativo
-        bool filtrarMinhaAgenda = ui->checkMinhaAgenda->isChecked(); // Verifica se o filtro "minha agenda" está ativo
-        QString pesquisado = ui->lineEditAgenda->text(); // Texto digitado na lineEdit
-        QString opcaoSelecionada = ui->comboBoxAgenda->currentText(); // Opção selecionada no comboBox
-        QString statusSelecionado = ui->comboBoxStatusAgenda->currentText(); // Opção do comboBoxStatusAgenda
-        QSqlQuery query;
-
-        if (statusSelecionado == "Paciente ausente"){
-            statusSelecionado = "Ausente";
-        }
-
-        if (!filtrarMinhaAgenda) {
-            // Lógica para quando "Minha Agenda" não está ativado
-            if (filtrarData) {
-                if (pesquisado.isEmpty()) {
-                    // Filtrar apenas pela data
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                    query.bindValue(":data", data.toString("dd/MM/yyyy"));
-                    query.bindValue(":status", statusSelecionado);
-                } else {
-                    // Filtrar pela data e pelo texto digitado
-                    if (opcaoSelecionada == "Profissional") {
-                        query.prepare("SELECT * FROM tb_agendamentos WHERE profissional LIKE :profissional AND data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                        query.bindValue(":profissional", pesquisado + "%");
-                    } else if (opcaoSelecionada == "Paciente") {
-                        query.prepare("SELECT * FROM tb_agendamentos WHERE paciente LIKE :paciente AND data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                        query.bindValue(":paciente", pesquisado + "%");
-                    } else if (opcaoSelecionada == "Especialidade") {
-                        query.prepare("SELECT * FROM tb_agendamentos WHERE especialidade LIKE :especialidade AND data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                        query.bindValue(":especialidade", pesquisado + "%");
-                    }
-                    query.bindValue(":data", data.toString("dd/MM/yyyy"));
-                    query.bindValue(":status", statusSelecionado);
-                }
-            } else {
-                // Filtro por data desativado
-                if (pesquisado.isEmpty()) {
-                    // Sem filtros (tudo)
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE status_sessao = :status ORDER BY data ASC, hora ASC");
-                    query.bindValue(":status", statusSelecionado);
-                } else {
-                    // Filtrar apenas pelo texto digitado
-                    if (opcaoSelecionada == "Profissional") {
-                        query.prepare("SELECT * FROM tb_agendamentos WHERE profissional LIKE :profissional AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                        query.bindValue(":profissional", pesquisado + "%");
-                    } else if (opcaoSelecionada == "Paciente") {
-                        query.prepare("SELECT * FROM tb_agendamentos WHERE paciente LIKE :paciente AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                        query.bindValue(":paciente", pesquisado + "%");
-                    } else if (opcaoSelecionada == "Especialidade") {
-                        query.prepare("SELECT * FROM tb_agendamentos WHERE especialidade LIKE :especialidade AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                        query.bindValue(":especialidade", pesquisado + "%");
-                    }
-                    query.bindValue(":status", statusSelecionado);
-                }
-            }
-        } else {
-            // Lógica para quando "Minha Agenda" está ativado
-            if (filtrarData) {
-                if (pesquisado.isEmpty()) {
-                    // Filtrar apenas pela data e pela agenda do usuário
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                    query.bindValue(":id_profissional", getIdUsuario());
-                    query.bindValue(":data", data.toString("dd/MM/yyyy"));
-                    query.bindValue(":status", statusSelecionado);
-                } else {
-                    // Filtrar pela data, pela agenda do usuário e pelo texto digitado
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND paciente LIKE :paciente AND data = :data AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                    query.bindValue(":paciente", pesquisado + "%");
-                    query.bindValue(":id_profissional", getIdUsuario());
-                    query.bindValue(":data", data.toString("dd/MM/yyyy"));
-                    query.bindValue(":status", statusSelecionado);
-                }
-            } else {
-                if (pesquisado.isEmpty()) {
-                    // Filtrar apenas pela agenda do usuário
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                    query.bindValue(":id_profissional", getIdUsuario());
-                    query.bindValue(":status", statusSelecionado);
-                } else {
-                    // Filtrar pela agenda do usuário e pelo texto digitado somente de pacientes porque so posso filtrar pacientes na minha agenda
-                    query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND paciente LIKE :paciente AND status_sessao = :status ORDER BY data ASC, hora ASC");
-                    query.bindValue(":paciente", pesquisado + "%");
-                    query.bindValue(":id_profissional", getIdUsuario());
-                    query.bindValue(":status", statusSelecionado);
-                }
-            }
-        }
-
-        // Executa a consulta
-        if (query.exec()) {
-            setAgenda(query); // Atualiza a tabela com os resultados
-        } else {
-            qDebug() << "Erro ao executar a query DE DATA:" << query.lastError().text();
-        }
-    }
-
 
     /////////////////////////////////////////////////////////////////
 
@@ -960,37 +637,9 @@ void MainWindow::on_btnAgenda_clicked()
         cadastrarSessao->show();
     }
 
-    void MainWindow::adicionarSessaoNaTabela(int idSessao)
+    void MainWindow::adicionarSessaoNaTabela()
     {
-        carregarTabelaAgendamentos();
-    }
-
-    void MainWindow::carregarTabelaAgendamentos()
-    {
-        ui->tw_agenda->setRowCount(0);  // Limpa a tabela antes de carregar os dados
-
-        QSqlQuery query;
-        if (ui->checkDataAgenda->isChecked()) {
-            query.prepare("SELECT * FROM tb_agendamentos WHERE data = :data ORDER BY data ASC, hora ASC");
-            query.bindValue(":data", ui->calendarioAgenda->selectedDate().toString("dd/MM/yyyy"));
-        } else {
-            query.prepare("SELECT * FROM tb_agendamentos ORDER BY data ASC, hora ASC");
-        }
-
-        if (query.exec()) {
-            while (query.next()) {
-                int linha = ui->tw_agenda->rowCount();
-                ui->tw_agenda->insertRow(linha);
-
-                for (int i = 0; i < query.record().count(); ++i) {
-                    QVariant value = query.value(i);
-                    ui->tw_agenda->setItem(linha, i, new QTableWidgetItem(value.toString()));
-                }
-            }
-            redimensionarTable(ui->tw_agenda);
-        } else {
-            QMessageBox::warning(this, " ", "Erro ao carregar os agendamentos.");
-        }
+        filtrarAgenda();
     }
 
     // MÉTODOS DE EDIÇÃO DE SESSÃO
@@ -1022,9 +671,24 @@ void MainWindow::on_btnAgenda_clicked()
         }
     }
 
-    void MainWindow::atualizarSessaoNaTabela(int idSessao)
+    void MainWindow::atualizarSessaoNaTabela()
     {
-        carregarTabelaAgendamentos();
+        // Prepara a consulta para buscar os dados atualizados da sessão
+        QSqlQuery query;
+        query.prepare("SELECT * FROM tb_agendamentos WHERE id = :id");
+        query.bindValue(":id", getIdSessao());
+
+        int tb_linha = ui->tw_agenda->currentRow();
+
+        if (query.exec() && query.first()) {
+            // Encontra a linha correspondente na QTableWidget
+            for (int i = 0; i < ui->tw_agenda->columnCount(); i++) {
+                ui->tw_agenda->setItem(tb_linha, i, new QTableWidgetItem(query.value(i).toString())); // Preenche os dados do banco na tabela
+            }
+            redimensionarTable(ui->tw_agenda);
+        } else {
+            QMessageBox::warning(this, " ", "Erro ao buscar os dados da sessão.");
+        }
     }
 
     // MÉTODO PARA ENVIAR PARA O RELATÓRIO DE ATENDIMENTO ARMAZENADO DAQUELA SESSÃO
