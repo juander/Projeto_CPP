@@ -17,7 +17,7 @@ set(PROJECT_SOURCES
     janelaPrincipal/mainwindow.cpp
     janelaPrincipal/mainwindow.h
     janelaPrincipal/mainwindow.ui
-    icons.qrc
+    ${CMAKE_SOURCE_DIR}/icons.qrc
     classConexaoBanco/Conexao.h
     classConexaoBanco/Conexao.cpp
     janelaCadastroPacientes/cadastropacientes.h
