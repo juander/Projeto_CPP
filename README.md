@@ -13,7 +13,7 @@ Abra um terminal e execute o seguinte comando para clonar o repositório do proj
     cd seu-repositorio
 ```
 
-### 3. Abrir o Projeto no Qt Creator
+### 2. Abrir o Projeto no Qt Creator
 1. Abra o **Qt Creator**.
 2. Clique em **Abrir Projeto** e selecione o arquivo `CMakeLists.txt` localizado na pasta do repositório clonado.
 3. Configure o **Kit de Compilação** adequado (MinGW ou MSVC, dependendo da sua instalação).
