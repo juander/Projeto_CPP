@@ -15,8 +15,12 @@ class cadastroPacientes : public QDialog
     Q_OBJECT
 
 public:
-    explicit cadastroPacientes(QWidget *parent = nullptr);
+    explicit cadastroPacientes(QWidget *parent = nullptr, const QString &modo = "Cadastrar", int id_paciente = -1);
     ~cadastroPacientes();
+
+    void setIdPaciente(int id = -1);
+
+    int getIdPaciente();
 
 private slots:
 
@@ -28,6 +32,11 @@ private slots:
 
 private:
     Ui::cadastroPacientes *ui;
+    QString tipoUso;
+    int idPaciente;
+
+    // Método para definir o modo da janela (Cadastrar ou Editar)
+    void setModo(const QString &modo, int id_paciente);
 
 signals:
     // Sinal emitido quando um paciente é cadastrado

@@ -1094,7 +1094,7 @@ void MainWindow::on_btnPacientes_clicked()
 
     void MainWindow::on_btnCadastroPac_clicked()
     {
-        cadastroPacientes cadastramento(this);                                                                         // CRIANDO A JANELA DE CADASTRO
+        cadastroPacientes cadastramento(this, "Cadastrar");                                                                         // CRIANDO A JANELA DE CADASTRO
 
         // O SINAL QUE TRAZ O ID DO PACIENTE CADASTRADO PARA JANELA
         bool connected = connect(&cadastramento, &cadastroPacientes::pacienteCadastrado,                               // PRINCIPAL É EMITIDO PELO OBJETO PACIENTE, QUE É O ÚNICO QUE
@@ -1175,7 +1175,7 @@ void MainWindow::on_btnPacientes_clicked()
         int linha = ui->tw_pacientes->currentRow();                                                                     // ARMAZENANDO A LINHA SELECIONADA
         int id = ui->tw_pacientes->item(linha, 0)->text().toInt();                                                      // ARMAZENANDO O ID DO PACIENTE SELECIONADO
 
-        edicaopaciente editarPaciente(this, id);                                                                        // CRIANDO A JENELA DE EDITAR PACIENTE
+        cadastroPacientes editarPaciente(this, "Editar", id);                                                                        // CRIANDO A JENELA DE EDITAR PACIENTE
         editarPaciente.exec();
 
         // Carregar paciente na Table novamente

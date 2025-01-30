@@ -23,9 +23,6 @@ set(PROJECT_SOURCES
     janelaCadastroPacientes/cadastropacientes.h
     janelaCadastroPacientes/cadastropacientes.cpp
     janelaCadastroPacientes/cadastropacientes.ui
-    janelaEdicaoPacientes/edicaopaciente.h
-    janelaEdicaoPacientes/edicaopaciente.cpp
-    janelaEdicaoPacientes/edicaopaciente.ui
     classPessoa/pessoa.h
     classPessoa/pessoa.cpp
     janelaLogin/janela_entrar.h

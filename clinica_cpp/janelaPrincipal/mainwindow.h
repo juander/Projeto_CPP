@@ -26,7 +26,6 @@
 #include "../janelaCadastroColaboradores/cadastrocolaboradores.h"
 #include "../janelaAgendaSessao/cadastrosessao.h"
 
-#include "../janelaEdicaoPacientes/edicaopaciente.h"
 #include "../janelaEdicaoColaboradores/edicaocolaboradores.h"
 
 #include "../classPessoa/pessoa.h"
