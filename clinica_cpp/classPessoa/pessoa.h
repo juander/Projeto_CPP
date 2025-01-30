@@ -12,18 +12,14 @@ class Pessoa : public QObject {
     Q_OBJECT
 
     public:
-        // Construtor
         explicit Pessoa(const QString& nome, const QString& cpf, const QString& contato,
-                        const QString& email, const QDate& dataNascimento);
+                        const QString& email, const QDate& dataNascimento);                // Construtor
 
-        // Destrutor
-        ~Pessoa();
+        ~Pessoa();                                                                         // Destrutor
 
-        // Métodos públicos
-        int calcularIdade() const;
+        int calcularIdade() const;                                                         // Método público
 
-        // Getters
-        QString getNome() const;
+        QString getNome() const;                                                           // Getters
         QString getCpf() const;
         QString getContato() const;
         QString getEmail() const;
@@ -37,55 +33,43 @@ class Pessoa : public QObject {
         QDate dataNascimento;
 };
 
-
-
 class Paciente : public Pessoa {
     Q_OBJECT
 
     public:
-        // Construtor
         explicit Paciente(const QString& nome, const QString& cpf, const QString& contato,
                           const QString& email, const QDate& dataNascimento,
-                          const QString& convenio, const QString& diagnostico);
+                          const QString& convenio, const QString& diagnostico);            // Construtor
 
-        // Destrutor
-        ~Paciente();
+        ~Paciente();                                                                       // Destrutor
 
-        // Métodos públicos
-        bool salvarNoBanco();
+        bool salvarNoBanco();                                                              // Método público
 
     signals:
-        // Sinal emitido quando um paciente é cadastrado
-        void pacienteCadastrado(int id);
+        void pacienteCadastrado(int id);                                                   // Sinal emitido quando um paciente é cadastrado
 
     private:
         QString convenio;
         QString diagnostico;
 };
 
-
-
 class Colaborador : public Pessoa {
     Q_OBJECT
 
     public:
-        // Construtor
         explicit Colaborador(const QString& nome, const QString& cpf, const QString& contato,
-                          const QString& email, const QDate& dataNascimento,
-                          const QString& cargo);
+                             const QString& email, const QDate& dataNascimento,
+                             const QString& cargo);                                        // Construtor
 
-        // Destrutor
-        ~Colaborador();
+        ~Colaborador();                                                                    // Destrutor
 
-        // Métodos públicos
-        bool salvarNoBanco();
+        bool salvarNoBanco();                                                              // Método público
 
     signals:
-        // Sinal emitido quando um paciente é cadastrado
-        void colaboradorCadastrado(int id);
+        void colaboradorCadastrado(int id);                                                // Sinal emitido quando um colaborador é cadastrado
 
     private:
         QString cargo;
-    };
+};
 
 #endif // PESSOA_H

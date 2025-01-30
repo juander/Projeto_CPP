@@ -8,35 +8,35 @@ cadastroColaboradores::cadastroColaboradores(QWidget *parent, const QString &mod
     , ui(new Ui::cadastroColaboradores)
 {
     ui->setupUi(this);
-    setIdColaborador(id_colaborador);
-    setModo(modo, getIdColaborador());
+    setIdColaborador(id_colaborador);                                                                                     // Define o ID do colaborador
+    setModo(modo, getIdColaborador());                                                                                    // Define o modo (Cadastrar ou Editar)
 }
 
 cadastroColaboradores::~cadastroColaboradores()
 {
-    delete ui;
+    delete ui;                                                                                                            // Destrói a interface do usuário
 }
 
 void cadastroColaboradores::setIdColaborador(int id)
 {
-    idColaborador = id;
+    idColaborador = id;                                                                                                   // Define o ID do colaborador
 }
 
 int cadastroColaboradores::getIdColaborador()
 {
-    return idColaborador;
+    return idColaborador;                                                                                                 // Retorna o ID do colaborador
 }
 
 void cadastroColaboradores::setModo(const QString &modo, int id_colaborador)
 {
-    tipoUso = modo;
+    tipoUso = modo;                                                                                                       // Define o tipo de uso
 
     if (modo == "Editar" && id_colaborador != -1) {
-        ui->btnCadastrarCol->setText("Salvar Alterações");
+        ui->btnCadastrarCol->setText("Salvar Alterações");                                                                // Altera o texto do botão para "Salvar Alterações"
 
         QSqlQuery query;
         query.prepare("SELECT nome, cpf, data_nasc, cargo, contato, email FROM tb_colaboradores WHERE id = :id");
-        query.bindValue(":id", id_colaborador);
+        query.bindValue(":id", id_colaborador);                                                                           // Prepara a query para selecionar os dados do colaborador
 
         if (query.exec()) {
             if (query.first()) {
@@ -46,8 +46,7 @@ void cadastroColaboradores::setModo(const QString &modo, int id_colaborador)
                 ui->txtcontato->setText(query.value("contato").toString());
                 ui->txtemail->setText(query.value("email").toString());
 
-                // Convertendo a string da data para QDate
-                QDate date = QDate::fromString(query.value("data_nasc").toString(), "dd/MM/yyyy");
+                QDate date = QDate::fromString(query.value("data_nasc").toString(), "dd/MM/yyyy");                        // Convertendo a string da data para QDate
                 ui->txtData->setDate(date);
             } else {
                 QMessageBox::warning(this, "ERRO", "Não foi possível carregar os dados do colaborador.");
@@ -56,7 +55,7 @@ void cadastroColaboradores::setModo(const QString &modo, int id_colaborador)
             QMessageBox::warning(this, "ERRO", "Erro ao carregar dados do colaborador: " + query.lastError().text());
         }
     } else {
-        ui->txtData->setDate(QDate::currentDate());
+        ui->txtData->setDate(QDate::currentDate());                                                                       // Define a data atual
     }
 }
 
@@ -69,24 +68,21 @@ void cadastroColaboradores::on_btnCadastrarCol_clicked()
     QString contat = ui->txtcontato->text();
     QString emai = ui->txtemail->text();
 
-    // Calculando idade
     QDate hoje = QDate::currentDate();
-    int idad = hoje.year() - dataNascimento.year();
+    int idad = hoje.year() - dataNascimento.year();                                                                       // Calculando idade
     if ((hoje.month() < dataNascimento.month()) ||
         (hoje.month() == dataNascimento.month() && hoje.day() < dataNascimento.day())) {
         idad--;
     }
     QString ida = QString::number(idad);
 
-    // Transformando a data em string para envio pro banco de dados
-    QString nasc = dataNascimento.toString("dd/MM/yyyy");
+    QString nasc = dataNascimento.toString("dd/MM/yyyy");                                                                 // Transformando a data em string para envio pro banco de dados
 
     QSqlQuery query;
 
     if (tipoUso == "Editar") {
-        // Atualizar colaborador existente
         query.prepare("UPDATE tb_colaboradores SET nome = :nome, idade = :idade, cpf = :cpf, cargo = :cargo, contato = :contato, "
-                      "email = :email, data_nasc = :data_nasc WHERE id = :id");
+                      "email = :email, data_nasc = :data_nasc WHERE id = :id");                                           // Prepara a query para atualizar o colaborador existente
 
         query.bindValue(":nome", nom);
         query.bindValue(":idade", ida);
@@ -104,12 +100,11 @@ void cadastroColaboradores::on_btnCadastrarCol_clicked()
             QMessageBox::warning(this, "ERRO", "Erro ao editar colaborador: " + query.lastError().text());
         }
     } else {
-        // Cadastrar novo colaborador
-        Colaborador colaborador(nom, cpf, contat, emai, dataNascimento, cargo);
+        Colaborador colaborador(nom, cpf, contat, emai, dataNascimento, cargo);                                           // Cria um objeto Colaborador com os dados recuperados
 
-        connect(&colaborador, &Colaborador::colaboradorCadastrado, this, &cadastroColaboradores::colaboradorCadastrado);
+        connect(&colaborador, &Colaborador::colaboradorCadastrado, this, &cadastroColaboradores::colaboradorCadastrado);  // Conecta o sinal colaboradorCadastrado ao slot correspondente
 
-        if (colaborador.salvarNoBanco()) {
+        if (colaborador.salvarNoBanco()) {                                                                                // Salva o objeto Colaborador no banco de dados
             QMessageBox::information(this, "", "Cadastro realizado");
             this->close();
         } else {
@@ -120,5 +115,5 @@ void cadastroColaboradores::on_btnCadastrarCol_clicked()
 
 void cadastroColaboradores::on_btnCancelarCol_clicked()
 {
-    this->close();
+    this->close();                                                                                                        // Fecha a janela
 }

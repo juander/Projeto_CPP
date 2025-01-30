@@ -8,67 +8,66 @@ janela_entrar::janela_entrar(QWidget *parent, Conexao *conexao)
     : QDialog(parent)
     , ui(new Ui::janela_entrar)
     , conexao(conexao)
-    , logadoJanela(false) // Inicializa como falso
+    , logadoJanela(false)                                                                  // Inicializa como falso
 {
     ui->setupUi(this);
 
-    // Ajuste de ícones
-    ui->btnMostrar->setIcon(QIcon(":/icons/Hide.png"));
+    ui->btnMostrar->setIcon(QIcon(":/icons/Hide.png"));                                    // Ajuste de ícones
     ui->btnMostrar->setIconSize(QSize(24, 24));
 }
 
 janela_entrar::~janela_entrar() {
-    delete ui;
+    delete ui;                                                                             // Destrói a interface do usuário
 }
 
 bool janela_entrar::getLogadoJanela()
 {
-    return logadoJanela;
+    return logadoJanela;                                                                   // Retorna o estado de login
 }
 
 QString janela_entrar::getNome()
 {
-    return nome;
+    return nome;                                                                           // Retorna o nome do usuário
 }
 
 QString janela_entrar::getClinica()
 {
-    return clinica;
+    return clinica;                                                                        // Retorna a clínica do usuário
 }
 
 QString janela_entrar::getCargo()
 {
-    return cargo;
+    return cargo;                                                                          // Retorna o cargo do usuário
 }
 
 int janela_entrar::getId()
 {
-    return id;
+    return id;                                                                             // Retorna o ID do usuário
 }
 
 void janela_entrar::setLogadoJanela(bool login)
 {
-    logadoJanela = login;
+    logadoJanela = login;                                                                  // Define o estado de login
 }
 
 void janela_entrar::setNome(QString nom)
 {
-    nome = nom;
+    nome = nom;                                                                            // Define o nome do usuário
 }
 
 void janela_entrar::setClinica(QString clin)
 {
-    clinica = clin;
+    clinica = clin;                                                                        // Define a clínica do usuário
 }
 
 void janela_entrar::setCargo(QString carg)
 {
-    cargo = carg;
+    cargo = carg;                                                                          // Define o cargo do usuário
 }
 
 void janela_entrar::setId(int codigo)
 {
-    id = codigo;
+    id = codigo;                                                                           // Define o ID do usuário
 }
 
 void janela_entrar::on_btnEnt_clicked() {
@@ -87,7 +86,7 @@ void janela_entrar::on_btnEnt_clicked() {
     QSqlQuery query;
 
     query.prepare("SELECT * FROM tb_usuarios WHERE login = :login");
-    query.bindValue(":login", loginDigitado);
+    query.bindValue(":login", loginDigitado);                                              // Prepara a query para selecionar o usuário
 
     if (query.exec() && query.first()) {
         if (query.value("senha").toString() == senhaDigitada) {
@@ -97,7 +96,7 @@ void janela_entrar::on_btnEnt_clicked() {
             setClinica(query.value("clinica").toString());
             setCargo(query.value("cargo").toString());
 
-            emit loginRealizado(getId(), getNome(), getClinica(), getCargo()); // Emite o sinal com os dados do usuário
+            emit loginRealizado(getId(), getNome(), getClinica(), getCargo());             // Emite o sinal com os dados do usuário
             close();
         } else {
             QMessageBox::warning(this, " ", "Senha incorreta.");
@@ -108,16 +107,16 @@ void janela_entrar::on_btnEnt_clicked() {
 }
 
 void janela_entrar::on_btnCancelar_clicked() {
-    setLogadoJanela(false);
-    close();
+    setLogadoJanela(false);                                                                // Define o estado de login como falso
+    close();                                                                               // Fecha a janela
 }
 
 void janela_entrar::on_btnMostrar_clicked() {
     if (ui->txtsenha->echoMode() == QLineEdit::Password) {
         ui->txtsenha->setEchoMode(QLineEdit::Normal);
-        ui->btnMostrar->setIcon(QIcon(":/icons/Eye.png")); // Ícone de olho aberto
+        ui->btnMostrar->setIcon(QIcon(":/icons/Eye.png"));                                 // Ícone de olho aberto
     } else {
         ui->txtsenha->setEchoMode(QLineEdit::Password);
-        ui->btnMostrar->setIcon(QIcon(":/icons/Hide.png")); // Ícone de olho fechado
+        ui->btnMostrar->setIcon(QIcon(":/icons/Hide.png"));                                // Ícone de olho fechado
     }
 }

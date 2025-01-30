@@ -3,42 +3,30 @@
 #include <QMessageBox>
 #include <QDebug>
 
-// DEFINIÇÃO DO CONSTRUTOR DA CLASSE CADASTROPACIENTE
-
 cadastroPacientes::cadastroPacientes(QWidget *parent, const QString &modo, int id_paciente)
     : QDialog(parent)
     , ui(new Ui::cadastroPacientes)
 {
     ui->setupUi(this);
-    setIdPaciente(id_paciente);
-    setModo(modo, getIdPaciente());
+    setIdPaciente(id_paciente);                                                                                             // Define o ID do paciente
+    setModo(modo, getIdPaciente());                                                                                         // Define o modo (Cadastrar ou Editar)
 }
-
-// FIM
-
-
-// DEFINIÇÃO DO DESTRUTOR DA CLASSE CADASTROPACIENTE
 
 cadastroPacientes::~cadastroPacientes()
 {
-    delete ui;
+    delete ui;                                                                                                              // Destrói a interface do usuário
 }
 
-// FIM
-
 void cadastroPacientes::setIdPaciente(int id){
-    idPaciente = id;
+    idPaciente = id;                                                                                                        // Define o ID do paciente
 }
 
 int cadastroPacientes::getIdPaciente(){
-    return idPaciente;
+    return idPaciente;                                                                                                      // Retorna o ID do paciente
 }
-
-// DEFINIÇÃO DO METODO CADASTRAR PACIENCE SELECIONADO
 
 void cadastroPacientes::on_btnCadastrarPac_clicked()
 {
-    // Recupera os dados dos campos da interface do usuário                                                         // OBTÉM OS DADOS DOS CAMPOS DA INTERFACE
     QString nom = ui->txtnome->text();
     QString cpf = ui->txtCpf->text();
     QDate dataNascimento = ui->txtData->date();
@@ -47,12 +35,9 @@ void cadastroPacientes::on_btnCadastrarPac_clicked()
     QString emai = ui->txtemail->text();
     QString conven = ui->txtconvenio->text();
 
-    // Calculando idade
     QDate hoje = QDate::currentDate();
-    int idad = hoje.year() - dataNascimento.year();
+    int idad = hoje.year() - dataNascimento.year();                                                                         // Calculando idade
 
-
-    // Se ainda não fez aniversário no ano atual, subtrai 1
     if ((hoje.month() < dataNascimento.month()) ||
         (hoje.month() == dataNascimento.month() && hoje.day() < dataNascimento.day())) {
         idad--;
@@ -60,13 +45,10 @@ void cadastroPacientes::on_btnCadastrarPac_clicked()
 
     QString ida = QString::number(idad);
 
-    // Transformando a data em string para envio pro banco de dados
-    QString nasc = dataNascimento.toString("dd/MM/yyyy");
+    QString nasc = dataNascimento.toString("dd/MM/yyyy");                                                                   // Transformando a data em string para envio pro banco de dados
     QSqlQuery query;
 
     if (tipoUso == "Editar") {
-        // Atualizar paciente existente
-
         query.prepare("UPDATE tb_pacientes SET nome = :nome, idade = :idade, cpf = :cpf, diagnostico_pre = :diagnostico_pre, contato = :contato, "
                       "email = :email, convenio_plano = :convenio_plano, data_nasc = :data_nasc WHERE id = :id");
 
@@ -89,14 +71,11 @@ void cadastroPacientes::on_btnCadastrarPac_clicked()
             QMessageBox::warning(this, "ERRO", "Erro ao editar paciente");
         }
     } else {
-        // Cria um objeto Paciente com os dados recuperados                                                            // CRIA UM OBJETO PACIENTE COM OS DADOS RECUPERADOS
-        Paciente paciente(nom, cpf, contat, emai, dataNascimento, conven, diagn);
+        Paciente paciente(nom, cpf, contat, emai, dataNascimento, conven, diagn);                                           // Cria um objeto Paciente com os dados recuperados
 
-        // Conecta o sinal pacienteCadastrado ao slot correspondente                                                   // CONECTA O SINAL PACIENTE CADASTRADO AO SLOT CORRESPONDENTE
-        connect(&paciente, &Paciente::pacienteCadastrado, this, &cadastroPacientes::pacienteCadastrado);
+        connect(&paciente, &Paciente::pacienteCadastrado, this, &cadastroPacientes::pacienteCadastrado);                    // Conecta o sinal pacienteCadastrado ao slot correspondente
 
-        // Salva o objeto Paciente no banco de dados                                                                   // SALVA O OBJETO PACIENTE NO BANCO DE DADOS
-        if (paciente.salvarNoBanco()) {
+        if (paciente.salvarNoBanco()) {                                                                                     // Salva o objeto Paciente no banco de dados
             QMessageBox::information(this, "", "Cadastro realizado");
             this->close();
         } else {
@@ -106,28 +85,21 @@ void cadastroPacientes::on_btnCadastrarPac_clicked()
     }
 }
 
-// FIM
-
-
-// DEFINIÇÃO DO METODO CANCELAR CADASTRO
-
 void cadastroPacientes::on_btnCancelarPac_clicked()
 {
-    this->close();
+    this->close();                                                                                                          // Fecha a janela
 }
-
-// FIM
 
 void cadastroPacientes::setModo(const QString &modo, int id_paciente)
 {
-    tipoUso = modo;
+    tipoUso = modo;                                                                                                         // Define o tipo de uso
 
     if (modo == "Editar" && id_paciente != -1) {
-        ui->btnCadastrarPac->setText("Salvar Alterações");
+        ui->btnCadastrarPac->setText("Salvar Alterações");                                                                  // Altera o texto do botão para "Salvar Alterações"
 
         QSqlQuery query;
         query.prepare("SELECT nome, cpf, data_nasc, diagnostico_pre, contato, email, convenio_plano FROM tb_pacientes WHERE id = :id");
-        query.bindValue(":id", id_paciente);
+        query.bindValue(":id", id_paciente);                                                                                // Prepara a query para selecionar os dados do paciente
 
         if (query.exec()) {
             qDebug() << "Query executada com sucesso";
@@ -139,8 +111,7 @@ void cadastroPacientes::setModo(const QString &modo, int id_paciente)
                 ui->txtemail->setText(query.value("email").toString());
                 ui->txtconvenio->setText(query.value("convenio_plano").toString());
 
-                // Convertendo a string da data para QDate
-                QDate date = QDate::fromString(query.value("data_nasc").toString(), "dd/MM/yyyy");
+                QDate date = QDate::fromString(query.value("data_nasc").toString(), "dd/MM/yyyy");                          // Convertendo a string da data para QDate
                 ui->txtData->setDate(date);
             } else {
                 qDebug() << "Nenhum registro encontrado";
@@ -151,7 +122,7 @@ void cadastroPacientes::setModo(const QString &modo, int id_paciente)
             QMessageBox::warning(this, "ERRO", "Não foi possível carregar os dados do paciente.");
         }
     } else {
-        ui->txtData->setDate(QDate::currentDate());
+        ui->txtData->setDate(QDate::currentDate());                                                                         // Define a data atual
     }
 }
 
