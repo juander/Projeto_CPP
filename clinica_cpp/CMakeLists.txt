@@ -31,9 +31,6 @@ set(PROJECT_SOURCES
     janelaCadastroColaboradores/cadastrocolaboradores.h
     janelaCadastroColaboradores/cadastrocolaboradores.cpp
     janelaCadastroColaboradores/cadastrocolaboradores.ui
-    janelaEdicaoColaboradores/edicaocolaboradores.h
-    janelaEdicaoColaboradores/edicaocolaboradores.cpp
-    janelaEdicaoColaboradores/edicaocolaboradores.ui
     janelaAgendaSessao/cadastrosessao.h
     janelaAgendaSessao/cadastrosessao.cpp
     janelaAgendaSessao/cadastrosessao.ui

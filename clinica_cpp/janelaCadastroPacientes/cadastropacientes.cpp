@@ -39,7 +39,7 @@ int cadastroPacientes::getIdPaciente(){
 void cadastroPacientes::on_btnCadastrarPac_clicked()
 {
     // Recupera os dados dos campos da interface do usuário                                                         // OBTÉM OS DADOS DOS CAMPOS DA INTERFACE
-    QString nom = ui->txtnome->text();                                                                                   
+    QString nom = ui->txtnome->text();
     QString cpf = ui->txtCpf->text();
     QDate dataNascimento = ui->txtData->date();
     QString diagn = ui->txtDiagn->text();

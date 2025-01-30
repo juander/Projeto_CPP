@@ -26,8 +26,6 @@
 #include "../janelaCadastroColaboradores/cadastrocolaboradores.h"
 #include "../janelaAgendaSessao/cadastrosessao.h"
 
-#include "../janelaEdicaoColaboradores/edicaocolaboradores.h"
-
 #include "../classPessoa/pessoa.h"
 
 QT_BEGIN_NAMESPACE
