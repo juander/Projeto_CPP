@@ -19,6 +19,10 @@
   <property name="windowTitle">
    <string>MEDICALSOFT</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../icons.qrc">
+    <normaloff>:/icons/icone.png</normaloff>:/icons/icone.png</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">QDialog {
     background-color: #f0f0f0;
@@ -259,11 +263,6 @@ QPushButton#btnCadastrarSes:hover {
          </item>
          <item>
           <property name="text">
-           <string>Fonoaudiologia</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
            <string>Cardiologia</string>
           </property>
          </item>
@@ -378,6 +377,8 @@ QPushButton#btnCadastrarSes:hover {
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../icons.qrc"/>
+ </resources>
  <connections/>
 </ui>
