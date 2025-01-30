@@ -262,6 +262,96 @@ QPushButton#btnCadastrarSes:hover {
            <string>Fonoaudiologia</string>
           </property>
          </item>
+         <item>
+          <property name="text">
+           <string>Cardiologia</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Dermatologia</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Endocrinologia</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Fonoaudiologia</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Gastroenterologia</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Ginecologia</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Neurologia</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Nutrição</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Odontologia</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Oftalmologia</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Ortopedia</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Pediatria</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Psicologia</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Psiquiatria</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Reumatologia</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Urologia</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Oncologia</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Pneumologia</string>
+          </property>
+         </item>
         </widget>
        </item>
       </layout>
