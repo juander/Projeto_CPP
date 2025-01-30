@@ -118,227 +118,207 @@ void MainWindow::setPaletaCor(QApplication &app){
 
 // MÉTODO PARA ABRIR O PDF DE INSTRUÇÕES DE USUÁRIO
 
-void MainWindow::abrirPdf(const QString &link) {
-    // Caminho temporário para salvar o PDF
-    QString tempPath = QStandardPaths::writableLocation(QStandardPaths::TempLocation) + "/guide.pdf";
+void MainWindow::abrirPdf(const QString &link)                                                            // Método para abrir o PDF
+{                                                                                                         // Abre a função
+    QString tempPath = QStandardPaths::writableLocation(QStandardPaths::TempLocation) + "/guide.pdf";     // Caminho temporário para salvar o PDF
 
-    // Copia o arquivo PDF do recurso para o caminho temporário
-    QFile::copy(":/extraFiles/guide.pdf", tempPath);
+    QFile::copy(":/extraFiles/guide.pdf", tempPath);                                                      // Copia o arquivo PDF do recurso para o caminho temporário
 
-    // Abre o arquivo PDF
-    QDesktopServices::openUrl(QUrl::fromLocalFile(tempPath));
-}
+    QDesktopServices::openUrl(QUrl::fromLocalFile(tempPath));                                             // Abre o arquivo PDF
+}  
 
 //////////////////////////////////////////
 
 
 // MÉTODO PARA FORMATAR A PÁGINA PRINCIPAL E DEFINIR A PÁGINA DE INÍCIO
 
-void MainWindow::janelaFormatada(){
+void MainWindow::janelaFormatada()                                                                        // Método para formatar a janela
+{                                                                                                         // Abre a função
+    ui->paginas->tabBar()->setVisible(false);                                                             // Deixa os ícones das páginas da TabWidget invisíveis
 
-    ui->paginas->tabBar()->setVisible(false);                                                                       // DEIXANDO OS ÍCONES DAS PÁGINAS DA TABWIDGET INVISÍVEIS
+    ui->tab_relatorios->tabBar()->setVisible(false);                                                      // Mesma coisa para a outra TabWidget
 
-    ui->tab_relatorios->tabBar()->setVisible(false);                                                                // MESMA COISA AQUI PARA A OUTRA TABWIDGET
+    QPixmap logo(":/icons/logo.png");                                                                     // Carrega o logo
+    ui->logo->setPixmap(logo.scaled(105, 105, Qt::KeepAspectRatio, Qt::SmoothTransformation));            // Define o logo redimensionado
 
-    QPixmap logo(":/icons/logo.png");
-    ui->logo->setPixmap(logo.scaled(105, 105, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    ui->labelPdf->setText("<a href=\"guide.pdf\">Instruções de uso</a>");                                 // Define o texto do link para o PDF
+    ui->labelPdf->setTextInteractionFlags(Qt::LinksAccessibleByMouse);                                    // Permite interação com o link
+    ui->labelPdf->setOpenExternalLinks(false);                                                            // Para capturar o clique no link
 
-    ui->labelPdf->setText("<a href=\"guide.pdf\">Instruções de uso</a>");
-    ui->labelPdf->setTextInteractionFlags(Qt::LinksAccessibleByMouse);
-    ui->labelPdf->setOpenExternalLinks(false);  // Para capturar o clique no link
+    connect(ui->labelPdf, &QLabel::linkActivated, this, &MainWindow::abrirPdf);                           // Conecta o sinal linkActivated ao slot
 
-    // Conecte o sinal linkActivated ao slot
-    connect(ui->labelPdf, &QLabel::linkActivated, this, &MainWindow::abrirPdf);
+    QPixmap img(":/extraFiles/imgInicial.jpg");                                                           // Carrega a imagem inicial
+    ui->imgInicial->setPixmap(img.scaled(500, 750, Qt::KeepAspectRatio, Qt::SmoothTransformation));       // Define a imagem inicial redimensionada
 
-    QPixmap img(":/extraFiles/imgInicial.jpg");
-    ui->imgInicial->setPixmap(img.scaled(500, 750, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    QGraphicsDropShadowEffect *shadowEffect = new QGraphicsDropShadowEffect(this);                        // Adiciona efeito de sombra ao frame superior
+    shadowEffect->setBlurRadius(15);                                                                      // Aumenta o desfoque para 15px
+    shadowEffect->setOffset(0, 7);                                                                        // Desloca a sombra 7px para baixo
+    shadowEffect->setColor(QColor(0, 0, 0, 150));                                                         // Define cor da sombra com maior opacidade
 
-    // FORMATANDO O LAYOUT SUPERIOR
+    ui->frameSuperior->setGraphicsEffect(shadowEffect);                                                   // Aplica o efeito de sombra ao frame superior
 
-    // Adicionando efeito de sombra ao frame superior
-    QGraphicsDropShadowEffect *shadowEffect = new QGraphicsDropShadowEffect(this);
-    shadowEffect->setBlurRadius(15);  // Aumentando o desfoque para 15px
-    shadowEffect->setOffset(0, 7);  // Deslocando a sombra 10px para baixo
-    shadowEffect->setColor(QColor(0, 0, 0, 150));  // Definindo cor da sombra com maior opacidade
+    ui->frameSuperior->raise();                                                                           // Traz o frame superior para frente
+    ui->frameLateral->lower();                                                                            // Envia o frame lateral para trás
 
-    ui->frameSuperior->setGraphicsEffect(shadowEffect);
-
-    //COLOCANDO O LAYOUT LATERAL ABAIXO PARA APLICAR O EFEITO DE SOMBRA
-
-    ui->frameSuperior->raise(); // Traz o framesuperior para frente
-    ui->frameLateral->lower(); // Envia o framelateral para trás
-
-    /////////////////////////////////////////////////
-
-    // Estilizando o calendário
-    ui->calendarioAgenda->setStyleSheet(
+    ui->calendarioAgenda->setStyleSheet(                                                                  // Estiliza o calendário
         "QCalendarWidget QWidget#qt_calendar_navigationbar {"
-        "    background-color: #dcdcdc;"  // Cor de fundo da barra de navegação
+        "    background-color: #dcdcdc;"                                                                  // Cor de fundo da barra de navegação
         "}"
         "QCalendarWidget QToolButton {"
-        "    color: #000000;"  // Cor do texto dos botões
+        "    color: #000000;"                                                                             // Cor do texto dos botões
         "}"
         "QCalendarWidget QAbstractItemView:enabled {"
-        "    selection-background-color: #a0c4ff;"  // Cor de fundo da seleção
-        "    selection-color: #000000;"  // Cor do texto da seleção
+        "    selection-background-color: #a0c4ff;"                                                        // Cor de fundo da seleção
+        "    selection-color: #000000;"                                                                   // Cor do texto da seleção
         "}"
-        );
+    );
 
-    // Alterar o ícone das setas de navegação
-    QToolButton *prevMonthButton = ui->calendarioAgenda->findChild<QToolButton *>("qt_calendar_prevmonth");
+    QToolButton *prevMonthButton = ui->calendarioAgenda->findChild<QToolButton *>("qt_calendar_prevmonth"); // Altera o ícone das setas de navegação
     QToolButton *nextMonthButton = ui->calendarioAgenda->findChild<QToolButton *>("qt_calendar_nextmonth");
 
-    prevMonthButton->setIcon(QIcon(":/icons/prev.png"));  // Substitua pelo caminho do seu ícone
-    nextMonthButton->setIcon(QIcon(":/icons/next.png"));  // Substitua pelo caminho do seu ícone
+    prevMonthButton->setIcon(QIcon(":/icons/prev.png"));                                                  // Define o ícone da seta anterior
+    nextMonthButton->setIcon(QIcon(":/icons/next.png"));                                                  // Define o ícone da seta próxima
 
-    ///////////////////////////////////////////////////
+    setLogado(false);                                                                                     // Define o estado de logado como falso
 
-    setLogado(false);
-
-    on_btnInicio_clicked();                                                 // DEFINI A PÁGINA INICIAL COMO SEMPRE A PRIMEIRA AO ABRIR O PROGRAMA
-}
+    on_btnInicio_clicked();                                                                               // Define a página inicial como sempre a primeira ao abrir o programa
+}                                                                                                         // Fecha a função
 
 //////////////////////////////////////////
 
 
 // MÉTODO PARA REDIMENSIONAR AS TABELAS AUTOMATICAMENTE E CASO ALGO NÃO CAIBA EXIBIR O TEXTO COMPLETO AO COLOCAR O MOUSE EM CIMA
 
-void MainWindow::redimensionarTable(QTableWidget* table){
+void MainWindow::redimensionarTable(QTableWidget* table)                                                   // Método para redimensionar a tabela
+{                                                                                                         // Abre a função
+    table->resizeColumnsToContents();                                                                     // Ajusta as colunas ao conteúdo
 
-    table->resizeColumnsToContents();  // Ajusta as colunas ao conteúdo
-
-    // Agora, fazemos as colunas se expandirem para preencher a largura total da tabela
-    for (int i = 0; i < table->columnCount(); ++i) {
-        table->horizontalHeader()->setSectionResizeMode(i, QHeaderView::Stretch);
+    for (int i = 0; i < table->columnCount(); ++i) {                                                      // Itera sobre as colunas da tabela
+        table->horizontalHeader()->setSectionResizeMode(i, QHeaderView::Stretch);                         // Faz as colunas se expandirem para preencher a largura total da tabela
     }
 
-    // Após redimensionar as colunas, fazemos o ajuste de layout
-    table->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    table->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);                                // Ajusta o layout após redimensionar as colunas
 
-    // Adicionando Tooltips para mostrar o conteúdo completo ao passar o mouse sobre a célula
-    for (int row = 0; row < table->rowCount(); ++row) {
-        for (int col = 0; col < table->columnCount(); ++col) {
-            QTableWidgetItem* item = table->item(row, col);
-            if (item) {
-                // Define o conteúdo completo da célula como o Tooltip
-                item->setToolTip(item->text());
-                // Alinha os itens das tabelas no centro das colunas
-                item->setTextAlignment(Qt::AlignCenter);
+    for (int row = 0; row < table->rowCount(); ++row) {                                                   // Itera sobre as linhas da tabela
+        for (int col = 0; col < table->columnCount(); ++col) {                                            // Itera sobre as colunas da tabela
+            QTableWidgetItem* item = table->item(row, col);                                               // Obtém o item da célula
+            if (item) {                                                                                   // Verifica se o item não é nulo
+                item->setToolTip(item->text());                                                           // Define o conteúdo completo da célula como o Tooltip
+                item->setTextAlignment(Qt::AlignCenter);                                                  // Alinha os itens das tabelas no centro das colunas
             }
         }
     }
-}
+}   
 
 //////////////////////////////////////////
 
 // MÉTODOS PARA O ESTILO DOS BOTÕES
 
-void MainWindow::resetButtonStyles() {
-    QList<QPushButton*> botoes = {
+void MainWindow::resetButtonStyles()                                                                      // Método para resetar os estilos dos botões
+{                                                                                                         // Abre a função
+    QList<QPushButton*> botoes = {                                                                        // Lista de botões a serem resetados
         ui->btnAgenda, ui->btnAtendimento, ui->btnPacientes,
         ui->btnColaboradores, ui->btnEstoque, ui->btnRelatorios, ui->btnInicio
     };
 
-    for (auto botao : botoes) {
-        botao->setStyleSheet("");
+    for (auto botao : botoes) {                                                                           // Itera sobre a lista de botões
+        botao->setStyleSheet("");                                                                         // Reseta o estilo do botão
     }
-}
+}                                                                                                         // Fecha a função
 
-void MainWindow::setButtonHighlight(QPushButton *botao)
-{
-    if (botaoAtivo != botao) {
-        resetButtonStyles();
-        botao->setStyleSheet("background-color: rgb(179, 213, 243);");                                            // APLICANDO UM HIGHLIGHT COM CSS
-        botaoAtivo = botao;
+void MainWindow::setButtonHighlight(QPushButton *botao)                                                   // Método para destacar o botão ativo
+{                                                                                                         // Abre a função
+    if (botaoAtivo != botao) {                                                                            // Verifica se o botão ativo é diferente do botão passado
+        resetButtonStyles();                                                                              // Reseta os estilos dos botões
+        botao->setStyleSheet("background-color: rgb(179, 213, 243);");                                    // Aplica um highlight com CSS
+        botaoAtivo = botao;                                                                               // Define o botão ativo
     }
-}
+}                                                                                                         // Fecha a função
 
-void MainWindow::setLayoutEntrar()
-{
-    ui->btnEntrar->setText("Entrar");
-    ui->btnEntrar->setStyleSheet(
+void MainWindow::setLayoutEntrar()                                                                        // Método para configurar o layout de entrada
+{                                                                                                         // Abre a função
+    ui->btnEntrar->setText("Entrar");                                                                     // Define o texto do botão como "Entrar"
+    ui->btnEntrar->setStyleSheet(                                                                         // Define o estilo do botão
         "QPushButton {"
         "    background-color: #6db0ec; "
-        "    color: #000000; "                                                                                   // TRANSFORMANDO O BOTÃO EM LOGIN
+        "    color: #000000; "                                                                            // Transformando o botão em login
         "    border: 2px solid #dcdcdc; "
         "    border-radius: 10px; "
         "}"
         "QPushButton:hover {"
-        "    background-color: #dcdcdc;"  // Cor de fundo ao passar o mouse
+        "    background-color: #dcdcdc;"                                                                  // Cor de fundo ao passar o mouse
         "}"
-        );
+    );
 
-    ui->iconPerfil->clear();
-    ui->txtUsuario->clear();
-    ui->txtClinica->clear();
-    ui->txtCargo->clear();
+    ui->iconPerfil->clear();                                                                              // Limpa o ícone do perfil
+    ui->txtUsuario->clear();                                                                              // Limpa o texto do usuário
+    ui->txtClinica->clear();                                                                              // Limpa o texto da clínica
+    ui->txtCargo->clear();                                                                                // Limpa o texto do cargo
 
-    // Atualiza outras partes da interface
-    ui->tw_pacientes->setRowCount(0);
-    ui->tw_pacientes->setColumnCount(0);
-    ui->tw_colaboradores->setRowCount(0);
-    ui->tw_colaboradores->setColumnCount(0);
+    ui->tw_pacientes->setRowCount(0);                                                                     // Reseta as linhas da tabela de pacientes
+    ui->tw_pacientes->setColumnCount(0);                                                                  // Reseta as colunas da tabela de pacientes
+    ui->tw_colaboradores->setRowCount(0);                                                                 // Reseta as linhas da tabela de colaboradores
+    ui->tw_colaboradores->setColumnCount(0);                                                              // Reseta as colunas da tabela de colaboradores
 
-    // Volta para a página inicial
-    on_btnInicio_clicked();
-}
+    on_btnInicio_clicked();                                                                               // Volta para a página inicial
+}                                                                                                         // Fecha a função
 
-void MainWindow::setLayoutSair()
-{
-    ui->btnEntrar->setText("Sair");
-    ui->btnEntrar->setStyleSheet(
+void MainWindow::setLayoutSair()                                                                          // Método para configurar o layout de saída
+{                                                                                                         // Abre a função
+    ui->btnEntrar->setText("Sair");                                                                       // Define o texto do botão como "Sair"
+    ui->btnEntrar->setStyleSheet(                                                                         // Define o estilo do botão
         "QPushButton {"
         "    background-color: rgb(200, 20, 20); "
-        "    color: #ffffff; "                                                                                    // TRANFORMANDO O BOTÃO EM LOGOUT
+        "    color: #ffffff; "                                                                            // Transformando o botão em logout
         "    border-radius: 10px; "
         "}"
         "QPushButton:hover {"
-        "    background-color: darkred;"  // Cor de fundo ao passar o mouse
+        "    background-color: darkred;"                                                                  // Cor de fundo ao passar o mouse
         "}"
-        );
+    );
 
-    QPixmap icone(":/icons/Generic avatar.png");
-    ui->iconPerfil->setPixmap(icone.scaled(50, 50, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    QPixmap icone(":/icons/Generic avatar.png");                                                          // Define o ícone do perfil
+    ui->iconPerfil->setPixmap(icone.scaled(50, 50, Qt::KeepAspectRatio, Qt::SmoothTransformation));       // Redimensiona o ícone do perfil
 
-    ui->txtUsuario->setText(getNomeUsuario());
+    ui->txtUsuario->setText(getNomeUsuario());                                                            // Define o texto do usuário
 
-    ui->txtUsuario->setStyleSheet(
+    ui->txtUsuario->setStyleSheet(                                                                        // Define o estilo do texto do usuário
         "QLabel {"
         "    font-family: 'Poppins', sans-serif;"
         "    font-size: 11pt;"
         "    font-weight: bold;"
-        "    color: #000000;"  // Azul mais escuro
+        "    color: #000000;"                                                                             // Azul mais escuro
         "    letter-spacing: 1px;"
         "    text-transform: uppercase;"
         "}"
-        );
+    );
 
-    ui->txtCargo->setText(" - " +cargo_usuario);
+    ui->txtCargo->setText(" - " + cargo_usuario);                                                         // Define o texto do cargo
 
-    ui->txtCargo->setStyleSheet(
+    ui->txtCargo->setStyleSheet(                                                                          // Define o estilo do texto do cargo
         "QLabel {"
         "    font-family: 'Poppins', sans-serif;"
         "    font-size: 11pt;"
         "    font-weight: bold;"
-        "    color: #000000;"  // Azul mais escuro
+        "    color: #000000;"                                                                             // Azul mais escuro
         "    letter-spacing: 1px;"
         "    text-transform: uppercase;"
         "}"
-        );
+    );
 
-    ui->txtClinica->setText(clinica_usuario);
+    ui->txtClinica->setText(clinica_usuario);                                                             // Define o texto da clínica
 
-    ui->txtClinica->setStyleSheet(
+    ui->txtClinica->setStyleSheet(                                                                        // Define o estilo do texto da clínica
         "QLabel {"
         "    font-family: 'Poppins', sans-serif;"
         "    font-size: 11pt;"
         "    font-weight: bold;"
-        "    color: #000000;"  // Azul mais escuro
+        "    color: #000000;"                                                                             // Azul mais escuro
         "    letter-spacing: 1px;"
         "    text-transform: uppercase;"
         "}"
-        );
-}
+    );
+}                                                                                                         // Fecha a função
 
 //////////////////////////////////////////
 
@@ -421,40 +401,40 @@ void MainWindow::on_btnInicio_clicked()
 
 // MÉTODO PARA ACESSAR A PÁGINA "AGENDA"
 
-void MainWindow::on_btnAgenda_clicked()
-{
-    if(getLogado()){
-        setButtonHighlight(ui->btnAgenda);                                                                              // ALTERAR A COR DE DESTAQUE DO BOTÃO
+void MainWindow::on_btnAgenda_clicked()                                                                  // Função chamada quando o botão "Agenda" é clicado
+{                                                                                                         // Abre a função
+    if(getLogado()) {                                                                                     // Verifica se o usuário está logado
+        setButtonHighlight(ui->btnAgenda);                                                                // Altera a cor de destaque do botão
         ui->btnAgenda->setAutoFillBackground(true);
 
-        int index = ui->paginas->indexOf(ui->Agenda);                                                                     // PÁGINA AGENDA
-        ui->paginas->setCurrentIndex(index);
+        int index = ui->paginas->indexOf(ui->Agenda);                                                     // Obtém o índice da página "Agenda"
+        ui->paginas->setCurrentIndex(index);                                                              // Acessa a página "Agenda"
 
-        QSqlQuery query;
+        QSqlQuery query;                                                                                  // Cria um objeto para executar a query SQL
 
-        QDate data = ui->calendarioAgenda->selectedDate();
+        QDate data = ui->calendarioAgenda->selectedDate();                                                // Obtém a data selecionada no calendário
 
-        ui->checkDataAgenda->setChecked(true);
-        ui->checkMinhaAgenda->setChecked(true);
-        ui->comboBoxStatusAgenda->setCurrentIndex(0);
+        ui->checkDataAgenda->setChecked(true);                                                            // Marca o checkbox "Data"
+        ui->checkMinhaAgenda->setChecked(true);                                                           // Marca o checkbox "Minha Agenda"
+        ui->comboBoxStatusAgenda->setCurrentIndex(0);                                                     // Define o status como "Aguardando"
 
         query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional "
-                      "AND data = :data and status_sessao = :status ORDER BY data ASC, hora ASC");                          // ACESSANDO A TABELA NO BANCO
+                      "AND data = :data and status_sessao = :status ORDER BY data ASC, hora ASC");        // Prepara a query para selecionar os agendamentos do profissional na data especificada
 
-        query.bindValue(":id_profissional", getIdUsuario());
-        query.bindValue(":data", data.toString("dd/MM/yyyy"));
-        query.bindValue(":status", "Aguardando");
+        query.bindValue(":id_profissional", getIdUsuario());                                               // Vincula o valor do ID do profissional à query
+        query.bindValue(":data", data.toString("dd/MM/yyyy"));                                             // Vincula o valor da data à query
+        query.bindValue(":status", "Aguardando");                                                          // Vincula o valor do status à query
 
-        if(query.exec()){
-            setAgenda(query);                                                                                              // CARREGANDO A TABELA NA TABLE ATRAVÉS DO MÉTODO
-        }else{
-            qDebug() << "Erro ao executar a query:" << query.lastError().text();
+        if(query.exec()) {                                                                                // Executa a query e verifica se foi bem-sucedida
+            setAgenda(query);                                                                             // Carrega a tabela na TableWidget através do método
+        } else {                                                                                          // Caso a query falhe
+            qDebug() << "Erro ao executar a query:" << query.lastError().text();                          // Loga o erro no console de debug
         }
 
-    } else {
-        QMessageBox::information(this, " ", "Contrate nosso serviço para ter acesso ao sistema!");
+    } else {                                                                                              // Caso o usuário não esteja logado
+        QMessageBox::information(this, " ", "Contrate nosso serviço para ter acesso ao sistema!");        // Exibe uma mensagem informando que o serviço deve ser contratado
     }
-}
+}                                                                                                         // Fecha a função
 
 ////////////////////////////////////////////////////////////////////
 
@@ -465,258 +445,245 @@ void MainWindow::on_btnAgenda_clicked()
 
     // MÉTODO PARA AJUSTAR A TABLE DA AGENDA
 
-    void MainWindow::setAgenda(QSqlQuery &query)
-    {
-        int tb_linha = 0;
+void MainWindow::setAgenda(QSqlQuery &query)                                                              // Método para configurar a tabela de agenda
+{                                                                                                         // Abre a função
+    int tb_linha = 0;                                                                                     // Inicializa a variável para contar as linhas
 
-        // Limpa os dados antigos da tabela
-        ui->tw_agenda->clearContents();
-        ui->tw_agenda->setRowCount(0);  // Reseta as linhas
+    ui->tw_agenda->clearContents();                                                                       // Limpa os dados antigos da tabela
+    ui->tw_agenda->setRowCount(0);                                                                        // Reseta as linhas
 
-        ui->tw_agenda->setColumnCount(7);                                                                        // SETA A TABLE EM 7 COLUNAS
-        while(query.next()){
+    ui->tw_agenda->setColumnCount(7);                                                                     // Define a tabela com 7 colunas
+    while(query.next()) {                                                                                 // Itera sobre os resultados da query
 
-            ui->tw_agenda->insertRow(tb_linha);
+        ui->tw_agenda->insertRow(tb_linha);                                                               // Insere uma nova linha na tabela
 
-            for(int i = 0; i <= 6; i++){
-                ui->tw_agenda->setItem(tb_linha,i,new QTableWidgetItem(query.value(i).toString()));              // LOOP QUE PREENCHE A TABLE COM OS DADOS DO BANCO
-            }
-            ui->tw_agenda->setRowHeight(tb_linha,30);
-
-            tb_linha++;
+        for(int i = 0; i <= 6; i++) {                                                                     // Loop que preenche a tabela com os dados do banco
+            ui->tw_agenda->setItem(tb_linha, i, new QTableWidgetItem(query.value(i).toString()));         // Define o item da tabela com o valor da query
         }
+        ui->tw_agenda->setRowHeight(tb_linha, 30);                                                        // Define a altura da linha
 
-        QStringList cabecalho = {"ID", "Profissional", "Paciente", "Especialidade", "Data", "Hora", "Status"};
-        ui->tw_agenda->setHorizontalHeaderLabels(cabecalho);
-        ui->tw_agenda->setEditTriggers(QAbstractItemView::NoEditTriggers);
-        ui->tw_agenda->setSelectionBehavior(QAbstractItemView::SelectRows);
-        ui->tw_agenda->verticalHeader()->setVisible(false);
-
-        // Estilizando a tabela com CSS
-        ui->tw_agenda->setStyleSheet(
-            "QTableWidget {"
-            "    border: 3px solid #dcdcdc;"
-            "    border-radius: 10px;"
-            "    background-color: #ffffff;"
-            "    gridline-color: #dcdcdc;"
-            "}"
-            "QHeaderView::section {"
-            "    background-color: #f0f0f0;"
-            "    border: 1px solid #dcdcdc;"
-            "    padding: 5px;"
-            "    border-radius: 5px;"
-            "}"
-            "QTableWidget::item {"
-            "    border-bottom: 1px solid #dcdcdc;"
-            "    padding: 5px;"
-            "}"
-            "QTableWidget::item:selected {"
-            "    background-color: #a0c4ff;"
-            "    color: #000000;"
-            "}"
-        );
-
-        redimensionarTable(ui->tw_agenda);                                                                          // REDIMENSIONANDO A TABELA
+        tb_linha++;                                                                                       // Incrementa a contagem de linhas
     }
 
-    ////////////////////////////////////////////////////////////////
+    QStringList cabecalho = {"ID", "Profissional", "Paciente", "Especialidade", "Data", "Hora", "Status"}; // Define os cabeçalhos da tabela
+    ui->tw_agenda->setHorizontalHeaderLabels(cabecalho);                                                  // Define os cabeçalhos horizontais
+    ui->tw_agenda->setEditTriggers(QAbstractItemView::NoEditTriggers);                                    // Desabilita a edição dos itens
+    ui->tw_agenda->setSelectionBehavior(QAbstractItemView::SelectRows);                                   // Define o comportamento de seleção para selecionar linhas inteiras
+    ui->tw_agenda->verticalHeader()->setVisible(false);                                                   // Oculta o cabeçalho vertical
 
-    // MÉTODO DE PESQUISA
+    ui->tw_agenda->setStyleSheet(                                                                         // Estilizando a tabela com CSS
+        "QTableWidget {"
+        "    border: 3px solid #dcdcdc;"
+        "    border-radius: 10px;"
+        "    background-color: #ffffff;"
+        "    gridline-color: #dcdcdc;"
+        "}"
+        "QHeaderView::section {"
+        "    background-color: #f0f0f0;"
+        "    border: 1px solid #dcdcdc;"
+        "    padding: 5px;"
+        "    border-radius: 5px;"
+        "}"
+        "QTableWidget::item {"
+        "    border-bottom: 1px solid #dcdcdc;"
+        "    padding: 5px;"
+        "}"
+        "QTableWidget::item:selected {"
+        "    background-color: #a0c4ff;"
+        "    color: #000000;"
+        "}"
+    );
 
-    void MainWindow::filtrarAgenda() {
-        QString pesquisado = ui->lineEditAgenda->text();
-        bool filtrarData = ui->checkDataAgenda->isChecked();
-        bool filtrarMinhaAgenda = ui->checkMinhaAgenda->isChecked();
-        QString opcaoSelecionada = ui->comboBoxAgenda->currentText();
-        QString statusSelecionado = ui->comboBoxStatusAgenda->currentText();
-        QDate data = ui->calendarioAgenda->selectedDate();
-        QSqlQuery query;
+    redimensionarTable(ui->tw_agenda);                                                                    // Redimensiona a tabela
+}                                                                                                         // Fecha a função
 
-        if (statusSelecionado == "Paciente ausente") {
-            statusSelecionado = "Ausente";
-        }
+void MainWindow::filtrarAgenda()                                                                          // Método de pesquisa para filtrar a agenda
+{                                                                                                         // Abre a função
+    QString pesquisado = ui->lineEditAgenda->text();                                                      // Obtém o texto do campo de pesquisa
+    bool filtrarData = ui->checkDataAgenda->isChecked();                                                  // Verifica se o filtro por data está marcado
+    bool filtrarMinhaAgenda = ui->checkMinhaAgenda->isChecked();                                          // Verifica se o filtro "Minha Agenda" está marcado
+    QString opcaoSelecionada = ui->comboBoxAgenda->currentText();                                         // Obtém a opção selecionada no comboBox
+    QString statusSelecionado = ui->comboBoxStatusAgenda->currentText();                                  // Obtém o status selecionado no comboBox
+    QDate data = ui->calendarioAgenda->selectedDate();                                                    // Obtém a data selecionada no calendário
+    QSqlQuery query;                                                                                      // Cria um objeto para executar a query SQL
 
-        QString queryString = "SELECT * FROM tb_agendamentos WHERE status_sessao = :status";
+    if (statusSelecionado == "Paciente ausente") {                                                        // Verifica se o status é "Paciente ausente"
+        statusSelecionado = "Ausente";                                                                    // Altera o status para "Ausente"
+    }
 
-        if (filtrarMinhaAgenda) {
-            queryString += " AND id_profissional = :id_profissional";
-        }
+    QString queryString = "SELECT * FROM tb_agendamentos WHERE status_sessao = :status";                  // Base da query
 
-        if (filtrarData) {
-            queryString += " AND data = :data";
-        }
+    if (filtrarMinhaAgenda) {                                                                             // Verifica se o filtro "Minha Agenda" está marcado
+        queryString += " AND id_profissional = :id_profissional";                                         // Adiciona o filtro por ID do profissional
+    }
 
-        if (!pesquisado.isEmpty()) {
-            if (opcaoSelecionada == "Profissional") {
-                queryString += " AND profissional LIKE :pesquisado";
-            } else if (opcaoSelecionada == "Paciente") {
-                queryString += " AND paciente LIKE :pesquisado";
-            } else if (opcaoSelecionada == "Especialidade") {
-                queryString += " AND especialidade LIKE :pesquisado";
-            }
-        }
+    if (filtrarData) {                                                                                    // Verifica se o filtro por data está marcado
+        queryString += " AND data = :data";                                                               // Adiciona o filtro por data
+    }
 
-        queryString += " ORDER BY data ASC, hora ASC";
-        query.prepare(queryString);
-
-        query.bindValue(":status", statusSelecionado);
-
-        if (filtrarMinhaAgenda) {
-            int id_profissional = getIdUsuario();
-            query.bindValue(":id_profissional", id_profissional);
-            qDebug() << "Filtro 'Minha Agenda' ativado - ID do Profissional:" << id_profissional;
-        }
-
-        if (filtrarData) {
-            QString dataFormatada = data.toString("dd/MM/yyyy");
-            query.bindValue(":data", dataFormatada);
-            qDebug() << "Filtro por Data ativado - Data selecionada:" << dataFormatada;
-        }
-
-        if (!pesquisado.isEmpty()) {
-            QString pesquisadoFinal = pesquisado + "%";
-            query.bindValue(":pesquisado", pesquisadoFinal);
-            qDebug() << "Filtro de Pesquisa ativado - Opção:" << opcaoSelecionada << "- Valor:" << pesquisadoFinal;
-        }
-
-        qDebug() << "Query Final construída:" << queryString;
-
-        if (query.exec()) {
-            qDebug() << "Query executada com sucesso!";
-            setAgenda(query);
-        } else {
-            qDebug() << "Erro ao executar a query:" << query.lastError().text();
+    if (!pesquisado.isEmpty()) {                                                                          // Verifica se o campo de pesquisa não está vazio
+        if (opcaoSelecionada == "Profissional") {                                                         // Verifica se a opção selecionada é "Profissional"
+            queryString += " AND profissional LIKE :pesquisado";                                          // Adiciona o filtro por profissional
+        } else if (opcaoSelecionada == "Paciente") {                                                      // Verifica se a opção selecionada é "Paciente"
+            queryString += " AND paciente LIKE :pesquisado";                                              // Adiciona o filtro por paciente
+        } else if (opcaoSelecionada == "Especialidade") {                                                 // Verifica se a opção selecionada é "Especialidade"
+            queryString += " AND especialidade LIKE :pesquisado";                                         // Adiciona o filtro por especialidade
         }
     }
 
-    // Chamada da função filtrarAgenda() dentro das outras funções
+    queryString += " ORDER BY data ASC, hora ASC";                                                        // Ordena por data e hora
+    query.prepare(queryString);                                                                           // Prepara a query
 
-    void MainWindow::on_checkDataAgenda_checkStateChanged(const Qt::CheckState &arg1) {
-        filtrarAgenda();
+    query.bindValue(":status", statusSelecionado);                                                        // Vincula o valor do status à query
+
+    if (filtrarMinhaAgenda) {                                                                             // Verifica se o filtro "Minha Agenda" está marcado
+        int id_profissional = getIdUsuario();                                                             // Obtém o ID do profissional
+        query.bindValue(":id_profissional", id_profissional);                                             // Vincula o valor do ID do profissional à query
+        qDebug() << "Filtro 'Minha Agenda' ativado - ID do Profissional:" << id_profissional;             // Loga a mensagem no console de debug
     }
 
-    void MainWindow::on_checkMinhaAgenda_stateChanged(int arg1) {
-        filtrarAgenda();
+    if (filtrarData) {                                                                                    // Verifica se o filtro por data está marcado
+        QString dataFormatada = data.toString("dd/MM/yyyy");                                              // Formata a data
+        query.bindValue(":data", dataFormatada);                                                          // Vincula o valor da data à query
+        qDebug() << "Filtro por Data ativado - Data selecionada:" << dataFormatada;                       // Loga a mensagem no console de debug
     }
 
-    void MainWindow::on_comboBoxAgenda_currentTextChanged(const QString &arg1) {
-        filtrarAgenda();
+    if (!pesquisado.isEmpty()) {                                                                          // Verifica se o campo de pesquisa não está vazio
+        QString pesquisadoFinal = pesquisado + "%";                                                       // Adiciona o caractere curinga
+        query.bindValue(":pesquisado", pesquisadoFinal);                                                  // Vincula o valor do campo de pesquisa à query
+        qDebug() << "Filtro de Pesquisa ativado - Opção:" << opcaoSelecionada << "- Valor:" << pesquisadoFinal; // Loga a mensagem no console de debug
     }
 
-    void MainWindow::on_comboBoxStatusAgenda_currentTextChanged(const QString &arg1) {
-        filtrarAgenda();
+    qDebug() << "Query Final construída:" << queryString;                                                 // Loga a query final no console de debug
+
+    if (query.exec()) {                                                                                   // Executa a query e verifica se foi bem-sucedida
+        qDebug() << "Query executada com sucesso!";                                                       // Loga a mensagem de sucesso no console de debug
+        setAgenda(query);                                                                                 // Atualiza a tabela com os dados ordenados
+    } else {                                                                                              // Caso a query falhe
+        qDebug() << "Erro ao executar a query:" << query.lastError().text();                              // Loga o erro no console de debug
+    }
+}                                                                                                         // Fecha a função
+
+void MainWindow::on_checkDataAgenda_checkStateChanged(const Qt::CheckState &arg1)                         // Função chamada quando o estado do checkbox "Data" é alterado
+{                                                                                                         // Abre a função
+    filtrarAgenda();                                                                                      // Chama a função de filtro da agenda
+}                                                                                                         // Fecha a função
+
+void MainWindow::on_checkMinhaAgenda_stateChanged(int arg1)                                               // Função chamada quando o estado do checkbox "Minha Agenda" é alterado
+{                                                                                                         // Abre a função
+    filtrarAgenda();                                                                                      // Chama a função de filtro da agenda
+}                                                                                                         // Fecha a função
+
+void MainWindow::on_comboBoxAgenda_currentTextChanged(const QString &arg1)                                // Função chamada quando o texto do comboBox "Agenda" é alterado
+{                                                                                                         // Abre a função
+    filtrarAgenda();                                                                                      // Chama a função de filtro da agenda
+}                                                                                                         // Fecha a função
+
+void MainWindow::on_comboBoxStatusAgenda_currentTextChanged(const QString &arg1)                          // Função chamada quando o texto do comboBox "Status" é alterado
+{                                                                                                         // Abre a função
+    filtrarAgenda();                                                                                      // Chama a função de filtro da agenda
+}                                                                                                         // Fecha a função
+
+void MainWindow::on_lineEditAgenda_textChanged(const QString &arg1)                                       // Função chamada quando o texto do campo de pesquisa é alterado
+{                                                                                                         // Abre a função
+    filtrarAgenda();                                                                                      // Chama a função de filtro da agenda
+}                                                                                                         // Fecha a função
+
+void MainWindow::on_calendarioAgenda_clicked(const QDate &date)                                           // Função chamada quando uma data no calendário é clicada
+{                                                                                                         // Abre a função
+    ui->calendarioAgenda->setSelectedDate(date);                                                          // Define a data selecionada no calendário
+    filtrarAgenda();                                                                                      // Chama a função de filtro da agenda
+}                                                                                                         // Fecha a função
+
+void MainWindow::on_btnAgendar_clicked()                                                                  // Função chamada quando o botão "Agendar" é clicado
+{                                                                                                         // Abre a função
+    cadastroSessao *cadastrarSessao = new cadastroSessao(this, "Cadastrar");                              // Cria a janela de cadastro de sessão
+
+    bool connected = connect(cadastrarSessao, &cadastroSessao::sessaoCadastrada,                          // Conecta o sinal ao slot que adiciona a sessão na tabela
+                             this, &MainWindow::adicionarSessaoNaTabela);
+
+    if (!connected) {                                                                                     // Verifica se a conexão falhou
+        qDebug() << "Erro ao conectar o sinal sessaoCadastrada";                                          // Loga a mensagem de erro no console de debug
     }
 
-    void MainWindow::on_lineEditAgenda_textChanged(const QString &arg1) {
-        filtrarAgenda();
+    cadastrarSessao->show();                                                                              // Exibe a janela de cadastro de sessão
+}                                                                                                         // Fecha a função
+
+void MainWindow::adicionarSessaoNaTabela()                                                                // Método para adicionar uma sessão na tabela
+{                                                                                                         // Abre a função
+    filtrarAgenda();                                                                                      // Chama a função de filtro da agenda
+}                                                                                                         // Fecha a função
+
+void MainWindow::on_tw_agenda_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn) // Função chamada quando a célula atual da tabela de agenda é alterada
+{                                                                                                         // Abre a função
+    if (currentRow >= 0 && ui->tw_agenda->item(currentRow, 0)) {                                          // Verifica se a linha atual é válida e se a célula não está vazia
+        QString idStr = ui->tw_agenda->item(currentRow, 0)->text();                                       // Obtém o texto da célula
+        setIdSessao(idStr.toInt());                                                                       // Define o ID da sessão
+    } else {                                                                                              // Caso contrário
+        setIdSessao();                                                                                    // Define o valor inválido -1
     }
+}                                                                                                         // Fecha a função
 
-    void MainWindow::on_calendarioAgenda_clicked(const QDate &date) {
-        ui->calendarioAgenda->setSelectedDate(date);
-        filtrarAgenda();
+void MainWindow::on_btnEditarAgenda_clicked()                                                             // Função chamada quando o botão "Editar" é clicado
+{                                                                                                         // Abre a função
+    int linha = ui->tw_agenda->currentRow();                                                              // Obtém a linha atual da tabela de agenda
+
+    if (getIdSessao() != -1 && linha >= 0) {                                                              // Verifica se o ID da sessão é válido e se a linha é válida
+        cadastroSessao *cadastrarSessao = new cadastroSessao(this, "Editar", getIdSessao());              // Cria a janela de edição de sessão
+
+        connect(cadastrarSessao, &cadastroSessao::sessaoEditada,                                          // Conecta o sinal de edição ao slot de atualização
+                this, &MainWindow::atualizarSessaoNaTabela);
+
+        cadastrarSessao->show();                                                                          // Exibe a janela de edição de sessão
+    } else {                                                                                              // Caso contrário
+        QMessageBox::warning(this, " ", "Selecione uma sessão para editar.");                             // Exibe uma mensagem de aviso
     }
+}                                                                                                         // Fecha a função
 
-    /////////////////////////////////////////////////////////////////
+void MainWindow::atualizarSessaoNaTabela()                                                                // Método para atualizar uma sessão na tabela
+{                                                                                                         // Abre a função
+    QSqlQuery query;                                                                                      // Cria um objeto para executar a query SQL
+    query.prepare("SELECT * FROM tb_agendamentos WHERE id = :id");                                        // Prepara a query para selecionar a sessão com o ID especificado
+    query.bindValue(":id", getIdSessao());                                                                // Vincula o valor do ID da sessão à query
 
-    // MÉTODOS DE CADASTRO DE SESSÃO
+    int tb_linha = ui->tw_agenda->currentRow();                                                           // Obtém a linha atual da tabela de agenda
 
-    void MainWindow::on_btnAgendar_clicked()
-    {
-        cadastroSessao *cadastrarSessao = new cadastroSessao(this, "Cadastrar");
-
-        // Conectando o sinal ao slot que adiciona a sessão na tabela
-        bool connected = connect(cadastrarSessao, &cadastroSessao::sessaoCadastrada,
-                                 this, &MainWindow::adicionarSessaoNaTabela);
-
-        if (!connected) {
-            qDebug() << "Erro ao conectar o sinal sessaoCadastrada";
+    if (query.exec() && query.first()) {                                                                  // Executa a query e verifica se foi bem-sucedida e se há resultados
+        for (int i = 0; i < ui->tw_agenda->columnCount(); i++) {                                          // Itera sobre as colunas da tabela
+            ui->tw_agenda->setItem(tb_linha, i, new QTableWidgetItem(query.value(i).toString()));         // Preenche os dados do banco na tabela
         }
+        redimensionarTable(ui->tw_agenda);                                                                // Redimensiona a tabela
+    } else {                                                                                              // Caso a query falhe
+        QMessageBox::warning(this, " ", "Erro ao buscar os dados da sessão.");                            // Exibe uma mensagem de aviso
+    }
+}                                                                                                         // Fecha a função
 
-        cadastrarSessao->show();
+void MainWindow::on_btnVerRelatorio_clicked()                                                             // Função chamada quando o botão "Ver Relatório" é clicado
+{                                                                                                         // Abre a função
+    int linhaSelecionada = ui->tw_agenda->currentRow();                                                   // Obtém a linha selecionada da tabela de agenda
+    if (linhaSelecionada < 0) {                                                                           // Verifica se nenhuma linha está selecionada
+        QMessageBox::warning(this, "Aviso", "Selecione uma sessão para ver o relatório.");                // Exibe uma mensagem de aviso
+        return;                                                                                           // Retorna sem fazer nada
     }
 
-    void MainWindow::adicionarSessaoNaTabela()
-    {
-        filtrarAgenda();
+    QString statusSessao = ui->tw_agenda->item(linhaSelecionada, 6)->text();                              // Obtém o status da sessão
+    if (statusSessao != "Realizada") {                                                                    // Verifica se o status não é "Realizada"
+        QMessageBox::warning(this, "Aviso", "A sessão selecionada ainda não foi realizada.");             // Exibe uma mensagem de aviso
+        return;                                                                                           // Retorna sem fazer nada
     }
 
-    // MÉTODOS DE EDIÇÃO DE SESSÃO
+    int idSessao = ui->tw_agenda->item(linhaSelecionada, 0)->text().toInt();                              // Obtém o ID da sessão
 
-    void MainWindow::on_tw_agenda_currentCellChanged(int currentRow, int currentColumn, int previousRow, int previousColumn)
-    {
-        if (currentRow >= 0 && ui->tw_agenda->item(currentRow, 0)) {
-            QString idStr = ui->tw_agenda->item(currentRow, 0)->text();
-            setIdSessao(idStr.toInt());  // Convertendo para inteiro
-        } else {
-            setIdSessao();  // Define o valor inválido -1 caso nenhuma linha esteja selecionada ou a célula esteja vazia
-        }
-    }
+    ui->txtRelAtendimento->clear();                                                                       // Limpa o campo de texto do relatório
 
-    void MainWindow::on_btnEditarAgenda_clicked()
-    {
-        int linha = ui->tw_agenda->currentRow();
+    carregarRelatorios(&idSessao);                                                                        // Carrega os relatórios da sessão
 
-        if (getIdSessao() != -1 && linha >= 0) {
-            cadastroSessao *cadastrarSessao = new cadastroSessao(this, "Editar", getIdSessao());
-
-            // Conectar o sinal de edição ao slot de atualização
-            connect(cadastrarSessao, &cadastroSessao::sessaoEditada,
-                    this, &MainWindow::atualizarSessaoNaTabela);
-
-            cadastrarSessao->show();
-        } else {
-            QMessageBox::warning(this, " ", "Selecione uma sessão para editar.");
-        }
-    }
-
-    void MainWindow::atualizarSessaoNaTabela()
-    {
-        // Prepara a consulta para buscar os dados atualizados da sessão
-        QSqlQuery query;
-        query.prepare("SELECT * FROM tb_agendamentos WHERE id = :id");
-        query.bindValue(":id", getIdSessao());
-
-        int tb_linha = ui->tw_agenda->currentRow();
-
-        if (query.exec() && query.first()) {
-            // Encontra a linha correspondente na QTableWidget
-            for (int i = 0; i < ui->tw_agenda->columnCount(); i++) {
-                ui->tw_agenda->setItem(tb_linha, i, new QTableWidgetItem(query.value(i).toString())); // Preenche os dados do banco na tabela
-            }
-            redimensionarTable(ui->tw_agenda);
-        } else {
-            QMessageBox::warning(this, " ", "Erro ao buscar os dados da sessão.");
-        }
-    }
-
-    // MÉTODO PARA ENVIAR PARA O RELATÓRIO DE ATENDIMENTO ARMAZENADO DAQUELA SESSÃO
-
-    void MainWindow::on_btnVerRelatorio_clicked()
-    {
-        int linhaSelecionada = ui->tw_agenda->currentRow();
-        if (linhaSelecionada < 0) {
-            QMessageBox::warning(this, "Aviso", "Selecione uma sessão para ver o relatório.");
-            return;
-        }
-
-        QString statusSessao = ui->tw_agenda->item(linhaSelecionada, 6)->text();
-        if (statusSessao != "Realizada") {
-            QMessageBox::warning(this, "Aviso", "A sessão selecionada ainda não foi realizada.");
-            return;
-        }
-
-        int idSessao = ui->tw_agenda->item(linhaSelecionada, 0)->text().toInt();
-
-        ui->txtRelAtendimento->clear();
-
-        carregarRelatorios(&idSessao);
-
-        ui->paginas->setCurrentWidget(ui->Relatorios);
-        ui->tab_relatorios->setCurrentWidget(ui->Atendimentos);
-        resetButtonStyles();
-        ui->btnRelatorios->setStyleSheet("background-color: rgb(179, 213, 243);");
-        ui->btnRelatorios->setAutoFillBackground(true);
-    }
+    ui->paginas->setCurrentWidget(ui->Relatorios);                                                        // Acessa a página de relatórios
+    ui->tab_relatorios->setCurrentWidget(ui->Atendimentos);                                               // Acessa a aba de atendimentos
+    resetButtonStyles();                                                                                  // Reseta os estilos dos botões
+    ui->btnRelatorios->setStyleSheet("background-color: rgb(179, 213, 243);");                            // Altera a cor de destaque do botão de relatórios
+    ui->btnRelatorios->setAutoFillBackground(true);                                                       // Define o preenchimento automático do fundo do botão
+}                                                                                                         // Fecha a função
 
 
 
@@ -728,276 +695,248 @@ void MainWindow::on_btnAgenda_clicked()
 
 // MÉTODO PARA ACESSAR A PÁGINA "ATENDIMENTO" (OBS MUDAMOS O NOME DA PÁGINA PARA ATENDER)
 
-    void MainWindow::on_btnAtendimento_clicked()
-    {
-        if (getLogado()) {
-            setButtonHighlight(ui->btnAtendimento); // ALTERAR A COR DE DESTAQUE DO BOTÃO
-            ui->btnAtendimento->setAutoFillBackground(true);
+void MainWindow::on_btnAtendimento_clicked()                                                              // Função chamada quando o botão "Atendimento" é clicado
+{                                                                                                         // Abre a função
+    if (getLogado()) {                                                                                    // Verifica se o usuário está logado
+        setButtonHighlight(ui->btnAtendimento);                                                           // Altera a cor de destaque do botão
+        ui->btnAtendimento->setAutoFillBackground(true);
 
-            ui->checkHoje->setChecked(true);
+        ui->checkHoje->setChecked(true);                                                                  // Marca o checkbox "Hoje"
 
-            int index = ui->paginas->indexOf(ui->Atendimento); // PÁGINA AGENDA
-            ui->paginas->setCurrentIndex(index);
+        int index = ui->paginas->indexOf(ui->Atendimento);                                                // Obtém o índice da página "Atendimento"
+        ui->paginas->setCurrentIndex(index);                                                              // Acessa a página "Atendimento"
 
-            atualizarTabelaAtendimento(); // Atualiza a tabela com filtros e ordenação
-        } else {
-            QMessageBox::information(this, " ", "Contrate nosso serviço para ter acesso ao sistema!");
-        }
-
-        ui->textEdit->clear();
+        atualizarTabelaAtendimento();                                                                     // Atualiza a tabela com filtros e ordenação
+    } else {                                                                                              // Caso o usuário não esteja logado
+        QMessageBox::information(this, " ", "Contrate nosso serviço para ter acesso ao sistema!");        // Exibe uma mensagem informando que o serviço deve ser contratado
     }
 
-    void MainWindow::setTabelaAtendimento(QSqlQuery &query)
-    {
-        int tb_linha = 0;
+    ui->textEdit->clear();                                                                                // Limpa o campo de texto
+}                                                                                                         // Fecha a função
 
-        // Limpa os dados antigos da tabela
-        ui->tw_atendimento->clearContents();
-        ui->tw_atendimento->setRowCount(0); // Reseta as linhas
+void MainWindow::setTabelaAtendimento(QSqlQuery &query)                                                   // Método para configurar a tabela de atendimentos
+{                                                                                                         // Abre a função
+    int tb_linha = 0;                                                                                     // Inicializa a variável para contar as linhas
 
-        ui->tw_atendimento->setColumnCount(7); // SETA A TABLE EM 7 COLUNAS
-        while (query.next()) {
-            ui->tw_atendimento->insertRow(tb_linha);
+    ui->tw_atendimento->clearContents();                                                                  // Limpa os dados antigos da tabela
+    ui->tw_atendimento->setRowCount(0);                                                                   // Reseta as linhas
 
-            for (int i = 0; i <= 6; i++) {
-                ui->tw_atendimento->setItem(tb_linha, i, new QTableWidgetItem(query.value(i).toString())); // LOOP QUE PREENCHE A TABLE COM OS DADOS DO BANCO
-            }
-            ui->tw_atendimento->setRowHeight(tb_linha, 30);
+    ui->tw_atendimento->setColumnCount(7);                                                                // Define a tabela com 7 colunas
+    while (query.next()) {                                                                                // Itera sobre os resultados da query
+        ui->tw_atendimento->insertRow(tb_linha);                                                          // Insere uma nova linha na tabela
 
-            tb_linha++;
+        for (int i = 0; i <= 6; i++) {                                                                    // Loop que preenche a tabela com os dados do banco
+            ui->tw_atendimento->setItem(tb_linha, i, new QTableWidgetItem(query.value(i).toString()));    // Define o item da tabela com o valor da query
         }
+        ui->tw_atendimento->setRowHeight(tb_linha, 30);                                                   // Define a altura da linha
 
-        QStringList cabecalho = {"ID", "Profissional", "Paciente", "Especialidade", "Data", "Hora", "Status"};
-        ui->tw_atendimento->setHorizontalHeaderLabels(cabecalho);
-        ui->tw_atendimento->setEditTriggers(QAbstractItemView::NoEditTriggers);
-        ui->tw_atendimento->setSelectionBehavior(QAbstractItemView::SelectRows);
-        ui->tw_atendimento->verticalHeader()->setVisible(false);
-
-        // Estilizando a tabela com CSS
-        ui->tw_atendimento->setStyleSheet(
-            "QTableWidget {"
-            "    border: 3px solid #dcdcdc;"
-            "    border-radius: 10px;"
-            "    background-color: #ffffff;"
-            "    gridline-color: #dcdcdc;"
-            "}"
-            "QHeaderView::section {"
-            "    background-color: #f0f0f0;"
-            "    border: 1px solid #dcdcdc;"
-            "    padding: 5px;"
-            "    border-radius: 5px;"
-            "}"
-            "QTableWidget::item {"
-            "    border-bottom: 1px solid #dcdcdc;"
-            "    padding: 5px;"
-            "}"
-            "QTableWidget::item:selected {"
-            "    background-color: #a0c4ff;"
-            "    color: #000000;"
-            "}"
-        );
-
-        redimensionarTable(ui->tw_atendimento); // REDIMENSIONANDO A TABELA
+        tb_linha++;                                                                                       // Incrementa a contagem de linhas
     }
 
-    void MainWindow::atualizarTabelaAtendimento()
-    {
-        QString pesquisado = ui->lineEditAtendimento->text();
-        bool filtrarHoje = ui->checkHoje->isChecked();
-        QDate data = QDate::currentDate();
-        QSqlQuery query;
+    QStringList cabecalho = {"ID", "Profissional", "Paciente", "Especialidade", "Data", "Hora", "Status"}; // Define os cabeçalhos da tabela
+    ui->tw_atendimento->setHorizontalHeaderLabels(cabecalho);                                             // Define os cabeçalhos horizontais
+    ui->tw_atendimento->setEditTriggers(QAbstractItemView::NoEditTriggers);                               // Desabilita a edição dos itens
+    ui->tw_atendimento->setSelectionBehavior(QAbstractItemView::SelectRows);                              // Define o comportamento de seleção para selecionar linhas inteiras
+    ui->tw_atendimento->verticalHeader()->setVisible(false);                                              // Oculta o cabeçalho vertical
 
-        // Obter o status selecionado no comboBox
-        QString statusSelecionado = ui->comboBoxAtender->currentText();
+    ui->tw_atendimento->setStyleSheet(                                                                    // Estilizando a tabela com CSS
+        "QTableWidget {"
+        "    border: 3px solid #dcdcdc;"
+        "    border-radius: 10px;"
+        "    background-color: #ffffff;"
+        "    gridline-color: #dcdcdc;"
+        "}"
+        "QHeaderView::section {"
+        "    background-color: #f0f0f0;"
+        "    border: 1px solid #dcdcdc;"
+        "    padding: 5px;"
+        "    border-radius: 5px;"
+        "}"
+        "QTableWidget::item {"
+        "    border-bottom: 1px solid #dcdcdc;"
+        "    padding: 5px;"
+        "}"
+        "QTableWidget::item:selected {"
+        "    background-color: #a0c4ff;"
+        "    color: #000000;"
+        "}"
+    );
 
-        if (statusSelecionado == "Paciente ausente"){
-            statusSelecionado = "Ausente";
+    redimensionarTable(ui->tw_atendimento);                                                               // Redimensiona a tabela
+}                                                                                                         // Fecha a função
+
+void MainWindow::atualizarTabelaAtendimento()                                                             // Método para atualizar a tabela de atendimentos
+{                                                                                                         // Abre a função
+    QString pesquisado = ui->lineEditAtendimento->text();                                                 // Obtém o texto do campo de pesquisa
+    bool filtrarHoje = ui->checkHoje->isChecked();                                                        // Verifica se o filtro "Hoje" está marcado
+    QDate data = QDate::currentDate();                                                                    // Obtém a data atual
+    QSqlQuery query;                                                                                      // Cria um objeto para executar a query SQL
+
+    QString statusSelecionado = ui->comboBoxAtender->currentText();                                       // Obtém o status selecionado no comboBox
+
+    if (statusSelecionado == "Paciente ausente") {                                                        // Verifica se o status é "Paciente ausente"
+        statusSelecionado = "Ausente";                                                                    // Altera o status para "Ausente"
+    }
+
+    if (pesquisado.isEmpty()) {                                                                           // Verifica se o campo de pesquisa está vazio
+        if (!filtrarHoje) {                                                                               // Verifica se o filtro "Hoje" não está marcado
+            query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional "
+            "AND status_sessao = :status_sessao ORDER BY data ASC, hora ASC");                             // Prepara a query para selecionar todos os agendamentos do profissional com o status especificado
+            query.bindValue(":id_profissional", getIdUsuario());                                           // Vincula o valor do ID do profissional à query
+            query.bindValue(":status_sessao", statusSelecionado);                                          // Vincula o valor do status à query
+        } else {                                                                                          // Caso o filtro "Hoje" esteja marcado
+            query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional "
+            "AND data = :data AND status_sessao = :status_sessao ORDER BY data ASC, hora ASC");            // Prepara a query para selecionar todos os agendamentos do profissional com o status especificado e a data atual
+            query.bindValue(":id_profissional", getIdUsuario());                                           // Vincula o valor do ID do profissional à query
+            query.bindValue(":data", data.toString("dd/MM/yyyy"));                                         // Vincula o valor da data à query
+            query.bindValue(":status_sessao", statusSelecionado);                                          // Vincula o valor do status à query
         }
-
-        if (pesquisado.isEmpty()) {
-            if (!filtrarHoje) {
-                query.prepare(
-                    "SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND status_sessao = :status_sessao "
-                    "ORDER BY data ASC, hora ASC"
-                    );
-                query.bindValue(":id_profissional", getIdUsuario());
-                query.bindValue(":status_sessao", statusSelecionado);
-            } else {
-                query.prepare(
-                    "SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data AND status_sessao = :status_sessao "
-                    "ORDER BY data ASC, hora ASC"
-                    );
-                query.bindValue(":id_profissional", getIdUsuario());
-                query.bindValue(":data", data.toString("dd/MM/yyyy"));
-                query.bindValue(":status_sessao", statusSelecionado);
-            }
-        } else {
-            if (!filtrarHoje) {
-                query.prepare(
-                    "SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND paciente LIKE :paciente AND status_sessao = :status_sessao "
-                    "ORDER BY data ASC, hora ASC"
-                    );
-                query.bindValue(":id_profissional", getIdUsuario());
-                query.bindValue(":paciente", pesquisado + "%");
-                query.bindValue(":status_sessao", statusSelecionado);
-            } else {
-                query.prepare(
-                    "SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional AND data = :data AND paciente LIKE :paciente AND status_sessao = :status_sessao "
-                    "ORDER BY data ASC, hora ASC"
-                    );
-                query.bindValue(":id_profissional", getIdUsuario());
-                query.bindValue(":data", data.toString("dd/MM/yyyy"));
-                query.bindValue(":paciente", pesquisado + "%");
-                query.bindValue(":status_sessao", statusSelecionado);
-            }
-        }
-
-        // Executa a query
-        if (query.exec()) {
-            setTabelaAtendimento(query); // Atualiza a tabela com os dados ordenados
-        } else {
-            qDebug() << "Erro ao executar a query:" << query.lastError().text();
+    } else {                                                                                              // Caso o campo de pesquisa não esteja vazio
+        if (!filtrarHoje) {                                                                               // Verifica se o filtro "Hoje" não está marcado
+            query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional "
+            "AND paciente LIKE :paciente AND status_sessao = :status_sessao ORDER BY data ASC, hora ASC"); // Prepara a query para selecionar todos os agendamentos do profissional com o status especificado e o paciente pesquisado
+            query.bindValue(":id_profissional", getIdUsuario());                                           // Vincula o valor do ID do profissional à query
+            query.bindValue(":paciente", pesquisado + "%");                                                // Vincula o valor do paciente à query
+            query.bindValue(":status_sessao", statusSelecionado);                                          // Vincula o valor do status à query
+        } else {                                                                                          // Caso o filtro "Hoje" esteja marcado
+            query.prepare("SELECT * FROM tb_agendamentos WHERE id_profissional = :id_profissional "
+            "AND data = :data AND paciente LIKE :paciente AND status_sessao = :status_sessao ORDER BY data ASC, hora ASC"); // Prepara a query para selecionar todos os agendamentos do profissional com o status especificado, a data atual e o paciente pesquisado
+            query.bindValue(":id_profissional", getIdUsuario());                                           // Vincula o valor do ID do profissional à query
+            query.bindValue(":data", data.toString("dd/MM/yyyy"));                                         // Vincula o valor da data à query
+            query.bindValue(":paciente", pesquisado + "%");                                                // Vincula o valor do paciente à query
+            query.bindValue(":status_sessao", statusSelecionado);                                          // Vincula o valor do status à query
         }
     }
 
-    void MainWindow::on_comboBoxAtender_currentIndexChanged(int index)
-    {
-        // Limpa o campo de pesquisa
-        ui->lineEditAtendimento->clear();
+    if (query.exec()) {                                                                                   // Executa a query e verifica se foi bem-sucedida
+        setTabelaAtendimento(query);                                                                      // Atualiza a tabela com os dados ordenados
+    } else {                                                                                              // Caso a query falhe
+        qDebug() << "Erro ao executar a query:" << query.lastError().text();                              // Loga o erro no console de debug
+    }
+}                                                                                                         // Fecha a função
 
-        // Atualiza a tabela com base no estado atual dos filtros
-        atualizarTabelaAtendimento();
+void MainWindow::on_comboBoxAtender_currentIndexChanged(int index)                                        // Função chamada quando o índice do comboBox é alterado
+{                                                                                                         // Abre a função
+    ui->lineEditAtendimento->clear();                                                                     // Limpa o campo de pesquisa
+    atualizarTabelaAtendimento();                                                                         // Atualiza a tabela com base no estado atual dos filtros
+}                                                                                                         // Fecha a função
+
+void MainWindow::on_lineEditAtendimento_textChanged(const QString &arg1)                                  // Função chamada quando o texto do campo de pesquisa é alterado
+{                                                                                                         // Abre a função
+    atualizarTabelaAtendimento();                                                                         // Atualiza a tabela com a pesquisa
+}                                                                                                         // Fecha a função
+
+void MainWindow::on_checkHoje_checkStateChanged(const Qt::CheckState &arg1)                               // Função chamada quando o estado do checkbox "Hoje" é alterado
+{                                                                                                         // Abre a função
+    atualizarTabelaAtendimento();                                                                         // Atualiza a tabela quando o filtro de hoje é alterado
+}                                                                                                         // Fecha a função
+
+void MainWindow::on_tw_atendimento_cellClicked(int row, int column)                                       // Função chamada quando uma célula da tabela de atendimento é clicada
+{                                                                                                         // Abre a função
+    QString texto;                                                                                        // Variável para armazenar o texto do atendimento
+    QString status;                                                                                       // Variável para armazenar o status do atendimento
+
+    int id = ui->tw_atendimento->item(row, 0)->text().toInt();                                            // Obtém o ID do agendamento selecionado
+    QSqlQuery query;                                                                                      // Cria um objeto para executar a query SQL
+    query.prepare("SELECT * FROM tb_atendimentos WHERE id_agendamento = :id_agendamento");                // Prepara a query para selecionar o atendimento com o ID do agendamento
+    query.bindValue(":id_agendamento", id);                                                               // Vincula o valor do ID do agendamento à query
+
+    status = ui->tw_atendimento->item(row, 6)->text();                                                    // Pega o valor da sexta coluna (status)
+    if(status == "Realizada") {                                                                           // Verifica se o status é "Realizada"
+        ui->radioRealizado->setChecked(true);                                                             // Marca o radio button "Realizado"
+    } else if(status == "Aguardando"){                                                                    // Verifica se o status é "Aguardando"
+        ui->radioAguardando->setChecked(true);                                                            // Marca o radio button "Aguardando"
+    } else {                                                                                              // Caso o status seja "Ausente"
+        ui->radioAusente->setChecked(true);                                                               // Marca o radio button "Ausente"
     }
 
-    void MainWindow::on_lineEditAtendimento_textChanged(const QString &arg1)
-    {
-        // Atualiza a tabela com a pesquisa
-        atualizarTabelaAtendimento();
+    if (query.exec()) {                                                                                   // Executa a query e verifica se foi bem-sucedida
+        if (query.next()) {                                                                               // Verifica se há resultados
+            texto = query.value(1).toString();                                                            // Pega o valor da segunda coluna (texto)
+            ui->textEdit->setText(texto);                                                                 // Define o texto do QTextEdit com o texto do atendimento
+        } else {                                                                                          // Caso não haja resultados
+            ui->textEdit->clear();                                                                        // Limpa o QTextEdit
+        }
+    } else {                                                                                              // Caso a query falhe
+        qDebug() << "Erro ao executar a query:" << query.lastError().text();                              // Loga o erro no console de debug
+    }
+}                                                                                                         // Fecha a função
+
+void MainWindow::on_btnSalvar_clicked()                                                                   // Função chamada quando o botão "Salvar" é clicado
+{                                                                                                         // Abre a função
+    QString texto;                                                                                        // Variável para armazenar o texto do atendimento
+    int row = ui->tw_atendimento->currentRow();                                                           // Obtém a linha selecionada na tabela de atendimento
+    if (row == -1) {                                                                                      // Verifica se nenhuma linha está selecionada
+        qDebug() << "Nenhuma linha selecionada.";                                                         // Loga a mensagem no console de debug
+        return;                                                                                           // Retorna sem fazer nada
     }
 
-    void MainWindow::on_checkHoje_checkStateChanged(const Qt::CheckState &arg1)
-    {
-        // Atualiza a tabela quando o filtro de hoje é alterado
-        atualizarTabelaAtendimento();
+    int id = ui->tw_atendimento->item(row, 0)->text().toInt();                                            // Obtém o ID do agendamento selecionado
+    texto = ui->textEdit->toPlainText();                                                                  // Obtém o texto do QTextEdit
+
+    QSqlQuery query;                                                                                      // Cria um objeto para executar a query SQL
+    query.prepare("SELECT * FROM tb_atendimentos WHERE id_agendamento = :id_agendamento");                // Prepara a query para selecionar o atendimento com o ID do agendamento
+    query.bindValue(":id_agendamento", id);                                                               // Vincula o valor do ID do agendamento à query
+
+    if (query.exec()) {                                                                                   // Executa a query e verifica se foi bem-sucedida
+        if (query.next()) {                                                                               // Verifica se há resultados
+            query.prepare("UPDATE tb_atendimentos SET texto = :texto WHERE id_agendamento = :id_agendamento"); // Prepara a query para atualizar o texto do atendimento
+            query.bindValue(":id_agendamento", id);                                                       // Vincula o valor do ID do agendamento à query
+            query.bindValue(":texto", texto);                                                             // Vincula o valor do texto à query
+        } else {                                                                                          // Caso não haja resultados
+            query.prepare("INSERT INTO tb_atendimentos (id_agendamento, texto) VALUES (:id_agendamento, :texto)"); // Prepara a query para inserir um novo atendimento
+            query.bindValue(":id_agendamento", id);                                                       // Vincula o valor do ID do agendamento à query
+            query.bindValue(":texto", texto);                                                             // Vincula o valor do texto à query
+        }
+
+        if (query.exec()) {                                                                               // Executa a query e verifica se foi bem-sucedida
+            qDebug() << "Dados inseridos/atualizados com sucesso.";                                       // Loga a mensagem de sucesso no console de debug
+        } else {                                                                                          // Caso a query falhe
+            qDebug() << "Erro ao executar a query:" << query.lastError().text();                          // Loga o erro no console de debug
+        }
+    } else {                                                                                              // Caso a query falhe
+        qDebug() << "Erro ao executar a query:" << query.lastError().text();                              // Loga o erro no console de debug
     }
 
-    void MainWindow::on_tw_atendimento_cellClicked(int row, int column)
-    {
-        // pegar id do agendamento selecionado
-        // pesquisar esse id na tabela atendimentos, se tiver, recuperar valores, senao criar novo elemento
-        QString texto;
-        QString status;
+    QSqlQuery query_2;                                                                                    // Cria um novo objeto para executar a query SQL
+    query_2.prepare("UPDATE tb_agendamentos SET status_sessao = :status_sessao WHERE id = :id");          // Prepara a query para atualizar o status da sessão
+    query_2.bindValue(":id", id);                                                                         // Vincula o valor do ID do agendamento à query
 
-        int id = ui->tw_atendimento->item(row, 0)->text().toInt();
-        QSqlQuery query;
-        query.prepare("SELECT * FROM tb_atendimentos WHERE id_agendamento = :id_agendamento");
-        query.bindValue(":id_agendamento", id);
-
-        status = ui->tw_atendimento->item(row, 6)->text(); // Pega o valor da sexta coluna
-        if(status == "Realizada") {
-            ui->radioRealizado->setChecked(true);
-        } else if(status == "Aguardando"){
-            ui->radioAguardando->setChecked(true);
-        } else { // paciente ausente
-            ui->radioAusente->setChecked(true);
-        }
-
-        if (query.exec()) {
-            if (query.next()) {
-                texto = query.value(1).toString(); // Pega o valor da segunda coluna
-                ui->textEdit->setText(texto);
-            } else {
-                ui->textEdit->clear();
-            }
-        } else {
-            qDebug() << "Erro ao executar a query:" << query.lastError().text();
-        }
+    if (ui->radioRealizado->isChecked()) {                                                                // Verifica se o radio button "Realizado" está marcado
+        query_2.bindValue(":status_sessao", "Realizada");                                                 // Vincula o valor "Realizada" à query
+    } else if (ui->radioAguardando->isChecked()) {                                                        // Verifica se o radio button "Aguardando" está marcado
+        query_2.bindValue(":status_sessao", "Aguardando");                                                // Vincula o valor "Aguardando" à query
+    } else {                                                                                              // Caso o radio button "Ausente" esteja marcado
+        query_2.bindValue(":status_sessao", "Ausente");                                                   // Vincula o valor "Ausente" à query
     }
 
-    void MainWindow::on_btnSalvar_clicked()
-    {
-        QString texto;
-        int row = ui->tw_atendimento->currentRow();
-        if (row == -1) {
-            qDebug() << "Nenhuma linha selecionada.";
-            return;
-        }
-
-        int id = ui->tw_atendimento->item(row, 0)->text().toInt();
-        texto = ui->textEdit->toPlainText();
-
-        QSqlQuery query;
-        query.prepare("SELECT * FROM tb_atendimentos WHERE id_agendamento = :id_agendamento");
-        query.bindValue(":id_agendamento", id);
-
-        if (query.exec()) {
-            if (query.next()) {
-                qDebug() << "entrou 1";
-                // Atualiza o registro existente
-                query.prepare("UPDATE tb_atendimentos SET texto = :texto WHERE id_agendamento = :id_agendamento");
-                query.bindValue(":id_agendamento", id);
-                query.bindValue(":texto", texto);
-            } else {
-                qDebug() << "entrou 2";
-                // Insere um novo registro
-                query.prepare("INSERT INTO tb_atendimentos (id_agendamento, texto) " "VALUES (:id_agendamento, :texto)");
-                query.bindValue(":id_agendamento", id);
-                query.bindValue(":texto", texto);
-
-            }
-
-            qDebug() << "Dados inseridos/atualizados com sucesso.";
-
-        } else {
-            qDebug() << "Erro ao executar a query:" << query.lastError().text();
-        }
-
-        if (query.exec()) {
-            qDebug() << "query 1 foi";
-        } else {
-            qDebug() << "Erro ao executar a query:" << query.lastError().text();
-        }
-
-        QSqlQuery query_2;
-        query_2.prepare("UPDATE tb_agendamentos SET status_sessao = :status_sessao WHERE id = :id");
-        query_2.bindValue(":id", id);
-
-        if (ui->radioRealizado->isChecked()) {
-            query_2.bindValue(":status_sessao", "Realizada");
-        } else if (ui->radioAguardando->isChecked()) {
-            query_2.bindValue(":status_sessao", "Aguardando");
-        } else {
-            query_2.bindValue(":status_sessao", "Ausente");
-        }
-
-        if (query_2.exec()) {
-            QMessageBox::information(this, " ", "Atendimento Salvo!");
-        } else {
-            qDebug() << "Erro ao executar a query:" << query_2.lastError().text();
-        }
-
-        ui->textEdit->clear();
-
-        atualizarTabelaAtendimento();
-
-        ui->tw_atendimento->selectRow(row);
+    if (query_2.exec()) {                                                                                 // Executa a query e verifica se foi bem-sucedida
+        QMessageBox::information(this, " ", "Atendimento Salvo!");                                        // Exibe uma mensagem informando que o atendimento foi salvo
+    } else {                                                                                              // Caso a query falhe
+        qDebug() << "Erro ao executar a query:" << query_2.lastError().text();                            // Loga o erro no console de debug
     }
 
-    void MainWindow::on_btnDesfazer_clicked()
-{
-    int row = ui->tw_atendimento->currentRow();
+    ui->textEdit->clear();                                                                                // Limpa o QTextEdit
 
-    if (row != -1) {
-        QMessageBox::StandardButton resposta;
-        resposta = QMessageBox::question(this, "Desfazer Mudanças", "Tem certeza que deseja desfazer as mudanças?", QMessageBox::Yes | QMessageBox::No);
-            if (resposta == QMessageBox::Yes) {
-                on_tw_atendimento_cellClicked(row, 0);
-            }
-    } else {
-        qDebug() << "Nenhuma linha selecionada.";
+    atualizarTabelaAtendimento();                                                                         // Atualiza a tabela de atendimentos
 
+    ui->tw_atendimento->selectRow(row);                                                                   // Seleciona a linha atual na tabela de atendimento
+}                                                                                                         // Fecha a função
+
+void MainWindow::on_btnDesfazer_clicked()                                                                 // Função chamada quando o botão "Desfazer" é clicado
+{                                                                                                         // Abre a função
+    int row = ui->tw_atendimento->currentRow();                                                           // Obtém a linha selecionada na tabela de atendimento
+
+    if (row != -1) {                                                                                      // Verifica se alguma linha está selecionada
+        QMessageBox::StandardButton resposta;                                                             // Cria uma variável para armazenar a resposta do usuário
+        resposta = QMessageBox::question(this, "Desfazer Mudanças", "Tem certeza que deseja desfazer as mudanças?", QMessageBox::Yes | QMessageBox::No); // Exibe uma mensagem de confirmação
+        if (resposta == QMessageBox::Yes) {                                                               // Verifica se o usuário confirmou a ação
+            on_tw_atendimento_cellClicked(row, 0);                                                        // Chama a função que lida com o clique na célula da tabela
+        }
+    } else {                                                                                              // Caso nenhuma linha esteja selecionada
+        qDebug() << "Nenhuma linha selecionada.";                                                         // Loga a mensagem no console de debug
     }
-}
+}                                                                                                         // Fecha a função
 
 // FIM DA PÁGINA ATENDIMENTO
 
@@ -1034,59 +973,57 @@ void MainWindow::on_btnPacientes_clicked()
 
     // MÉTODO DA DEFINIÇÃO DA TABLE
 
-    void MainWindow::setTabelaPacientes(QSqlQuery &query)
-    {
-        int tb_linha = 0;
+void MainWindow::setTabelaPacientes(QSqlQuery &query)                                                     // Método para configurar a tabela de pacientes
+{                                                                                                         // Abre a função
+    int tb_linha = 0;                                                                                     // Inicializa a variável para contar as linhas
 
-        // Limpa os dados antigos da tabela
-        ui->tw_pacientes->clearContents();
-        ui->tw_pacientes->setRowCount(0);  // Reseta as linhas
+    ui->tw_pacientes->clearContents();                                                                    // Limpa os dados antigos da tabela
+    ui->tw_pacientes->setRowCount(0);                                                                     // Reseta as linhas
 
-        ui->tw_pacientes->setColumnCount(9);                                                                        // SETA A TABLE EM 9 COLUNAS
-        while(query.next()){
+    ui->tw_pacientes->setColumnCount(9);                                                                  // Define a tabela com 9 colunas
+    while(query.next()) {                                                                                 // Itera sobre os resultados da query
 
-            ui->tw_pacientes->insertRow(tb_linha);
+        ui->tw_pacientes->insertRow(tb_linha);                                                            // Insere uma nova linha na tabela
 
-            for(int i = 0; i <= 8; i++){
-                ui->tw_pacientes->setItem(tb_linha,i,new QTableWidgetItem(query.value(i).toString()));              // LOOP QUE PREENCHE A TABLE COM OS DADOS DO BANCO
-            }
-            ui->tw_pacientes->setRowHeight(tb_linha,30);
-
-            tb_linha++;
+        for(int i = 0; i <= 8; i++) {                                                                     // Loop que preenche a tabela com os dados do banco
+            ui->tw_pacientes->setItem(tb_linha, i, new QTableWidgetItem(query.value(i).toString()));      // Define o item da tabela com o valor da query
         }
+        ui->tw_pacientes->setRowHeight(tb_linha, 30);                                                     // Define a altura da linha
 
-        QStringList cabecalho = {"ID", "Nome", "Idade", "CPF", "Diagnóstico", "NºCelular", "E-mail", "Convêvio/Plano", "Nascimento"};
-        ui->tw_pacientes->setHorizontalHeaderLabels(cabecalho);
-        ui->tw_pacientes->setEditTriggers(QAbstractItemView::NoEditTriggers);
-        ui->tw_pacientes->setSelectionBehavior(QAbstractItemView::SelectRows);
-        ui->tw_pacientes->verticalHeader()->setVisible(false);
-
-        // Estilizando a tabela com CSS
-        ui->tw_pacientes->setStyleSheet(
-            "QTableWidget {"
-            "    border: 3px solid #dcdcdc;"
-            "    border-radius: 10px;"
-            "    background-color: #ffffff;"
-            "    gridline-color: #dcdcdc;"
-            "}"
-            "QHeaderView::section {"
-            "    background-color: #f0f0f0;"
-            "    border: 1px solid #dcdcdc;"
-            "    padding: 5px;"
-            "    border-radius: 5px;"
-            "}"
-            "QTableWidget::item {"
-            "    border-bottom: 1px solid #dcdcdc;"
-            "    padding: 5px;"
-            "}"
-            "QTableWidget::item:selected {"
-            "    background-color: #a0c4ff;"
-            "    color: #000000;"
-            "}"
-        );
-
-        redimensionarTable(ui->tw_pacientes);                                                                       // REDIMENSIONANDO A TABELA
+        tb_linha++;                                                                                       // Incrementa a contagem de linhas
     }
+
+    QStringList cabecalho = {"ID", "Nome", "Idade", "CPF", "Diagnóstico", "NºCelular", "E-mail", "Convêvio/Plano", "Nascimento"}; // Define os cabeçalhos da tabela
+    ui->tw_pacientes->setHorizontalHeaderLabels(cabecalho);                                               // Define os cabeçalhos horizontais
+    ui->tw_pacientes->setEditTriggers(QAbstractItemView::NoEditTriggers);                                 // Desabilita a edição dos itens
+    ui->tw_pacientes->setSelectionBehavior(QAbstractItemView::SelectRows);                                // Define o comportamento de seleção para selecionar linhas inteiras
+    ui->tw_pacientes->verticalHeader()->setVisible(false);                                                // Oculta o cabeçalho vertical
+
+    ui->tw_pacientes->setStyleSheet(                                                                      // Estilizando a tabela com CSS
+        "QTableWidget {"
+        "    border: 3px solid #dcdcdc;"
+        "    border-radius: 10px;"
+        "    background-color: #ffffff;"
+        "    gridline-color: #dcdcdc;"
+        "}"
+        "QHeaderView::section {"
+        "    background-color: #f0f0f0;"
+        "    border: 1px solid #dcdcdc;"
+        "    padding: 5px;"
+        "    border-radius: 5px;"
+        "}"
+        "QTableWidget::item {"
+        "    border-bottom: 1px solid #dcdcdc;"
+        "    padding: 5px;"
+        "}"
+        "QTableWidget::item:selected {"
+        "    background-color: #a0c4ff;"
+        "    color: #000000;"
+        "}"
+    );
+
+    redimensionarTable(ui->tw_pacientes);                                                                 // Redimensiona a tabela
+} 
 
     // MÉTODOS DE CADASTRO DO PACIENTE:
 
@@ -1243,59 +1180,57 @@ void MainWindow::on_btnColaboradores_clicked()
 
     // MÉTODO DA DEFINIÇÃO DA TABLE
 
-    void MainWindow::setTabelaColaboradores(QSqlQuery &query)
-    {
-        int tb_linha = 0;
+void MainWindow::setTabelaColaboradores(QSqlQuery &query)                                                 // Método para configurar a tabela de colaboradores
+{                                                                                                         // Abre a função
+    int tb_linha = 0;                                                                                     // Inicializa a variável para contar as linhas
 
-        // Limpa os dados antigos da tabela
-        ui->tw_colaboradores->clearContents();
-        ui->tw_colaboradores->setRowCount(0);  // Reseta as linhas
+    ui->tw_colaboradores->clearContents();                                                                // Limpa os dados antigos da tabela
+    ui->tw_colaboradores->setRowCount(0);                                                                 // Reseta as linhas
 
-        ui->tw_colaboradores->setColumnCount(8);                                                                    // SETA A TABLE EM 8 COLUNAS
-        while(query.next()){
+    ui->tw_colaboradores->setColumnCount(8);                                                              // Define a tabela com 8 colunas
+    while(query.next()) {                                                                                 // Itera sobre os resultados da query
 
-            ui->tw_colaboradores->insertRow(tb_linha);
+        ui->tw_colaboradores->insertRow(tb_linha);                                                        // Insere uma nova linha na tabela
 
-            for(int i = 0; i <= 7; i++){
-                ui->tw_colaboradores->setItem(tb_linha,i,new QTableWidgetItem(query.value(i).toString()));          // LOOP QUE PREENCHE A TABLE COM OS DADOS DO BANCO
-            }
-            ui->tw_colaboradores->setRowHeight(tb_linha,30);
-
-            tb_linha++;
+        for(int i = 0; i <= 7; i++) {                                                                     // Loop que preenche a tabela com os dados do banco
+            ui->tw_colaboradores->setItem(tb_linha, i, new QTableWidgetItem(query.value(i).toString()));  // Define o item da tabela com o valor da query
         }
+        ui->tw_colaboradores->setRowHeight(tb_linha, 30);                                                 // Define a altura da linha
 
-        QStringList cabecalho = {"ID", "Nome", "Idade", "CPF", "Cargo", "NºCelular", "E-mail", "Nascimento"};
-        ui->tw_colaboradores->setHorizontalHeaderLabels(cabecalho);
-        ui->tw_colaboradores->setEditTriggers(QAbstractItemView::NoEditTriggers);
-        ui->tw_colaboradores->setSelectionBehavior(QAbstractItemView::SelectRows);
-        ui->tw_colaboradores->verticalHeader()->setVisible(false);
-
-        // Estilizando a tabela com CSS
-        ui->tw_colaboradores->setStyleSheet(
-            "QTableWidget {"
-            "    border: 3px solid #dcdcdc;"
-            "    border-radius: 10px;"
-            "    background-color: #ffffff;"
-            "    gridline-color: #dcdcdc;"
-            "}"
-            "QHeaderView::section {"
-            "    background-color: #f0f0f0;"
-            "    border: 1px solid #dcdcdc;"
-            "    padding: 5px;"
-            "    border-radius: 5px;"
-            "}"
-            "QTableWidget::item {"
-            "    border-bottom: 1px solid #dcdcdc;"
-            "    padding: 5px;"
-            "}"
-            "QTableWidget::item:selected {"
-            "    background-color: #a0c4ff;"
-            "    color: #000000;"
-            "}"
-        );
-
-        redimensionarTable(ui->tw_colaboradores);                                                                   // REDIMENSIONANDO A TABELA
+        tb_linha++;                                                                                       // Incrementa a contagem de linhas
     }
+
+    QStringList cabecalho = {"ID", "Nome", "Idade", "CPF", "Cargo", "NºCelular", "E-mail", "Nascimento"}; // Define os cabeçalhos da tabela
+    ui->tw_colaboradores->setHorizontalHeaderLabels(cabecalho);                                           // Define os cabeçalhos horizontais
+    ui->tw_colaboradores->setEditTriggers(QAbstractItemView::NoEditTriggers);                             // Desabilita a edição dos itens
+    ui->tw_colaboradores->setSelectionBehavior(QAbstractItemView::SelectRows);                            // Define o comportamento de seleção para selecionar linhas inteiras
+    ui->tw_colaboradores->verticalHeader()->setVisible(false);                                            // Oculta o cabeçalho vertical
+
+    ui->tw_colaboradores->setStyleSheet(                                                                  // Estilizando a tabela com CSS
+        "QTableWidget {"
+        "    border: 3px solid #dcdcdc;"
+        "    border-radius: 10px;"
+        "    background-color: #ffffff;"
+        "    gridline-color: #dcdcdc;"
+        "}"
+        "QHeaderView::section {"
+        "    background-color: #f0f0f0;"
+        "    border: 1px solid #dcdcdc;"
+        "    padding: 5px;"
+        "    border-radius: 5px;"
+        "}"
+        "QTableWidget::item {"
+        "    border-bottom: 1px solid #dcdcdc;"
+        "    padding: 5px;"
+        "}"
+        "QTableWidget::item:selected {"
+        "    background-color: #a0c4ff;"
+        "    color: #000000;"
+        "}"
+    );
+
+    redimensionarTable(ui->tw_colaboradores);                                                             // Redimensiona a tabela
+}                                                                                                         // Fecha a função
 
     void MainWindow::on_btnCadastroCol_clicked()
     {
@@ -1442,205 +1377,172 @@ void MainWindow::on_btnRelatorios_clicked()
 ////////////////////////////////////////////////////////////////
 
 
-    // MÉTODOS DA PÁGINA DE "ATENDIMENTOS"
+// MÉTODOS DA PÁGINA DE "ATENDIMENTOS"
 
-    // Configuração inicial da TreeWidget
-    void MainWindow::setTreeWidget(QTreeWidget *treeWidget)
-    {
+void MainWindow::setTreeWidget(QTreeWidget *treeWidget)                                                   // Configura a TreeWidget
+{                                                                                                         // Abre a função
+    QStringList headers;                                                                                  // Configuração dos cabeçalhos
+    headers << "Atendimentos";                                                                            // Cabeçalho informativo
+    treeWidget->setHeaderLabels(headers);                                                                 // Define os cabeçalhos
 
-        // Configuração dos cabeçalhos
-        QStringList headers;
-        headers << "Atendimentos";  // Cabeçalho informativo
-        treeWidget->setHeaderLabels(headers);
+    treeWidget->setHeaderHidden(false);                                                                   // Ajustes visuais
+    treeWidget->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    treeWidget->setAlternatingRowColors(true);
+    treeWidget->setSelectionMode(QAbstractItemView::SingleSelection);
+    treeWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
+    treeWidget->setExpandsOnDoubleClick(true);
+    treeWidget->setAnimated(true);
+    treeWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
-        // Ajustes visuais
-        treeWidget->setHeaderHidden(false);
-        treeWidget->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
-        treeWidget->setAlternatingRowColors(true);
-        treeWidget->setSelectionMode(QAbstractItemView::SingleSelection);
-        treeWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
-        treeWidget->setExpandsOnDoubleClick(true);
-        treeWidget->setAnimated(true);
-        treeWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    treeWidget->setStyleSheet(                                                                           // Estilizando a TreeWidget com CSS
+        "QTreeWidget {"
+        "    border: 3px solid #dcdcdc;"
+        "    border-radius: 10px;"
+        "    background-color: #ffffff;"
+        "    gridline-color: #dcdcdc;"
+        "}"
+        "QHeaderView::section {"
+        "    background-color: #f0f0f0;"
+        "    border: 1px solid #dcdcdc;"
+        "    padding: 5px;"
+        "    border-radius: 5px;"
+        "}"
+        "QTreeWidget::item {"
+        "    border-bottom: 1px solid #dcdcdc;"
+        "    padding: 5px;"
+        "}"
+        "QTreeWidget::item:selected {"
+        "    background-color: #a0c4ff;"
+        "    color: #000000;"
+        "}"
+    );
+}                                                                                                         // Fecha a função
 
-        // Estilizando a TreeWidget com CSS
-        treeWidget->setStyleSheet(
-            "QTreeWidget {"
-            "    border: 3px solid #dcdcdc;"
-            "    border-radius: 10px;"
-            "    background-color: #ffffff;"
-            "    gridline-color: #dcdcdc;"
-            "}"
-            "QHeaderView::section {"
-            "    background-color: #f0f0f0;"
-            "    border: 1px solid #dcdcdc;"
-            "    padding: 5px;"
-            "    border-radius: 5px;"
-            "}"
-            "QTreeWidget::item {"
-            "    border-bottom: 1px solid #dcdcdc;"
-            "    padding: 5px;"
-            "}"
-            "QTreeWidget::item:selected {"
-            "    background-color: #a0c4ff;"
-            "    color: #000000;"
-            "}"
-        );
+void MainWindow::carregarRelatorios(int* idSessao)                                                        // Método para carregar todos os atendimentos na TreeWidget
+{                                                                                                         // Abre a função
+    ui->trw_atendimentos->clear();                                                                        // Limpa a TreeWidget antes de carregar os dados
+
+    QSqlQuery query;                                                                                      // Cria um objeto para executar a query SQL
+    QString textoRelatorio;                                                                               // Variável para armazenar o texto do relatório
+
+    if (idSessao == nullptr) {                                                                            // Verifica se o ID da sessão é nulo
+        query.prepare("SELECT a.id, a.data, a.hora, a.profissional, a.paciente, t.texto "                 // Prepara a query para selecionar todas as sessões realizadas
+                      "FROM tb_agendamentos a "
+                      "LEFT JOIN tb_atendimentos t ON a.id = t.id_agendamento "
+                      "WHERE a.status_sessao = 'Realizada' "
+                      "ORDER BY a.data DESC, a.hora DESC;");                                              // Ordena por data e hora
+    } else {                                                                                              // Caso contrário, carrega uma sessão específica
+        int sessao = *idSessao;                                                                           // Obtém o ID da sessão
+
+        query.prepare("SELECT a.id, a.data, a.hora, a.profissional, a.paciente, t.texto "                 // Prepara a query para selecionar uma sessão específica realizada
+                      "FROM tb_agendamentos a "
+                      "LEFT JOIN tb_atendimentos t ON a.id = t.id_agendamento "
+                      "WHERE a.id = :idSessao AND a.status_sessao = 'Realizada'");
+        query.bindValue(":idSessao", sessao);                                                             // Vincula o valor do ID da sessão à query
     }
 
+    if (query.exec()) {                                                                                   // Executa a query e verifica se foi bem-sucedida
+        while (query.next()) {                                                                            // Itera sobre os resultados da query
+            QString sessaoInfo = QString("Data: %1 | Hora: %2\nProfissional: %3\nPaciente: %4")           // Informações da sessão
+                                     .arg(query.value("data").toString())
+                                     .arg(query.value("hora").toString())
+                                     .arg(query.value("profissional").toString())
+                                     .arg(query.value("paciente").toString());
 
+            QTreeWidgetItem *sessaoItem = new QTreeWidgetItem(ui->trw_atendimentos);                      // Cria o item pai (sessão)
+            sessaoItem->setText(0, sessaoInfo);                                                           // Define o texto do item pai
+            sessaoItem->setData(0, Qt::UserRole, query.value("id").toInt());                              // Armazena o ID da sessão
 
-    // Método para carregar todos os atendimentos na TreeWidget
-    void MainWindow::carregarRelatorios(int* idSessao)
-    {
-        ui->trw_atendimentos->clear();  // Limpa a TreeWidget antes de carregar os dados
+            QString textoAtendimento = query.value("texto").toString();                                   // Texto do atendimento
+            if (!textoAtendimento.isEmpty()) {                                                            // Verifica se o texto do atendimento não está vazio
+                QTreeWidgetItem *atendimentoItem = new QTreeWidgetItem(sessaoItem);                       // Cria o item filho (texto do atendimento)
+                atendimentoItem->setText(0, textoAtendimento);                                            // Define o texto do item filho
 
-        QSqlQuery query;
-        QString textoRelatorio;  // Variável para armazenar o texto do relatório
-
-        if (idSessao == nullptr) {
-            // Carregar todas as sessões realizadas
-            query.prepare("SELECT a.id, a.data, a.hora, a.profissional, a.paciente, t.texto "
-                          "FROM tb_agendamentos a "
-                          "LEFT JOIN tb_atendimentos t ON a.id = t.id_agendamento "
-                          "WHERE a.status_sessao = 'Realizada' "
-                          "ORDER BY a.data DESC, a.hora DESC;");  // Ordena por data e hora
-        } else {
-            // Carregar uma sessão específica realizada
-            int sessao = *idSessao;
-
-            query.prepare("SELECT a.id, a.data, a.hora, a.profissional, a.paciente, t.texto "
-                          "FROM tb_agendamentos a "
-                          "LEFT JOIN tb_atendimentos t ON a.id = t.id_agendamento "
-                          "WHERE a.id = :idSessao AND a.status_sessao = 'Realizada'");
-            query.bindValue(":idSessao", sessao);
-        }
-
-        if (query.exec()) {
-            while (query.next()) {
-                // Informações da sessão
-                QString sessaoInfo = QString("Data: %1 | Hora: %2\nProfissional: %3\nPaciente: %4")
-                                         .arg(query.value("data").toString())
-                                         .arg(query.value("hora").toString())
-                                         .arg(query.value("profissional").toString())
-                                         .arg(query.value("paciente").toString());
-
-                // Cria o item pai (sessão)
-                QTreeWidgetItem *sessaoItem = new QTreeWidgetItem(ui->trw_atendimentos);
-                sessaoItem->setText(0, sessaoInfo);
-                sessaoItem->setData(0, Qt::UserRole, query.value("id").toInt());  // Armazena o ID da sessão
-
-                // Texto do atendimento
-                QString textoAtendimento = query.value("texto").toString();
-                if (!textoAtendimento.isEmpty()) {
-                    // Cria o item filho (texto do atendimento)
-                    QTreeWidgetItem *atendimentoItem = new QTreeWidgetItem(sessaoItem);
-                    atendimentoItem->setText(0, textoAtendimento);
-
-                    // Adiciona o texto do atendimento ao texto do relatório
-                    textoRelatorio += textoAtendimento + "\n";
-                }
-
-                // Adiciona o item pai à TreeWidget
-                ui->trw_atendimentos->addTopLevelItem(sessaoItem);
+                textoRelatorio += textoAtendimento + "\n";                                                // Adiciona o texto do atendimento ao texto do relatório
             }
 
-            if (idSessao != nullptr) {
-                // Expande automaticamente a sessão
-                ui->trw_atendimentos->expandAll();
-
-                // Define o texto do relatório no TextEdit
-                ui->txtRelAtendimento->setPlainText(textoRelatorio);
-            }
-
-            // Configurações visuais da TreeWidget
-            setTreeWidget(ui->trw_atendimentos);
-
-        } else {
-            // Mensagem de erro caso a consulta falhe
-            QMessageBox::critical(this, "Erro", "Falha ao carregar os relatórios:\n" + query.lastError().text());
+            ui->trw_atendimentos->addTopLevelItem(sessaoItem);                                            // Adiciona o item pai à TreeWidget
         }
-    }
 
+        if (idSessao != nullptr) {                                                                        // Verifica se o ID da sessão não é nulo
+            ui->trw_atendimentos->expandAll();                                                            // Expande automaticamente a sessão
 
-    // Exibe detalhes do atendimento no QTextEdit ao clicar em um item da TreeWidget
-    void MainWindow::on_trw_atendimentos_itemClicked(QTreeWidgetItem *item, int column)
-    {
-        if (item->parent()) {  // Verifica se é um item filho (texto do atendimento)
-            ui->txtRelAtendimento->setText(item->text(0));
+            ui->txtRelAtendimento->setPlainText(textoRelatorio);                                          // Define o texto do relatório no TextEdit
         }
+
+        setTreeWidget(ui->trw_atendimentos);                                                              // Configurações visuais da TreeWidget
+
+    } else {                                                                                              // Caso a query falhe
+        QMessageBox::critical(this, "Erro", "Falha ao carregar os relatórios:\n" + query.lastError().text()); // Mensagem de erro caso a consulta falhe
     }
+}                                                                                                         // Fecha a função
 
+void MainWindow::on_trw_atendimentos_itemClicked(QTreeWidgetItem *item, int column)                       // Exibe detalhes do atendimento no QTextEdit ao clicar em um item da TreeWidget
+{                                                                                                         // Abre a função
+    if (item->parent()) {                                                                                 // Verifica se é um item filho (texto do atendimento)
+        ui->txtRelAtendimento->setText(item->text(0));                                                    // Define o texto do QTextEdit com o texto do item
+    }
+}                                                                                                         // Fecha a função
 
-// FIM DA PÁGINA RELATÓRIOS
-
-
-////////////////////////////////////////////////////
-
-
-// MÉTODO PARA ACESSAR A PÁGINA "ESTOQUE"
-
-void MainWindow::on_btnEstoque_clicked()
-{
-    if(getLogado()){
-        setButtonHighlight(ui->btnEstoque);                                                                              // ALTERAR A COR DE DESTAQUE DO BOTÃO
+void MainWindow::on_btnEstoque_clicked()                                                                  // Método para acessar a página "Estoque"
+{                                                                                                         // Abre a função
+    if(getLogado()){                                                                                      // Verifica se o usuário está logado
+        setButtonHighlight(ui->btnEstoque);                                                               // Altera a cor de destaque do botão
         ui->btnEstoque->setAutoFillBackground(true);
 
-        ui->radioProduto->setChecked(true);
+        ui->radioProduto->setChecked(true);                                                               // Define o filtro por produto como selecionado
 
-        ui->lineEditProduto->setText("");
-        ui->spinQuantidade->setValue(0);
-        ui->doubleSpinCompra->setValue(0);
-        ui->doubleSpinVenda->setValue(0);
-        ui->lineEditFornecedor->setText("");
+        ui->lineEditProduto->setText("");                                                                 // Limpa o campo de texto do produto
+        ui->spinQuantidade->setValue(0);                                                                  // Reseta o valor do spin box de quantidade
+        ui->doubleSpinCompra->setValue(0);                                                                // Reseta o valor do double spin box de compra
+        ui->doubleSpinVenda->setValue(0);                                                                 // Reseta o valor do double spin box de venda
+        ui->lineEditFornecedor->setText("");                                                              // Limpa o campo de texto do fornecedor
 
-        int index = ui->paginas->indexOf(ui->Estoque);                                                             // PÁGINA ESTOQUE
-        ui->paginas->setCurrentIndex(index);                                                                            // ACESSANDO A PÁGINA
+        int index = ui->paginas->indexOf(ui->Estoque);                                                    // Obtém o índice da página "Estoque"
+        ui->paginas->setCurrentIndex(index);                                                              // Acessa a página "Estoque"
 
-        QSqlQuery query;
+        QSqlQuery query;                                                                                  // Cria um objeto para executar a query SQL
 
-        query.prepare("SELECT * FROM tb_estoque");                          // ACESSANDO A TABELA NO BANCO
+        query.prepare("SELECT * FROM tb_estoque");                                                        // Prepara a query para selecionar todos os produtos do estoque
 
-        if(query.exec()){
-            setTabelaEstoque(query);                                                                                              // CARREGANDO A TABELA NA TABLE ATRAVÉS DO MÉTODO
-        }else{
-            qDebug() << "Erro ao executar a query:" << query.lastError().text();
+        if(query.exec()){                                                                                 // Executa a query e verifica se foi bem-sucedida
+            setTabelaEstoque(query);                                                                      // Carrega a tabela de estoque com os resultados da query
+        }else{                                                                                            // Caso a query falhe
+            qDebug() << "Erro ao executar a query:" << query.lastError().text();                          // Loga o erro no console de debug
         }
 
-    } else {
-        QMessageBox::information(this, " ", "Contrate nosso serviço para ter acesso ao sistema!");
+    } else {                                                                                              // Caso o usuário não esteja logado
+        QMessageBox::information(this, " ", "Contrate nosso serviço para ter acesso ao sistema!");        // Exibe uma mensagem informando que o serviço deve ser contratado
     }
-}
+}                                                                                                         // Fecha a função
 
-void MainWindow::setTabelaEstoque(QSqlQuery &query)
-{
-    int tb_linha = 0;
+void MainWindow::setTabelaEstoque(QSqlQuery &query)                                                       // Método para configurar a tabela de estoque
+{                                                                                                         // Abre a função
+    int tb_linha = 0;                                                                                     // Inicializa a variável para contar as linhas
 
-    // Limpa os dados antigos da tabela
-    ui->tw_estoque->clearContents();
-    ui->tw_estoque->setRowCount(0);  // Reseta as linhas
+    ui->tw_estoque->clearContents();                                                                      // Limpa os dados antigos da tabela
+    ui->tw_estoque->setRowCount(0);                                                                       // Reseta as linhas
 
-    ui->tw_estoque->setColumnCount(6);                                                                    // SETA A TABLE EM 8 COLUNAS
-    while(query.next()){
+    ui->tw_estoque->setColumnCount(6);                                                                    // Define a tabela com 6 colunas
+    while(query.next()){                                                                                  // Itera sobre os resultados da query
 
-        ui->tw_estoque->insertRow(tb_linha);
+        ui->tw_estoque->insertRow(tb_linha);                                                              // Insere uma nova linha na tabela
 
-        for(int i = 0; i <= 5; i++){
-            ui->tw_estoque->setItem(tb_linha,i,new QTableWidgetItem(query.value(i).toString()));          // LOOP QUE PREENCHE A TABLE COM OS DADOS DO BANCO
+        for(int i = 0; i <= 5; i++){                                                                      // Loop que preenche a tabela com os dados do banco
+            ui->tw_estoque->setItem(tb_linha,i,new QTableWidgetItem(query.value(i).toString()));          // Define o item da tabela com o valor da query
         }
-        ui->tw_estoque->setRowHeight(tb_linha,30);
+        ui->tw_estoque->setRowHeight(tb_linha,30);                                                        // Define a altura da linha
 
-        tb_linha++;
+        tb_linha++;                                                                                       // Incrementa a contagem de linhas
     }
 
-    QStringList cabecalho = {"ID", "Produto", "Quantidade", "Valor de Compra", "Valor de Venda", "Fornecedor"};
-    ui->tw_estoque->setHorizontalHeaderLabels(cabecalho);
-    ui->tw_estoque->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->tw_estoque->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tw_estoque->verticalHeader()->setVisible(false);
+    QStringList cabecalho = {"ID", "Produto", "Quantidade", "Valor de Compra", "Valor de Venda", "Fornecedor"}; // Define os cabeçalhos da tabela
+    ui->tw_estoque->setHorizontalHeaderLabels(cabecalho);                                                 // Define os cabeçalhos horizontais
+    ui->tw_estoque->setEditTriggers(QAbstractItemView::NoEditTriggers);                                   // Desabilita a edição dos itens
+    ui->tw_estoque->setSelectionBehavior(QAbstractItemView::SelectRows);                                  // Define o comportamento de seleção para selecionar linhas inteiras
+    ui->tw_estoque->verticalHeader()->setVisible(false);                                                  // Oculta o cabeçalho vertical
 
-    // Estilizando a tabela com CSS
-    ui->tw_estoque->setStyleSheet(
+    ui->tw_estoque->setStyleSheet(                                                                        // Estilizando a tabela com CSS
         "QTableWidget {"
         "    border: 3px solid #dcdcdc;"
         "    border-radius: 10px;"
@@ -1663,191 +1565,189 @@ void MainWindow::setTabelaEstoque(QSqlQuery &query)
         "}"
     );
 
-    redimensionarTable(ui->tw_estoque);
+    redimensionarTable(ui->tw_estoque);                                                                   // Redimensiona a tabela
+}                                                                                                         // Fecha a função
 
-}
+void MainWindow::on_lineEditEstoque_textChanged(const QString &arg1)                                      // Função chamada quando o texto do campo de pesquisa é alterado
+{                                                                                                         // Abre a função
+    QString pesquisado = ui->lineEditEstoque->text();                                                     // Obtém o texto do campo de pesquisa
+    bool filtrarProduto = ui->radioProduto->isChecked();                                                  // Verifica se o filtro por produto está selecionado
+    QSqlQuery query;                                                                                      // Cria um objeto para executar a query SQL
 
-void MainWindow::on_lineEditEstoque_textChanged(const QString &arg1)
-{
-    QString pesquisado = ui->lineEditEstoque->text();
-    bool filtrarProduto = ui->radioProduto->isChecked();
-    QSqlQuery query;
-
-    if (filtrarProduto) {
-        query.prepare("SELECT * FROM tb_estoque WHERE produto LIKE :produto");
-        query.bindValue(":produto", pesquisado + "%");
-    } else {
-        query.prepare("SELECT * FROM tb_estoque WHERE fornecedor LIKE :fornecedor");
-        query.bindValue(":fornecedor", pesquisado + "%");
+    if (filtrarProduto) {                                                                                 // Verifica se o filtro por produto está selecionado
+        query.prepare("SELECT * FROM tb_estoque WHERE produto LIKE :produto");                            // Prepara a query para selecionar produtos que correspondem ao texto pesquisado
+        query.bindValue(":produto", pesquisado + "%");                                                    // Vincula o valor do produto à query
+    } else {                                                                                              // Caso contrário, filtra por fornecedor
+        query.prepare("SELECT * FROM tb_estoque WHERE fornecedor LIKE :fornecedor");                      // Prepara a query para selecionar fornecedores que correspondem ao texto pesquisado
+        query.bindValue(":fornecedor", pesquisado + "%");                                                 // Vincula o valor do fornecedor à query
     }
 
-    if (query.exec()) {
-        setTabelaEstoque(query); // CARREGANDO A TABELA NA TABLE ATRAVÉS DO MÉTODO
-    } else {
-        qDebug() << "Erro ao executar a query:" << query.lastError().text();
+    if (query.exec()) {                                                                                   // Executa a query e verifica se foi bem-sucedida
+        setTabelaEstoque(query);                                                                          // Carrega a tabela de estoque com os resultados da query
+    } else {                                                                                              // Caso a query falhe
+        qDebug() << "Erro ao executar a query:" << query.lastError().text();                              // Loga o erro no console de debug
     }
-}
+}                                                                                                         // Fecha a função
 
-void MainWindow::on_radioProduto_toggled(bool checked)
-{
-    on_lineEditEstoque_textChanged("");
-}
+void MainWindow::on_radioProduto_toggled(bool checked)                                                    // Função chamada quando o filtro por produto é alterado
+{                                                                                                         // Abre a função
+    on_lineEditEstoque_textChanged("");                                                                   // Atualiza a tabela de estoque
+}                                                                                                         // Fecha a função
 
-void MainWindow::on_tw_estoque_cellClicked(int row, int column)
-{
-    QSqlQuery query;
+void MainWindow::on_tw_estoque_cellClicked(int row, int column)                                           // Função chamada quando uma célula da tabela de estoque é clicada
+{                                                                                                         // Abre a função
+    QSqlQuery query;                                                                                      // Cria um objeto para executar a query SQL
 
-    int id = ui->tw_estoque->item(row, 0)->text().toInt();
+    int id = ui->tw_estoque->item(row, 0)->text().toInt();                                                // Obtém o ID do produto na linha selecionada
 
-    query.prepare("SELECT * FROM tb_estoque WHERE id = :id");
-    query.bindValue(":id", id);
+    query.prepare("SELECT * FROM tb_estoque WHERE id = :id");                                             // Prepara a query para selecionar o produto com o ID especificado
+    query.bindValue(":id", id);                                                                           // Vincula o valor do ID à query
 
-    if (query.exec()) {
-        if (query.next()) {
-            // Pegando os valores das colunas
-            QString produto = query.value("produto").toString();
-            int quantidade = query.value("quantidade").toInt();
-            double valor_compra = query.value("valor_compra").toDouble();
-            double valor_venda = query.value("valor_venda").toDouble();
-            QString fornecedor = query.value("fornecedor").toString();
+    if (query.exec()) {                                                                                   // Executa a query e verifica se foi bem-sucedida
+        if (query.next()) {                                                                               // Verifica se há resultados
+            QString produto = query.value("produto").toString();                                          // Obtém o valor da coluna "produto"
+            int quantidade = query.value("quantidade").toInt();                                           // Obtém o valor da coluna "quantidade"
+            double valor_compra = query.value("valor_compra").toDouble();                                 // Obtém o valor da coluna "valor_compra"
+            double valor_venda = query.value("valor_venda").toDouble();                                   // Obtém o valor da coluna "valor_venda"
+            QString fornecedor = query.value("fornecedor").toString();                                    // Obtém o valor da coluna "fornecedor"
 
-            qDebug() << valor_compra;
-            qDebug() << valor_venda;
+            qDebug() << valor_compra;                                                                     // Loga o valor de compra no console de debug
+            qDebug() << valor_venda;                                                                      // Loga o valor de venda no console de debug
 
-            ui->lineEditProduto->setText(produto);
-            ui->spinQuantidade->setValue(quantidade);
-            ui->doubleSpinCompra->setValue(valor_compra);
-            ui->doubleSpinVenda->setValue(valor_venda);
-            ui->lineEditFornecedor->setText(fornecedor);
+            ui->lineEditProduto->setText(produto);                                                        // Define o texto do campo de produto
+            ui->spinQuantidade->setValue(quantidade);                                                     // Define o valor do spin box de quantidade
+            ui->doubleSpinCompra->setValue(valor_compra);                                                 // Define o valor do double spin box de compra
+            ui->doubleSpinVenda->setValue(valor_venda);                                                   // Define o valor do double spin box de venda
+            ui->lineEditFornecedor->setText(fornecedor);                                                  // Define o texto do campo de fornecedor
 
-        } else {
-            qDebug() << "Nenhum resultado encontrado.";
+        } else {                                                                                          // Caso não haja resultados
+            qDebug() << "Nenhum resultado encontrado.";                                                   // Loga a mensagem no console de debug
         }
-    } else {
-        qDebug() << "Erro ao executar a query:" << query.lastError().text();
+    } else {                                                                                              // Caso a query falhe
+        qDebug() << "Erro ao executar a query:" << query.lastError().text();                              // Loga o erro no console de debug
     }
-}
+}     
 
-void MainWindow::on_btnDesfazerEstoque_clicked()
-{
-    int row = ui->tw_estoque->currentRow();
+void MainWindow::on_btnDesfazerEstoque_clicked()                                                          // Função chamada quando o botão "Desfazer" é clicado
+{                                                                                                         // Abre a função
+    int row = ui->tw_estoque->currentRow();                                                               // Obtém a linha selecionada na tabela de estoque
 
-    if (row != -1) {
-        QMessageBox::StandardButton resposta;
-        resposta = QMessageBox::question(this, "Desfazer Mudanças", "Tem certeza que deseja desfazer as mudanças?", QMessageBox::Yes | QMessageBox::No);
-        if (resposta == QMessageBox::Yes) {
-            on_tw_estoque_cellClicked(row, 0);
+    if (row != -1) {                                                                                      // Verifica se alguma linha está selecionada
+        QMessageBox::StandardButton resposta;                                                             // Cria uma variável para armazenar a resposta do usuário
+        resposta = QMessageBox::question(this, "Desfazer Mudanças", 
+        "Tem certeza que deseja desfazer as mudanças?", QMessageBox::Yes | QMessageBox::No);
+        if (resposta == QMessageBox::Yes) {                                                               // Verifica se o usuário confirmou a ação
+            on_tw_estoque_cellClicked(row, 0);                                                            // Chama a função que lida com o clique na célula da tabela
         }
-    } else {
-        qDebug() << "Nenhuma linha selecionada.";
-
+    } else {                                                                                              // Caso nenhuma linha esteja selecionada
+        qDebug() << "Nenhuma linha selecionada.";                                                         // Loga a mensagem no console de debug
     }
+}  
 
-}
+void MainWindow::on_btnAtualizar_clicked()                                                                // Função chamada quando o botão "Atualizar" é clicado
+{                                                              
+    int row = ui->tw_estoque->currentRow();                                                               // Obtém a linha selecionada na tabela de estoque
 
-void MainWindow::on_btnAtualizar_clicked()
-{
-    int row = ui->tw_estoque->currentRow();
+    if(row != -1) {                                                                                       // Verifica se alguma linha está selecionada
 
-    if(row != -1){
+        int id = ui->tw_estoque->item(row, 0)->text().toInt();                                            // Obtém o ID do produto na linha selecionada
 
-        int id = ui->tw_estoque->item(row, 0)->text().toInt();
+        QString produto = ui->lineEditProduto->text();                                                    // Obtém o texto do campo de produto
+        int quantidade = ui->spinQuantidade->value();                                                     // Obtém o valor do spin box de quantidade
+        double valor_compra = ui->doubleSpinCompra->value();                                              // Obtém o valor do double spin box de compra
+        double valor_venda = ui->doubleSpinVenda->value();                                                // Obtém o valor do double spin box de venda
+        QString fornecedor = ui->lineEditFornecedor->text();                                              // Obtém o texto do campo de fornecedor
 
-        QString produto = ui->lineEditProduto->text();
-        int quantidade = ui->spinQuantidade->value(); // Use value() instead of text().toInt()
-        double valor_compra = ui->doubleSpinCompra->value(); // Use value() instead of text().toDouble()
-        double valor_venda = ui->doubleSpinVenda->value(); // Use value() instead of text().toDouble()
-        QString fornecedor = ui->lineEditFornecedor->text();
+        QSqlQuery query;                                                                                  // Cria um objeto para executar a query SQL
 
-        QSqlQuery query;
+        query.prepare("UPDATE tb_estoque SET produto = :produto, quantidade = :quantidade, valor_compra = :valor_compra, "
+        "valor_venda = :valor_venda, fornecedor = :fornecedor WHERE id = :id");                           // Prepara a query para atualizar o produto com o ID especificado
+        query.bindValue(":produto", produto);                                                             // Vincula o valor do produto à query
+        query.bindValue(":quantidade", quantidade);                                                       // Vincula o valor da quantidade à query
+        query.bindValue(":valor_compra", valor_compra);                                                   // Vincula o valor de compra à query
+        query.bindValue(":valor_venda", valor_venda);                                                     // Vincula o valor de venda à query
+        query.bindValue(":fornecedor", fornecedor);                                                       // Vincula o valor do fornecedor à query
+        query.bindValue(":id", id);                                                                       // Vincula o valor do ID à query
 
-        query.prepare("UPDATE tb_estoque SET produto = :produto, quantidade = :quantidade, valor_compra = :valor_compra, valor_venda = :valor_venda, fornecedor = :fornecedor WHERE id = :id");
+        if (query.exec()) {                                                                               // Executa a query e verifica se foi bem-sucedida
 
-        query.bindValue(":produto", produto);
-        query.bindValue(":quantidade", quantidade);
-        query.bindValue(":valor_compra", valor_compra);
-        query.bindValue(":valor_venda", valor_venda);
-        query.bindValue(":fornecedor", fornecedor);
-        query.bindValue(":id", id);
+            on_lineEditEstoque_textChanged("");                                                           // Atualiza a tabela de estoque
 
-        if (query.exec()) {
+            ui->tw_estoque->selectRow(row);                                                               // Seleciona a linha atual na tabela de estoque
 
-            on_lineEditEstoque_textChanged("");
-
-            ui->tw_estoque->selectRow(row);
-
-        } else {
-            qDebug() << "Erro ao atualizar o produto:" << query.lastError().text();
+        } else {                                                                                          // Caso a query falhe
+            qDebug() << "Erro ao atualizar o produto:" << query.lastError().text();                       // Loga o erro no console de debug
         }
 
-    } else {
-        qDebug() << "Nenhuma linha selecionada.";
+    } else {                                                                                              // Caso nenhuma linha esteja selecionada
+        qDebug() << "Nenhuma linha selecionada.";                                                         // Loga a mensagem no console de debug
     }
 }
 
-void MainWindow::on_btnAdicionar_clicked()
-{
-    QString produto = ui->lineEditProdutoAdd->text();
-    QString fornecedor = ui->lineEditFornecedorAdd->text();
+void MainWindow::on_btnAdicionar_clicked()                                                                // Função chamada quando o botão "Adicionar" é clicado
+{                                                              
+    QString produto = ui->lineEditProdutoAdd->text();                                                     // Obtém o texto do campo de produto
+    QString fornecedor = ui->lineEditFornecedorAdd->text();                                               // Obtém o texto do campo de fornecedor
 
-    QSqlQuery query;
+    QSqlQuery query;                                                                                      // Cria um objeto para executar a query SQL
 
-    query.prepare("INSERT INTO tb_estoque (produto, fornecedor) " "VALUES (:produto, :fornecedor)");
-    query.bindValue(":produto", produto);
-    query.bindValue(":fornecedor", fornecedor);
+    query.prepare("INSERT INTO tb_estoque (produto, fornecedor) VALUES (:produto, :fornecedor)");         // Prepara a query para inserir um novo produto no estoque
+    query.bindValue(":produto", produto);                                                                 // Vincula o valor do produto à query
+    query.bindValue(":fornecedor", fornecedor);                                                           // Vincula o valor do fornecedor à query
 
-    if (query.exec()) {
-        QMessageBox::information(this, " ", "Produto adicionado ao estoque com sucesso.");
+    if (query.exec()) {                                                                                   // Executa a query e verifica se foi bem-sucedida
+        QMessageBox::information(this, " ", "Produto adicionado ao estoque com sucesso.");                // Exibe uma mensagem de sucesso
 
-        ui->lineEditProdutoAdd->clear();
-        ui->lineEditFornecedorAdd->clear();
+        ui->lineEditProdutoAdd->clear();                                                                  // Limpa o campo de texto do produto
+        ui->lineEditFornecedorAdd->clear();                                                               // Limpa o campo de texto do fornecedor
 
-        on_lineEditEstoque_textChanged("");
+        on_lineEditEstoque_textChanged("");                                                               // Atualiza a tabela de estoque
 
-    } else {
-        qDebug() << "Erro ao executar a query:" << query.lastError().text();
-        QMessageBox::warning(this, " ", "Erro ao adicionar o produto.");
+    } else {                                                                                              // Caso a query falhe
+        qDebug() << "Erro ao executar a query:" << query.lastError().text();                              // Loga o erro no console de debug
+        QMessageBox::warning(this, " ", "Erro ao adicionar o produto.");                                  // Exibe uma mensagem de erro
     }
 
 }
 
-void MainWindow::on_btnApagar_clicked()
-{
-    int row = ui->tw_estoque->currentRow();
+void MainWindow::on_btnApagar_clicked()                                                                   // Função chamada quando o botão "Apagar" é clicado
+{                                                                 
+    int row = ui->tw_estoque->currentRow();                                                               // Obtém a linha selecionada na tabela de estoque
 
-    if(row != -1){
+    if(row != -1) {                                                                                       // Verifica se alguma linha está selecionada
 
-        int id = ui->tw_estoque->item(row, 0)->text().toInt();
+        int id = ui->tw_estoque->item(row, 0)->text().toInt();                                            // Obtém o ID do produto na linha selecionada
 
-        QMessageBox::StandardButton resposta;
-        resposta = QMessageBox::question(this, "Apagar Produto", "Tem certeza que deseja apagar o produto?", QMessageBox::Yes | QMessageBox::No);
+        QMessageBox::StandardButton resposta;                                                             // Cria uma variável para armazenar a resposta do usuário
+        resposta = QMessageBox::question(this, "Apagar Produto", 
+        "Tem certeza que deseja apagar o produto?", QMessageBox::Yes | QMessageBox::No);
 
-        if (resposta == QMessageBox::Yes) {
+        if (resposta == QMessageBox::Yes) {                                                               // Verifica se o usuário confirmou a exclusão
 
-            QSqlQuery query;
+            QSqlQuery query;                                                                              // Cria um objeto para executar a query SQL
 
-            query.prepare("DELETE FROM tb_estoque WHERE id = :id");
-            query.bindValue(":id", id);
+            query.prepare("DELETE FROM tb_estoque WHERE id = :id");                                       // Prepara a query para deletar o produto com o ID especificado
+            query.bindValue(":id", id);                                                                   // Vincula o valor do ID à query
 
-            if (query.exec()) {
-                QMessageBox::information(this, " ", "Produto excluído com sucesso.");
-                ui->tw_estoque->removeRow(row);
+            if (query.exec()) {                                                                           // Executa a query e verifica se foi bem-sucedida
+                QMessageBox::information(this, " ", "Produto excluído com sucesso.");                      // Exibe uma mensagem de sucesso
+                ui->tw_estoque->removeRow(row);                                                           // Remove a linha da tabela de estoque
 
-                ui->lineEditProduto->setText("");
-                ui->spinQuantidade->setValue(0);
-                ui->doubleSpinCompra->setValue(0);
-                ui->doubleSpinVenda->setValue(0);
-                ui->lineEditFornecedor->setText("");
+                ui->lineEditProduto->setText("");                                                         // Limpa o campo de texto do produto
+                ui->spinQuantidade->setValue(0);                                                          // Reseta o valor do spin box de quantidade
+                ui->doubleSpinCompra->setValue(0);                                                        // Reseta o valor do double spin box de compra
+                ui->doubleSpinVenda->setValue(0);                                                         // Reseta o valor do double spin box de venda
+                ui->lineEditFornecedor->setText("");                                                      // Limpa o campo de texto do fornecedor
 
-            } else {
-                QMessageBox::warning(this, " ", "Erro ao excluir o produto.");
-                qDebug() << "Erro ao executar a query:" << query.lastError().text();
+            } else {                                                                                      // Caso a query falhe
+                QMessageBox::warning(this, " ", "Erro ao excluir o produto.");                             // Exibe uma mensagem de erro
+                qDebug() << "Erro ao executar a query:" << query.lastError().text();                      // Loga o erro no console de debug
             }
 
         }
 
-    } else {
-        qDebug() << "Nenhuma linha selecionada.";
+    } else {                                                                                              // Caso nenhuma linha esteja selecionada
+        qDebug() << "Nenhuma linha selecionada.";                                                         // Loga a mensagem no console de debug
     }
 }
 
