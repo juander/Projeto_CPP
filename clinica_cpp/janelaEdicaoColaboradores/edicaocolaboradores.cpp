@@ -10,8 +10,6 @@ edicaoColaboradores::edicaoColaboradores(QWidget *parent, int id_colaborador)
 {
     ui->setupUi(this);
 
-    setWindowTitle("MEDICALSOFT");
-
     id = id_colaborador;
 
     // Realizando uma query que traz os elementos do banco

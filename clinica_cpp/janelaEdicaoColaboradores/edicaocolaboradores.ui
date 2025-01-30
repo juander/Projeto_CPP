@@ -7,11 +7,11 @@
     <x>0</x>
     <y>0</y>
     <width>500</width>
-    <height>215</height>
+    <height>230</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>MEDICALSOFT</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QDialog {

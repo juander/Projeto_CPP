@@ -136,8 +136,6 @@ void MainWindow::abrirPdf(const QString &link) {
 
 void MainWindow::janelaFormatada(){
 
-    setWindowTitle("MEDICALSOFT");                                                                                  // TÍTULO DA JANELA
-
     ui->paginas->tabBar()->setVisible(false);                                                                       // DEIXANDO OS ÍCONES DAS PÁGINAS DA TABWIDGET INVISÍVEIS
 
     ui->tab_relatorios->tabBar()->setVisible(false);                                                                // MESMA COISA AQUI PARA A OUTRA TABWIDGET

@@ -11,8 +11,6 @@ cadastroSessao::cadastroSessao(MainWindow *mainWindow, const QString &modo, int 
 {
     ui->setupUi(this);
 
-    setWindowTitle("MEDICALSOFT");
-
     QSqlQuery query;
     query.prepare("SELECT * FROM tb_pacientes");
 
@@ -37,7 +35,6 @@ void cadastroSessao::setModo(const QString &modo)
 
     if (modo == "Editar" && m_idSessao != -1) {
         ui->btnCadastrarSes->setText("Salvar Alterações");
-        this->setWindowTitle("MEDICALSOFT");
 
         QSqlQuery query;
         query.prepare("SELECT profissional, paciente, especialidade, data, hora FROM tb_agendamentos WHERE id = :id");
@@ -57,8 +54,6 @@ void cadastroSessao::setModo(const QString &modo)
             QMessageBox::warning(this, " ", "Não foi possível carregar os dados da sessão.");
         }
     } else {
-
-        this->setWindowTitle("MEDICALSOFT");
 
         ui->dataAgenda->setDate(QDate::currentDate());
     }

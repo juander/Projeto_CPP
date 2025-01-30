@@ -8,8 +8,6 @@ cadastroColaboradores::cadastroColaboradores(QWidget *parent)
 {
     ui->setupUi(this);
 
-    setWindowTitle("MEDICALSOFT");
-
 }
 
 cadastroColaboradores::~cadastroColaboradores()

@@ -12,8 +12,6 @@ janela_entrar::janela_entrar(QWidget *parent, Conexao *conexao)
 {
     ui->setupUi(this);
 
-    setWindowTitle("MEDICALSOFT");
-
     // Ajuste de ícones
     ui->btnMostrar->setIcon(QIcon(":/icons/Hide.png"));
     ui->btnMostrar->setIconSize(QSize(24, 24));

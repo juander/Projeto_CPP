@@ -7,11 +7,11 @@
     <x>0</x>
     <y>0</y>
     <width>326</width>
-    <height>129</height>
+    <height>159</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>MEDICALSOFT</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QDialog {
@@ -99,7 +99,7 @@ QPushButton#btnEnt:hover {
           <string/>
          </property>
          <property name="icon">
-          <iconset resource="icons.qrc">
+          <iconset resource="../icons.qrc">
            <normaloff>:/icons/Hide.png</normaloff>
            <normalon>:/icons/Eye.png</normalon>:/icons/Hide.png</iconset>
          </property>

@@ -12,8 +12,6 @@ edicaopaciente::edicaopaciente(QWidget *parent, int id_paciente)
 {
     ui->setupUi(this);                                                                                                          // CONFIGURA A INTERFACE DO USUÁRIO
 
-    setWindowTitle("MEDICALSOFT");
-
     id = id_paciente;                                                                                                           // ATRIBUI O ID DO PACIENTE
 
     // Realizando uma query que traz os elementos do banco

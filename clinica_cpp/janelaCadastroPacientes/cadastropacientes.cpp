@@ -10,8 +10,6 @@ cadastroPacientes::cadastroPacientes(QWidget *parent)
 {
     ui->setupUi(this);
 
-    setWindowTitle("MEDICALSOFT");
-
 }
 
 // FIM
