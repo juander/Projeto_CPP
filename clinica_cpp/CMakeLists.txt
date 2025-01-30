@@ -20,20 +20,20 @@ set(PROJECT_SOURCES
     ${CMAKE_SOURCE_DIR}/icons.qrc
     classConexaoBanco/Conexao.h
     classConexaoBanco/Conexao.cpp
-    janelaCadastroPacientes/cadastropacientes.h
-    janelaCadastroPacientes/cadastropacientes.cpp
-    janelaCadastroPacientes/cadastropacientes.ui
+    janelaPacientes/cadastropacientes.h
+    janelaPacientes/cadastropacientes.cpp
+    janelaPacientes/cadastropacientes.ui
     classPessoa/pessoa.h
     classPessoa/pessoa.cpp
     janelaLogin/janela_entrar.h
     janelaLogin/janela_entrar.cpp
     janelaLogin/janela_entrar.ui
-    janelaCadastroColaboradores/cadastrocolaboradores.h
-    janelaCadastroColaboradores/cadastrocolaboradores.cpp
-    janelaCadastroColaboradores/cadastrocolaboradores.ui
-    janelaAgendaSessao/cadastrosessao.h
-    janelaAgendaSessao/cadastrosessao.cpp
-    janelaAgendaSessao/cadastrosessao.ui
+    janelaColaboradores/cadastrocolaboradores.h
+    janelaColaboradores/cadastrocolaboradores.cpp
+    janelaColaboradores/cadastrocolaboradores.ui
+    janelaAgenda/cadastrosessao.h
+    janelaAgenda/cadastrosessao.cpp
+    janelaAgenda/cadastrosessao.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

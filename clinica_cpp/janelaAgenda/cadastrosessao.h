@@ -24,6 +24,21 @@ public:
 
     void setModo(const QString &modo);
 
+    // Métodos get e set
+    void setIdSessao(int id = -1);
+
+    int getIdSessao() const;
+
+    void setTipoUso(const QString &modo);
+
+    QString getTipoUso() const;
+
+    // Métodos get e set para m_mainWindow
+    void setConexaoJanelaPrincipal(MainWindow *mainWindow);
+
+    MainWindow* getMainWindow() const;
+
+
 private slots:
 
     // Método para cadastrar um novo paciente

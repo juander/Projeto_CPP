@@ -22,9 +22,9 @@
 
 #include "../janelaLogin/janela_entrar.h"
 
-#include "../janelaCadastroPacientes/cadastropacientes.h"
-#include "../janelaCadastroColaboradores/cadastrocolaboradores.h"
-#include "../janelaAgendaSessao/cadastrosessao.h"
+#include "../janelaPacientes/cadastropacientes.h"
+#include "../janelaColaboradores/cadastrocolaboradores.h"
+#include "../janelaAgenda/cadastrosessao.h"
 
 #include "../classPessoa/pessoa.h"
 
