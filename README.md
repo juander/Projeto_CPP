@@ -29,6 +29,15 @@ Caso você não possua o Qt instalado ou prefira uma instalação mais simples, 
 2. Execute o arquivo do instalador e siga as instruções na tela.
 3. Após a instalação, abra o MEDICALSOFT pelo atalho criado no seu sistema.
 
+## Credenciais de Acesso
+Para acessar e utilizar o sistema, disponibilizamos três logins liberados. As credenciais de acesso são as seguintes:
+
+1. Usuário: teste | Senha: teste
+2. Usuário: teste2 | Senha: teste2
+3. Usuário: teste3 | Senha: teste3
+
+Essas credenciais permitem que você explore todas as funcionalidades do sistema de forma completa.
+
 ## Suporte
 Caso encontre problemas ou tenha dúvidas, consulte a documentação ou entre em contato com a equipe de suporte.
 
