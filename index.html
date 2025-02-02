@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Overview</title>
+    <title>MEDICALSOFT - Sistema de Gestão para Clínicas</title>
     <style>
         body {
             display: flex;
@@ -15,9 +15,27 @@
             margin: 0;
             padding: 20px;
         }
-        .icon {
-            font-size: 50px;
-            margin-bottom: 20px;
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .header a {
+            color: green;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 5px;
+        }
+        .header img {
+            width: 100px;
+            margin: 10px 0;
+        }
+        .header .highlight {
+            color: red;
+            font-weight: bold;
         }
         .links a {
             display: inline-block;
@@ -25,10 +43,15 @@
             padding: 10px 20px;
             text-decoration: none;
             color: white;
-            background-color: #007bff;
-            border-radius: 5px;
+            background-color: #363636;
+            
+            border-radius: 20px;
         }
-        .summary, .screenshots, .video {
+        .links a:hover {
+          color: white;
+          background-color: #2f2f2f;
+        }
+        .summary, .overview, .screenshots, .video {
             margin: 20px 0;
         }
         .screenshots img {
@@ -42,25 +65,41 @@
     </style>
 </head>
 <body>
-    <div class="icon">🚀</div>
+    <div class="header">
+        <h1>MEDICALSOFT: Sistema de Gestão para Clínicas</h1>
+        <a href="#">Juan Henrique</a> | <a href="#">Levi Serrano</a>
+        <div>
+            <img src="logo.png" alt="Logo MedicalSoft">
+        </div>
+    </div>
+    
     <div class="links">
-        <a href="https://github.com/your-repo" target="_blank">GitHub Repository</a>
-        <a href="https://your-gitbook-link" target="_blank">GitBook</a>
+        <a href="https://github.com/juander/medicalsoft" target="_blank">GitHub Repository</a>
+        <a href="https://juanhenriquers.gitbook.io/medicalsoft" target="_blank">GitBook</a>
     </div>
+    
     <div class="summary">
-        <h2>Project Summary</h2>
-        <p>This project is a comprehensive guide to creating a fully responsive and stylish web application.</p>
+        <h2>Sobre o Projeto</h2>
+        <p>MEDICALSOFT é um sistema de gestão para clínicas, desenvolvido em C++ utilizando o framework Qt e o sistema de build CMake. O objetivo principal do projeto é fornecer uma solução eficiente e intuitiva para a gestão de pacientes, colaboradores, agendamentos, relatórios e estoque de produtos na clínica.</p>
+        <p>O sistema oferece funcionalidades como cadastro, edição e exclusão de pacientes e colaboradores, agendamento de sessões, controle de estoque e geração de relatórios detalhados sobre atendimentos. Utilizando a programação orientada a objetos e os recursos do Qt, o MEDICALSOFT garante modularidade, reutilização de código e manutenção facilitada.</p>
     </div>
+    
     <div class="screenshots">
         <h2>Project Screenshots</h2>
         <img src="screenshot1.png" alt="Screenshot 1">
-        <p>Description of Screenshot 1</p>
+        <p>Descrição da Screenshot 1</p>
         <img src="screenshot2.png" alt="Screenshot 2">
-        <p>Description of Screenshot 2</p>
+        <p>Descrição da Screenshot 2</p>
     </div>
+    
+    <div class="overview">
+        <h2>Visão Geral</h2>
+        <p>O MEDICALSOFT foi criado para facilitar a administração de clínicas, permitindo a organização eficiente de consultas, pacientes e estoque...</p>
+    </div>
+    
     <div class="video">
-        <h2>Project Video</h2>
-        <iframe src="https://www.youtube.com/embed/your-video-id" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <h2>Vídeo do Projeto</h2>
+        <iframe src="https://www.youtube.com/embed/your-video-id" frameborder="0" allowfullscreen></iframe>
     </div>
 </body>
 </html>
