@@ -1,47 +1,66 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formatando textos</title>
+    <title>Project Overview</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+        .links a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: white;
+            background-color: #007bff;
+            border-radius: 5px;
+        }
+        .summary, .screenshots, .video {
+            margin: 20px 0;
+        }
+        .screenshots img {
+            max-width: 100%;
+            height: auto;
+        }
+        .video iframe {
+            width: 100%;
+            height: 315px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Outras formatações</h1>
-    <hr>
-    <h2>Código-fonte / Pré-formatação</h2>
-    <p>Tag CODE para ler com formatação <code>igualmente</code> espaçada para cada letra.</p>
-    <pre>
-A tag PRE 
-    formata o texto igual 
-        como está escrito 
-            no vs
-    </pre>
-    <h2>Citação simples</h2>
-    <p>Quando realmente for uma <q>citação</q> usamos a tag Q.</p>
-    <h2>Citação completa</h2>
-    <p>Segundo a bíblia:</p>
-    <blockquote>
-        Salmo 23: O senhor é meu pastor e nada me faltará... 
-    </blockquote>
-    <p>No caso acima usasse a tag BLOCKQUOTE que referencia até a url de onde a citação foi tirada com cite="".</p>
-    <h2>Abreviações</h2>
-    <p>Estudando <abbr title="Hiper Text Markup Language">html</abbr> e <abbr title="Cascading Style Sheets">css</abbr>. Tá massa!!. Tag ABBR</p>
-    <h2>Texto invertido</h2>
-    <p>Tag BDO. <bdo dir="rtl">Toma fi!</bdo></p>
-    <h2>Listas OL e UL</h2>
-    <p>Listas ordenadas e não ordenadas</p>
-    <ol type="1" start="2">
-        <li>Bola</li>
-        <li>Pato</li>
-    </ol>
-    <ul type="square"> <!-- Disc, Circle e Square-->
-        <li>Bola</li>
-        <li>Pato</li>
-    </ul>
-    <h2>Listas de definição</h2>
-    <dl>
-        <dt>HTML</dt>
-        <dd>HyperText Markup Language</dd>
-    </dl>
+    <div class="icon">🚀</div>
+    <div class="links">
+        <a href="https://github.com/your-repo" target="_blank">GitHub Repository</a>
+        <a href="https://your-gitbook-link" target="_blank">GitBook</a>
+    </div>
+    <div class="summary">
+        <h2>Project Summary</h2>
+        <p>This project is a comprehensive guide to creating a fully responsive and stylish web application.</p>
+    </div>
+    <div class="screenshots">
+        <h2>Project Screenshots</h2>
+        <img src="screenshot1.png" alt="Screenshot 1">
+        <p>Description of Screenshot 1</p>
+        <img src="screenshot2.png" alt="Screenshot 2">
+        <p>Description of Screenshot 2</p>
+    </div>
+    <div class="video">
+        <h2>Project Video</h2>
+        <iframe src="https://www.youtube.com/embed/your-video-id" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
 </body>
 </html>
