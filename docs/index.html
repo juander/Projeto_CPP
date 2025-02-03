@@ -17,7 +17,7 @@
         }
         .header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
         }
         .header h1 {
             font-size: 24px;
@@ -31,7 +31,7 @@
         }
         .header img {
             width: 100px;
-            margin: 10px 0;
+            margin: 30px 0 10px; 
         }
         .header .highlight {
             color: red;
@@ -40,45 +40,51 @@
         .links a {
             display: inline-block;
             margin: 10px;
-            padding: 10px 20px;
+            padding: 10px 35px;
             text-decoration: none;
             color: white;
-            background-color: #363636;
-            
+            background-color: #273697;
             border-radius: 20px;
         }
         .links a:hover {
           color: white;
-          background-color: #2f2f2f;
+          background-color: #182472;
         }
         .summary, .overview, .screenshots, .video {
-            margin: 20px 0;
+        margin: 20px 0;
+        }
+        .summary h2, .overview h2, .screenshots h2, .video h2 {
+            text-align: center;
+        }
+        .summary p, .overview p, .screenshots p, .video p {
+            text-align: justify;
         }
         .screenshots img {
-            max-width: 100%;
-            height: auto;
+        max-width: 100%;
+        height: auto;
         }
         .video iframe {
             width: 100%;
             height: 315px;
         }
         .content {
-            max-width: 40%;
+            max-width: 50%;
             margin: 0 auto;
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>MEDICALSOFT: Sistema de Gestão para Clínicas</h1>
-        <a href="#">Juan Henrique</a> | <a href="#">Levi Serrano</a>
+        <h1>MEDICALSOFT</h1>
+        <h1>Sistema de Gestão para Clínicas</h1>
+        <a href="https://github.com/juander">Juan Henrique</a> | <a href="https://github.com/levirbss">Levi Serrano</a>
         <div>
-            <img src="/docs/source/logo.png" alt="Logo MedicalSoft">
+            <img src="source/logo.png" alt="Logo MedicalSoft">
         </div>
     </div>
     
     <div class="links">
-        <a href="https://github.com/juander/medicalsoft" target="_blank">GitHub Repository</a>
+        <a href="https://github.com/juander/medicalsoft" target="_blank">GitHub</a>
         <a href="https://juanhenriquers.gitbook.io/medicalsoft" target="_blank">GitBook</a>
     </div>
     
