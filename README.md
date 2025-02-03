@@ -1,4 +1,4 @@
-# README - MEDICALSOFT
+# MEDICALSOFT
 
 ## Introdução
 MEDICALSOFT é um sistema de gestão para clínicas, implementado em C++ utilizando o framework Qt e o sistema de build CMake. O objetivo principal do projeto é fornecer uma solução eficiente e intuitiva para a gestão de pacientes, colaboradores, agendamentos, relatórios e estoque de produtos na clínica.
