@@ -57,6 +57,11 @@ public:
     void janelaFormatada();                                                                                  // Método para formatar a página
     void redimensionarTable(QTableWidget* table);                                                            // Método para redimensionar as tabelas automaticamente
 
+    void resetButtonStyles();                                                                                // Método para resetar os estilos dos botões
+    void setButtonHighlight(QPushButton *botao);                                                             // Destaca o botão clicado
+    void setLayoutEntrar();                                                                                  // Método para configurar o layout de entrada
+    void setLayoutSair();                                                                                    // Método para configurar o layout de saída
+    
 private slots:
     void abrirPdf(const QString &link);                                                                      // Método para abrir um PDF
 
@@ -125,12 +130,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QPushButton *botaoAtivo = nullptr;                                                                       // Armazena o botão atualmente selecionado
-    void resetButtonStyles();                                                                                // Método para resetar os estilos dos botões
-    void setButtonHighlight(QPushButton *botao);                                                             // Destaca o botão clicado
-    void setLayoutEntrar();                                                                                  // Método para configurar o layout de entrada
-    void setLayoutSair();                                                                                    // Método para configurar o layout de saída
 
+    QPushButton *botaoAtivo = nullptr;                                                                       // Armazena o botão atualmente selecionado
     Conexao conexao;                                                                                         // Conexão com o banco de dados
     bool logado;                                                                                             // Estado de login
     QString nome_usuario, clinica_usuario, cargo_usuario;                                                    // Informações do usuário
