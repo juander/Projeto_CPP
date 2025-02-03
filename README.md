@@ -1,9 +1,12 @@
 # README - MEDICALSOFT
 
 ## Introdução
-MEDICALSOFT é um software de gerenciamento de clínica desenvolvido em C++ com Qt, compatível Windows, Linux e macOS. Ele permite o gerenciamento de colaboradores, pacientes, sessões de agenda, estoque e relatórios de forma intuitiva e eficiente.
+MEDICALSOFT é um sistema de gestão para clínicas, implementado em C++ utilizando o framework Qt e o sistema de build CMake. O objetivo principal do projeto é fornecer uma solução eficiente e intuitiva para a gestão de pacientes, colaboradores, agendamentos, relatórios e estoque de produtos na clínica.
 
-[Documentação do Projeto](https://juanhenriquers.gitbook.io/medicalsoft/)
+Para mais informações visite os seguintes links do projeto: 
+
+- [GitBook](https://juanhenriquers.gitbook.io/medicalsoft/)
+- [GitHub Page](https://juander.github.io/medicalsoft/)
 
 ## Executando o Projeto no Qt Creator
 Se você possui o Qt instalado, siga os passos abaixo para executar o projeto diretamente no Qt Creator:
@@ -34,7 +37,7 @@ Caso você não possua o Qt instalado ou prefira uma instalação mais simples, 
 ## Credenciais de Acesso
 Para acessar e utilizar o sistema, disponibilizamos três logins liberados. As credenciais de acesso são as seguintes:
 
-1. Usuário: teste | Senha: teste
+1. Usuário: teste  | Senha: teste
 2. Usuário: teste2 | Senha: teste2
 3. Usuário: teste3 | Senha: teste3
 
