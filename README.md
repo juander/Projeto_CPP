@@ -46,4 +46,5 @@ Essas credenciais permitem que você explore todas as funcionalidades do sistema
 ## Suporte
 Caso encontre problemas ou tenha dúvidas, consulte a documentação ou entre em contato com a equipe de suporte.
 
-
+## Licença
+Este projeto está licenciado sob a [Licença Apache 2.0](LICENSE).
