@@ -1,115 +1,182 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MEDICALSOFT - Sistema de Gestão para Clínicas</title>
     <style>
+        /* Estilos Gerais */
         body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
             font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
             margin: 0;
-            padding: 20px;
-        }
-        .header {
+            padding: 0;
             text-align: center;
-            margin-bottom: 10px;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        
+        /* Cabeçalho */
+        .header {
+            padding: 20px 0;
         }
         .header h1 {
-            font-size: 24px;
-            font-weight: bold;
+            margin: 15px 0;
+            font-size: 28px;
+            color: #000000;
         }
-        .header a {
-            color: green;
-            text-decoration: none;
+        .header img {
+            width: 120px;
+            margin: 30px 0 10px;
+        }
+        .dev-links {
+            margin-top: 10px;
+        }
+        .dev-links a {
+            text-decoration: underline;
+            color: #273697;
             font-weight: bold;
             margin: 0 5px;
         }
-        .header img {
-            width: 100px;
-            margin: 30px 0 10px; 
-        }
-        .header .highlight {
-            color: red;
-            font-weight: bold;
+
+        /* Links */
+        .links {
+            margin: 20px 0;
         }
         .links a {
             display: inline-block;
-            margin: 10px;
-            padding: 10px 35px;
-            text-decoration: none;
-            color: white;
+            padding: 12px 25px;
             background-color: #273697;
-            border-radius: 20px;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: 0.3s;
         }
         .links a:hover {
-          color: white;
-          background-color: #182472;
+            background-color: #182472;
         }
-        .summary, .overview, .screenshots, .video {
-        margin: 20px 0;
+
+        /* Seções */
+        .section {
+            margin: 40px 0;
         }
-        .summary h2, .overview h2, .screenshots h2, .video h2 {
-            text-align: center;
+        .section h2 {
+            font-size: 24px;
+            color: #000000;
+            margin-bottom: 15px;
         }
-        .summary p, .overview p, .screenshots p, .video p {
+        .section p {
             text-align: justify;
+            line-height: 1.6;
         }
+
+        /* Imagens */
         .screenshots img {
-        max-width: 100%;
-        height: auto;
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
         }
+        .screenshots strong {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        /* Vídeo */
         .video iframe {
             width: 100%;
-            height: 315px;
+            height: 400px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .content {
-            max-width: 50%;
-            margin: 0 auto;
+
+        /* Rodapé */
+        .footer {
+            margin-top: 30px;
+            padding: 20px;
+            background: #273697;
+            color: white;
+            font-size: 14px;
+            border-radius: 0 0 10px 10px;
+        }
+        .footer a {
+            color: white;
+            text-decoration: underline;
         }
     </style>
-</head>
-<body>
-    <div class="header">
-        <h1>MEDICALSOFT</h1>
-        <h1>Sistema de Gestão para Clínicas</h1>
-        <a href="https://github.com/juander">Juan Henrique</a> | <a href="https://github.com/levirbss">Levi Serrano</a>
-        <div>
+    </head>
+    <body>
+        <div class="container">
+        <!-- Cabeçalho -->
+        <div class="header">
+            <h1>MEDICALSOFT</h1>
+            <h1>Sistema de Gestão para Clínicas</h1>
+            <div class="dev-links">
+                <a href="https://github.com/juander">Juan Henrique,</a>
+                <a href="https://github.com/levirbss">Levi Serrano</a>
+            </div>
             <img src="source/logo.png" alt="Logo MedicalSoft">
         </div>
+
+        <!-- Links -->
+        <div class="links">
+            <a href="https://github.com/juander/medicalsoft" target="_blank">GitHub</a>
+            <a href="https://juanhenriquers.gitbook.io/medicalsoft" target="_blank">GitBook</a>
+        </div>
+
+        <!-- Sobre o Projeto -->
+        <div class="section">
+            <h2>Sobre o Projeto</h2>
+            <p>O MEDICALSOFT é um sistema de gestão clínica desenvolvido para otimizar a organização e administração de clínicas e consultórios multiprofissionais. Projetado com uma arquitetura robusta utilizando Qt Creator, C++ e integração com o banco de dados SQLite, o software oferece uma interface intuitiva e funcionalidades completas para o gerenciamento de agendamentos, registros de atendimentos, relatórios detalhados e organização de dados clínicos.</p>
+            <p>Com foco em usabilidade e automação de processos, o MEDICALSOFT permite aos profissionais de saúde otimizar seu fluxo de trabalho ao facilitar desde o agendamento de sessões até a geração de relatórios personalizados. O sistema suporta a filtragem inteligente de dados com base em critérios como profissional, paciente, serviço e datas selecionadas, permitindo consultas rápidas e precisas.</p>
+            <p>Além disso, o sistema integra funcionalidades de edição de sessões e visualização de relatórios, possibilitando que os dados já registrados no banco sejam carregados automaticamente em formulários para atualizações eficientes. A centralização das informações clínicas oferece segurança, confiabilidade e suporte ao registro histórico de atendimentos, mantendo padrões de qualidade e organização.</p>
+            <P>Voltado para clínicas que buscam uma solução integrada, o MEDICALSOFT se diferencia por oferecer uma abordagem personalizada e flexível, mantendo foco na melhoria do atendimento ao paciente e na eficiência dos processos internos.</P>
+        </div>
+
+        <!-- Funcionalidades -->
+        <div class="section screenshots">
+            <h2>Funcionalidades do Sistema</h2>
+            <br>
+            <h3>Gerenciamento de Agendamentos</h3>
+            <p>O sistema permite o cadastro, a visualização e a edição de sessões clínicas, abrangendo campos como data, horário, profissional, paciente e serviço. Ideal para otimizar a organização da agenda da clínica.</p>
+            <img src="source/Agenda.png" alt="Gerenciamento de agendamentos">
+
+            <h3>Gerenciamento de Atendimentos</h3>
+            <p>Facilita a realização de atendimentos com registros detalhados para cada sessão, mantendo um histórico organizado e acessível para profissionais de saúde.</p>
+            <img src="source/Atender.png" alt="Gerenciamento de atendimentos">
+
+            <h3>Gerenciamento de Pacientes</h3>
+            <p>Permite o registro completo de informações sobre pacientes, incluindo dados pessoais e histórico clínico, com uma interface intuitiva para buscas e atualizações.</p>
+            <img src="source/Pacientes.png" alt="Gerenciamento de pacientes">
+
+            <h3>Gerenciamento de Relatórios</h3>
+            <p>Oferece uma visualização hierárquica dos atendimentos realizados, com textos de relatórios vinculados às sessões, garantindo uma análise clara e detalhada das atividades.</p>
+            <img src="source/Relatórios.png" alt="Gerenciamento de relatórios">
+        </div>
+
+        <!-- Vídeo -->
+        <div class="section video">
+            <h2>Demonstração do Sistema</h2>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/DeSMPNQJJgU?si=QJz3Y0_ZWQjUm_yj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <!-- Rodapé -->
+        <div class="footer">
+            <p>Desenvolvido por <a href="https://github.com/juander">Juan Henrique</a> e <a href="https://github.com/levirbss">Levi Serrano</a></p>
+            <p>&copy; 2025 MEDICALSOFT - Todos os direitos reservados.</p>
+            <p>Licenciado sob a <a href="https://github.com/juander/medicalsoft/blob/main/LICENSE" target="_blank">Apache License 2.0, Janeiro de 2004</a></p>
+        </div>
     </div>
-    
-    <div class="links">
-        <a href="https://github.com/juander/medicalsoft" target="_blank">GitHub</a>
-        <a href="https://juanhenriquers.gitbook.io/medicalsoft" target="_blank">GitBook</a>
-    </div>
-    
-    <div class="summary content">
-        <h2>Sobre o Projeto</h2>
-        <p>MEDICALSOFT é um sistema de gestão para clínicas, desenvolvido em C++ utilizando o framework Qt e o sistema de build CMake. O objetivo principal do projeto é fornecer uma solução eficiente e intuitiva para a gestão de pacientes, colaboradores, agendamentos, relatórios e estoque de produtos na clínica.</p>
-        <p>O sistema oferece funcionalidades como cadastro, edição e exclusão de pacientes e colaboradores, agendamento de sessões, controle de estoque e geração de relatórios detalhados sobre atendimentos. Utilizando a programação orientada a objetos e os recursos do Qt, o MEDICALSOFT garante modularidade, reutilização de código e manutenção facilitada.</p>
-    </div>
-    
-    <div class="screenshots content">
-        <h2>Funcionamentos do Projeto</h2>
-        <img src="screenshot1.png" alt="Screenshot 1">
-        <p>Descrição da Screenshot 1</p>
-        <img src="screenshot2.png" alt="Screenshot 2">
-        <p>Descrição da Screenshot 2</p>
-    </div>
-    
-    <div class="overview content">
-        <h2>Visão Geral</h2>
-        <p>O MEDICALSOFT foi criado para facilitar a administração de clínicas, permitindo a organização eficiente de consultas, pacientes e estoque...</p>
-    </div>
-    
-    <div class="video content">
-        <h2>Vídeo do Projeto</h2>
-        <iframe src="https://www.youtube.com/embed/your-video-id" frameborder="0" allowfullscreen></iframe>
-    </div>
+
 </body>
 </html>
